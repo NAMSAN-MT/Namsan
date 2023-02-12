@@ -1,31 +1,36 @@
 import { css } from "styled-components";
 
-export const setSize = css<{ height: string; width: string }>`
-  height: ${(props) => props.height};
-  width: ${(props) => props.width};
+export const setSize = (height: string, width: string) => css`
+  height: ${height ?? "auto"};
+  width: ${width ?? "auto"};
 `;
 
-export const setFlex = css<{ jc: string; ai: string }>`
+export const setFlex = (jc?: string, ai?: string) => css`
   display: flex;
-  justify-content: ${(props) => props.jc ?? "center"};
-  align-items: ${(props) => props.ai ?? "center"};
+  justify-content: ${jc ?? "center"};
+  align-items: ${ai ?? "center"};
 `;
 
-export const setInlineblock = css<{ va: string }>`
+export const setInlineblock = (va?: string) => css`
   display: inline-block;
-  vertical-align: ${(props) => props.va ?? "top"};
+  vertical-align: ${va ?? "top"};
 `;
 
-export const setPosition = css<{
-  position: string;
-  top?: string;
-  right?: string;
-  bottom?: string;
-  left?: string;
-}>`
-  position: ${({ position }) => position};
-  top: ${({ top }) => top ?? null};
-  right: ${({ right }) => right ?? null};
-  bottom: ${({ bottom }) => bottom ?? null};
-  left: ${({ left }) => left ?? null};
+export const setInlineblockJustFunction = (va?: string) => css`
+  display: inline-block;
+  vertical-align: ${() => va ?? "top"};
+`;
+
+export const setPosition = (
+  position: string,
+  top: string | null,
+  right: string | null,
+  bottom: string | null,
+  left: string | null,
+) => css`
+  position: ${position};
+  top: ${top};
+  right: ${right};
+  bottom: ${bottom};
+  left: ${left};
 `;
