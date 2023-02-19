@@ -1,23 +1,14 @@
-type TClassName = 'primary' | 'support' | 'support-line' | 'outline' | 'tag'
-type TType = 'button' | 'submit' | 'reset'
+type TClassName = 'primary' | 'support' | 'support-line' | 'outline' | 'tag';
+type TType = 'button' | 'submit' | 'reset';
 
 interface IButtonProps {
-  children: React.ReactNode
-  className: TClassName
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
-  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void
-  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void
-  disabled?: boolean
-  type?: TType
+  children: React.ReactNode;
+  className: TClassName;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
+  type?: TType;
 }
 
-interface IStyledBaseButtonProps {
-  isBorder?: boolean
-  isBold?: boolean
-  isBorderRadius?: boolean
-  fontSize?: number
-  isFlex?: boolean
-  opacity?: number
-}
-
-export { TClassName, TType, IButtonProps, IStyledBaseButtonProps }
+export { TClassName, TType, IButtonProps };
