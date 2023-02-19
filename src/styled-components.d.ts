@@ -1,7 +1,7 @@
-import "styled-components";
-import { ColorType } from "./styles/varialbes.style";
+import 'styled-components';
+import { ColorType } from './styles/varialbes.style';
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface DefaultTheme {
     color: ColorType;
   }
