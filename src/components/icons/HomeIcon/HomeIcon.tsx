@@ -1,6 +1,6 @@
-import React from "react";
-import IconWrapper from "../IconWrapper";
-import homeIcon from "../../../assets/imgs/ic_home.svg";
+import React from 'react';
+import IconWrapper from '../IconWrapper';
+import homeIcon from '../../../assets/imgs/ic_home.svg';
 
 interface PropTypes {
   width?: string;
@@ -9,7 +9,7 @@ interface PropTypes {
 
 const HomeIcon = (props: PropTypes) => {
   return (
-    <IconWrapper width={props.width || "18px"} height={props.height || "18px"}>
+    <IconWrapper width={props.width || '18px'} height={props.height || '18px'}>
       <img src={homeIcon} alt="home icon" />
     </IconWrapper>
   );
