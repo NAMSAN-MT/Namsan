@@ -1,15 +1,15 @@
 import React from "react";
 import IconWrapper from "../IconWrapper";
-import arrowUpTh15Icon from "../../../assets/imgs/ic_arrow_up_th15.png";
-import arrowDownTh15Icon from "../../../assets/imgs/ic_arrow_down_th15.png";
-import arrowUpTh10Icon from "../../../assets/imgs/ic_arrow_up_th10.png";
-import arrowDownTh10Icon from "../../../assets/imgs/ic_arrow_down_th10.png";
-import arrowLeftTh5Icon from "../../../assets/imgs/ic_arrow_left_th5.png";
-import arrowLeftTh10Icon from "../../../assets/imgs/ic_arrow_left_th10.png";
-import arrowLeftTh15Icon from "../../../assets/imgs/ic_arrow_left_th15.png";
-import arrowRightTh5Icon from "../../../assets/imgs/ic_arrow_right_th5.png";
-import arrowRightTh10Icon from "../../../assets/imgs/ic_arrow_right_th10.png";
-import arrowRightTh15Icon from "../../../assets/imgs/ic_arrow_right_th15.png";
+import arrowUpTh15Icon from "../../../assets/imgs/ic_arrow_up_th15.svg";
+import arrowDownTh15Icon from "../../../assets/imgs/ic_arrow_down_th15.svg";
+import arrowUpTh10Icon from "../../../assets/imgs/ic_arrow_up_th10.svg";
+import arrowDownTh10Icon from "../../../assets/imgs/ic_arrow_down_th10.svg";
+import arrowLeftTh5Icon from "../../../assets/imgs/ic_arrow_left_th5.svg";
+import arrowLeftTh10Icon from "../../../assets/imgs/ic_arrow_left_th10.svg";
+import arrowLeftTh15Icon from "../../../assets/imgs/ic_arrow_left_th15.svg";
+import arrowRightTh5Icon from "../../../assets/imgs/ic_arrow_right_th5.svg";
+import arrowRightTh10Icon from "../../../assets/imgs/ic_arrow_right_th10.svg";
+import arrowRightTh15Icon from "../../../assets/imgs/ic_arrow_right_th15.svg";
 
 interface PropTypes {
   width?: string;
