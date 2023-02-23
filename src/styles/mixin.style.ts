@@ -5,18 +5,18 @@ export const size = (height?: string, width?: string) => css`
   width: ${width ?? 'auto'};
 `;
 
-export const flex = (jc?: string, ai?: string) => css`
+export const flex = (jc: string = 'center', ai: string = 'center') => css`
   display: flex;
   justify-content: ${jc ?? 'center'};
   align-items: ${ai ?? 'center'};
 `;
 
-export const inlineblock = (va?: string) => css`
+export const inlineblock = (va: string = 'top') => css`
   display: inline-block;
   vertical-align: ${va ?? 'top'};
 `;
 
-export const inlineblockJustFunction = (va?: string) => css`
+export const inlineblockJustFunction = (va: string = 'top') => css`
   display: inline-block;
   vertical-align: ${() => va ?? 'top'};
 `;

@@ -30,7 +30,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     line-height: 1.5;
-    max-width: 1920px;
+    width: 1920px;
+    height: 100%;
   }
 
   #___gatsby,
