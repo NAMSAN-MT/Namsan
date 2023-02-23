@@ -53,7 +53,6 @@ export const color = {
 
   backgroundWhite: defaultColors.white,
   backgroundGrey50: defaultColors.grey50,
-
   backgroundTransparency: '#00000000',
 
   backgroundDim: `${defaultColors.black}99`,
