@@ -13,9 +13,9 @@ const Base = styled.button`
 
 const ArrowTop = styled(Base)`
   border-radius: 4px;
-  background-color: #f8f9fa;
+  background-color: ${({ theme }) => theme.color.backgroundGrey50};
   &:hover {
-    background-color: rgba(6, 11, 17, 0.3);
+    background-color: ${({ theme }) => theme.color.textBlackDisable};
   }
 `;
 
@@ -23,18 +23,18 @@ const Hamburger = styled(Base)`
   border-radius: 32px;
   width: 56px;
   height: 56px;
-  background-color: #ffffff;
-  border: 1px solid #e3e8ec;
+  background-color: ${({ theme }) => theme.color.textWhiteHigh};
+  border: 1px solid ${({ theme }) => theme.color.dividerGrey200};
   &:hover {
-    background-color: rgba(6, 11, 17, 0.3);
+    background-color: ${({ theme }) => theme.color.textBlackDisable};
   }
 `;
 
 const Share = styled(Base)`
   border-radius: 4px;
-  background-color: #f8f9fa;
+  background-color: ${({ theme }) => theme.color.backgroundGrey50};
   &:hover {
-    background-color: rgba(6, 11, 17, 0.3);
+    background-color: ${({ theme }) => theme.color.textBlackDisable};
   }
 `;
 
