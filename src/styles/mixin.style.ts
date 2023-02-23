@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import { FontWeight, TextStyles } from './varialbes.style';
 
 export const size = (height?: string, width?: string) => css`
   height: ${height ?? 'auto'};
@@ -44,4 +45,12 @@ export const ellipsis = () => css`
 
 export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
   line-height: ${lineHeightPx / fontSizePx};
+`;
+
+export const font = (
+  style: keyof typeof TextStyles,
+  weight: 'regular' | 'bold',
+) => css`
+  font-weight: ${FontWeight[TextStyles[style][weight === 'regular' ? 1 : 2]]};
+  font-size: ${TextStyles[style][0]};
 `;
