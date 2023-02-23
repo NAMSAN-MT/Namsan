@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import "@fontsource/noto-sans-kr";
+import { createGlobalStyle } from 'styled-components';
+import '@fontsource/noto-sans-kr';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {

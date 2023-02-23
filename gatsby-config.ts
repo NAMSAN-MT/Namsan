@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+import { resolve, join } from "path";
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -14,11 +15,15 @@ const config: GatsbyConfig = {
     options: {
       "icon": "src/images/icon.png"
     }
-  }, "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
+  }, 
+  "gatsby-plugin-mdx", 
+  "gatsby-plugin-sharp", 
+  "gatsby-transformer-sharp", 
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
-      "path": "./src/images/"
+      path: join(__dirname, `src`, `images`),
     },
     __key: "images"
   }, {
@@ -28,7 +33,33 @@ const config: GatsbyConfig = {
       "path": "./src/pages/"
     },
     __key: "pages"
-  }]
+  },
+  {
+    resolve: `gatsby-plugin-alias-imports`,
+    options: {
+        alias: {
+            "@Api": resolve(__dirname, 'src/api'),
+            "@Components": resolve(__dirname, 'src/components'),
+            "@Images": resolve(__dirname, 'src/images'),
+            "@Interface": resolve(__dirname, 'src/interface'),
+            "@Pages": resolve(__dirname, 'src/pages'),
+            "@Styles": resolve(__dirname, 'src/styles')
+        },
+        extensions: [
+            "ts",
+            "tsx"
+        ]
+      }
+  },
+  {
+    resolve: "gatsby-plugin-react-svg",
+    options: {
+      rule: {
+        include: /images\/svg/,
+      }
+    }
+  },
+]
 };
 
 export default config;
