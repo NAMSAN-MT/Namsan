@@ -1,24 +1,24 @@
 import { css } from "styled-components";
 
-export const size = (height?: string, width?: string) => css`
-  height: ${height ?? "auto"};
-  width: ${width ?? "auto"};
+export const size = (height: string = "auto", width: string = "auto") => css`
+  height: ${height};
+  width: ${width};
 `;
 
-export const flex = (jc?: string, ai?: string) => css`
+export const flex = (jc: string = "center", ai: string = "center") => css`
   display: flex;
-  justify-content: ${jc ?? "center"};
-  align-items: ${ai ?? "center"};
+  justify-content: ${jc};
+  align-items: ${ai};
 `;
 
-export const inlineblock = (va?: string) => css`
+export const inlineblock = (va: string = "top") => css`
   display: inline-block;
-  vertical-align: ${va ?? "top"};
+  vertical-align: ${va};
 `;
 
-export const inlineblockJustFunction = (va?: string) => css`
+export const inlineblockJustFunction = (va: string = "top") => css`
   display: inline-block;
-  vertical-align: ${() => va ?? "top"};
+  vertical-align: ${va};
 `;
 
 export const position = (

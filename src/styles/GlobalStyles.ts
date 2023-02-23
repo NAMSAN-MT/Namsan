@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1.5;
     width: 1920px;
+    height: 100%;
   }
 
 `;
