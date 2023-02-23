@@ -1,5 +1,5 @@
 {
   "index": {
-    "test": "GATSBY PLUGIN INTL 테스트입니다🐳"
+    "test": "GATSBY PLUGIN INTL 테스트입니다🐳 {myValue}"
   }
 }
