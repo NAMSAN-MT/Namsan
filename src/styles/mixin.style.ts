@@ -1,4 +1,5 @@
 import { css } from 'styled-components'
+import { FontWeight, TextStyles } from './varialbes.style'
 
 export const size = (height: string = 'auto', width: string = 'auto') => css`
   height: ${height};
@@ -40,4 +41,12 @@ export const ellipsis = () => css`
   white-space: nowrap;
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
+`
+
+export const font = (
+  style: keyof typeof TextStyles,
+  weight: 'regular' | 'bold',
+) => css`
+  font-weight: ${FontWeight[TextStyles[style][weight === 'regular' ? 1 : 2]]};
+  font-size: ${TextStyles[style][0]};
 `
