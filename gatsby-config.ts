@@ -27,7 +27,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: join(__dirname, `src`, `images`),
+        path: './src/images/',
       },
       __key: 'images',
     },
@@ -36,8 +36,8 @@ const config: GatsbyConfig = {
       options: {
         name: 'pages',
         path: './src/pages/',
+        __key: 'pages',
       },
-      __key: 'pages',
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
