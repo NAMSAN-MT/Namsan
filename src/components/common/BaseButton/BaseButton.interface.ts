@@ -1,7 +1,7 @@
 type TClassName = 'primary' | 'support' | 'support-line' | 'outline' | 'tag';
 type TType = 'button' | 'submit' | 'reset';
 
-interface IButtonProps {
+interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className: TClassName;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
