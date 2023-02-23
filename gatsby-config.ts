@@ -27,7 +27,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: join(__dirname, `src`, `images`),
+        path: './src/images/',
       },
       __key: 'images',
     },
@@ -36,8 +36,8 @@ const config: GatsbyConfig = {
       options: {
         name: 'pages',
         path: './src/pages/',
+        __key: 'pages',
       },
-      __key: 'pages',
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
@@ -60,6 +60,15 @@ const config: GatsbyConfig = {
         rule: {
           include: /images\/svg/,
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-intl',
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: [`en`, `ko`],
+        defaultLanguage: `ko`,
+        redirect: false,
       },
     },
   ],
