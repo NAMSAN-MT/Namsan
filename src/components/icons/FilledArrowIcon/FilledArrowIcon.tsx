@@ -1,9 +1,9 @@
 import React from "react";
 import IconWrapper from "../IconWrapper";
-import filledArrowUp from "../../../assets/imgs/ic_arrow_drop_up.png";
-import filledArrowDown from "../../../assets/imgs/ic_arrow_drop_down.png";
-import filledArrowLeft from "../../../assets/imgs/ic_arrow_drop_left.png";
-import filledArrowRight from "../../../assets/imgs/ic_arrow_drop_right.png";
+import filledArrowUp from "../../../assets/imgs/ic_arrow_drop_up.svg";
+import filledArrowDown from "../../../assets/imgs/ic_arrow_drop_down.svg";
+import filledArrowLeft from "../../../assets/imgs/ic_arrow_drop_left.svg";
+import filledArrowRight from "../../../assets/imgs/ic_arrow_drop_right.svg";
 
 interface PropTypes {
   width?: string;
