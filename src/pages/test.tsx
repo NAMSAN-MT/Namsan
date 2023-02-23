@@ -12,10 +12,18 @@ const TestPage = ({ intl }: WrappedComponentProps) => {
     <main>
       <HomeIcon />
       <h1>✅ Intl 적용 방법1</h1>
-      <div>{intl.formatMessage({ id: "index.test" })}</div>
+      <div>
+        {intl.formatMessage(
+          { id: "index.test" },
+          { myValue: "여기에 변수를 추가할수도 있습니다!" }
+        )}
+      </div>
       <h1>✅ Intl 적용 방법2</h1>
       <div>
-        <FormattedMessage id="index.test" />
+        <FormattedMessage
+          id="index.test"
+          values={{ myValue: "여기는 또 다른 변수를 추가할 수도 있습니당" }}
+        />
       </div>
     </main>
   );
