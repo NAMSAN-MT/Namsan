@@ -15,14 +15,14 @@ const MainLinkWrapper = styled.div`
   ${flex()};
   .link {
     margin: 0 34px;
-    text-decoration: none;
     color: ${({ theme }) => theme.color.textBlackMedium};
-    line-height: 26px;
     text-align: center;
     letter-spacing: -0.2px;
+
     // FIXME: mixin으로 변경
     font-size: 16px;
     font-weight: 500;
+    line-height: 26px;
   }
 `;
 
@@ -43,16 +43,15 @@ const LanguageWrapper = styled.div`
 
 const LanguageLink = styled(Link)<{ isActive: boolean }>`
   padding: 0 16px;
-  line-height: 22px;
   text-align: center;
   letter-spacing: -0.1px;
-  text-decoration: none;
   color: ${({ theme, isActive }) =>
     isActive ? theme.color.textBlackHigh : theme.color.textBlackMedium};
 
   // FIXME: mixin으로 변경
   font-size: 14px;
   font-weight: 500;
+  line-height: 22px;
 `;
 
 export { GNBWrapper, MainLinkWrapper, LanguageWrapper, LanguageLink };
