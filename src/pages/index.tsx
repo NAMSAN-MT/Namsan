@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { PageProps } from 'gatsby';
-import BaseButton from '@Components/common/BaseButton';
-import IconButton from '@Components/common/IconButton ';
 import AppLayout from '@Components/common/Layout';
+import FirstSection from '@Components/main/FirstSection';
 
 const Main: React.FC<PageProps> = () => {
   return (
     <AppLayout>
-      <BaseButton className="primary" onClick={() => console.log('')}>
+      <FirstSection />
+      {/* <BaseButton className="primary" onClick={() => console.log('')}>
         Primary
       </BaseButton>
       <BaseButton className="support" onClick={() => console.log('')}>
@@ -24,7 +24,7 @@ const Main: React.FC<PageProps> = () => {
       </BaseButton>
       <IconButton className="arrow-top" onClick={() => console.log('')} />
       <IconButton className="hamburger" onClick={() => console.log('')} />
-      <IconButton className="share" onClick={() => console.log('')} />
+      <IconButton className="share" onClick={() => console.log('')} /> */}
     </AppLayout>
   );
 };
