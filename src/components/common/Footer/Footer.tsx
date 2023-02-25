@@ -1,12 +1,15 @@
 import React from 'react';
 import { TermAndConditionLink } from './Footer.const';
 import * as S from './Footer.style';
+import LogoFooter from '@Images/LogoFooter.svg';
 
 const Footer: React.FC = () => {
   return (
     <S.FooterWrapper>
       <S.FirstSection>
-        <div>NAMSAN</div>
+        <S.LogoWrapper>
+          <img src={LogoFooter} width="100%" alt="icon" />
+        </S.LogoWrapper>
         <div>
           {TermAndConditionLink.map((link, index) => (
             <S.TermAndConditionLink

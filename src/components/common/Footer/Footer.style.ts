@@ -17,6 +17,10 @@ const FirstSection = styled.div`
   width: 100%;
 `;
 
+const LogoWrapper = styled.div`
+  width: 110px;
+`;
+
 const TermAndConditionLink = styled(Link)`
   text-align: center;
   letter-spacing: -0.2px;
@@ -51,4 +55,10 @@ const SecondSection = styled.div`
   }
 `;
 
-export { FooterWrapper, FirstSection, SecondSection, TermAndConditionLink };
+export {
+  FooterWrapper,
+  FirstSection,
+  LogoWrapper,
+  SecondSection,
+  TermAndConditionLink,
+};
