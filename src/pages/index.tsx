@@ -2,11 +2,13 @@ import * as React from 'react';
 import { PageProps } from 'gatsby';
 import AppLayout from '@Components/common/Layout';
 import FirstSection from '@Components/main/FirstSection';
+import SecondSection from '@Components/main/SecondSection';
 
 const Main: React.FC<PageProps> = () => {
   return (
     <AppLayout>
       <FirstSection />
+      <SecondSection />
       {/* <BaseButton className="primary" onClick={() => console.log('')}>
         Primary
       </BaseButton>
