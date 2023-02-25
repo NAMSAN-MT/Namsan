@@ -37,6 +37,7 @@ const config: GatsbyConfig = {
             "@Api": resolve(__dirname, 'src/api'),
             "@Components": resolve(__dirname, 'src/components'),
             "@Images": resolve(__dirname, 'src/images'),
+            "@Fonts": resolve(__dirname, 'src/fonts'),
             "@Interface": resolve(__dirname, 'src/interface'),
             "@Pages": resolve(__dirname, 'src/pages'),
             "@Styles": resolve(__dirname, 'src/styles')
