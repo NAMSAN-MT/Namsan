@@ -1,5 +1,6 @@
 import { lineHeight } from '@Styles/mixin.style';
 import { flex } from '@Styles/mixin.style';
+import { lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import ArrowUpIcon from '@Images/ic_arrow_top.svg';
 import HambergurIcon from '@Images/ic_hamburger.svg';
