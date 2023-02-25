@@ -3,12 +3,14 @@ import { PageProps } from 'gatsby';
 import AppLayout from '@Components/common/Layout';
 import FirstSection from '@Components/main/FirstSection';
 import SecondSection from '@Components/main/SecondSection';
+import ThirdSection from '@Components/main/ThirdSection';
 
 const Main: React.FC<PageProps> = () => {
   return (
     <AppLayout>
       <FirstSection />
       <SecondSection />
+      <ThirdSection />
       {/* <BaseButton className="primary" onClick={() => console.log('')}>
         Primary
       </BaseButton>
