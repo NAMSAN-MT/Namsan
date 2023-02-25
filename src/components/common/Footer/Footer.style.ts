@@ -9,7 +9,7 @@ const FooterWrapper = styled.div`
   padding: 0 90px;
   height: 224px;
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
-  border: 1px solid ${({ theme }) => theme.color.grey100};
+  border: 1px solid ${({ theme }) => theme.color.grey200};
 `;
 
 const FirstSection = styled.div`
