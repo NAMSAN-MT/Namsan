@@ -41,3 +41,7 @@ export const ellipsis = () => css`
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
 `;
+
+export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
+  line-height: ${lineHeightPx / fontSizePx};
+`;
