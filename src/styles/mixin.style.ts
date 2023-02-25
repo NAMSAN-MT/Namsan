@@ -52,4 +52,5 @@ export const font = (
 `;
 
 export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
-  line-height: ${lineHeightPx / fontSizePx};`;
+  line-height: ${lineHeightPx / fontSizePx};
+`;
