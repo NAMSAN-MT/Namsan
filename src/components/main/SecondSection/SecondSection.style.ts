@@ -1,7 +1,8 @@
 import { flex, lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
+import { Wrapper } from '../FirstSection/FirstSection.style';
 
-const Wrapper = styled.div`
+const SecondWrapper = styled(Wrapper)`
   ${flex()};
   flex-direction: column;
   width: 100%;
@@ -35,4 +36,4 @@ const Description = styled(Basic)`
   ${lineHeight(26, 40)}};
 `;
 
-export { Wrapper, Title, Description };
+export { SecondWrapper, Title, Description };

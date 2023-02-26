@@ -1,12 +1,17 @@
 import { flex, lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
+import { Wrapper } from '../FirstSection/FirstSection.style';
 
-const Wrapper = styled.div`
+const ThirdWrapper = styled(Wrapper)`
+  background-color: ${({ theme }) => theme.color.pointGrey};
+`;
+
+const InnerWrapper = styled.div`
   ${flex('space-between')};
   width: 100%;
-  padding: 0 360px;
-  min-height: 620px;
-  background-color: ${({ theme }) => theme.color.pointGrey};
+  overflow: hidden;
+  height: 620px;
+  padding: 0 calc((100% - 1290px) / 2);
 `;
 
 const LeftWrapper = styled.div`
@@ -15,9 +20,16 @@ const LeftWrapper = styled.div`
 `;
 
 const RightWrapper = styled.div`
+  ${flex('end', 'center')};
+  width: 670px;
+  gap: 24px;
+`;
+
+const CardWrapper = styled.div<{ isDown?: boolean }>`
   ${flex()};
   flex-direction: column;
-  border: 1px solid ${({ theme }) => theme.color.dividerGrey200};
+  gap: 24px;
+  margin-top: ${({ isDown }) => (isDown ? '360px' : '0')};
 `;
 
 const Basic = styled.div`
@@ -45,4 +57,12 @@ const Title = styled(Basic)`
   ${lineHeight(42, 60)}};
 `;
 
-export { Wrapper, LeftWrapper, RightWrapper, SubTitle, Title };
+export {
+  ThirdWrapper,
+  InnerWrapper,
+  LeftWrapper,
+  RightWrapper,
+  CardWrapper,
+  SubTitle,
+  Title,
+};
