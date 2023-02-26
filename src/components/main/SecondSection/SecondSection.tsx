@@ -7,7 +7,7 @@ const SecondSection: React.FC = () => {
   const { handleNavigate } = useSecondSection();
 
   return (
-    <S.Wrapper>
+    <S.SecondWrapper>
       <S.Title>“40년 전통의 팀워크”</S.Title>
       <S.Description>
         법무법인 남산은 깊이 있는 역량과 정성으로 <br />
@@ -16,7 +16,7 @@ const SecondSection: React.FC = () => {
       <BaseButton className="primary" onClick={handleNavigate}>
         소개 바로가기
       </BaseButton>
-    </S.Wrapper>
+    </S.SecondWrapper>
   );
 };
 
