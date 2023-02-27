@@ -11,7 +11,7 @@ type TClassName =
 type TType = 'button' | 'submit' | 'reset';
 
 interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className: TClassName;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;
