@@ -22,7 +22,7 @@ const ForthSection: React.FC = () => {
             .filter((_, index) => index < 3)
             .map((news, index) => (
               <SummaryNews
-                lastIndex={index === newsList.length - 1}
+                lastIndex={index === 2}
                 title={news.title}
                 tag={news.tag}
                 date={news.date}

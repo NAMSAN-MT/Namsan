@@ -5,6 +5,7 @@ import FirstSection from '@Components/main/FirstSection';
 import SecondSection from '@Components/main/SecondSection';
 import ThirdSection from '@Components/main/ThirdSection';
 import ForthSection from '@Components/main/ForthSection';
+import FifthSection from '@Components/main/FifthSection';
 
 const Main: React.FC<PageProps> = () => {
   return (
@@ -13,6 +14,7 @@ const Main: React.FC<PageProps> = () => {
       <SecondSection />
       <ThirdSection />
       <ForthSection />
+      <FifthSection />
       {/* <BaseButton className="primary" onClick={() => console.log('')}>
         Primary
       </BaseButton>
