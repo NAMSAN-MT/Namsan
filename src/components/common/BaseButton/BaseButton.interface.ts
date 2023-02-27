@@ -4,7 +4,10 @@ type TClassName =
   | 'support-line'
   | 'outline'
   | 'tag'
-  | 'text';
+  | 'arrow-top'
+  | 'hamburger'
+  | 'share'
+  | 'more';
 type TType = 'button' | 'submit' | 'reset';
 
 interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {

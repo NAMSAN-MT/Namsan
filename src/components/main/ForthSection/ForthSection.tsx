@@ -11,7 +11,7 @@ const ForthSection: React.FC = () => {
       <S.InnerWrapper>
         <S.TopWrapper>
           <S.Title>남산소식</S.Title>
-          <BaseButton className="text" onClick={handleNavigate}>
+          <BaseButton className="more" onClick={handleNavigate}>
             더 보러가기
           </BaseButton>
         </S.TopWrapper>
