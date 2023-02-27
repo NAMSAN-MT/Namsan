@@ -10,6 +10,7 @@ const ForthWrapper = styled(Wrapper)`
 
 const InnerWrapper = styled.div`
   width: 100%;
+  height: 100%;
   padding: 0 calc((100% - 1290px) / 2);
 `;
 
@@ -20,6 +21,8 @@ const TopWrapper = styled.div`
 
 const BottomWrapper = styled.div`
   ${flex()};
+  margin-top: 43px;
+  flex-direction: column;
 `;
 
 const Title = styled.div`
