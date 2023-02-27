@@ -13,6 +13,8 @@ const bindStyle = (name: TClassName) => {
       return S.Outline;
     case 'tag':
       return S.Tag;
+    case 'text':
+      return S.Text;
     default:
       return S.Base;
   }
