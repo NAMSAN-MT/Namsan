@@ -1,5 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
-import { resolve } from "path";
+import { resolve, join } from "path";
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -15,11 +15,15 @@ const config: GatsbyConfig = {
     options: {
       "icon": "src/images/icon.png"
     }
-  }, "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
+  }, 
+  "gatsby-plugin-mdx", 
+  "gatsby-plugin-sharp", 
+  "gatsby-transformer-sharp", 
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
-      "path": "./src/images/"
+      path: join(__dirname, `src`, `images`),
     },
     __key: "images"
   }, {
@@ -55,7 +59,7 @@ const config: GatsbyConfig = {
         include: /images\/svg/,
       }
     }
-  }
+  },
 ]
 };
 

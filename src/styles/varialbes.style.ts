@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components';
 export const defaultColors = {
   blue100: '#103EAC',
   blue200: '#193F9A',
+  blue300: '#142f71',
   white: '#FFFFFF',
   grey50: '#F8F9FA',
   grey100: '#EFF2F4',
