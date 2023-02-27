@@ -1,4 +1,10 @@
-type TClassName = 'primary' | 'support' | 'support-line' | 'outline' | 'tag';
+type TClassName =
+  | 'primary'
+  | 'support'
+  | 'support-line'
+  | 'outline'
+  | 'tag'
+  | 'text';
 type TType = 'button' | 'submit' | 'reset';
 
 interface IButtonProps {

@@ -78,4 +78,20 @@ const Tag = styled(Base)`
   }
 `;
 
-export { Base, Primary, Support, SupportLine, Outline, Tag };
+const Text = styled(Base)`
+  color: #103eac;
+  background-color: transparent;
+  border: 1px solid transparent;
+  letter-spacing: -0.2px;
+  min-width: 86px;
+
+  // FIXME: MIXIn으로 변경
+  ${lineHeight(18, 28)}};
+  font-size: 18px;
+  font-weight: 700;
+  &:hover {
+    background-color: rgba(6, 11, 17, 0.3);
+  }
+`;
+
+export { Base, Primary, Support, SupportLine, Outline, Tag, Text };

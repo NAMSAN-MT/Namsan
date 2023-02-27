@@ -4,6 +4,7 @@ import AppLayout from '@Components/common/Layout';
 import FirstSection from '@Components/main/FirstSection';
 import SecondSection from '@Components/main/SecondSection';
 import ThirdSection from '@Components/main/ThirdSection';
+import ForthSection from '@Components/main/ForthSection';
 
 const Main: React.FC<PageProps> = () => {
   return (
@@ -11,6 +12,7 @@ const Main: React.FC<PageProps> = () => {
       <FirstSection />
       <SecondSection />
       <ThirdSection />
+      <ForthSection />
       {/* <BaseButton className="primary" onClick={() => console.log('')}>
         Primary
       </BaseButton>
