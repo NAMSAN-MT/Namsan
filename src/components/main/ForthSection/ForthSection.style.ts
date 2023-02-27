@@ -4,7 +4,6 @@ import { Wrapper } from '../FirstSection/FirstSection.style';
 
 const ForthWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
-  height: 471px;
   margin-top: 140px;
 `;
 

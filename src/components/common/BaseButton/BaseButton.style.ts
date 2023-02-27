@@ -25,7 +25,7 @@ const Base = styled.button`
 const Primary = styled(Base)`
   color: ${({ theme }) => theme.color.textWhiteHigh};
   padding: 13px 30px;
-  in-width: 104px;
+  min-width: 104px;
   background-color: ${({ theme }) => theme.color.textBlue};
   &:hover {
     background-color: ${({ theme }) => theme.color.blue300};
