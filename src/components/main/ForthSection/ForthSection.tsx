@@ -1,5 +1,7 @@
 import BaseButton from '@Components/common/BaseButton';
 import React from 'react';
+import SummaryNews from '../SummaryNews';
+import { newsList } from './ForthSection.const';
 import useForthSection from './ForthSection.hook';
 import * as S from './ForthSection.style';
 
@@ -15,7 +17,18 @@ const ForthSection: React.FC = () => {
             더 보러가기
           </BaseButton>
         </S.TopWrapper>
-        <S.BottomWrapper></S.BottomWrapper>
+        <S.BottomWrapper>
+          {newsList
+            .filter((_, index) => index < 3)
+            .map((news, index) => (
+              <SummaryNews
+                lastIndex={index === newsList.length - 1}
+                title={news.title}
+                tag={news.tag}
+                date={news.date}
+              />
+            ))}
+        </S.BottomWrapper>
       </S.InnerWrapper>
     </S.ForthWrapper>
   );
