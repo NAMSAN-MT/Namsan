@@ -13,7 +13,7 @@ const config: GatsbyConfig = {
   plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      "icon": "src/images/icon.png"
+      "icon": "src/assets/imgs/LogoGNB.svg"
     }
   }, 
   "gatsby-plugin-mdx", 
@@ -23,7 +23,7 @@ const config: GatsbyConfig = {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
-      path: join(__dirname, `src`, `images`),
+      path: join(__dirname, `src`, `assets/imgs`),
     },
     __key: "images"
   }, {
@@ -40,7 +40,7 @@ const config: GatsbyConfig = {
         alias: {
             "@Api": resolve(__dirname, 'src/api'),
             "@Components": resolve(__dirname, 'src/components'),
-            "@Images": resolve(__dirname, 'src/images'),
+            "@Images": resolve(__dirname, 'src/assets/imgs'),
             "@Fonts": resolve(__dirname, 'src/fonts'),
             "@Interface": resolve(__dirname, 'src/interface'),
             "@Pages": resolve(__dirname, 'src/pages'),
@@ -56,7 +56,7 @@ const config: GatsbyConfig = {
     resolve: "gatsby-plugin-react-svg",
     options: {
       rule: {
-        include: /images\/svg/,
+        include: /assets\/imgs\/svg/,
       }
     }
   },

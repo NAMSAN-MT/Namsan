@@ -1,11 +1,11 @@
 import { lineHeight } from '@Styles/mixin.style';
 import { flex } from '@Styles/mixin.style';
 import styled from 'styled-components';
-import ArrowUpIcon from '@Images/ArrowUp.svg';
-import HambergurIcon from '@Images/Hamburger.svg';
-import ShareIcon from '@Images/Share.svg';
-import MoreIcon from '@Images/More.svg';
-import MoreHoverIcon from '@Images/MoreHover.svg';
+import ArrowUpIcon from '@Images/ic_arrow_top.svg';
+import HambergurIcon from '@Images/ic_hamburger.svg';
+import ShareIcon from '@Images/ic_share.svg';
+import MoreIcon from '@Images/ic_more.svg';
+import MoreHoverIcon from '@Images/ic_more_hover.svg';
 
 const Base = styled.button`
   ${flex()}

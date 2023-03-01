@@ -3,7 +3,7 @@ import React from 'react';
 import { GNBLink, LanguageLink } from './GNB.const';
 import useGNB from './GNB.hook';
 import * as S from './GNB.style';
-import LogoGNB from '@Images/LogoGNB.svg';
+import LogoGNB from '@Images/logo-gnb.svg';
 
 const GNB: React.FC = () => {
   const { handleChangeLanguage, language } = useGNB();
