@@ -6,7 +6,7 @@ import * as S from './GNB.style';
 import LogoGNB from '@Images/LogoGNB.svg';
 
 const GNB: React.FC = () => {
-  const { handleChnageLanguage, language } = useGNB();
+  const { handleChangeLanguage, language } = useGNB();
   return (
     <S.GNBWrapper>
       <S.LogoWrapper>
@@ -19,7 +19,7 @@ const GNB: React.FC = () => {
           </Link>
         ))}
       </S.MainLinkWrapper>
-      <S.LanguageWrapper onClick={handleChnageLanguage}>
+      <S.LanguageWrapper onClick={handleChangeLanguage}>
         {LanguageLink.map(link => (
           <S.LanguageLink
             isActive={language.current === link.lang}
