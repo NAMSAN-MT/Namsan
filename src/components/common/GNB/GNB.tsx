@@ -5,7 +5,7 @@ import useGNB from './GNB.hook';
 import * as S from './GNB.style';
 
 const GNB: React.FC = () => {
-  const { handleChnageLanguage, language } = useGNB();
+  const { handleChangeLanguage, language } = useGNB();
   return (
     <S.GNBWrapper>
       <div>NAMSAN</div>
@@ -16,7 +16,7 @@ const GNB: React.FC = () => {
           </Link>
         ))}
       </S.MainLinkWrapper>
-      <S.LanguageWrapper onClick={handleChnageLanguage}>
+      <S.LanguageWrapper onClick={handleChangeLanguage}>
         {LanguageLink.map(link => (
           <S.LanguageLink
             isActive={language.current === link.lang}
