@@ -11,6 +11,10 @@ const GNBWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.grey100};
 `;
 
+const LogoWrapper = styled.div`
+  width: 84px;
+`;
+
 const MainLinkWrapper = styled.div`
   ${flex()};
   .link {
@@ -54,4 +58,10 @@ const LanguageLink = styled(Link)<{ isActive: boolean }>`
   line-height: 22px;
 `;
 
-export { GNBWrapper, MainLinkWrapper, LanguageWrapper, LanguageLink };
+export {
+  GNBWrapper,
+  LogoWrapper,
+  MainLinkWrapper,
+  LanguageWrapper,
+  LanguageLink,
+};

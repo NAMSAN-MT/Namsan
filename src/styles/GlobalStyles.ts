@@ -10,9 +10,16 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Noto Sans KR";
   }
 
+  html, 
   body {
+    height: 100%;
     line-height: 1.5;
     max-width: 1920px;
+  }
+
+  #___gatsby,
+  #gatsby-focus-wrapper {
+    height: 100%;
   }
 
   a{
