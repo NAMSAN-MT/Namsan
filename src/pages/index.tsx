@@ -2,10 +2,12 @@ import * as React from 'react';
 import { PageProps } from 'gatsby';
 import BaseButton from '@Components/common/BaseButton';
 import IconButton from '@Components/common/IconButton ';
+import GNB from '@Components/common/GNB';
 
 const Main: React.FC<PageProps> = () => {
   return (
-    <div style={{ display: 'flex' }}>
+    <div>
+      <GNB />
       <BaseButton className="primary" onClick={() => console.log('')}>
         Primary
       </BaseButton>

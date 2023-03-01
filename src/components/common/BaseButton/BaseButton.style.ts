@@ -7,6 +7,8 @@ const Base = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+
+  // FIXME: MIXIn으로 변경
   line-height: 26px;
   font-size: 16px;
   font-weight: 500;
@@ -64,6 +66,8 @@ const Tag = styled(Base)`
   border-radius: 2px;
   padding: 4px 8px;
   letter-spacing: -0.1px;
+
+  // FIXME: MIXIn으로 변경
   line-height: 22px;
   font-size: 14px;
   width: 68px;
