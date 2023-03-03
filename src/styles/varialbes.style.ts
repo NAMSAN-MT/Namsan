@@ -1,8 +1,9 @@
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme } from 'styled-components';
 
 export const defaultColors = {
   blue100: '#103EAC',
   blue200: '#193F9A',
+  blue300: '#142f71',
   white: '#FFFFFF',
   grey50: '#F8F9FA',
   grey100: '#EFF2F4',
@@ -15,7 +16,7 @@ export const defaultColors = {
   grey800: '#2E3338',
   grey900: '#191C20',
   black: '#060B11',
-}
+};
 
 export const color = {
   ...defaultColors,
@@ -53,13 +54,13 @@ export const color = {
   backgroundTransparency: '#00000000',
 
   backgroundDim: `${defaultColors.black}99`,
-}
+};
 
-export type ColorType = typeof color
+export type ColorType = typeof color;
 
 export const theme: DefaultTheme = {
   color,
-}
+};
 
 export const TextStyles = {
   display70: ['70px', 'medium', 'bold'],
@@ -78,11 +79,11 @@ export const TextStyles = {
   title18: ['18px', 'demilight', 'medium'],
   body16: ['16px', 'demilight', 'medium'],
   body14: ['14px', 'demilight', 'medium'],
-}
+};
 
-export const FontWeight = {
+export const FontWeight: Record<string, number> = {
   demilight: 300,
   regular: 400,
   medium: 500,
   bold: 700,
-}
+};
