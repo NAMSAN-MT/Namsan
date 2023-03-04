@@ -50,6 +50,7 @@ const config: GatsbyConfig = {
           '@Interface': resolve(__dirname, 'src/interface'),
           '@Pages': resolve(__dirname, 'src/pages'),
           '@Styles': resolve(__dirname, 'src/styles'),
+          '@Assets': resolve(__dirname, 'src/assets'),
         },
         extensions: ['ts', 'tsx'],
       },
