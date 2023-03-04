@@ -51,6 +51,7 @@ const config: GatsbyConfig = {
           '@Pages': resolve(__dirname, 'src/pages'),
           '@Styles': resolve(__dirname, 'src/styles'),
           '@Hooks': resolve(__dirname, 'src/hooks'),
+          '@Assets': resolve(__dirname, 'src/assets'),
         },
         extensions: ['ts', 'tsx'],
       },
