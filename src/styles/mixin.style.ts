@@ -54,3 +54,12 @@ export const font = (
   font-weight: ${FontWeight[TextStyles[style][weight === 'regular' ? 1 : 2]]};
   font-size: ${TextStyles[style][0]};
 `;
+
+// export const font = (fontStyle?: IFontStyle) => css`
+//   font-family: 'Noto Sans CJK KR';
+//   font-style: normal;
+//   font-weight: ${fontStyle?.fontWeight ?? 400};
+//   font-size: ${fontStyle?.fontSize ?? '20px'};
+//   line-height: ${fontStyle?.lineHeight ?? '34px'};
+//   color: ${fontStyle?.fontColor ?? defaultColors.black};
+// `;

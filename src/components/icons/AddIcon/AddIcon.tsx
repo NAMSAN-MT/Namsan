@@ -11,6 +11,7 @@ interface PropTypes {
 
 const AddIcon = (props: PropTypes) => {
   const src = props.hover ? addHoverIcon : addIcon;
+
   return (
     <IconWrapper width={props.width || '24px'} height={props.height || '24px'}>
       <img src={src} alt="add icon" />
