@@ -1,24 +1,25 @@
 import { css } from 'styled-components';
+import { FontWeight, TextStyles } from './varialbes.style';
 
-export const size = (height?: string, width?: string) => css`
-  height: ${height ?? 'auto'};
-  width: ${width ?? 'auto'};
+export const size = (height = 'auto', width = 'auto') => css`
+  height: ${height};
+  width: ${width};
 `;
 
-export const flex = (jc?: string, ai?: string) => css`
+export const flex = (jc = 'center', ai = 'center') => css`
   display: flex;
-  justify-content: ${jc ?? 'center'};
-  align-items: ${ai ?? 'center'};
+  justify-content: ${jc};
+  align-items: ${ai};
 `;
 
-export const inlineblock = (va?: string) => css`
+export const inlineblock = (va = 'top') => css`
   display: inline-block;
-  vertical-align: ${va ?? 'top'};
+  vertical-align: ${va};
 `;
 
-export const inlineblockJustFunction = (va?: string) => css`
+export const inlineblockJustFunction = (va = 'top') => css`
   display: inline-block;
-  vertical-align: ${() => va ?? 'top'};
+  vertical-align: ${va};
 `;
 
 export const position = (
@@ -44,4 +45,12 @@ export const ellipsis = () => css`
 
 export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
   line-height: ${lineHeightPx / fontSizePx};
+`;
+
+export const font = (
+  style: keyof typeof TextStyles,
+  weight: 'regular' | 'bold',
+) => css`
+  font-weight: ${FontWeight[TextStyles[style][weight === 'regular' ? 1 : 2]]};
+  font-size: ${TextStyles[style][0]};
 `;

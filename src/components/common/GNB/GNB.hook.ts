@@ -3,7 +3,7 @@ import { useRef } from 'react';
 const useGNB = () => {
   const language = useRef<'ko' | 'en'>('ko');
 
-  const handleChnageLanguage = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleChangeLanguage = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target instanceof HTMLAnchorElement) {
       e.preventDefault();
       // FIXME: 추후 수정 필요
@@ -15,7 +15,7 @@ const useGNB = () => {
   };
 
   return {
-    handleChnageLanguage,
+    handleChangeLanguage,
     language,
   };
 };
