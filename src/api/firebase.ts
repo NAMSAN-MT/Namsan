@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore'
+import 'firebase/compat/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.GATSBY_FIREBASE_API_KEY,
@@ -8,7 +8,7 @@ const firebaseConfig = {
   storageBucket: process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.GATSBY_FIREBASE_APP_ID,
-  measureId: process.env.GATSBY_FIREBASE_MEASUREMENT_ID
+  measureId: process.env.GATSBY_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = firebase.initializeApp(firebaseConfig);
