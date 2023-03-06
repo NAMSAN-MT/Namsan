@@ -14,13 +14,11 @@ import { db } from './firebase';
 export type EndPointType = 'news' | 'work' | 'profile';
 export type QueryType = 'where' | 'orderby';
 export type QueryWhereOptions = {
-  queryType: 'where';
   fieldPath: string | FieldPath;
   opStr: WhereFilterOp;
   value: any;
 };
 export type QueryOrderByOptions = {
-  queryType: 'orderby';
   fieldPath: string | FieldPath;
   directionStr?: OrderByDirection;
   limit: number;
@@ -31,7 +29,7 @@ export type QueryOrderByOptions = {
  */
 export interface Parameter<T = any> {
   endPoint: EndPointType;
-  param: ((T & QueryWhereOptions) | (T & QueryOrderByOptions)) & { id: string };
+  param: T;
 }
 
 declare interface Api {
@@ -67,55 +65,59 @@ export const GetDataList: Api = async <U, T extends { id: string }>({
   }
 };
 
-export const GetDataListQueryWhere: Api = async <U>({
+export const GetDataListQueryWhere: Api = async <
+  U extends { conditions: QueryWhereOptions[] },
+>({
   endPoint,
   param,
 }: Parameter<U>) => {
   try {
-    if (param.queryType === 'where') {
-      const citiesRef = db.collection(endPoint);
-      const resultData = await citiesRef
-        .where(param.fieldPath, param.opStr, param.value)
-        .get();
-      return resultData.empty
-        ? new Error('No matching documents.')
-        : resultData.docs.map(doc => doc.data());
-    }
-    throw new Error('### Not Found quertType is where');
+    const resultData = await getMultiWhereConditions(
+      endPoint,
+      param.conditions,
+    );
+
+    // const collectionRef = db.collection(endPoint);
+    // const resultData = await collectionRef
+    //   .where('agency', '==', '파이낸셜뉴스')
+    //   .where('title', '==', '파이낸셜뉴스')
+    //   .get();
+
+    return resultData.empty ? [] : resultData.docs.map(doc => doc.data());
   } catch (e) {
     console.error(e);
     throw e;
   }
 };
 
-export const GetDataListQueryOrderBy: Api = async <U>({
+export const GetDataListQueryOrderBy: Api = async <
+  U extends QueryOrderByOptions,
+>({
   endPoint,
   param,
 }: Parameter<U>) => {
   try {
-    if (param.queryType === 'orderby') {
-      const citiesRef = db.collection(endPoint);
-      const resultData: any = [];
-      return new Promise((resolve, reject) => {
-        citiesRef
-          .orderBy(param.fieldPath, param.directionStr)
-          .limit(param.limit)
+    const collectionRef = db.collection(endPoint);
+    const resultData: any = [];
+    return new Promise((resolve, reject) => {
+      collectionRef
+        .orderBy(param.fieldPath, param.directionStr)
+        .limit(param.limit)
 
-          .onSnapshot(docs => {
-            docs.docs.forEach(doc => {
-              resultData.push({
-                id: doc.id,
-                ...doc.data(),
-                time: doc.data().time,
-              });
-            }),
-              resolve(resultData);
+        .onSnapshot(docs => {
+          docs.docs.forEach(doc => {
+            resultData.push({
+              id: doc.id,
+              ...doc.data(),
+              time: doc.data().time,
+            });
           }),
-          (error: unknown) => {
-            reject(error);
-          };
-      });
-    }
+            resolve(resultData);
+        }),
+        (error: unknown) => {
+          reject(error);
+        };
+    });
     throw new Error('### Not Found quertType is orderby');
   } catch (e) {
     console.error(e);
@@ -136,3 +138,15 @@ export const getTimestampToDate = (date: Timestamp): Date => date.toDate();
 
 const snapshotAsArray = <T extends { id: string }>(snapshot: QuerySnapshot) =>
   snapshot.docs.map(doc => <T>{ ...doc.data(), id: doc.id });
+
+const getMultiWhereConditions = async (
+  endPoint: EndPointType,
+  conditions: QueryWhereOptions[],
+) => {
+  const ref = db.collection(endPoint);
+  for (const con of conditions) {
+    //FIXME: where 절 메서드 체이닝 안됨
+    ref.where(con.fieldPath, con.opStr, con.value);
+  }
+  return await ref.get();
+};

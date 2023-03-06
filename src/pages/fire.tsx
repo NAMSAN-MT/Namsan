@@ -1,18 +1,34 @@
-import { HeadFC, PageProps } from 'gatsby'
-import React, { useEffect } from 'react'
-import { getMainNewsList } from '../api/news.api'
+import { HeadFC, PageProps } from 'gatsby';
+import React, { useEffect } from 'react';
+import { getMainNewsList, getNewsList } from '../api/news.api';
 
 const fire: React.FC<PageProps> = () => {
   useEffect(() => {
-    test()
-  }, [])
+    test();
+  }, []);
 
   const test = async () => {
-    const mainList = await getMainNewsList()
-    console.log(mainList)
-  }
-  return <p>Hello </p>
-}
+    // const mainList = await getMainNewsList()
+    // console.log(mainList)
 
-export default fire
-export const Head: HeadFC = () => <title>Home Page</title>
+    const tt = await getNewsList({
+      conditions: [
+        {
+          fieldPath: 'agency',
+          opStr: '==',
+          value: '파이낸셜뉴스',
+        },
+        {
+          fieldPath: 'title',
+          opStr: '==',
+          value: '[로펌탐방] 법무법인 남산',
+        },
+      ],
+    });
+    console.log(tt);
+  };
+  return <p>Hello </p>;
+};
+
+export default fire;
+export const Head: HeadFC = () => <title>Home Page</title>;
