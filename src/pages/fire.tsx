@@ -8,10 +8,7 @@ const fire: React.FC<PageProps> = () => {
   }, []);
 
   const test = async () => {
-    // const mainList = await getMainNewsList()
-    // console.log(mainList)
-
-    const tt = await getNewsList({
+    const newsList = await getNewsList({
       conditions: [
         {
           fieldPath: 'agency',
@@ -25,7 +22,7 @@ const fire: React.FC<PageProps> = () => {
         },
       ],
     });
-    console.log(tt);
+    console.log(newsList);
   };
   return <p>Hello </p>;
 };

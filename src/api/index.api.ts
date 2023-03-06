@@ -77,6 +77,7 @@ export const GetDataListQueryWhere: Api = async <
       param.conditions,
     );
 
+    // TODO: 삭제 예정, 복합 where 절 예시
     // const collectionRef = db.collection(endPoint);
     // const resultData = await collectionRef
     //   .where('agency', '==', '파이낸셜뉴스')
@@ -118,7 +119,6 @@ export const GetDataListQueryOrderBy: Api = async <
           reject(error);
         };
     });
-    throw new Error('### Not Found quertType is orderby');
   } catch (e) {
     console.error(e);
     throw e;
