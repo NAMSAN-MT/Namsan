@@ -1,6 +1,6 @@
 import { navigate } from 'gatsby';
 
-const useSecondSection = () => {
+const useThirdSection = () => {
   const handleNavigate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     void navigate('/work');
@@ -11,4 +11,4 @@ const useSecondSection = () => {
   };
 };
 
-export default useSecondSection;
+export default useThirdSection;

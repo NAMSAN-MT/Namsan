@@ -1,6 +1,6 @@
 import { navigate } from 'gatsby';
 
-const useSecondSection = () => {
+const useForthSection = () => {
   const handleNavigate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     void navigate('/news');
@@ -11,4 +11,4 @@ const useSecondSection = () => {
   };
 };
 
-export default useSecondSection;
+export default useForthSection;

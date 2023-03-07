@@ -1,4 +1,4 @@
-const useSecondSection = () => {
+const useFifthSection = () => {
   const handleNavigate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     // void navigate('/work');
@@ -9,4 +9,4 @@ const useSecondSection = () => {
   };
 };
 
-export default useSecondSection;
+export default useFifthSection;
