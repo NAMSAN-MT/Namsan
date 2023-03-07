@@ -2,6 +2,7 @@ import { HeadFC, PageProps } from 'gatsby';
 import React, { useEffect } from 'react';
 import { getMainNewsList, getNewsList } from '../api/news.api';
 
+// TODO: 테스트 호출 페이지 삭제예정
 const fire: React.FC<PageProps> = () => {
   useEffect(() => {
     test();

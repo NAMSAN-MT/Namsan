@@ -1,7 +1,9 @@
 import {
   addDoc,
   collection,
+  CollectionReference,
   doc,
+  DocumentData,
   FieldPath,
   getDoc,
   getDocs,
@@ -77,14 +79,9 @@ export const GetDataListQueryWhere: Api = async <
       param.conditions,
     );
 
-    // TODO: 삭제 예정, 복합 where 절 예시
-    // const collectionRef = db.collection(endPoint);
-    // const resultData = await collectionRef
-    //   .where('agency', '==', '파이낸셜뉴스')
-    //   .where('title', '==', '파이낸셜뉴스')
-    //   .get();
-
-    return resultData.empty ? [] : resultData.docs.map(doc => doc.data());
+    return resultData.empty
+      ? []
+      : resultData.docs.map((doc: DocumentData) => doc.data());
   } catch (e) {
     console.error(e);
     throw e;
@@ -144,9 +141,10 @@ const getMultiWhereConditions = async (
   conditions: QueryWhereOptions[],
 ) => {
   const ref = db.collection(endPoint);
-  for (const con of conditions) {
-    //FIXME: where 절 메서드 체이닝 안됨
-    ref.where(con.fieldPath, con.opStr, con.value);
-  }
-  return await ref.get();
+  const resultRef = conditions.reduce(
+    (acc: DocumentData, cur) => acc.where(cur.fieldPath, cur.opStr, cur.value),
+    ref,
+  );
+
+  return await resultRef.get();
 };
