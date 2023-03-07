@@ -7,14 +7,14 @@ import { ILayoutProps } from './Layout.interface';
 import * as S from './Layout.style';
 
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
-  const { isHeader = true, isFooter = true } = props;
+  const { isHeader = true, isFooter = true, children } = props;
 
   const { handleTopEvent } = useLayout();
   return (
     <S.LayoutWrapper>
       {isHeader ? <GNB /> : null}
       <S.LayoutContent>
-        {props.children}
+        {children}
         <S.TopButtonWrapper>
           <BaseButton className="arrow-top" onClick={handleTopEvent} />
         </S.TopButtonWrapper>
