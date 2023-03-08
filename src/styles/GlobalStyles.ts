@@ -1,9 +1,25 @@
 import { createGlobalStyle } from 'styled-components';
 import '@fontsource/noto-sans-kr';
 import reset from 'styled-reset';
+import FHAlphaTestLight from '@Fonts/FHAlphaTest-Light.otf';
+import FHAlphaTestLightItalic from '@Fonts/FHAlphaTest-LightItalic.otf';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}  
+
+  @font-face {
+        font-family: 'FHAlphaTestLight';
+        src: local('FHAlphaTestLight'), local('FHAlphaTestLight');
+        font-style: normal;
+        src: url(${FHAlphaTestLight}) format('truetype');
+  }
+
+   @font-face {
+        font-family: 'FHAlphaTestLightItalic';
+        src: local('FHAlphaTestLightItalic'), local('FHAlphaTestLightItalic');
+        font-style: normal;
+        src: url(${FHAlphaTestLightItalic}) format('truetype');
+  }
 
   *, *::before, *::after {
     box-sizing: border-box;

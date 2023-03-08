@@ -7,6 +7,7 @@ export const defaultColors = {
   white: '#FFFFFF',
   grey50: '#F8F9FA',
   grey100: '#EFF2F4',
+
   grey200: '#E3E8EC',
   grey300: '#CFD6DC',
   grey400: '#B2BAC2',
@@ -39,6 +40,7 @@ export const color = {
   pointRed: '#FF3C3C',
   pointSkyBlue: '#1CD5FF',
   pointYellow700: '#FEBD00',
+  pointGrey: '#F9F9FA',
 
   dividerBlack: defaultColors.black,
   dividerGrey100: defaultColors.grey100,
@@ -51,6 +53,7 @@ export const color = {
 
   backgroundWhite: defaultColors.white,
   backgroundGrey50: defaultColors.grey50,
+
   backgroundTransparency: '#00000000',
 
   backgroundDim: `${defaultColors.black}99`,

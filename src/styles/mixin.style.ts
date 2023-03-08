@@ -50,3 +50,6 @@ export const font = (
   font-weight: ${FontWeight[TextStyles[style][weight === 'regular' ? 1 : 2]]};
   font-size: ${TextStyles[style][0]};
 `;
+
+export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
+  line-height: ${lineHeightPx / fontSizePx};`;

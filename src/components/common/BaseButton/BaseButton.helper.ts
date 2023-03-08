@@ -13,9 +13,42 @@ const bindStyle = (name: TClassName) => {
       return S.Outline;
     case 'tag':
       return S.Tag;
+    case 'arrow-top':
+      return S.ArrowTop;
+    case 'hamburger':
+      return S.Hamburger;
+    case 'share':
+      return S.Share;
+    case 'more':
+      return S.More;
     default:
       return S.Base;
   }
 };
 
-export { bindStyle };
+const checkIsIcon = (name: TClassName) => {
+  switch (name) {
+    case 'primary':
+      return false;
+    case 'support':
+      return false;
+    case 'support-line':
+      return false;
+    case 'outline':
+      return false;
+    case 'tag':
+      return false;
+    case 'arrow-top':
+      return true;
+    case 'hamburger':
+      return true;
+    case 'share':
+      return true;
+    case 'more':
+      return true;
+    default:
+      return false;
+  }
+};
+
+export { bindStyle, checkIsIcon };

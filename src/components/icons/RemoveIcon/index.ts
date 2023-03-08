@@ -1,1 +1,1 @@
-export { default } from "./RemoveIcon";
+export { default } from './RemoveIcon';
