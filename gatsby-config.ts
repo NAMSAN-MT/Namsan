@@ -44,7 +44,8 @@ const config: GatsbyConfig = {
             "@Fonts": resolve(__dirname, 'src/fonts'),
             "@Interface": resolve(__dirname, 'src/interface'),
             "@Pages": resolve(__dirname, 'src/pages'),
-            "@Styles": resolve(__dirname, 'src/styles')
+            "@Styles": resolve(__dirname, 'src/styles'),
+            "@Hooks": resolve(__dirname, 'src/hooks'),
         },
         extensions: [
             "ts",

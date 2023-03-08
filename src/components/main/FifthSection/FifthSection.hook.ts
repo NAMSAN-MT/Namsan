@@ -1,8 +1,7 @@
+import useNavigate from '../../../hooks/useNavigate';
+
 const useFifthSection = () => {
-  const handleNavigate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    // void navigate('/work');
-  };
+  const { handleNavigate } = useNavigate();
 
   return {
     handleNavigate,
