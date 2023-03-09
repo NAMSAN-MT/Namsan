@@ -2,12 +2,11 @@ import BaseButton from '@Components/common/BaseButton';
 import React from 'react';
 import ImageCard from '../ImageCard';
 import { ImageCardList1, ImageCardList2 } from '../ImageCard/ImageCard.const';
-import useSecondSection from './ThirdSection.hook';
-
+import useThirdSection from './ThirdSection.hook';
 import * as S from './ThirdSection.style';
 
-const SecondSection: React.FC = () => {
-  const { handleNavigate } = useSecondSection();
+const ThirdSection: React.FC = () => {
+  const { handleNavigate } = useThirdSection();
 
   return (
     <S.ThirdWrapper>
@@ -40,4 +39,4 @@ const SecondSection: React.FC = () => {
   );
 };
 
-export default SecondSection;
+export default ThirdSection;

@@ -1,6 +1,6 @@
 import { flex, lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
-import ArrowRightIcon from '@Images/ArrowRight.svg';
+import ArrowRightIcon from '@Images/ic_arrow_right_th20.svg';
 
 const SummaryNewsWrapper = styled.div`
   width: 100%;

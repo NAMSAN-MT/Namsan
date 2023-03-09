@@ -1,7 +1,7 @@
 import React from 'react';
 import IconWrapper from '../IconWrapper';
-import removeIcon from '../../../assets/imgs/ic_-_nor.svg';
-import removeHoverIcon from '../../../assets/imgs/ic_-_hover.svg';
+import removeIcon from '@Images/ic_-_nor.svg';
+import removeHoverIcon from '@Images/ic_-_hover.svg';
 
 interface PropTypes {
   width?: string;

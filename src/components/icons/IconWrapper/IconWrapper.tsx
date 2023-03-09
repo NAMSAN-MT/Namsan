@@ -1,5 +1,5 @@
-import React from "react";
-import * as S from "./IconWrapper.style";
+import React from 'react';
+import * as S from './IconWrapper.style';
 
 interface PropTypes {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface PropTypes {
 
 const IconWrapper = (props: PropTypes) => {
   return (
-    <S.Wrapper width={props.width || "18px"} height={props.height || "18px"}>
+    <S.Wrapper width={props.width || '18px'} height={props.height || '18px'}>
       {props.children}
     </S.Wrapper>
   );

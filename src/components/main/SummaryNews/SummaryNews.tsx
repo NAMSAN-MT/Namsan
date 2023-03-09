@@ -3,8 +3,6 @@ import * as S from './SummaryNews.style';
 import { ISummaryNewsProps } from './SummaryNews.interface';
 
 const SummaryNews: React.FC<ISummaryNewsProps> = (props: ISummaryNewsProps) => {
-  console.log(props.lastIndex);
-
   return (
     <S.SummaryNewsWrapper>
       <S.InnerWrapper>

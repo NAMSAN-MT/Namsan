@@ -1,7 +1,7 @@
 import React from 'react';
 import { TermAndConditionLink } from './Footer.const';
 import * as S from './Footer.style';
-import LogoFooter from '@Images/LogoFooter.svg';
+import LogoFooter from '@Images/logo-footer.svg';
 
 const Footer: React.FC = () => {
   return (

@@ -5,5 +5,5 @@ export interface News {
   content: string;
   date: Timestamp;
   agency: string;
-  original_link: string;
+  originalLink: string;
 }

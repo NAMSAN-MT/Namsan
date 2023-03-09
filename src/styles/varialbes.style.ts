@@ -53,6 +53,7 @@ export const color = {
 
   backgroundWhite: defaultColors.white,
   backgroundGrey50: defaultColors.grey50,
+
   backgroundTransparency: '#00000000',
 
   backgroundDim: `${defaultColors.black}99`,
@@ -83,7 +84,7 @@ export const TextStyles = {
   body14: ['14px', 'demilight', 'medium'],
 };
 
-export const FontWeight = {
+export const FontWeight: Record<string, number> = {
   demilight: 300,
   regular: 400,
   medium: 500,

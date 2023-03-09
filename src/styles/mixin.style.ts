@@ -1,25 +1,25 @@
 import { css } from 'styled-components';
 import { FontWeight, TextStyles } from './varialbes.style';
 
-export const size = (height?: string, width?: string) => css`
-  height: ${height ?? 'auto'};
-  width: ${width ?? 'auto'};
+export const size = (height = 'auto', width = 'auto') => css`
+  height: ${height};
+  width: ${width};
 `;
 
-export const flex = (jc: string = 'center', ai: string = 'center') => css`
+export const flex = (jc = 'center', ai = 'center') => css`
   display: flex;
-  justify-content: ${jc ?? 'center'};
-  align-items: ${ai ?? 'center'};
+  justify-content: ${jc};
+  align-items: ${ai};
 `;
 
-export const inlineblock = (va: string = 'top') => css`
+export const inlineblock = (va = 'top') => css`
   display: inline-block;
-  vertical-align: ${va ?? 'top'};
+  vertical-align: ${va};
 `;
 
-export const inlineblockJustFunction = (va: string = 'top') => css`
+export const inlineblockJustFunction = (va = 'top') => css`
   display: inline-block;
-  vertical-align: ${() => va ?? 'top'};
+  vertical-align: ${va};
 `;
 
 export const position = (
@@ -43,10 +43,6 @@ export const ellipsis = () => css`
   text-overflow: ellipsis;
 `;
 
-export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
-  line-height: ${lineHeightPx / fontSizePx};
-`;
-
 export const font = (
   style: keyof typeof TextStyles,
   weight: 'regular' | 'bold',
@@ -55,11 +51,6 @@ export const font = (
   font-size: ${TextStyles[style][0]};
 `;
 
-// export const font = (fontStyle?: IFontStyle) => css`
-//   font-family: 'Noto Sans CJK KR';
-//   font-style: normal;
-//   font-weight: ${fontStyle?.fontWeight ?? 400};
-//   font-size: ${fontStyle?.fontSize ?? '20px'};
-//   line-height: ${fontStyle?.lineHeight ?? '34px'};
-//   color: ${fontStyle?.fontColor ?? defaultColors.black};
-// `;
+export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
+  line-height: ${lineHeightPx / fontSizePx};
+`;

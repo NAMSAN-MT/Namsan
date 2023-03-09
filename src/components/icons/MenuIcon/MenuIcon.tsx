@@ -1,6 +1,6 @@
 import React from 'react';
 import IconWrapper from '../IconWrapper';
-import menuIcon from '../../../assets/imgs/ic_menu_nor.svg';
+import menuIcon from '@Images/ic_menu_nor.svg';
 
 interface PropTypes {
   width?: string;
