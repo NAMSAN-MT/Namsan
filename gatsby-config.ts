@@ -43,30 +43,36 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: {
-            "@Api": resolve(__dirname, 'src/api'),
-            "@Components": resolve(__dirname, 'src/components'),
-            "@Images": resolve(__dirname, 'src/assets/imgs'),
-            "@Fonts": resolve(__dirname, 'src/fonts'),
-            "@Interface": resolve(__dirname, 'src/interface'),
-            "@Pages": resolve(__dirname, 'src/pages'),
-            "@Styles": resolve(__dirname, 'src/styles'),
-            "@Hooks": resolve(__dirname, 'src/hooks'),
+          '@Api': resolve(__dirname, 'src/api'),
+          '@Components': resolve(__dirname, 'src/components'),
+          '@Images': resolve(__dirname, 'src/assets/imgs'),
+          '@Fonts': resolve(__dirname, 'src/fonts'),
+          '@Interface': resolve(__dirname, 'src/interface'),
+          '@Pages': resolve(__dirname, 'src/pages'),
+          '@Styles': resolve(__dirname, 'src/styles'),
+          '@Hooks': resolve(__dirname, 'src/hooks'),
         },
-        extensions: [
-            "ts",
-            "tsx"
-        ]
-      }
-  },
-  {
-    resolve: "gatsby-plugin-react-svg",
-    options: {
-      rule: {
-        include: /assets\/imgs\/svg/,
-      }
-    }
-  },
-]
+        extensions: ['ts', 'tsx'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets\/imgs\/svg/,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-intl',
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: [`en`, `ko`],
+        defaultLanguage: `ko`,
+        redirect: false,
+      },
+    },
+  ],
 };
 
 export default config;
