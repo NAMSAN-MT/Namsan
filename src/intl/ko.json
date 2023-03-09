@@ -1,5 +1,39 @@
 {
   "index": {
     "test": "GATSBY PLUGIN INTL 테스트입니다🐳 {myValue}"
+  },
+  "introduce": {
+    "phrase1": "세상과<br/>당신 사이,<br/><span>{companyName}</span>이 있습니다.",
+    "phrase2_main1": "개별적이고도 충실한",
+    "phrase2_main2": "맞춤형 서비스를 제공하겠습니다.",
+    "phrase2_sub": "대형화의 추세에 편승하지 아니하고 기업과 고객에게 진정으로\n도움이 되는 개별적이고도 충실한 맞춤형 법률서비스를 제공한다는\n설립취지를 실천하며 꾸준히 역량을 강화하여 왔습니다.",
+    "phrase3_main1": "은",
+    "phrase3_main2": "사람을 우선하고",
+    "phrase3_main3": "양보다는 질을 추구합니다.",
+    "phrase4_main1": "합리적인 비용과 고객별",
+    "phrase4_main2": "전담변호사를 배정하는 밀착형 서비스",
+    "phrase4_sub": "대형화의 추세에 편승하지 아니하고 기업과 고객에게 진정으로\n도움이 되는 개별적이고도 충실한 맞춤형 법률서비스를 제공한다는\n설립취지를 실천하며 꾸준히 역량을 강화하여 왔습니다.",
+    "media_title": "언론속의 남산",
+    "media_content1_title": "가장 효율적인 답을\n신속하고 적극적으로 제시",
+    "media_content1_press": "Legal Times",
+    "media_content2_title": "볼륨보다 내실,\n실력이 마케팅인 로펌",
+    "media_content2_press": "한국경제신문",
+    "media_content3_title": "외부에 있는 기업 법무팀",
+    "media_content3_press": "서울경제신문",
+    "media_content4_title": "입소문을 듣고 찾아오는\n30년 전통 강소로펌",
+    "media_content4_press": "법률신문",
+    "media_content5_title": "선례를 만들어가는\n높은 경쟁력을 가진 로펌",
+    "media_content5_press": "로펌 인 코리아",
+    "media_content6_title": "합리적인 비용과 고객별\n전담변호사를 배정하는\n기업 밀착형 서비스",
+    "media_content6_press": "조선일보"
+  },
+  "contact": {
+    "address": "서울 중구 퇴계로 97 고려대연각빌딩 17층\n04535",
+    "recruite": "채용문의",
+    "recruite_description": "고객에게 언제나 신속하고 정성스러운 최고의 서비스를 제공한다는 목표를 가진\n법무법인 남산과 함께 걸어갈 능력있고 열정적인 인재에게 남산의 문은 언제나 활짝 열려 있습니다.\n법무법인 남산과 함께 하고자 하는 변호사의 적극적인 지원을 바랍니다.",
+    "intern": "신입변호사, 인턴 문의",
+    "intern_sub": "선구완 변호사\nsun@namsanlaw.com",
+    "foreign": "신입/경력 외국변호사 문의",
+    "foreign_sub": "윤희경 미국변호사\nhyoon@namsanlaw.com"
   }
 }
