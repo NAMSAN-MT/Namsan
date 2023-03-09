@@ -1,6 +1,6 @@
 import React from 'react';
 import IconWrapper from '../IconWrapper';
-import homeIcon from '../../../assets/imgs/ic_home.svg';
+import homeIcon from '@Images/ic_home.svg';
 
 interface PropTypes {
   width?: string;

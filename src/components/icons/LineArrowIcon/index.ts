@@ -1,1 +1,1 @@
-export { default } from "./LineArrowIcon";
+export { default } from './LineArrowIcon';

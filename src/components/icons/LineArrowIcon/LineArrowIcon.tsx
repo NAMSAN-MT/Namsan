@@ -1,15 +1,15 @@
 import React from 'react';
 import IconWrapper from '../IconWrapper';
-import arrowUpTh15Icon from '../../../assets/imgs/ic_arrow_up_th15.svg';
-import arrowDownTh15Icon from '../../../assets/imgs/ic_arrow_down_th15.svg';
-import arrowUpTh10Icon from '../../../assets/imgs/ic_arrow_up_th10.svg';
-import arrowDownTh10Icon from '../../../assets/imgs/ic_arrow_down_th10.svg';
-import arrowLeftTh5Icon from '../../../assets/imgs/ic_arrow_left_th5.svg';
-import arrowLeftTh10Icon from '../../../assets/imgs/ic_arrow_left_th10.svg';
-import arrowLeftTh15Icon from '../../../assets/imgs/ic_arrow_left_th15.svg';
-import arrowRightTh5Icon from '../../../assets/imgs/ic_arrow_right_th5.svg';
-import arrowRightTh10Icon from '../../../assets/imgs/ic_arrow_right_th10.svg';
-import arrowRightTh15Icon from '../../../assets/imgs/ic_arrow_right_th15.svg';
+import arrowUpTh15Icon from '@Images/ic_arrow_up_th15.svg';
+import arrowDownTh15Icon from '@Images/ic_arrow_down_th15.svg';
+import arrowUpTh10Icon from '@Images/ic_arrow_up_th10.svg';
+import arrowDownTh10Icon from '@Images/ic_arrow_down_th10.svg';
+import arrowLeftTh5Icon from '@Images/ic_arrow_left_th5.svg';
+import arrowLeftTh10Icon from '@Images/ic_arrow_left_th10.svg';
+import arrowLeftTh15Icon from '@Images/ic_arrow_left_th15.svg';
+import arrowRightTh5Icon from '@Images/ic_arrow_right_th5.svg';
+import arrowRightTh10Icon from '@Images/ic_arrow_right_th10.svg';
+import arrowRightTh15Icon from '@Images/ic_arrow_right_th15.svg';
 
 interface PropTypes {
   width?: string;

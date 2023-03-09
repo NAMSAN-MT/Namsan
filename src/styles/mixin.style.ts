@@ -43,10 +43,6 @@ export const ellipsis = () => css`
   text-overflow: ellipsis;
 `;
 
-export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
-  line-height: ${lineHeightPx / fontSizePx};
-`;
-
 export const font = (
   style: keyof typeof TextStyles,
   weight: 'regular' | 'bold',
@@ -55,11 +51,6 @@ export const font = (
   font-size: ${TextStyles[style][0]};
 `;
 
-// export const font = (fontStyle?: IFontStyle) => css`
-//   font-family: 'Noto Sans CJK KR';
-//   font-style: normal;
-//   font-weight: ${fontStyle?.fontWeight ?? 400};
-//   font-size: ${fontStyle?.fontSize ?? '20px'};
-//   line-height: ${fontStyle?.lineHeight ?? '34px'};
-//   color: ${fontStyle?.fontColor ?? defaultColors.black};
-// `;
+export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
+  line-height: ${lineHeightPx / fontSizePx};
+`;

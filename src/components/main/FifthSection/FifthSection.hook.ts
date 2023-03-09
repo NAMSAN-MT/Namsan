@@ -1,12 +1,11 @@
-const useSecondSection = () => {
-  const handleNavigate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    // void navigate('/work');
-  };
+import useNavigate from '../../../hooks/useNavigate';
+
+const useFifthSection = () => {
+  const { handleNavigate } = useNavigate();
 
   return {
     handleNavigate,
   };
 };
 
-export default useSecondSection;
+export default useFifthSection;

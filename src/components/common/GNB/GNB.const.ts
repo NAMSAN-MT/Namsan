@@ -7,22 +7,22 @@ const GNBLink = [
   {
     name: '업무분야',
     herf: '/work',
-    alt: 'Work',
+    alt: 'work',
   },
   {
     name: '구성원',
     herf: '/members',
-    alt: 'Members',
+    alt: 'members',
   },
   {
     name: '소식',
     herf: '/news',
-    alt: 'News',
+    alt: 'news',
   },
   {
     name: 'Contact',
     herf: '/contact',
-    alt: 'Contact',
+    alt: 'contact',
   },
 ] as const;
 
