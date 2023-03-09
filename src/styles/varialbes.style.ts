@@ -7,6 +7,7 @@ export const defaultColors = {
   white: '#FFFFFF',
   grey50: '#F8F9FA',
   grey100: '#EFF2F4',
+
   grey200: '#E3E8EC',
   grey300: '#CFD6DC',
   grey400: '#B2BAC2',
@@ -25,7 +26,7 @@ export const color = {
   textBlackDisable: `${defaultColors.black}3d`,
 
   textWhiteHigh: defaultColors.white,
-  textWhiteMidium: `${defaultColors.white}99`,
+  textWhiteMedium: `${defaultColors.white}99`,
   textWhiteDisable: `${defaultColors.white}3d`,
 
   textBlue: defaultColors.blue200,
@@ -39,6 +40,7 @@ export const color = {
   pointRed: '#FF3C3C',
   pointSkyBlue: '#1CD5FF',
   pointYellow700: '#FEBD00',
+  pointGrey: '#F9F9FA',
 
   dividerBlack: defaultColors.black,
   dividerGrey100: defaultColors.grey100,
@@ -51,6 +53,7 @@ export const color = {
 
   backgroundWhite: defaultColors.white,
   backgroundGrey50: defaultColors.grey50,
+
   backgroundTransparency: '#00000000',
 
   backgroundDim: `${defaultColors.black}99`,
@@ -60,4 +63,30 @@ export type ColorType = typeof color;
 
 export const theme: DefaultTheme = {
   color,
+};
+
+export const TextStyles = {
+  display70: ['70px', 'medium', 'bold'],
+  display64: ['64px', 'medium', 'bold'],
+  display56: ['56px', 'medium', 'bold'],
+  display50: ['50px', 'medium', 'bold'],
+  display42: ['42px', 'medium', 'bold'],
+  display40: ['40px', 'medium', 'bold'],
+  display36: ['36px', 'medium', 'bold'],
+  title32: ['32px', 'medium', 'bold'],
+  title26: ['26px', 'medium', 'bold'],
+  title24: ['24px', 'medium', 'bold'],
+  title22: ['22px', 'medium', 'bold'],
+  title20: ['20px', 'demilight', 'bold'],
+  list20: ['20px', 'regular', 'regular'],
+  title18: ['18px', 'demilight', 'medium'],
+  body16: ['16px', 'demilight', 'medium'],
+  body14: ['14px', 'demilight', 'medium'],
+};
+
+export const FontWeight: Record<string, number> = {
+  demilight: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
 };

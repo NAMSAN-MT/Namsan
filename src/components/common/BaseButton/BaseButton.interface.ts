@@ -1,8 +1,17 @@
-type TClassName = 'primary' | 'support' | 'support-line' | 'outline' | 'tag';
+type TClassName =
+  | 'primary'
+  | 'support'
+  | 'support-line'
+  | 'outline'
+  | 'tag'
+  | 'arrow-top'
+  | 'hamburger'
+  | 'share'
+  | 'more';
 type TType = 'button' | 'submit' | 'reset';
 
 interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className: TClassName;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void;

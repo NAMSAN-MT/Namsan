@@ -23,6 +23,7 @@
     "babel-plugin-styled-components": "^2.0.7",
     "eslint": "^8.34.0",
     "eslint-plugin-react": "^7.32.2",
+    "firebase": "^9.17.1",
     "gatsby": "^5.5.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
@@ -36,10 +37,12 @@
     "gatsby-plugin-styled-components": "^6.5.0",
     "gatsby-source-filesystem": "^5.5.0",
     "gatsby-transformer-sharp": "^5.7.0",
+    "lodash": "^4.17.21",
     "prettier": "^2.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "styled-reset": "^4.4.5"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

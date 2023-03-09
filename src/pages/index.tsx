@@ -1,12 +1,21 @@
 import * as React from 'react';
 import { PageProps } from 'gatsby';
-import BaseButton from '@Components/common/BaseButton';
-import IconButton from '@Components/common/IconButton ';
+import AppLayout from '@Components/common/Layout';
+import FirstSection from '@Components/main/FirstSection';
+import SecondSection from '@Components/main/SecondSection';
+import ThirdSection from '@Components/main/ThirdSection';
+import ForthSection from '@Components/main/ForthSection';
+import FifthSection from '@Components/main/FifthSection';
 
 const Main: React.FC<PageProps> = () => {
   return (
-    <div style={{ display: 'flex' }}>
-      <BaseButton className="primary" onClick={() => console.log('')}>
+    <AppLayout>
+      <FirstSection />
+      <SecondSection />
+      <ThirdSection />
+      <ForthSection />
+      <FifthSection />
+      {/* <BaseButton className="primary" onClick={() => console.log('')}>
         Primary
       </BaseButton>
       <BaseButton className="support" onClick={() => console.log('')}>
@@ -23,8 +32,8 @@ const Main: React.FC<PageProps> = () => {
       </BaseButton>
       <IconButton className="arrow-top" onClick={() => console.log('')} />
       <IconButton className="hamburger" onClick={() => console.log('')} />
-      <IconButton className="share" onClick={() => console.log('')} />
-    </div>
+      <IconButton className="share" onClick={() => console.log('')} /> */}
+    </AppLayout>
   );
 };
 
