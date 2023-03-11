@@ -4,7 +4,7 @@ import useSecondSection from './SecondSection.hook';
 import * as S from './SecondSection.style';
 
 const SecondSection: React.FC = () => {
-  const { handleNavigate } = useSecondSection();
+  const { handleNavigateTo } = useSecondSection();
 
   return (
     <S.SecondWrapper>
@@ -13,7 +13,7 @@ const SecondSection: React.FC = () => {
         법무법인 남산은 깊이 있는 역량과 정성으로 <br />
         고객에게 개별적이고도 충실한 맞춤형 서비스를 제공합니다.
       </S.Description>
-      <BaseButton className="primary" onClick={handleNavigate}>
+      <BaseButton className="primary" onClick={handleNavigateTo}>
         소개 바로가기
       </BaseButton>
     </S.SecondWrapper>
