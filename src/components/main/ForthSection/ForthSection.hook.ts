@@ -1,7 +1,7 @@
 import { getMainNewsList } from '@Api/news.api';
 import { News } from '@Interface/api.interface';
 import { useEffect, useState } from 'react';
-import useNavigate from '../../../hooks/useNavigate';
+import useNavigate from '@Hooks/useNavigate';
 
 const useForthSection = () => {
   const [newsList, setNewsList] = useState<News[]>();
@@ -10,7 +10,6 @@ const useForthSection = () => {
 
   useEffect(() => {
     const init = async () => {
-      console.log('ForthSection');
       const newsList = await getMainNewsList();
       setNewsList(newsList);
     };
@@ -24,7 +23,7 @@ const useForthSection = () => {
 
   return {
     handleNavigateTo,
-    newsList
+    newsList,
   };
 };
 

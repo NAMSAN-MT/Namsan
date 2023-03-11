@@ -1,4 +1,5 @@
 import BaseButton from '@Components/common/BaseButton';
+import useDateFns from '@Hooks/useDateFns';
 import React from 'react';
 import SummaryNews from '../SummaryNews';
 import useForthSection from './ForthSection.hook';
@@ -6,6 +7,7 @@ import * as S from './ForthSection.style';
 
 const ForthSection: React.FC = () => {
   const { handleNavigateTo, newsList } = useForthSection();
+  const { convertToDateString } = useDateFns();
 
   return (
     <S.ForthWrapper>
@@ -17,16 +19,17 @@ const ForthSection: React.FC = () => {
           </BaseButton>
         </S.TopWrapper>
         <S.BottomWrapper>
-          {newsList ? newsList
-            .map((news, index) => (
-              <SummaryNews
-                key={index}
-                lastIndex={index === 2}
-                title={news.title}
-                tag={news.agency}
-                date={news.date.toString()}
-              />
-            )): null}
+          {newsList
+            ? newsList.map((news, index) => (
+                <SummaryNews
+                  key={index}
+                  lastIndex={index === 2}
+                  title={news.title}
+                  tag={news.agency}
+                  date={convertToDateString(news.date.toDate(), 'yyyy.MM')}
+                />
+              ))
+            : null}
         </S.BottomWrapper>
       </S.InnerWrapper>
     </S.ForthWrapper>

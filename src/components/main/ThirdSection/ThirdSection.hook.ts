@@ -1,4 +1,4 @@
-import useNavigate from '../../../hooks/useNavigate';
+import useNavigate from '@Hooks/useNavigate';
 
 const useThirdSection = () => {
   const { handleNavigate } = useNavigate();
