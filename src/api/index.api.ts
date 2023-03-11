@@ -13,7 +13,7 @@ import {
   WhereFilterOp,
 } from 'firebase/firestore';
 import { db } from './firebase';
-export type EndPointType = 'news' | 'work' | 'profile';
+export type EndPointType = 'news' | 'work' | 'profile' | 'businessFields';
 export type QueryType = 'where' | 'orderby';
 export type QueryWhereOptions = {
   fieldPath: string | FieldPath;
