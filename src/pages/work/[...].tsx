@@ -1,18 +1,14 @@
-import { PageProps, graphql } from 'gatsby';
-import React from 'react';
-import { Router } from '@reach/router';
 import Work from '@Components/work';
-import MainCategoryPage from '@Components/work/mainCategoryPage';
-import SubCategoryPage from '@Components/work/subCategoryPage';
+import DetailPage from '@Components/work/DetailPage';
+import { Router } from '@reach/router';
+import React from 'react';
 
-const WorkIndex = ({ data }: PageProps) => {
-  console.log(data);
+const WorkIndex = () => {
   return (
     <div>
       <Router basepath="/work">
         <Work path="/" />
-        <MainCategoryPage path="/:id" />
-        <SubCategoryPage path="/:id/:subId" />
+        <DetailPage path="/:id" />
       </Router>
     </div>
   );
