@@ -6,4 +6,6 @@ export interface News {
   date: Timestamp;
   agency: string;
   originalLink: string;
+  newsType: 'media' | 'recent';
+  dateYearMonth?: string;
 }
