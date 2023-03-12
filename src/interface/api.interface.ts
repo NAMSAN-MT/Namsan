@@ -25,4 +25,5 @@ export interface Member {
   careers: MemberAttribute[];
   papers?: MemberAttribute[];
   awards?: MemberAttribute[];
+  imagePath: string;
 }

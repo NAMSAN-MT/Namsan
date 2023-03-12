@@ -4,6 +4,7 @@ import AppLayout from '@Components/common/Layout';
 import MembersWrapper from '@Components/members/MembersWrapper';
 import MembersTitle from '@Components/members/MembersTitle';
 import SearchBar from '@Components/members/SearchBar';
+import MemberList from '@Components/members/MemberList';
 
 const Members: React.FC<PageProps> = () => {
   return (
@@ -11,6 +12,7 @@ const Members: React.FC<PageProps> = () => {
       <MembersWrapper>
         <MembersTitle />
         <SearchBar />
+        <MemberList />
       </MembersWrapper>
     </AppLayout>
   );

@@ -1,7 +1,6 @@
 import { flex, font } from '@Styles/mixin.style';
 import { size } from 'lodash';
 import styled from 'styled-components';
-import { ISelectBoxOption } from './SelectBox.interface';
 
 const OPTION_HEIGHT = '60px';
 
@@ -17,10 +16,13 @@ const Base = styled.div`
   }
 `;
 
-const Select = styled(Base)`
+const Select = styled(Base)<{ isOpen: boolean }>`
   border: none;
   cursor: pointer;
   position: relative;
+  user-select: none;
+  border-bottom: 2px solid
+    ${({ isOpen, theme }) => (isOpen ? 'transparent' : theme.color.grey200)};
 
   & > span {
     font-weight: 400;
@@ -34,9 +36,11 @@ const OptionWrapper = styled.ul`
   width: 100%;
   max-height: 444px;
   overflow-y: scroll;
+  background-color: ${({ theme }) => theme.color.white};
+  z-index: 100;
 `;
 
-const Option = styled(Base)<Pick<ISelectBoxOption, 'isSelected'>>`
+const Option = styled(Base)<{ isSelected: boolean }>`
   cursor: pointer;
 
   & > span {
