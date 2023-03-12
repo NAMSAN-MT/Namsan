@@ -19,18 +19,27 @@ export const getNewsList = async (param?: NewsRequest) => {
   }).then(getResultNewsList);
 };
 
-export const getMainNewsList = async () => {
+export const getMainNewsList = async (limit: number) => {
   const param = {
     queryType: 'orderby',
     fieldPath: 'date',
     directionStr: 'asc',
-    limit: 3,
+    limit,
   };
 
-  return await GetDataListQueryOrderBy<Parameter, News[]>({
+  const result = await GetDataListQueryOrderBy<Parameter, News[]>({
     endPoint: 'news',
     param,
   });
+
+  return result.map(news => ({
+    ...news,
+    dateYearMonth: `${news.date.toDate().getFullYear()}.${
+      news.date.toDate().getMonth() < 9
+        ? `0${news.date.toDate().getMonth()}`
+        : news.date.toDate().getMonth()
+    }`,
+  }));
 };
 
 const getResultNewsList = (doc: News[]) =>
