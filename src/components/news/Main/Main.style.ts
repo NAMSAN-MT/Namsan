@@ -7,6 +7,7 @@ import {
   size,
 } from '@Styles/mixin.style';
 import styled from 'styled-components';
+import { NewsType } from '../../../type/api.type';
 
 export const TabSearchBox = styled.div`
   ${flex('space-between', 'center')}
@@ -20,8 +21,9 @@ export const TabBox = styled.ul`
   ${flex()}
 `;
 
-export const Tab = styled.li<{ isActive?: boolean }>`
+export const Tab = styled.li<{ isActive: boolean }>`
   ${flex()}
+  min-width: 81px;
   padding: 6px 20px;
   letter-spacing: -0.4px;
 
@@ -43,6 +45,7 @@ export const Tab = styled.li<{ isActive?: boolean }>`
 export const SearchBox = styled.div`
   ${size('64px', '384px')}
   ${flex('end')}
+  min-width: 100px;
 
   border-bottom: 2px solid ${({ theme }) => theme.color.grey200};
 
@@ -77,7 +80,7 @@ export const SearchBox = styled.div`
     content: '';
     display: inline-block;
     background: ${`url(${SearchIcon}) no-repeat center center`};
-    margin-right: 20px;
+    margin-right: 5px;
     ${size('24px', '24px')}
   }
 `;
@@ -107,13 +110,13 @@ export const Card = styled.a`
   }
 `;
 
-export const LabelBox = styled.div<{ type: boolean }>`
+export const LabelBox = styled.div<{ type: NewsType }>`
   ${flex('', 'center')}
   letter-spacing: -0.2px;
   margin-bottom: 16px;
 
   p {
-    background: ${({ type }) => (type ? '#1e59b3' : '#811B14')};
+    background: ${({ type }) => (type === 'recent' ? '#811B14' : '#1e59b3')};
     border-radius: 4px;
     padding: 6px 10px 4px 10px;
 
