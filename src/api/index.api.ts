@@ -226,7 +226,7 @@ const getMultipleOrderByQueries = (
       const orderByRef = acc.orderBy(cur.fieldPath, cur.directionStr);
 
       if (!cur.limit) return orderByRef;
-      return acc.orderBy(cur.fieldPath).limit(cur.limit);
+      return orderByRef.limit(cur.limit);
     },
     ref,
   );

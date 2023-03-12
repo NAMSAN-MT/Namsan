@@ -15,6 +15,6 @@ export type MembersSearchRequest = Partial<{
   name: string;
   position: string;
   businessField: string;
-}> & { lang: TLanguage };
+}> & { language: TLanguage };
 
 export type TMemberSearchField = keyof Member;

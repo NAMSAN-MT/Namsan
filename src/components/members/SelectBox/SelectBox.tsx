@@ -18,7 +18,7 @@ const SelectBox = ({
   };
 
   return (
-    <S.Select onClick={_toggle}>
+    <S.Select onClick={_toggle} isOpen={isOpen}>
       <span>{title}</span>
       {isOpen && (
         <S.OptionWrapper>

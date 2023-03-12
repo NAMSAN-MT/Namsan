@@ -36,6 +36,12 @@ const getMembers = async (params: MembersSearchRequest) => {
   const conditions: TQuery[] = [
     {
       queryType: 'where',
+      fieldPath: 'language',
+      opStr: '==',
+      value: params.language,
+    },
+    {
+      queryType: 'where',
       fieldPath: 'name',
       opStr: '==',
       value: params.name,
@@ -59,6 +65,7 @@ const getMembers = async (params: MembersSearchRequest) => {
     },
   ];
   const param = { conditions };
+  console.log(param);
 
   return await GetDataListQuery<Parameter, Member[]>({
     endPoint,

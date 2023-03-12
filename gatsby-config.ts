@@ -52,7 +52,7 @@ const config: GatsbyConfig = {
           '@Styles': resolve(__dirname, 'src/styles'),
           '@Assets': resolve(__dirname, 'src/assets'),
           '@Hooks': resolve(__dirname, 'src/hooks'),
-          '@Intl': resolve(__dirname, 'src/intl'),
+          '@Type': resolve(__dirname, 'src/type'),
         },
         extensions: ['ts', 'tsx'],
       },
