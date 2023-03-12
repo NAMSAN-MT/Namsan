@@ -1,11 +1,10 @@
-import { News } from '../interface/api.interface';
-import { NewsRequest } from '../type/api.type';
+import { News, Parameter } from '@Interface/api.interface';
+import { NewsRequest, QueryWhereOptions } from '@Type/api.type';
 import {
   GetData,
   GetDataListQueryOrderBy,
-  GetDataListQueryWhere,
+  GetDataListQuery,
   getTimestampToDate,
-  Parameter,
 } from './index.api';
 
 export const getNews = async (param: NewsRequest) => {
@@ -13,7 +12,7 @@ export const getNews = async (param: NewsRequest) => {
 };
 
 export const getNewsList = async (param?: NewsRequest) => {
-  return await GetDataListQueryWhere<Parameter, News[]>({
+  return await GetDataListQuery<Parameter, News[]>({
     endPoint: 'news',
     param,
   }).then(getResultNewsList);
@@ -47,3 +46,35 @@ const getResultNewsList = (doc: News[]) =>
     ...news,
     date: getTimestampToDate(news.date),
   }));
+
+interface INewSearchListRequest {
+  limit: number;
+  conditions?: QueryWhereOptions[];
+}
+export const getNewsSearchList = async ({
+  limit,
+  conditions,
+}: INewSearchListRequest) => {
+  const param = {
+    orderBy: {
+      fieldPath: 'date',
+      directionStr: 'desc',
+      limit,
+    },
+    conditions,
+  };
+
+  const result = await GetDataListQuery<Parameter, News[]>({
+    endPoint: 'news',
+    param,
+  });
+
+  return result.map(news => ({
+    ...news,
+    dateYearMonth: `${news.date.toDate().getFullYear()}.${
+      news.date.toDate().getMonth() < 9
+        ? `0${news.date.toDate().getMonth()}`
+        : news.date.toDate().getMonth()
+    }`,
+  }));
+};
