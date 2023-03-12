@@ -4,15 +4,16 @@ import {
   collection,
   doc,
   DocumentData,
-  FieldPath,
   getDoc,
   getDocs,
-  OrderByDirection,
   QuerySnapshot,
   Timestamp,
   WhereFilterOp,
   QueryDocumentSnapshot,
+  FieldPath,
+  OrderByDirection,
 } from 'firebase/firestore';
+import { isEmpty } from 'lodash';
 import { db } from './firebase';
 import firebase from 'firebase/compat/app';
 
@@ -91,8 +92,8 @@ export const GetDataList = async <U>({
   }
 };
 
-export const GetDataListQueryWhere: Api = async <
-  U extends { conditions: QueryWhereOptions[] },
+export const GetDataListQuery: Api = async <
+  U extends { conditions: QueryWhereOptions[]; orderBy?: QueryOrderByOptions },
 >({
   endPoint,
   param,
@@ -213,6 +214,7 @@ const getData = <U>(doc: QueryDocumentSnapshot, fieldNames?: string[]) => {
 const getMultipleWhereQueries = (
   ref: firebase.firestore.DocumentData,
   conditions: QueryWhereOptions[],
+  orderBy?: QueryOrderByOptions,
 ) => {
   return conditions.reduce<firebase.firestore.DocumentData>(
     (acc: DocumentData, cur) => {
