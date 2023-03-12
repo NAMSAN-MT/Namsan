@@ -1,8 +1,10 @@
-import { getMainNewsList, getNewsList } from '@Api/news.api';
+import { getNewsSearchList } from '@Api/news.api';
 import { News } from '@Interface/api.interface';
-import React, { useState, MouseEvent, useRef, useEffect } from 'react';
-import { TTab } from './Main.interface';
-import * as S from './Main.style';
+import { NewsType } from '@Type/api.type';
+import React, { MouseEvent, useEffect, useRef, useState } from 'react';
+import * as Helper from './main.helper';
+import { TTab } from './main.interface';
+import * as S from './main.style';
 
 const NewsMain = () => {
   let searchRef = useRef<HTMLInputElement | null>(null);
@@ -17,14 +19,22 @@ const NewsMain = () => {
     };
   }, []);
 
-  const onCallNewsList = async () => {
-    setList(await getMainNewsList(9));
+  const onCallNewsList = async (newsType: NewsType = 'all') => {
+    const conditions = Helper.getListConditions(newsType);
+    setList(
+      await getNewsSearchList({
+        limit: 9,
+        conditions,
+      }),
+    );
+    setTab(newsType);
   };
 
   const handleTab = (e: MouseEvent<HTMLAnchorElement>, type: TTab) => {
     e.preventDefault();
-    setTab(type);
+    onCallNewsList(type);
   };
+
   return (
     <>
       <S.TabSearchBox>
@@ -35,13 +45,13 @@ const NewsMain = () => {
               전체
             </a>
           </S.Tab>
-          <S.Tab isActive={tab === 'agency'}>
-            <a href="#" onClick={e => handleTab(e, 'agency')}>
+          <S.Tab isActive={tab === 'media'}>
+            <a href="#" onClick={e => handleTab(e, 'media')}>
               언론보도
             </a>
           </S.Tab>
-          <S.Tab isActive={tab === 'last'}>
-            <a href="#" onClick={e => handleTab(e, 'last')}>
+          <S.Tab isActive={tab === 'recent'}>
+            <a href="#" onClick={e => handleTab(e, 'recent')}>
               최근 업무사례
             </a>
           </S.Tab>
@@ -54,9 +64,9 @@ const NewsMain = () => {
       </S.TabSearchBox>
       {/* 카드 리스트 영역 */}
       <S.CardBox>
-        {list.map(item => (
-          <S.Card href="#">
-            <S.LabelBox type={item.newsType === 'media'}>
+        {list.map((item, i) => (
+          <S.Card href="#" key={i}>
+            <S.LabelBox type={item.newsType}>
               <p>{item.newsType === 'media' ? item.agency : '최근 업무사례'}</p>
             </S.LabelBox>
             <S.Title>{item.title}</S.Title>

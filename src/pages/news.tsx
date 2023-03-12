@@ -1,9 +1,9 @@
 import AppLayout from '@Components/common/Layout';
-import { flex, font, lineHeight, size } from '@Styles/mixin.style';
+import NewsMain from '@Components/news/Main';
+import { flex, font, size } from '@Styles/mixin.style';
 import { PageProps } from 'gatsby';
 import * as React from 'react';
 import styled from 'styled-components';
-import NewsMain from '@Components/news/Main';
 
 const Main: React.FC<PageProps> = () => {
   return (

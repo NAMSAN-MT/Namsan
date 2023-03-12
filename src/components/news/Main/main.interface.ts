@@ -1,3 +1,3 @@
 interface Props {}
 
-export type TTab = 'all' | 'agency' | 'last';
+export type TTab = 'all' | 'media' | 'recent';
