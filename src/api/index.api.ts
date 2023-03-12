@@ -1,7 +1,7 @@
 import {
   addDoc,
+  setDoc,
   collection,
-  CollectionReference,
   doc,
   DocumentData,
   FieldPath,
@@ -11,10 +11,17 @@ import {
   QuerySnapshot,
   Timestamp,
   WhereFilterOp,
+  QueryDocumentSnapshot,
 } from 'firebase/firestore';
 import { db } from './firebase';
-export type EndPointType = 'news' | 'work' | 'profile';
+import firebase from 'firebase/compat/app';
+
+/* endpoint type */
+export type EndPointType = 'news' | 'work' | 'profile' | 'members';
+
+/* query parameter type */
 export type QueryType = 'where' | 'orderby';
+
 export type QueryWhereOptions = {
   fieldPath: string | FieldPath;
   opStr: WhereFilterOp;
@@ -23,15 +30,24 @@ export type QueryWhereOptions = {
 export type QueryOrderByOptions = {
   fieldPath: string | FieldPath;
   directionStr?: OrderByDirection;
-  limit: number;
+  limit?: number;
 };
+
+export type TQuery =
+  | ({
+      queryType: 'where';
+    } & QueryWhereOptions)
+  | ({ queryType: 'orderby' } & QueryOrderByOptions);
+
 /**
  * @param endPoint (require) firebase collection name
  * @param param    (require) id: 'Document ID' firebase sequence value + etc...
+ * @param searchField (optional) search specific field
  */
-export interface Parameter<T = any> {
+export interface Parameter<U = any, T = undefined> {
   endPoint: EndPointType;
-  param: T;
+  param: U;
+  searchField?: T;
 }
 
 declare interface Api {
@@ -56,11 +72,13 @@ export const GetData: Api = async ({ endPoint, param }) => {
   }
 };
 
-export const GetDataList: Api = async <U, T extends { id: string }>({
+export const GetDataList = async <U, T>({
   endPoint,
-}: Parameter<U>) => {
+  searchField,
+}: Parameter<U, T>) => {
   try {
-    return snapshotAsArray<T>(await getDocs(collection(db, endPoint)));
+    const snapshot = await getDocs(collection(db, endPoint));
+    return snapshot.docs.map(doc => getData(doc, searchField));
   } catch (e) {
     console.error(e);
     throw e;
@@ -72,16 +90,18 @@ export const GetDataListQueryWhere: Api = async <
 >({
   endPoint,
   param,
+  searchField,
 }: Parameter<U>) => {
   try {
-    const resultData = await getMultiWhereConditions(
-      endPoint,
+    const ref = db.collection(endPoint);
+    const resultData = (await getMultipleWhereQueries(
+      ref,
       param.conditions,
-    );
+    ).get()) as QuerySnapshot;
 
     return resultData.empty
       ? []
-      : resultData.docs.map((doc: DocumentData) => doc.data());
+      : resultData.docs.map(doc => getData(doc, searchField));
   } catch (e) {
     console.error(e);
     throw e;
@@ -97,12 +117,15 @@ export const GetDataListQueryOrderBy: Api = async <
   try {
     const collectionRef = db.collection(endPoint);
     const resultData: any = [];
-    return new Promise((resolve, reject) => {
-      collectionRef
-        .orderBy(param.fieldPath, param.directionStr)
-        .limit(param.limit)
+    let orderByRef: firebase.firestore.DocumentData = new Promise(
+      (resolve, reject) => {
+        collectionRef.orderBy(param.fieldPath, param.directionStr);
 
-        .onSnapshot(docs => {
+        if (param.limit) {
+          orderByRef = orderByRef.limit(param.limit);
+        }
+
+        orderByRef.onSnapshot(docs => {
           docs.docs.forEach(doc => {
             resultData.push({
               id: doc.id,
@@ -112,14 +135,40 @@ export const GetDataListQueryOrderBy: Api = async <
           }),
             resolve(resultData);
         }),
-        (error: unknown) => {
-          reject(error);
-        };
-    });
+          (error: unknown) => {
+            reject(error);
+          };
+      },
+    );
   } catch (e) {
     console.error(e);
     throw e;
   }
+};
+
+export const GetDataListQuery: Api = async <U>({
+  endPoint,
+  param,
+  searchField,
+}: Parameter<{ conditions: TQuery[] }>) => {
+  const { conditions } = param;
+
+  /* where 및 orderBy 분류 */
+  const whereConditions: QueryWhereOptions[] = conditions
+    .filter(condition => condition.queryType === 'where')
+    .map(condition => condition as QueryWhereOptions);
+  const orderByConditions: QueryOrderByOptions[] = conditions
+    .filter(condition => condition.queryType === 'orderby')
+    .map(condition => condition as QueryOrderByOptions);
+
+  /* where 및 orderBy 이용해 collectionRef 생성 */
+  const ref = db.collection(endPoint);
+  const whereRef = getMultipleWhereQueries(ref, whereConditions);
+  const orderByRef = getMultipleOrderByQueries(whereRef, orderByConditions);
+
+  /* snapshot get */
+  const snapshot = (await orderByRef.get()) as QuerySnapshot<U>;
+  return snapshot.docs.map(doc => getData(doc, searchField));
 };
 
 export const Post: Api = async ({ endPoint, param }) => {
@@ -131,20 +180,54 @@ export const Post: Api = async ({ endPoint, param }) => {
   }
 };
 
+export const PostWithId = async <T extends { [x: string]: any }>({
+  endPoint,
+  id,
+  param,
+}: {
+  endPoint: EndPointType;
+  id: string;
+  param: T;
+}) => {
+  try {
+    await setDoc(doc(db, endPoint, id), param);
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+/* utils */
 export const getTimestampToDate = (date: Timestamp): Date => date.toDate();
 
-const snapshotAsArray = <T extends { id: string }>(snapshot: QuerySnapshot) =>
-  snapshot.docs.map(doc => <T>{ ...doc.data(), id: doc.id });
+const getData = <U, T>(doc: QueryDocumentSnapshot<U>, searchField?: T) => {
+  return searchField ? doc.get(searchField as string) : doc.data();
+};
 
-const getMultiWhereConditions = async (
-  endPoint: EndPointType,
+const getMultipleWhereQueries = (
+  ref: firebase.firestore.DocumentData,
   conditions: QueryWhereOptions[],
 ) => {
-  const ref = db.collection(endPoint);
-  const resultRef = conditions.reduce(
-    (acc: DocumentData, cur) => acc.where(cur.fieldPath, cur.opStr, cur.value),
+  return conditions.reduce<firebase.firestore.DocumentData>(
+    (acc: DocumentData, cur) => {
+      if (!cur.value) return acc;
+      return acc.where(cur.fieldPath, cur.opStr, cur.value);
+    },
     ref,
   );
+};
 
-  return await resultRef.get();
+const getMultipleOrderByQueries = (
+  ref: firebase.firestore.DocumentData,
+  conditions: QueryOrderByOptions[],
+) => {
+  return conditions.reduce<firebase.firestore.DocumentData>(
+    (acc: DocumentData, cur) => {
+      const orderByRef = acc.orderBy(cur.fieldPath, cur.directionStr);
+
+      if (!cur.limit) return orderByRef;
+      return acc.orderBy(cur.fieldPath).limit(cur.limit);
+    },
+    ref,
+  );
 };
