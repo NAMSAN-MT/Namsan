@@ -1,3 +1,3 @@
-type TUrl = 'introduce' | 'work' | 'members' | 'news' | 'contact';
+type TUrl = 'main' | 'introduce' | 'work' | 'members' | 'news' | 'contact';
 
 export { TUrl };
