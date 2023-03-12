@@ -45,7 +45,7 @@ export const ellipsis = () => css`
 
 export const font = (
   style: keyof typeof TextStyles,
-  weight: 'regular' | 'bold',
+  weight: keyof typeof FontWeight,
 ) => css`
   font-weight: ${FontWeight[TextStyles[style][weight === 'regular' ? 1 : 2]]};
   font-size: ${TextStyles[style][0]};
