@@ -7,7 +7,7 @@ import { ILayoutProps } from './Layout.interface';
 import * as S from './Layout.style';
 
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
-  const { isHeader = true, isFooter = true, children } = props;
+  const { isHeader = true, isFooter = true, children, route } = props;
 
   const { handleTopEvent } = useLayout();
   return (
@@ -15,9 +15,12 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       {isHeader ? <GNB /> : null}
       <S.LayoutContent>
         {children}
-        <S.TopButtonWrapper>
-          <BaseButton className="arrow-top" onClick={handleTopEvent} />
-        </S.TopButtonWrapper>
+
+        {route === 'main' && (
+          <S.TopButtonWrapper>
+            <BaseButton className="arrow-top" onClick={handleTopEvent} />
+          </S.TopButtonWrapper>
+        )}
       </S.LayoutContent>
       {isFooter ? <Footer /> : null}
     </S.LayoutWrapper>

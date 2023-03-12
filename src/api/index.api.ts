@@ -1,47 +1,21 @@
+import { Api, Parameter } from '@Interface/api.interface';
+import {
+  EndPointType,
+  QueryOrderByOptions,
+  QueryWhereOptions,
+} from '@Type/api.type';
 import {
   addDoc,
   collection,
-  CollectionReference,
   doc,
   DocumentData,
-  FieldPath,
   getDoc,
   getDocs,
-  OrderByDirection,
   QuerySnapshot,
   Timestamp,
-  WhereFilterOp,
 } from 'firebase/firestore';
+import { isEmpty } from 'lodash';
 import { db } from './firebase';
-export type EndPointType = 'news' | 'work' | 'profile';
-export type QueryType = 'where' | 'orderby';
-export type QueryWhereOptions = {
-  fieldPath: string | FieldPath;
-  opStr: WhereFilterOp;
-  value: any;
-};
-export type QueryOrderByOptions = {
-  fieldPath: string | FieldPath;
-  directionStr?: OrderByDirection;
-  limit: number;
-};
-/**
- * @param endPoint (require) firebase collection name
- * @param param    (require) id: 'Document ID' firebase sequence value + etc...
- */
-export interface Parameter<T = any> {
-  endPoint: EndPointType;
-  param: T;
-}
-
-declare interface Api {
-  <Request extends Parameter<Request>, Response>(
-    param: Parameter,
-  ): Promise<Response>;
-  <Request extends Parameter<Request>, Response>(
-    param: Parameter,
-  ): Promise<Response>;
-}
 
 export const GetData: Api = async ({ endPoint, param }) => {
   try {
@@ -67,8 +41,8 @@ export const GetDataList: Api = async <U, T extends { id: string }>({
   }
 };
 
-export const GetDataListQueryWhere: Api = async <
-  U extends { conditions: QueryWhereOptions[] },
+export const GetDataListQuery: Api = async <
+  U extends { conditions: QueryWhereOptions[]; orderBy?: QueryOrderByOptions },
 >({
   endPoint,
   param,
@@ -77,6 +51,7 @@ export const GetDataListQueryWhere: Api = async <
     const resultData = await getMultiWhereConditions(
       endPoint,
       param.conditions,
+      param.orderBy,
     );
 
     return resultData.empty
@@ -139,8 +114,14 @@ const snapshotAsArray = <T extends { id: string }>(snapshot: QuerySnapshot) =>
 const getMultiWhereConditions = async (
   endPoint: EndPointType,
   conditions: QueryWhereOptions[],
+  orderBy?: QueryOrderByOptions,
 ) => {
-  const ref = db.collection(endPoint);
+  const ref = !isEmpty(orderBy)
+    ? db
+        .collection(endPoint)
+        .orderBy(orderBy.fieldPath, orderBy.directionStr)
+        .limit(orderBy.limit)
+    : db.collection(endPoint);
   const resultRef = conditions.reduce(
     (acc: DocumentData, cur) => acc.where(cur.fieldPath, cur.opStr, cur.value),
     ref,

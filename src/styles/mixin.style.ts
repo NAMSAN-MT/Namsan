@@ -12,6 +12,15 @@ export const flex = (jc = 'center', ai = 'center') => css`
   align-items: ${ai};
 `;
 
+export const flexDirection = (
+  fd: 'row' | 'row-reverse' | 'column' | 'column-reverse' = 'column',
+  ai = 'center',
+) => css`
+  display: flex;
+  flex-direction: ${fd};
+  align-items: ${ai};
+`;
+
 export const inlineblock = (va = 'top') => css`
   display: inline-block;
   vertical-align: ${va};
@@ -43,6 +52,14 @@ export const ellipsis = () => css`
   text-overflow: ellipsis;
 `;
 
+export const ellipsisMulti = (lines: number) => css`
+  display: -webkit-box;
+  -webkit-line-clamp: ${lines};
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+`;
+
 export const font = (
   style: keyof typeof TextStyles,
   weight: 'regular' | 'bold',
@@ -52,4 +69,5 @@ export const font = (
 `;
 
 export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
-  line-height: ${lineHeightPx / fontSizePx};`;
+  line-height: ${lineHeightPx / fontSizePx};
+`;

@@ -17,7 +17,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: 'src/images/icon.png',
+        icon: 'src/assets/imgs/logo-gnb.svg',
       },
     },
     'gatsby-plugin-mdx',
@@ -27,7 +27,7 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: join(__dirname, `src`, `images`),
+        path: join(__dirname, `src/assets`, `imgs`),
       },
       __key: 'images',
     },
@@ -48,6 +48,7 @@ const config: GatsbyConfig = {
           '@Images': resolve(__dirname, 'src/assets/imgs'),
           '@Fonts': resolve(__dirname, 'src/fonts'),
           '@Interface': resolve(__dirname, 'src/interface'),
+          '@Type': resolve(__dirname, 'src/type'),
           '@Pages': resolve(__dirname, 'src/pages'),
           '@Styles': resolve(__dirname, 'src/styles'),
           '@Hooks': resolve(__dirname, 'src/hooks'),

@@ -9,7 +9,7 @@ import FifthSection from '@Components/main/FifthSection';
 
 const Main: React.FC<PageProps> = () => {
   return (
-    <AppLayout>
+    <AppLayout route="main">
       <FirstSection />
       <SecondSection />
       <ThirdSection />
