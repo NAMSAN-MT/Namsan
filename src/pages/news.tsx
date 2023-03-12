@@ -12,7 +12,6 @@ const Main: React.FC<PageProps> = () => {
         <Header>
           <Title>남산소식</Title>
         </Header>
-        {/* 두번째 영역 */}
         <NewsMain />
       </Wrapper>
     </AppLayout>
