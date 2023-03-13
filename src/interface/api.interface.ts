@@ -7,14 +7,3 @@ export interface News {
   agency: string;
   originalLink: string;
 }
-
-export interface Category {
-  id: `C${number}`;
-  name: string;
-  category: SubCategory[];
-}
-
-export interface SubCategory {
-  id: `S${number}`;
-  name: string;
-}
