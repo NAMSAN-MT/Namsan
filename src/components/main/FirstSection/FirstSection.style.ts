@@ -5,11 +5,10 @@ const Wrapper = styled.div`
   padding: 0 90px;
 `;
 
-const FrirstWrapper = styled(Wrapper)`
+const FrirstWrapper = styled.div`
   ${flex()};
   flex-direction: column;
   width: 100%;
-  min-height: 760px;
   background: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.1) 0%,

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PageProps } from 'gatsby';
 import AppLayout from '@Components/common/Layout';
-import FirstSection from '@Components/main/FirstSection';
+const FirstSection = React.lazy(() => import('@Components/main/FirstSection'));
 import SecondSection from '@Components/main/SecondSection';
-import ThirdSection from '@Components/main/ThirdSection';
+const ThirdSection = React.lazy(() => import('@Components/main/ThirdSection'));
 const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));
 import FifthSection from '@Components/main/FifthSection';
 
@@ -11,9 +11,19 @@ const Main: React.FC<PageProps> = () => {
   const isSSR = typeof window === 'undefined';
   return (
     <AppLayout>
-      <FirstSection />
+      {!isSSR && (
+        // FIXME: Fallback Skeleton으로 전환하기
+        <React.Suspense fallback={<div>loading</div>}>
+          <FirstSection />
+        </React.Suspense>
+      )}
       <SecondSection />
-      <ThirdSection />
+      {!isSSR && (
+        // FIXME: Fallback Skeleton으로 전환하기
+        <React.Suspense fallback={<div>loading</div>}>
+          <ThirdSection />
+        </React.Suspense>
+      )}
       {!isSSR && (
         // FIXME: Fallback Skeleton으로 전환하기
         <React.Suspense fallback={<div>loading</div>}>
