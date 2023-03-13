@@ -6,27 +6,25 @@ import SecondSection from '@Components/main/SecondSection';
 const ThirdSection = React.lazy(() => import('@Components/main/ThirdSection'));
 const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));
 import FifthSection from '@Components/main/FifthSection';
+import Skeleton from '@Components/common/Skeleton';
 
 const Main: React.FC<PageProps> = () => {
   const isSSR = typeof window === 'undefined';
   return (
     <AppLayout>
       {!isSSR && (
-        // FIXME: Fallback Skeleton으로 전환하기
-        <React.Suspense fallback={<div>loading</div>}>
+        <React.Suspense fallback={<Skeleton count={3} height={200} />}>
           <FirstSection />
         </React.Suspense>
       )}
       <SecondSection />
       {!isSSR && (
-        // FIXME: Fallback Skeleton으로 전환하기
-        <React.Suspense fallback={<div>loading</div>}>
+        <React.Suspense fallback={<Skeleton count={2} />}>
           <ThirdSection />
         </React.Suspense>
       )}
       {!isSSR && (
-        // FIXME: Fallback Skeleton으로 전환하기
-        <React.Suspense fallback={<div>loading</div>}>
+        <React.Suspense fallback={<Skeleton count={3} />}>
           <ForthSection />
         </React.Suspense>
       )}
