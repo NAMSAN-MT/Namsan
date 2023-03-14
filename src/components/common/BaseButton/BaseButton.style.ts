@@ -1,6 +1,5 @@
 import { lineHeight } from '@Styles/mixin.style';
 import { flex } from '@Styles/mixin.style';
-import { lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import ArrowUpIcon from '@Images/ic_arrow_top.svg';
 import HambergurIcon from '@Images/ic_hamburger.svg';
@@ -14,7 +13,6 @@ const Base = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-
   // FIXME: MIXIn으로 변경
   ${lineHeight(16, 26)}};
   font-size: 16px;
@@ -74,7 +72,6 @@ const Tag = styled(Base)`
   padding: 4px 8px;
   letter-spacing: -0.1px;
   min-width: 68px;
-
   // FIXME: MIXIn으로 변경
   ${lineHeight(14, 22)}};
   font-size: 14px;
@@ -146,11 +143,9 @@ const More = styled(IconBase)`
   ${lineHeight(18, 28)}};
   font-size: 18px;
   font-weight: 700;
-
   &:hover {
     color: ${({ theme }) => theme.color.blue200};
   }
-
   .icon {
     background: ${`url(${MoreIcon}) no-repeat center center`};
     width: 28px;

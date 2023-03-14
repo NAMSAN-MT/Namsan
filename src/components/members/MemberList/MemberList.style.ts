@@ -2,7 +2,7 @@ import { flex, font, lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const MemberList = styled.ul`
-  ${flex('start')}
+  ${flex('space-around')}
   flex-wrap: wrap;
   margin-top: 80px;
   gap: 24px;

@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { FontWeight, TextStyles } from './varialbes.style';
+import { FontWeight, ScreenBreakPoints, TextStyles } from './varialbes.style';
 
 export const size = (height = 'auto', width = 'auto') => css`
   height: ${height};
@@ -53,4 +53,13 @@ export const font = (
 
 export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
   line-height: ${lineHeightPx / fontSizePx};
+`;
+
+export const mediaQuery = (
+  breakPoint: keyof typeof ScreenBreakPoints,
+  content: string,
+) => `
+  @media (max-width: ${ScreenBreakPoints[breakPoint]}) {
+    ${content}
+  }
 `;

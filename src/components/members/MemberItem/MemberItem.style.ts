@@ -1,8 +1,10 @@
 import { flex, font, lineHeight, size } from '@Styles/mixin.style';
 import styled from 'styled-components';
+import { mediaQuery } from '../../../styles/mixin.style';
 
 const MemberItemWrapper = styled.li`
   ${size('416px', '282px')}
+
   cursor: pointer;
   list-style: none;
   margin-bottom: 52px;
