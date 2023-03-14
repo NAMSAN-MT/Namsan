@@ -42,12 +42,18 @@ export type TQuery =
 /**
  * @param endPoint (require) firebase collection name
  * @param param    (require) id: 'Document ID' firebase sequence value + etc...
- * @param searchField (optional) search specific field
+ * @param searchFields (optional) search specific field: string[]
  */
-export interface Parameter<U = any, T = undefined> {
+export interface Parameter<U = any> {
   endPoint: EndPointType;
   param: U;
-  searchField?: T;
+  searchField?: string[];
+}
+
+export interface IParameter {
+  endPoint: EndPointType;
+  queries: TQuery[];
+  searchFields?: string[];
 }
 
 declare interface Api {
@@ -72,10 +78,10 @@ export const GetData: Api = async ({ endPoint, param }) => {
   }
 };
 
-export const GetDataList = async <U, T>({
+export const GetDataList = async <U>({
   endPoint,
   searchField,
-}: Parameter<U, T>) => {
+}: Parameter<U>) => {
   try {
     const snapshot = await getDocs(collection(db, endPoint));
     return snapshot.docs.map(doc => getData(doc, searchField));
@@ -145,21 +151,21 @@ export const GetDataListQueryOrderBy: Api = async <
     throw e;
   }
 };
-
-export const GetDataListQuery: Api = async <U>({
+/*
+  U: interface type of response array.
+*/
+export const GetDataListQuery = async <U>({
   endPoint,
-  param,
-  searchField,
-}: Parameter<{ conditions: TQuery[] }>) => {
-  const { conditions } = param;
-
+  queries,
+  searchFields,
+}: IParameter) => {
   /* where 및 orderBy 분류 */
-  const whereConditions: QueryWhereOptions[] = conditions
-    .filter(condition => condition.queryType === 'where')
-    .map(condition => condition as QueryWhereOptions);
-  const orderByConditions: QueryOrderByOptions[] = conditions
-    .filter(condition => condition.queryType === 'orderby')
-    .map(condition => condition as QueryOrderByOptions);
+  const whereConditions: QueryWhereOptions[] = queries
+    .filter(query => query.queryType === 'where')
+    .map(query => query as QueryWhereOptions);
+  const orderByConditions: QueryOrderByOptions[] = queries
+    .filter(query => query.queryType === 'orderby')
+    .map(query => query as QueryOrderByOptions);
 
   /* where 및 orderBy 이용해 collectionRef 생성 */
   const ref = db.collection(endPoint);
@@ -167,8 +173,8 @@ export const GetDataListQuery: Api = async <U>({
   const orderByRef = getMultipleOrderByQueries(whereRef, orderByConditions);
 
   /* snapshot get */
-  const snapshot = (await orderByRef.get()) as QuerySnapshot<U>;
-  return snapshot.docs.map(doc => getData(doc, searchField));
+  const snapshot = (await orderByRef.get()) as QuerySnapshot;
+  return snapshot.docs.map(doc => getData<U>(doc, searchFields));
 };
 
 export const Post: Api = async ({ endPoint, param }) => {
@@ -200,8 +206,8 @@ export const PostWithId = async <T extends { [x: string]: any }>({
 /* utils */
 export const getTimestampToDate = (date: Timestamp): Date => date.toDate();
 
-const getData = <U, T>(doc: QueryDocumentSnapshot<U>, searchField?: T) => {
-  return searchField ? doc.get(searchField as string) : doc.data();
+const getData = <U>(doc: QueryDocumentSnapshot, fieldNames?: string[]) => {
+  return (fieldNames ? doc.get(new FieldPath(...fieldNames)) : doc.data()) as U;
 };
 
 const getMultipleWhereQueries = (
