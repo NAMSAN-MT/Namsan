@@ -8,20 +8,20 @@ import {
 } from './index.api';
 import { Member } from '../interface/api.interface';
 
-const getMemberPositionList = async (): Promise<string[]> => {
-  const positionList = await GetDataList<unknown, TMemberSearchField>({
+const getMemberPositionList = async () => {
+  const positionList = await GetDataListQuery<string>({
     endPoint: 'members',
-    param: {},
-    searchField: 'position',
+    queries: [],
+    searchFields: ['position'],
   });
   return [...new Set(positionList)];
 };
 
 const getMemberBusinessFieldList = async (): Promise<string[]> => {
-  const businessFieldsList = await GetDataList<unknown, TMemberSearchField>({
+  const businessFieldsList = await GetDataListQuery<string>({
     endPoint: 'members',
-    param: {},
-    searchField: 'businessFields',
+    queries: [],
+    searchFields: ['businessFields'],
   });
   const businessFieldList = businessFieldsList.reduce<string[]>(
     (acc, list) => [...acc, ...list],
@@ -33,7 +33,7 @@ const getMemberBusinessFieldList = async (): Promise<string[]> => {
 
 const getMembers = async (params: MembersSearchRequest) => {
   const endPoint: EndPointType = 'members';
-  const conditions: TQuery[] = [
+  const queries: TQuery[] = [
     {
       queryType: 'where',
       fieldPath: 'language',
@@ -64,12 +64,10 @@ const getMembers = async (params: MembersSearchRequest) => {
       directionStr: 'asc',
     },
   ];
-  const param = { conditions };
-  console.log(param);
 
-  return await GetDataListQuery<Parameter, Member[]>({
+  return await GetDataListQuery<Member>({
     endPoint,
-    param,
+    queries,
   });
 };
 
