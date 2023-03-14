@@ -7,3 +7,23 @@ export interface News {
   agency: string;
   originalLink: string;
 }
+
+export interface MemberAttribute {
+  value: string;
+  time?: string;
+}
+
+export interface Member {
+  id: number;
+  language: 'ko' | 'en';
+  name: string;
+  position: string;
+  email: string;
+  businessFields: string[];
+  description?: string;
+  educations?: MemberAttribute[];
+  careers: MemberAttribute[];
+  papers?: MemberAttribute[];
+  awards?: MemberAttribute[];
+  imagePath: string;
+}
