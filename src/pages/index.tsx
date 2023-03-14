@@ -10,6 +10,7 @@ import Skeleton from '@Components/common/Skeleton';
 
 const Main: React.FC<PageProps> = () => {
   const isSSR = typeof window === 'undefined';
+
   return (
     <AppLayout>
       {!isSSR && (
@@ -17,6 +18,7 @@ const Main: React.FC<PageProps> = () => {
           <FirstSection />
         </React.Suspense>
       )}
+
       <SecondSection />
       {!isSSR && (
         <React.Suspense fallback={<Skeleton count={2} />}>

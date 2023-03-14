@@ -25,6 +25,7 @@
     "eslint": "^8.34.0",
     "eslint-plugin-react": "^7.32.2",
     "firebase": "^9.17.1",
+    "framer-motion": "^10.3.0",
     "gatsby": "^5.5.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
@@ -42,6 +43,7 @@
     "prettier": "^2.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.4.3",
     "react-loading-skeleton": "^3.2.0",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.5"
