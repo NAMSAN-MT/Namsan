@@ -18,24 +18,8 @@ const MemberItemWrapper = styled.li`
   )}
 `;
 
-const ImageSection = styled.div`
-  ${size('80%', '100%')}
-  // FIXME: 팔레트에 지정되면 추후 변수로 변경하기
-  background-color: #F6F8FA;
-  position: relative;
-  user-select: none;
-`;
-
-const ImageWrapper = styled.div`
-  ${size('100%', '100%')}
-  ${flex('center', 'end')}
-`;
-
-const Image = styled.img`
-  ${size('85%', 'auto')}
-`;
-
 const TagsWrapper = styled.div`
+  display: none;
   position: absolute;
   ${size('auto', '100%')}
   background-color:#05246d;
@@ -55,6 +39,36 @@ const Tag = styled.span`
   display: inline-block;
 `;
 
+const ImageSection = styled.div`
+  ${size('80%', '100%')}
+  // FIXME: 팔레트에 지정되면 추후 변수로 변경하기
+  background-color: #F6F8FA;
+  position: relative;
+  user-select: none;
+
+  &:hover {
+    ${TagsWrapper} {
+      display: block;
+
+      ${mediaQuery(
+        'mobile',
+        `
+          display: none;
+        `,
+      )}
+    }
+  }
+`;
+
+const ImageWrapper = styled.div`
+  ${size('100%', '100%')}
+  ${flex('center', 'end')}
+`;
+
+const Image = styled.img`
+  ${size('85%', 'auto')}
+`;
+
 const TextSection = styled.div``;
 
 const Name = styled.div`
@@ -68,6 +82,7 @@ const Name = styled.div`
     'mobile',
     `
       ${font('mobile16', 'bold')};
+      margin-top: 12px;
     `,
   )}
 `;
