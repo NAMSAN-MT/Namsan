@@ -22,6 +22,14 @@ const EmptyMember = styled.div`
   letter-spacing: -0.4px;
   margin-top: 146px;
   text-align: center;
+
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile14', 'regular')};
+      margin-top: 100px;
+    `,
+  )}
 `;
 
 export { MemberList, EmptyMember };
