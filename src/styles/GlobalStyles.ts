@@ -3,6 +3,8 @@ import '@fontsource/noto-sans-kr';
 import reset from 'styled-reset';
 import FHAlphaTestLight from '@Fonts/FHAlphaTest-Light.otf';
 import FHAlphaTestLightItalic from '@Fonts/FHAlphaTest-LightItalic.otf';
+import { mediaQuery } from './mixin.style';
+import { ScreenBreakPoints } from './varialbes.style';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}  
@@ -27,7 +29,13 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     line-height: 1.5;
     min-width: 1024px;
-  }
+
+    ${mediaQuery(
+      'mobile',
+      `
+      min-width: 375px;
+      `,
+    )}
   #___gatsby,
   #gatsby-focus-wrapper {
     height: 100%;

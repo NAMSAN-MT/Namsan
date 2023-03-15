@@ -1,8 +1,8 @@
-import { font, size } from '@Styles/mixin.style';
+import { font, mediaQuery, size } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const InputWrapper = styled.form`
-  ${size('60px', '100%')}
+  ${size('100%', '100%')}
   position: relative;
 `;
 
@@ -21,11 +21,19 @@ const Input = styled.input`
   &:focus {
     border-bottom: 2px solid ${({ theme }) => theme.color.blue100};
   }
+
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile16', 'regular')};
+    `,
+  )}
 `;
 
 const SearchIconWrapper = styled.button`
   position: absolute;
-  bottom: 25px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 20px;
 `;
 

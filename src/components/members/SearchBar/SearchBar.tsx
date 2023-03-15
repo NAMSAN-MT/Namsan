@@ -34,7 +34,7 @@ const SearchBar = () => {
     currentOption: currentPosition,
     isOpen: isPositionSelectOpen,
     setIsOpen: setIsPositionSelectOpen,
-    handleClickOption: handleClickPosition,
+    handleClickOption: handleClickPositionOption,
     handleClickSelectBox: handleClickPositionSelectBox,
   } = useSearchBar({
     defaultOption: INIT_POSITION_OPTION,
@@ -47,7 +47,7 @@ const SearchBar = () => {
     currentOption: currentBusinessField,
     isOpen: isBusinessFieldSelectOpen,
     setIsOpen: setIsBusinessFieldSelectOpen,
-    handleClickOption: handleClickBusinessField,
+    handleClickOption: handleClickBusinessFieldOption,
     handleClickSelectBox: handleClickBusinessFieldSelectBox,
   } = useSearchBar({
     defaultOption: INIT_BUSINESS_FIELD_OPTION,
@@ -73,6 +73,20 @@ const SearchBar = () => {
     setIsBusinessFieldSelectOpen(false);
   }, []);
 
+  const _handleClickPositionSelectBox = (
+    event: React.MouseEvent<HTMLDivElement>,
+  ) => {
+    handleClickPositionSelectBox(event);
+    setIsBusinessFieldSelectOpen(false);
+  };
+
+  const _handleClickBusinessFieldSelectBox = (
+    event: React.MouseEvent<HTMLDivElement>,
+  ) => {
+    handleClickBusinessFieldSelectBox(event);
+    setIsPositionSelectOpen(false);
+  };
+
   const _handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
@@ -90,12 +104,12 @@ const SearchBar = () => {
         <S.ItemWrapper
           width="282px"
           data-id="position"
-          onClick={handleClickPositionSelectBox}
+          onClick={_handleClickPositionSelectBox}
         >
           <SelectBox
             title={currentPosition}
             options={positionOptionList}
-            handleClick={handleClickPosition}
+            handleClick={handleClickPositionOption}
             currentOption={currentPosition}
             isOpen={isPositionSelectOpen}
             setOpen={setIsPositionSelectOpen}
@@ -104,12 +118,12 @@ const SearchBar = () => {
         <S.ItemWrapper
           width="384px"
           data-id="businessField"
-          onClick={handleClickBusinessFieldSelectBox}
+          onClick={_handleClickBusinessFieldSelectBox}
         >
           <SelectBox
             title={currentBusinessField}
             options={businessFieldOptionList}
-            handleClick={handleClickBusinessField}
+            handleClick={handleClickBusinessFieldOption}
             currentOption={currentBusinessField}
             isOpen={isBusinessFieldSelectOpen}
             setOpen={setIsBusinessFieldSelectOpen}

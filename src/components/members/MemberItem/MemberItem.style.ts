@@ -8,10 +8,18 @@ const MemberItemWrapper = styled.li`
   cursor: pointer;
   list-style: none;
   margin-bottom: 52px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    ${size('234px', '154px')};
+    margin-bottom: 24px;
+    `,
+  )}
 `;
 
 const ImageSection = styled.div`
-  ${size('320px', '100%')}
+  ${size('80%', '100%')}
   // FIXME: 팔레트에 지정되면 추후 변수로 변경하기
   background-color: #F6F8FA;
   position: relative;
@@ -52,15 +60,29 @@ const TextSection = styled.div``;
 const Name = styled.div`
   ${font('title24', 'bold')}
   ${lineHeight(24, 38)}
-  color: ${props => props.theme.color.textBlackHigh}
-  letter: -0.4px;
+  color: ${props => props.theme.color.textBlackHigh};
+  letter-spacing: -0.4px;
   margin-top: 24px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile16', 'bold')};
+    `,
+  )}
 `;
 
 const Position = styled.div`
-  ${font('title20', 'regular')}
-  ${lineHeight(20, 34)}
-  color: ${props => props.theme.color.textBlackMedium}
+  ${font('title20', 'regular')};
+  ${lineHeight(20, 34)};
+  color: ${props => props.theme.color.textBlackMedium};
+
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('body14', 'regular')};
+    `,
+  )}
 `;
 
 export {

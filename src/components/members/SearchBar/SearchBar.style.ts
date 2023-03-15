@@ -10,7 +10,12 @@ const SearchBarWrapper = styled.div`
 
 const ItemWrapper = styled.div<{ width: string }>`
   ${props => size('60px', props.width)}
-  ${mediaQuery('mobile', `width: 100%;`)}
+  ${mediaQuery(
+    'mobile',
+    `
+    ${size('51px', '100%')};
+  `,
+  )}
 `;
 
 export { SearchBarWrapper, ItemWrapper };

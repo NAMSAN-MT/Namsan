@@ -1,18 +1,24 @@
-import { flex, font } from '@Styles/mixin.style';
+import { flex, font, mediaQuery } from '@Styles/mixin.style';
 import { size } from 'lodash';
 import styled from 'styled-components';
 
-const OPTION_HEIGHT = '60px';
-
 const Base = styled.div`
-  height: 60px;
-  width: 100%;
+  height: 100%;
+  /* width: 100%; */
   ${flex('flex-start', 'center')};
 
   & > span {
     margin-left: 12px;
     ${font('title18', 'medium')}
     letter-spacing: -0.4px;
+
+    ${mediaQuery(
+      'mobile',
+      `
+        ${font('mobile16', 'regular')};
+        letter-spacing: -0.2px;
+      `,
+    )}
   }
 `;
 
@@ -31,7 +37,7 @@ const Select = styled(Base)<{ isOpen: boolean }>`
 
 const OptionWrapper = styled.ul`
   position: absolute;
-  top: ${OPTION_HEIGHT};
+  top: 100%;
   border: ${({ theme }) => `solid 2px ${theme.color.blue100}`};
   width: 100%;
   max-height: 444px;
@@ -42,6 +48,7 @@ const OptionWrapper = styled.ul`
 
 const Option = styled(Base)<{ isSelected: boolean }>`
   cursor: pointer;
+  margin: 12px;
 
   & > span {
     color: ${({ isSelected, theme }) =>
@@ -51,6 +58,13 @@ const Option = styled(Base)<{ isSelected: boolean }>`
   &:hover {
     background-color: ${({ theme }) => theme.color.grey100};
   }
+
+  ${mediaQuery(
+    'mobile',
+    `
+      margin: 16px;
+    `,
+  )}
 `;
 
 const OpenIconWrapper = styled.div`

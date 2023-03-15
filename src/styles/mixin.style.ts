@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { FontWeight, ScreenBreakPoints, TextStyles } from './varialbes.style';
 
-export const size = (height = 'auto', width = 'auto') => css`
+export const size = (height = 'auto', width = 'auto') => `
   height: ${height};
   width: ${width};
 `;
@@ -46,20 +46,23 @@ export const ellipsis = () => css`
 export const font = (
   style: keyof typeof TextStyles,
   weight: keyof typeof FontWeight,
-) => css`
+) => `
   font-weight: ${FontWeight[weight]};
   font-size: ${TextStyles[style][0]};
 `;
 
-export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
+export const lineHeight = (fontSizePx: number, lineHeightPx: number) => `
   line-height: ${lineHeightPx / fontSizePx};
 `;
 
 export const mediaQuery = (
   breakPoint: keyof typeof ScreenBreakPoints,
   content: string,
-) => `
-  @media (max-width: ${ScreenBreakPoints[breakPoint]}) {
-    ${content}
-  }
-`;
+) => {
+  console.log(content);
+  return css`
+    @media (max-width: ${ScreenBreakPoints[breakPoint]}) {
+      ${content}
+    }
+  `;
+};

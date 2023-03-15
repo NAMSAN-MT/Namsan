@@ -1,4 +1,5 @@
 import { Wrapper } from '@Components/main/FirstSection/FirstSection.style';
+import { mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const LayoutWrapper = styled.div`
