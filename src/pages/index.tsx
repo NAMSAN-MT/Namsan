@@ -9,7 +9,7 @@ import FifthSection from '@Components/main/FifthSection';
 
 const Main: React.FC<PageProps> = () => {
   return (
-    <AppLayout>
+    <>
       <FirstSection />
       <SecondSection />
       <ThirdSection />
@@ -33,7 +33,7 @@ const Main: React.FC<PageProps> = () => {
       <IconButton className="arrow-top" onClick={() => console.log('')} />
       <IconButton className="hamburger" onClick={() => console.log('')} />
       <IconButton className="share" onClick={() => console.log('')} /> */}
-    </AppLayout>
+    </>
   );
 };
 
