@@ -1,6 +1,6 @@
 import { TLanguage } from './intl.type';
 import { QueryWhereOptions, QueryOrderByOptions } from '../api/index.api';
-import { Member } from '@Interface/api.interface';
+import { IMember } from '@Interface/api.interface';
 Intl;
 
 export type NewsRequest = Partial<{
@@ -16,5 +16,3 @@ export type MembersSearchRequest = Partial<{
   position: string;
   businessField: string;
 }> & { language: TLanguage };
-
-export type TMemberSearchField = keyof Member;

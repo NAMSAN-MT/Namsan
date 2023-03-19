@@ -1,5 +1,5 @@
 import { getMembers } from '@Api/member.api';
-import { Member } from '@Interface/api.interface';
+import { IMember } from '@Interface/api.interface';
 import { injectIntl } from 'gatsby-plugin-intl';
 import React, { useEffect, useState } from 'react';
 import { TLanguage } from '../../../type/intl.type';
@@ -11,7 +11,7 @@ import * as S from './MemberList.style';
 const MemberList = ({ intl }: IMemberListProps) => {
   const { name, position, businessField } = getSearchParams();
 
-  const [memberList, setMemberList] = useState<Member[]>([]);
+  const [memberList, setMemberList] = useState<IMember[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -43,6 +43,7 @@ const MemberList = ({ intl }: IMemberListProps) => {
           position={member.position}
           businessFields={member.businessFields}
           imagePath={member.imagePath}
+          id={member.id}
         />
       ))}
     </S.MemberList>

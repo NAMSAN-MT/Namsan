@@ -59,7 +59,6 @@ export const mediaQuery = (
   breakPoint: keyof typeof ScreenBreakPoints,
   content: string,
 ) => {
-  console.log(content);
   return css`
     @media (max-width: ${ScreenBreakPoints[breakPoint]}) {
       ${content}

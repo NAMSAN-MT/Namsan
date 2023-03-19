@@ -1,5 +1,6 @@
+import { getMember } from '@Api/member.api';
 import { injectIntl } from 'gatsby-plugin-intl';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IMemberItemProps } from './MemberItem.interface';
 import * as S from './MemberItem.style';
 
@@ -8,9 +9,14 @@ const MemberItem = ({
   position,
   businessFields,
   imagePath,
+  id,
 }: IMemberItemProps) => {
+  const _handleClick = async () => {
+    window.location.href = `/member/${id}`;
+  };
+
   return (
-    <S.MemberItemWrapper>
+    <S.MemberItemWrapper onClick={_handleClick}>
       <S.ImageSection>
         <S.ImageWrapper>
           <S.Image src={imagePath} />

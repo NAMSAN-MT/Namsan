@@ -2,7 +2,7 @@ import { font } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const RecruiteSectionWrapper = styled.div`
-  margin: 0 360px;
+  margin-top: 80px;
 `;
 
 const Description = styled.div`
