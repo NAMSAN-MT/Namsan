@@ -4,8 +4,11 @@ import { LE } from '@Components/common/List';
 import React, { useEffect, useState } from 'react';
 import { Category } from './work.interface';
 import { Grid } from './work.styled';
+import { RouteComponentProps } from '@reach/router';
 
-const Work = () => {
+export interface Props extends RouteComponentProps {}
+
+const Work = (props: Props) => {
   const [mainCategory, setMainCategory] = useState<Category[]>();
   useEffect(() => {
     getWorkFields().then(result => setMainCategory(result));
