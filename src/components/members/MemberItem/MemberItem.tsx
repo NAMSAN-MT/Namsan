@@ -1,6 +1,5 @@
-import { getMember } from '@Api/member.api';
 import { injectIntl } from 'gatsby-plugin-intl';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IMemberItemProps } from './MemberItem.interface';
 import * as S from './MemberItem.style';
 
@@ -23,7 +22,7 @@ const MemberItem = ({
         </S.ImageWrapper>
         <S.TagsWrapper>
           {businessFields.map(businessField => (
-            <S.Tag>{businessField}</S.Tag>
+            <S.Tag key={businessField}>{businessField}</S.Tag>
           ))}
         </S.TagsWrapper>
       </S.ImageSection>

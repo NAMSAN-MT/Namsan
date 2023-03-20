@@ -23,7 +23,6 @@ const MemberList = ({ intl }: IMemberListProps) => {
       };
       const memberList = await getMembers(params);
       setMemberList(memberList);
-      console.log(memberList);
     })();
   }, []);
 
@@ -39,6 +38,7 @@ const MemberList = ({ intl }: IMemberListProps) => {
     <S.MemberList>
       {memberList.map(member => (
         <MemberItem
+          key={member.id}
           name={member.name}
           position={member.position}
           businessFields={member.businessFields}

@@ -1,7 +1,5 @@
 import { TLanguage } from './intl.type';
 import { QueryWhereOptions, QueryOrderByOptions } from '../api/index.api';
-import { IMember } from '@Interface/api.interface';
-Intl;
 
 export type NewsRequest = Partial<{
   id: string;
