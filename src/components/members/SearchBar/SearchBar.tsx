@@ -107,6 +107,7 @@ const SearchBar = () => {
           onClick={_handleClickPositionSelectBox}
         >
           <SelectBox
+            key="position"
             title={currentPosition}
             options={positionOptionList}
             handleClick={handleClickPositionOption}
@@ -121,6 +122,7 @@ const SearchBar = () => {
           onClick={_handleClickBusinessFieldSelectBox}
         >
           <SelectBox
+            key="businessField"
             title={currentBusinessField}
             options={businessFieldOptionList}
             handleClick={handleClickBusinessFieldOption}

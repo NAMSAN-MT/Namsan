@@ -17,7 +17,7 @@ const MemberItem = ({
         </S.ImageWrapper>
         <S.TagsWrapper>
           {businessFields.map(businessField => (
-            <S.Tag>{businessField}</S.Tag>
+            <S.Tag key={businessField}>{businessField}</S.Tag>
           ))}
         </S.TagsWrapper>
       </S.ImageSection>
