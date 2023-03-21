@@ -1,38 +1,55 @@
 import { getNewsSearchList } from '@Api/news.api';
+import Input from '@Components/common/Input';
 import { News } from '@Interface/api.interface';
 import { NewsType } from '@Type/api.type';
-import React, { MouseEvent, useEffect, useRef, useState } from 'react';
-import * as Helper from './main.helper';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  MouseEvent,
+  useEffect,
+  useState,
+} from 'react';
+import * as SearchBar from '../../members/SearchBar/SearchBar.style';
+import Card from '../Card';
 import { TTab } from './main.interface';
-import * as S from './main.style';
+import * as S from './Main.style';
 
 const NewsMain = () => {
-  let searchRef = useRef<HTMLInputElement | null>(null);
   const [tab, setTab] = useState<TTab>('all');
   const [list, setList] = useState<News[]>([]);
+  const [searchValue, setSearchValue] = useState('');
+
+  // TODO:  검색 영역은 ref 처리가 나을 듯 하나 논의 필요
+  // let searchRef = useRef<HTMLInputElement | null>(null);
+  // useEffect(() => {
+  //   searchRef.current?.focus();
+  //   onCallNewsList();
+  //   return () => {
+  //     searchRef.current = null;
+  //   };
+  // }, []);
 
   useEffect(() => {
-    searchRef.current?.focus();
     onCallNewsList();
-    return () => {
-      searchRef.current = null;
-    };
   }, []);
 
   const onCallNewsList = async (newsType: NewsType = 'all') => {
-    const conditions = Helper.getListConditions(newsType);
-    setList(
-      await getNewsSearchList({
-        limit: 9,
-        conditions,
-      }),
-    );
+    setList(await getNewsSearchList({ newsType }));
     setTab(newsType);
   };
 
   const handleTab = (e: MouseEvent<HTMLAnchorElement>, type: TTab) => {
     e.preventDefault();
     onCallNewsList(type);
+  };
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setList(await getNewsSearchList({ newsType: tab, searchValue }));
+  };
+
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
   };
 
   return (
@@ -57,25 +74,20 @@ const NewsMain = () => {
           </S.Tab>
         </S.TabBox>
 
-        {/* 검색 */}
-        <S.SearchBox>
-          <input ref={searchRef} type="text" placeholder="검색" />
-        </S.SearchBox>
+        {/* TODO: searchBar common 영역으로 옮겨갈때 반영(feat. @ttumzzi) */}
+        <SearchBar.ItemWrapper width="486px">
+          <Input
+            handleSubmit={handleSubmit}
+            placeholder={'검색'} // TODO: 다국어
+            value={searchValue}
+            handleChange={handleNameChange}
+          />
+        </SearchBar.ItemWrapper>
       </S.TabSearchBox>
       {/* 카드 리스트 영역 */}
       <S.CardBox>
         {list.map((item, i) => (
-          <S.Card href="#" key={i}>
-            <S.LabelBox type={item.newsType}>
-              <p>{item.newsType === 'media' ? item.agency : '최근 업무사례'}</p>
-            </S.LabelBox>
-            <S.Title>{item.title}</S.Title>
-            <S.Content>{item.content}</S.Content>
-            <S.Date>
-              <p>{item.dateYearMonth}</p>
-              <div className="divider" />
-            </S.Date>
-          </S.Card>
+          <Card key={i} {...{ ...item, i }} />
         ))}
       </S.CardBox>
       {/* TODO: 페이지네이션 */}
