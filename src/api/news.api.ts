@@ -1,35 +1,19 @@
-import { News, Parameter } from '@Interface/api.interface';
-import { NewsRequest, QueryWhereOptions } from '@Type/api.type';
-import {
-  GetData,
-  GetDataListQueryOrderBy,
-  GetDataListQuery,
-  getTimestampToDate,
-} from './index.api';
-
-export const getNews = async (param: NewsRequest) => {
-  return await GetData<Parameter, News>({ endPoint: 'news', param });
-};
-
-export const getNewsList = async (param?: NewsRequest) => {
-  return await GetDataListQuery<Parameter, News[]>({
-    endPoint: 'news',
-    param,
-  }).then(getResultNewsList);
-};
+import { News } from '@Interface/api.interface';
+import { EndPointType, NewsType, TQuery } from '@Type/api.type';
+import { GetDataListQuery } from './index.api';
 
 export const getMainNewsList = async (limit: number) => {
-  const param = {
+  const endPoint: EndPointType = 'news';
+  const queries: TQuery[] = [];
+
+  queries.push({
     queryType: 'orderby',
     fieldPath: 'date',
-    directionStr: 'asc',
-    limit,
-  };
-
-  const result = await GetDataListQueryOrderBy<Parameter, News[]>({
-    endPoint: 'news',
-    param,
+    directionStr: 'desc',
+    limit: 3,
   });
+
+  const result = await GetDataListQuery<News>({ endPoint, queries });
 
   return result.map(news => ({
     ...news,
@@ -41,32 +25,33 @@ export const getMainNewsList = async (limit: number) => {
   }));
 };
 
-const getResultNewsList = (doc: News[]) =>
-  doc.map(news => ({
-    ...news,
-    date: getTimestampToDate(news.date),
-  }));
-
 interface INewSearchListRequest {
-  limit: number;
-  conditions?: QueryWhereOptions[];
+  newsType: NewsType;
+  searchValue?: string;
 }
-export const getNewsSearchList = async ({
-  limit,
-  conditions,
-}: INewSearchListRequest) => {
-  const param = {
-    orderBy: {
-      fieldPath: 'date',
-      directionStr: 'desc',
-      limit,
-    },
-    conditions,
-  };
+export const getNewsSearchList = async (param: INewSearchListRequest) => {
+  const endPoint: EndPointType = 'news';
+  const queries: TQuery[] = [];
+  if (param.newsType !== 'all') {
+    queries.push({
+      queryType: 'where',
+      fieldPath: 'newsType',
+      opStr: '==',
+      value: param.newsType,
+    });
+  }
 
-  const result = await GetDataListQuery<Parameter, News[]>({
-    endPoint: 'news',
-    param,
+  queries.push({
+    queryType: 'orderby',
+    fieldPath: 'date',
+    directionStr: 'desc',
+    limit: 9,
+  });
+
+  const result = await GetDataListQuery<News>({
+    endPoint,
+    queries,
+    fullTextSearch: param.searchValue,
   });
 
   return result.map(news => ({

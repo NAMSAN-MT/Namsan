@@ -1,14 +1,5 @@
 import { Timestamp } from 'firebase/firestore';
-import { EndPointType, NewsType } from '@Type/api.type';
-
-/**
- * @param endPoint (require) firebase collection name
- * @param param    (require) id: 'Document ID' firebase sequence value + etc...
- */
-export interface Parameter<T = any> {
-  endPoint: EndPointType;
-  param: T;
-}
+import { EndPointType, NewsType, TQuery } from '@Type/api.type';
 
 export declare interface Api {
   <Request extends Parameter<Request>, Response>(
@@ -17,6 +8,24 @@ export declare interface Api {
   <Request extends Parameter<Request>, Response>(
     param: Parameter,
   ): Promise<Response>;
+}
+
+/**
+ * @param endPoint (require) firebase collection name
+ * @param param    (require) id: 'Document ID' firebase sequence value + etc...
+ * @param searchFields (optional) search specific field: string[]
+ */
+export interface Parameter<U = any> {
+  endPoint: EndPointType;
+  param: U;
+  searchField?: string[];
+}
+
+export interface IParameter {
+  endPoint: EndPointType;
+  queries: TQuery[];
+  searchFields?: string[];
+  fullTextSearch?: string;
 }
 
 export interface News {

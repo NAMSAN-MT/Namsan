@@ -1,11 +1,14 @@
 import { TLanguage } from './intl.type';
-import { QueryWhereOptions, QueryOrderByOptions } from '../api/index.api';
 import { Member } from '@Interface/api.interface';
 Intl;
 import { FieldPath, WhereFilterOp, OrderByDirection } from 'firebase/firestore';
 
-export type EndPointType = 'news' | 'work' | 'profile';
+/* endpoint type */
+export type EndPointType = 'news' | 'work' | 'profile' | 'members';
+
+/* query parameter type */
 export type QueryType = 'where' | 'orderby';
+
 export type QueryWhereOptions = {
   fieldPath: string | FieldPath;
   opStr: WhereFilterOp;
@@ -14,7 +17,7 @@ export type QueryWhereOptions = {
 export type QueryOrderByOptions = {
   fieldPath: string | FieldPath;
   directionStr?: OrderByDirection;
-  limit: number;
+  limit?: number;
 };
 
 export type NewsRequest = Partial<{
@@ -33,3 +36,9 @@ export type MembersSearchRequest = Partial<{
 
 export type TMemberSearchField = keyof Member;
 export type NewsType = 'all' | 'media' | 'recent';
+
+export type TQuery =
+  | ({
+      queryType: 'where';
+    } & QueryWhereOptions)
+  | ({ queryType: 'orderby' } & QueryOrderByOptions);
