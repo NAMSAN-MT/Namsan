@@ -1,53 +1,38 @@
 import { Category } from '@Components/work/work.interface';
-import {
-  GetDataList,
-  GetDataListQueryOrderBy,
-  GetDataListQueryWhere,
-  Parameter,
-} from './index.api';
+import { GetDataListQuery } from './index.api';
 
 export const getWorkFields = async () => {
-  const param = {
-    queryType: 'orderby',
-    fieldPath: 'categoryId',
-    directionStr: 'asc',
-  };
-
-  return await GetDataListQueryOrderBy<Parameter, Category[]>({
+  return await GetDataListQuery<Category[]>({
     endPoint: 'work',
-    param,
+    queries: [
+      {
+        queryType: 'orderby',
+        fieldPath: 'categoryId',
+        directionStr: 'asc',
+      },
+    ],
   });
 };
 
 export const getContainMember = async (businessFields: string) => {
-  const param = {
-    conditions: [
+  return await GetDataListQuery<Category[]>({
+    endPoint: 'members',
+    queries: [
       {
+        queryType: 'where',
         fieldPath: 'businessFields',
         opStr: 'array-contains',
         value: businessFields,
       },
     ],
-  };
-  return await GetDataListQueryWhere<Parameter, Category[]>({
-    endPoint: 'members',
-    param,
   });
 };
 
 export const getWorkField = async (code: string) => {
-  const param = {
-    conditions: [
-      {
-        fieldPath: 'categoryId',
-        opStr: '==',
-        value: code,
-      },
-    ],
-  };
-
-  return await GetDataListQueryWhere<Parameter, Category[]>({
+  return await GetDataListQuery<Category[]>({
     endPoint: 'work',
-    param,
+    queries: [
+      { queryType: 'where', fieldPath: 'categoryId', opStr: '==', value: code },
+    ],
   });
 };
