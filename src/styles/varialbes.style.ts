@@ -53,7 +53,6 @@ export const color = {
 
   backgroundWhite: defaultColors.white,
   backgroundGrey50: defaultColors.grey50,
-
   backgroundTransparency: '#00000000',
 
   backgroundDim: `${defaultColors.black}99`,
@@ -82,7 +81,10 @@ export const TextStyles = {
   title18: ['18px', 'demilight', 'medium'],
   body16: ['16px', 'demilight', 'medium'],
   body14: ['14px', 'demilight', 'medium'],
-};
+  mobile14: ['14px', 'regular', 'bold'],
+  mobile16: ['16px', 'regular', 'bold'],
+  mobile24: ['24px', 'medium', 'bold'],
+} as const;
 
 export const FontWeight: Record<string, number> = {
   demilight: 300,
@@ -90,3 +92,8 @@ export const FontWeight: Record<string, number> = {
   medium: 500,
   bold: 700,
 };
+
+export const ScreenBreakPoints = {
+  mobile: '768px',
+  tablet: '1024px',
+} as const;
