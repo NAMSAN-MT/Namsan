@@ -1,3 +1,9 @@
+import { Api, Parameter } from '@Interface/api.interface';
+import {
+  EndPointType,
+  QueryOrderByOptions,
+  QueryWhereOptions,
+} from '@Type/api.type';
 import {
   addDoc,
   setDoc,
