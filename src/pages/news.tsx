@@ -1,6 +1,6 @@
 import AppLayout from '@Components/common/Layout';
 import NewsMain from '@Components/news/Main';
-import { flex, font, size } from '@Styles/mixin.style';
+import { flex, font, mediaQuery, size } from '@Styles/mixin.style';
 import { PageProps } from 'gatsby';
 import * as React from 'react';
 import styled from 'styled-components';
@@ -21,9 +21,21 @@ const Main: React.FC<PageProps> = () => {
 export default Main;
 
 const Wrapper = styled.section`
-  padding: 0 90px;
+  padding: 0 360px;
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   margin-top: 101px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: -0.4px;padding: 0 24px;
+  `,
+  )}
 `;
 
 const Header = styled.div`

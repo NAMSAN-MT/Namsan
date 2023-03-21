@@ -6,7 +6,7 @@ export const size = (height = 'auto', width = 'auto') => `
   width: ${width};
 `;
 
-export const flex = (jc = 'center', ai = 'center') => css`
+export const flex = (jc = 'center', ai = 'center') => `
   display: flex;
   justify-content: ${jc};
   align-items: ${ai};
@@ -15,7 +15,7 @@ export const flex = (jc = 'center', ai = 'center') => css`
 export const flexDirection = (
   fd: 'row' | 'row-reverse' | 'column' | 'column-reverse' = 'column',
   ai = 'center',
-) => css`
+) => `
   display: flex;
   flex-direction: ${fd};
   align-items: ${ai};

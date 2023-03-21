@@ -75,7 +75,7 @@ const NewsMain = () => {
         </S.TabBox>
 
         {/* TODO: searchBar common 영역으로 옮겨갈때 반영(feat. @ttumzzi) */}
-        <SearchBar.ItemWrapper width="486px">
+        <SearchBar.ItemWrapper width="384px">
           <Input
             handleSubmit={handleSubmit}
             placeholder={'검색'} // TODO: 다국어

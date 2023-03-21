@@ -4,8 +4,10 @@ import {
   flex,
   flexDirection,
   font,
+  mediaQuery,
   size,
 } from '@Styles/mixin.style';
+import { ScreenBreakPoints } from '@Styles/varialbes.style';
 import styled from 'styled-components';
 import { NewsType } from '../../../type/api.type';
 
@@ -14,6 +16,14 @@ export const TabSearchBox = styled.div`
 
   margin: 60px 0px;
   padding: 8px 0px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+      ${flexDirection('column')}
+      ${flex('', 'flex-start')}
+    `,
+  )}
 `;
 
 export const TabBox = styled.ul`
@@ -39,7 +49,25 @@ export const Tab = styled.li<{ isActive: boolean }>`
     color: ${({ isActive, theme }) =>
       isActive ? theme.color.black : 'rgba(6, 11, 17, 0.3)'};
     text-decoration: none;
+
+    @media (max-width: ${ScreenBreakPoints['mobile']}) {
+      color: ${({ isActive, theme }) =>
+        isActive ? theme.color.blue200 : 'rgba(6, 11, 17, 0.3)'};
+    }
   }
+
+  ${mediaQuery(
+    'mobile',
+    `
+      ${flex('flex-start')}
+      padding: 6px 0px;
+      min-width: 26px;
+      margin-right: 16px;
+
+      ${font('body16', 'bold')}
+      background: #fff;
+  `,
+  )}
 `;
 
 export const SearchBox = styled.div`
