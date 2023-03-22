@@ -34,12 +34,16 @@
     "paths": {
       "@Api/*": ["./src/api/*"],
       "@Components/*": ["./src/components/*"],
-      "@Images/*": ["./src/assets/imgs/*"],
+      "@Images/*": ["./src/images/*"],
+      "@Fonts/*": ["./src/fonts/*"],
       "@Interface/*": ["./src/interface/*"],
       "@Type/*": ["./src/type/*"],
       "@Pages/*": ["./src/pages/*"],
-      "@Styles/*": ["./src/styles/*"]
-    } /* Specify a set of entries that re-map imports to additional lookup locations. */,
+      "@Styles/*": ["./src/styles/*"],
+      "@Hooks/*": ["./src/hooks/*"],
+      "@Intl/*": ["./src/intl/*"],
+      "@Assets/*": ["./src/assets/*"],
+     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */

@@ -18,7 +18,8 @@ import {
   setDoc,
   Timestamp,
 } from 'firebase/firestore';
-import { db } from './firebase';
+import { getDownloadURL, listAll, ref, StorageReference } from 'firebase/storage';
+import { db, storage } from './firebase';
 
 // TODO: 삭제해야함
 export const GetData: Api = async ({ endPoint, param }) => {
@@ -171,4 +172,32 @@ const getMultipleOrderByQueries = (
     },
     ref,
   );
+};
+
+export const getFilesFromStorage = async (storagePath: string) => {
+  try {
+    const fileRef = ref(storage, storagePath);
+    const listFileRef = await listAll(fileRef);
+
+    const downloadFiles = async (file: StorageReference) => {
+      const fileUrl = await getDownloadURL(file);
+      return fileUrl;
+    };
+    const fileList = await Promise.all(listFileRef.items.map(downloadFiles));
+    return fileList;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+export const getFileFromStorage = async (storagePath: string) => {
+  try {
+    const fileRef = ref(storage, storagePath);
+    const file = await getDownloadURL(fileRef);
+    return file;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
 };
