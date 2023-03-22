@@ -6,9 +6,18 @@ export const size = (height = 'auto', width = 'auto') => `
   width: ${width};
 `;
 
-export const flex = (jc = 'center', ai = 'center') => css`
+export const flex = (jc = 'center', ai = 'center') => `
   display: flex;
   justify-content: ${jc};
+  align-items: ${ai};
+`;
+
+export const flexDirection = (
+  fd: 'row' | 'row-reverse' | 'column' | 'column-reverse' = 'column',
+  ai = 'center',
+) => `
+  display: flex;
+  flex-direction: ${fd};
   align-items: ${ai};
 `;
 
@@ -41,6 +50,14 @@ export const ellipsis = () => css`
   white-space: nowrap;
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
+`;
+
+export const ellipsisMulti = (lines: number) => css`
+  display: -webkit-box;
+  -webkit-line-clamp: ${lines};
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
 `;
 
 export const font = (

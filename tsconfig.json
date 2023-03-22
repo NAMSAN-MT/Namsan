@@ -36,6 +36,7 @@
       "@Components/*": ["./src/components/*"],
       "@Images/*": ["./src/assets/imgs/*"],
       "@Interface/*": ["./src/interface/*"],
+      "@Type/*": ["./src/type/*"],
       "@Pages/*": ["./src/pages/*"],
       "@Styles/*": ["./src/styles/*"],
       "@Fonts/*": ["./src/fonts/*"]
