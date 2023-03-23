@@ -1,70 +1,27 @@
+import { Api, IParameter, Parameter } from '@Interface/api.interface';
+import {
+  QueryWhereOptions,
+  QueryOrderByOptions,
+  EndPointType,
+} from '@Type/api.type';
+import firebase from 'firebase/compat/app';
 import {
   addDoc,
-  setDoc,
   collection,
   doc,
   DocumentData,
   FieldPath,
   getDoc,
   getDocs,
-  OrderByDirection,
-  QuerySnapshot,
-  Timestamp,
-  WhereFilterOp,
   QueryDocumentSnapshot,
+  QuerySnapshot,
+  setDoc,
+  Timestamp,
 } from 'firebase/firestore';
-import { db } from './firebase';
-import firebase from 'firebase/compat/app';
+import { getDownloadURL, listAll, ref, StorageReference } from 'firebase/storage';
+import { db, storage } from './firebase';
 
-/* endpoint type */
-export type EndPointType = 'news' | 'work' | 'profile' | 'members';
-
-/* query parameter type */
-export type QueryType = 'where' | 'orderby';
-
-export type QueryWhereOptions = {
-  fieldPath: string | FieldPath;
-  opStr: WhereFilterOp;
-  value: any;
-};
-export type QueryOrderByOptions = {
-  fieldPath: string | FieldPath;
-  directionStr?: OrderByDirection;
-  limit?: number;
-};
-
-export type TQuery =
-  | ({
-      queryType: 'where';
-    } & QueryWhereOptions)
-  | ({ queryType: 'orderby' } & QueryOrderByOptions);
-
-/**
- * @param endPoint (require) firebase collection name
- * @param param    (require) id: 'Document ID' firebase sequence value + etc...
- * @param searchFields (optional) search specific field: string[]
- */
-export interface Parameter<U = any> {
-  endPoint: EndPointType;
-  param: U;
-  searchField?: string[];
-}
-
-export interface IParameter {
-  endPoint: EndPointType;
-  queries: TQuery[];
-  searchFields?: string[];
-}
-
-declare interface Api {
-  <Request extends Parameter<Request>, Response>(
-    param: Parameter,
-  ): Promise<Response>;
-  <Request extends Parameter<Request>, Response>(
-    param: Parameter,
-  ): Promise<Response>;
-}
-
+// TODO: 삭제해야함
 export const GetData: Api = async ({ endPoint, param }) => {
   try {
     const docRef = doc(db, endPoint, param.id);
@@ -91,29 +48,6 @@ export const GetDataList = async <U>({
   }
 };
 
-export const GetDataListQueryWhere: Api = async <
-  U extends { conditions: QueryWhereOptions[] },
->({
-  endPoint,
-  param,
-  searchField,
-}: Parameter<U>) => {
-  try {
-    const ref = db.collection(endPoint);
-    const resultData = (await getMultipleWhereQueries(
-      ref,
-      param.conditions,
-    ).get()) as QuerySnapshot;
-
-    return resultData.empty
-      ? []
-      : resultData.docs.map(doc => getData(doc, searchField));
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-};
-
 export const GetDataListQueryOrderBy: Api = async <
   U extends QueryOrderByOptions,
 >({
@@ -131,7 +65,7 @@ export const GetDataListQueryOrderBy: Api = async <
           orderByRef = orderByRef.limit(param.limit);
         }
 
-        orderByRef.onSnapshot(docs => {
+        orderByRef.onSnapshot((docs: { docs: any[] }) => {
           docs.docs.forEach(doc => {
             resultData.push({
               id: doc.id,
@@ -151,6 +85,7 @@ export const GetDataListQueryOrderBy: Api = async <
     throw e;
   }
 };
+
 /*
   U: interface type of response array.
 */
@@ -213,6 +148,7 @@ const getData = <U>(doc: QueryDocumentSnapshot, fieldNames?: string[]) => {
 const getMultipleWhereQueries = (
   ref: firebase.firestore.DocumentData,
   conditions: QueryWhereOptions[],
+  orderBy?: QueryOrderByOptions,
 ) => {
   return conditions.reduce<firebase.firestore.DocumentData>(
     (acc: DocumentData, cur) => {
@@ -236,4 +172,32 @@ const getMultipleOrderByQueries = (
     },
     ref,
   );
+};
+
+export const getFilesFromStorage = async (storagePath: string) => {
+  try {
+    const fileRef = ref(storage, storagePath);
+    const listFileRef = await listAll(fileRef);
+
+    const downloadFiles = async (file: StorageReference) => {
+      const fileUrl = await getDownloadURL(file);
+      return fileUrl;
+    };
+    const fileList = await Promise.all(listFileRef.items.map(downloadFiles));
+    return fileList;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+export const getFileFromStorage = async (storagePath: string) => {
+  try {
+    const fileRef = ref(storage, storagePath);
+    const file = await getDownloadURL(fileRef);
+    return file;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
 };

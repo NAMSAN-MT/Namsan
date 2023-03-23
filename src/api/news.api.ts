@@ -1,40 +1,65 @@
-import { News } from '../interface/api.interface';
-import { NewsRequest } from '../type/api.type';
-import {
-  GetData,
-  GetDataListQueryOrderBy,
-  GetDataListQueryWhere,
-  getTimestampToDate,
-  Parameter,
-} from './index.api';
+import { News } from '@Interface/api.interface';
+import { EndPointType, NewsType, TQuery } from '@Type/api.type';
+import { GetDataListQuery } from './index.api';
 
-export const getNews = async (param: NewsRequest) => {
-  return await GetData<Parameter, News>({ endPoint: 'news', param });
-};
+export const getMainNewsList = async (limit: number) => {
+  const endPoint: EndPointType = 'news';
+  const queries: TQuery[] = [];
 
-export const getNewsList = async (param?: NewsRequest) => {
-  return await GetDataListQueryWhere<Parameter, News[]>({
-    endPoint: 'news',
-    param,
-  }).then(getResultNewsList);
-};
-
-export const getMainNewsList = async () => {
-  const param = {
+  queries.push({
     queryType: 'orderby',
     fieldPath: 'date',
-    directionStr: 'asc',
+    directionStr: 'desc',
     limit: 3,
-  };
-
-  return await GetDataListQueryOrderBy<Parameter, News[]>({
-    endPoint: 'news',
-    param,
   });
+
+  const result = await GetDataListQuery<News>({ endPoint, queries });
+
+  return result.map(news => ({
+    ...news,
+    dateYearMonth: `${news.date.toDate().getFullYear()}.${
+      news.date.toDate().getMonth() < 9
+        ? `0${news.date.toDate().getMonth()}`
+        : news.date.toDate().getMonth()
+    }`,
+  }));
 };
 
-const getResultNewsList = (doc: News[]) =>
-  doc.map(news => ({
+interface INewSearchListRequest {
+  newsType: NewsType;
+  searchValue?: string;
+}
+export const getNewsSearchList = async (param: INewSearchListRequest) => {
+  const endPoint: EndPointType = 'news';
+  const queries: TQuery[] = [];
+  if (param.newsType !== 'all') {
+    queries.push({
+      queryType: 'where',
+      fieldPath: 'newsType',
+      opStr: '==',
+      value: param.newsType,
+    });
+  }
+
+  queries.push({
+    queryType: 'orderby',
+    fieldPath: 'date',
+    directionStr: 'desc',
+    limit: 9,
+  });
+
+  const result = await GetDataListQuery<News>({
+    endPoint,
+    queries,
+    fullTextSearch: param.searchValue,
+  });
+
+  return result.map(news => ({
     ...news,
-    date: getTimestampToDate(news.date),
+    dateYearMonth: `${news.date.toDate().getFullYear()}.${
+      news.date.toDate().getMonth() < 9
+        ? `0${news.date.toDate().getMonth()}`
+        : news.date.toDate().getMonth()
+    }`,
   }));
+};
