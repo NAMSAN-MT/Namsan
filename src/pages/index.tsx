@@ -1,18 +1,17 @@
-import * as React from 'react';
-import { PageProps } from 'gatsby';
-import AppLayout from '@Components/common/Layout';
-const FirstSection = React.lazy(() => import('@Components/main/FirstSection'));
+import Skeleton from '@Components/common/Skeleton';
+import FifthSection from '@Components/main/FifthSection';
 import SecondSection from '@Components/main/SecondSection';
+import { PageProps } from 'gatsby';
+import * as React from 'react';
+const FirstSection = React.lazy(() => import('@Components/main/FirstSection'));
 const ThirdSection = React.lazy(() => import('@Components/main/ThirdSection'));
 const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));
-import FifthSection from '@Components/main/FifthSection';
-import Skeleton from '@Components/common/Skeleton';
 
 const Main: React.FC<PageProps> = () => {
   const isSSR = typeof window === 'undefined';
 
   return (
-    <AppLayout>
+    <>
       {!isSSR && (
         <React.Suspense fallback={<Skeleton count={3} height={200} />}>
           <FirstSection />
@@ -30,7 +29,7 @@ const Main: React.FC<PageProps> = () => {
         </React.Suspense>
       )}
       <FifthSection />
-    </AppLayout>
+    </>
   );
 };
 
