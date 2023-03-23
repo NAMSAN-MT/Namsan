@@ -1,7 +1,6 @@
 import { TLanguage } from './intl.type';
-import { Member } from '@Interface/api.interface';
-Intl;
 import { FieldPath, WhereFilterOp, OrderByDirection } from 'firebase/firestore';
+import { IMember } from '@Interface/api.interface';
 
 /* endpoint type */
 export type EndPointType = 'news' | 'work' | 'profile' | 'members';
@@ -34,7 +33,7 @@ export type MembersSearchRequest = Partial<{
   businessField: string;
 }> & { language: TLanguage };
 
-export type TMemberSearchField = keyof Member;
+export type TMemberSearchField = keyof IMember;
 export type NewsType = 'all' | 'media' | 'recent';
 
 export type TQuery =
