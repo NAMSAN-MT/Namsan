@@ -1,14 +1,23 @@
 import { css } from 'styled-components';
-import { FontWeight, TextStyles } from './varialbes.style';
+import { FontWeight, ScreenBreakPoints, TextStyles } from './varialbes.style';
 
-export const size = (height = 'auto', width = 'auto') => css`
+export const size = (height = 'auto', width = 'auto') => `
   height: ${height};
   width: ${width};
 `;
 
-export const flex = (jc = 'center', ai = 'center') => css`
+export const flex = (jc = 'center', ai = 'center') => `
   display: flex;
   justify-content: ${jc};
+  align-items: ${ai};
+`;
+
+export const flexDirection = (
+  fd: 'row' | 'row-reverse' | 'column' | 'column-reverse' = 'column',
+  ai = 'center',
+) => `
+  display: flex;
+  flex-direction: ${fd};
   align-items: ${ai};
 `;
 
@@ -43,14 +52,33 @@ export const ellipsis = () => css`
   text-overflow: ellipsis;
 `;
 
+export const ellipsisMulti = (lines: number) => css`
+  display: -webkit-box;
+  -webkit-line-clamp: ${lines};
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+`;
+
 export const font = (
   style: keyof typeof TextStyles,
-  weight: 'regular' | 'bold',
-) => css`
-  font-weight: ${FontWeight[TextStyles[style][weight === 'regular' ? 1 : 2]]};
+  weight: keyof typeof FontWeight,
+) => `
+  font-weight: ${FontWeight[weight]};
   font-size: ${TextStyles[style][0]};
 `;
 
-export const lineHeight = (fontSizePx: number, lineHeightPx: number) => css`
+export const lineHeight = (fontSizePx: number, lineHeightPx: number) => `
   line-height: ${lineHeightPx / fontSizePx};
 `;
+
+export const mediaQuery = (
+  breakPoint: keyof typeof ScreenBreakPoints,
+  content: string,
+) => {
+  return css`
+    @media (max-width: ${ScreenBreakPoints[breakPoint]}) {
+      ${content}
+    }
+  `;
+};

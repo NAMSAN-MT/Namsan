@@ -1,38 +1,35 @@
 import * as React from 'react';
 import { PageProps } from 'gatsby';
 import AppLayout from '@Components/common/Layout';
-import FirstSection from '@Components/main/FirstSection';
+const FirstSection = React.lazy(() => import('@Components/main/FirstSection'));
 import SecondSection from '@Components/main/SecondSection';
-import ThirdSection from '@Components/main/ThirdSection';
-import ForthSection from '@Components/main/ForthSection';
+const ThirdSection = React.lazy(() => import('@Components/main/ThirdSection'));
+const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));
 import FifthSection from '@Components/main/FifthSection';
+import Skeleton from '@Components/common/Skeleton';
 
 const Main: React.FC<PageProps> = () => {
+  const isSSR = typeof window === 'undefined';
+
   return (
     <AppLayout>
-      <FirstSection />
+      {!isSSR && (
+        <React.Suspense fallback={<Skeleton count={3} height={200} />}>
+          <FirstSection />
+        </React.Suspense>
+      )}
       <SecondSection />
-      <ThirdSection />
-      <ForthSection />
+      {!isSSR && (
+        <React.Suspense fallback={<Skeleton count={2} />}>
+          <ThirdSection />
+        </React.Suspense>
+      )}
+      {!isSSR && (
+        <React.Suspense fallback={<Skeleton count={3} />}>
+          <ForthSection />
+        </React.Suspense>
+      )}
       <FifthSection />
-      {/* <BaseButton className="primary" onClick={() => console.log('')}>
-        Primary
-      </BaseButton>
-      <BaseButton className="support" onClick={() => console.log('')}>
-        Support
-      </BaseButton>
-      <BaseButton className="support-line" onClick={() => console.log('')}>
-        SupportLine
-      </BaseButton>
-      <BaseButton className="outline" onClick={() => console.log('')}>
-        Outline
-      </BaseButton>
-      <BaseButton className="tag" onClick={() => console.log('')}>
-        Tag
-      </BaseButton>
-      <IconButton className="arrow-top" onClick={() => console.log('')} />
-      <IconButton className="hamburger" onClick={() => console.log('')} />
-      <IconButton className="share" onClick={() => console.log('')} /> */}
     </AppLayout>
   );
 };

@@ -10,7 +10,9 @@ const GNB: React.FC = () => {
   return (
     <S.GNBWrapper>
       <S.LogoWrapper>
-        <img src={LogoGNB} width="100%" alt="icon" />
+        <Link className="link" key="home" to="/" about="home">
+          <img src={LogoGNB} width="100%" alt="icon" />
+        </Link>
       </S.LogoWrapper>
       <S.MainLinkWrapper>
         {GNBLink.map(link => (

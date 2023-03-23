@@ -35,5 +35,12 @@
     "intern_sub": "선구완 변호사\nsun@namsanlaw.com",
     "foreign": "신입/경력 외국변호사 문의",
     "foreign_sub": "윤희경 미국변호사\nhyoon@namsanlaw.com"
+  },
+  "members": {
+    "introduce_members": "구성원 소개",
+    "total_position": "구성원 전체",
+    "total_business_field": "업무분야 전체",
+    "search_placeholder": "이름 검색",
+    "empty_result": "검색결과가 없습니다."
   }
 }
