@@ -34,12 +34,15 @@
     "paths": {
       "@Api/*": ["./src/api/*"],
       "@Components/*": ["./src/components/*"],
-      "@Images/*": ["./src/assets/imgs/*"],
+      "@Images/*": ["./src/images/*"],
+      "@Fonts/*": ["./src/fonts/*"],
       "@Interface/*": ["./src/interface/*"],
       "@Type/*": ["./src/type/*"],
       "@Pages/*": ["./src/pages/*"],
       "@Styles/*": ["./src/styles/*"],
-      "@Fonts/*": ["./src/fonts/*"]
+      "@Hooks/*": ["./src/hooks/*"],
+      "@Intl/*": ["./src/intl/*"],
+      "@Assets/*": ["./src/assets/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */

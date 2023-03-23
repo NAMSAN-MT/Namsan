@@ -5,7 +5,7 @@ import useFifthSection from './FifthSection.hook';
 import * as S from './FifthSection.style';
 
 const FifthSection: React.FC = () => {
-  const { handleNavigate } = useFifthSection();
+  const { handleNavigateTo } = useFifthSection();
 
   return (
     <S.FifthWrapper>
@@ -15,7 +15,7 @@ const FifthSection: React.FC = () => {
             title={banner.title}
             tag={banner.tag}
             buttonTitle={banner.buttonName}
-            onClick={handleNavigate}
+            onClick={handleNavigateTo}
             even={index % 2 === 0}
           />
         ))}
