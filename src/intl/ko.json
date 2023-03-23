@@ -42,5 +42,11 @@
     "total_business_field": "업무분야 전체",
     "search_placeholder": "이름 검색",
     "empty_result": "검색결과가 없습니다."
+  },
+  "member": {
+    "educations": "학력",
+    "careers": "자격 및 경력",
+    "awards": "수상/연구실적",
+    "papers": "논문/저서"
   }
 }
