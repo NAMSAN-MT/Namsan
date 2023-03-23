@@ -79,6 +79,7 @@ export const TextStyles = {
   title20: ['20px', 'demilight', 'bold'],
   list20: ['20px', 'regular', 'regular'],
   title18: ['18px', 'demilight', 'medium'],
+  title18_2: ['18px', 'regular', 'medium'],
   body16: ['16px', 'demilight', 'medium'],
   body14: ['14px', 'demilight', 'medium'],
   mobile14: ['14px', 'regular', 'bold'],

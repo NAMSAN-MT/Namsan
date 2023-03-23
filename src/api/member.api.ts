@@ -1,12 +1,6 @@
-import { MembersSearchRequest, TMemberSearchField } from '../type/api.type';
-import {
-  EndPointType,
-  GetDataList,
-  GetDataListQuery,
-  Parameter,
-  TQuery,
-} from './index.api';
 import { Member } from '../interface/api.interface';
+import { EndPointType, MembersSearchRequest, TQuery } from '../type/api.type';
+import { GetDataListQuery } from './index.api';
 
 const getMemberPositionList = async () => {
   const positionList = await GetDataListQuery<string>({
