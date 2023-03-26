@@ -1,35 +1,24 @@
-import { getWorkField } from '@Api/work.api';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
-import { RouteComponentProps } from '@reach/router';
-import React, { MouseEvent, useEffect, useState } from 'react';
-import { CategoryDescription } from './work.interface';
+import React, { MouseEvent, useState } from 'react';
+import { CategoryDescription, CategoryPageProps } from './work.interface';
 import { Box, Contents, Head, Layout, SubTitle, Title } from './work.styled';
 
-export interface Props extends RouteComponentProps {
-  id?: string;
-}
+export interface Props extends CategoryPageProps {}
 
-const DetailPage = (props: Props) => {
+const DetailPage = ({ categoryInfo, description }: Props) => {
   const [category, setCategory] = useState<
     (CategoryDescription & { isOpen?: boolean })[]
-  >([]);
-  useEffect(() => {
-    getWorkField(props.id!).then(([{ categoryInfo, description }]) => {
-      setCategory(() => {
-        return [
-          {
-            categoryId: categoryInfo.categoryId,
-            name: categoryInfo.name,
-            description: description[categoryInfo.categoryId],
-          },
-          ...categoryInfo.subCategory.map(category => ({
-            ...category,
-            description: description[category.categoryId],
-          })),
-        ];
-      });
-    });
-  }, []);
+  >([
+    {
+      categoryId: categoryInfo.categoryId,
+      name: categoryInfo.name,
+      description: description[categoryInfo.categoryId],
+    },
+    ...categoryInfo.subCategory.map(category => ({
+      ...category,
+      description: description[category.categoryId],
+    })),
+  ]);
 
   const isMainCategory = ({ categoryId }: CategoryDescription) =>
     categoryId.startsWith('C');
