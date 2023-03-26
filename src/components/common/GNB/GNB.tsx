@@ -24,7 +24,7 @@ const GNB: React.FC = () => {
       <S.LanguageWrapper onClick={handleChangeLanguage}>
         {LanguageLink.map(link => (
           <S.LanguageLink
-            isActive={language.current === link.lang}
+            $isActive={language.current === link.lang}
             key={link.alt}
             to={link.herf}
             data-lang={link.lang}
