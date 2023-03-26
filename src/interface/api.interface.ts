@@ -38,12 +38,12 @@ export interface News {
   dateYearMonth?: string;
 }
 
-export interface MemberAttribute {
+export interface IMemberAttribute {
   value: string;
   time?: string;
 }
 
-export interface Member {
+export interface IMember {
   id: number;
   language: 'ko' | 'en';
   name: string;
@@ -51,9 +51,9 @@ export interface Member {
   email: string;
   businessFields: string[];
   description?: string;
-  educations?: MemberAttribute[];
-  careers: MemberAttribute[];
-  papers?: MemberAttribute[];
-  awards?: MemberAttribute[];
+  educations?: IMemberAttribute[];
+  careers: IMemberAttribute[];
+  papers?: IMemberAttribute[];
+  awards?: IMemberAttribute[];
   imagePath: string;
 }

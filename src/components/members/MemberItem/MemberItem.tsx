@@ -8,9 +8,14 @@ const MemberItem = ({
   position,
   businessFields,
   imagePath,
+  id,
 }: IMemberItemProps) => {
+  const _handleClick = async () => {
+    window.location.href = `/member/${id}`;
+  };
+
   return (
-    <S.MemberItemWrapper>
+    <S.MemberItemWrapper onClick={_handleClick}>
       <S.ImageSection>
         <S.ImageWrapper>
           <S.Image src={imagePath} />

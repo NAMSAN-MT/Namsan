@@ -1,4 +1,4 @@
-import { Member } from '../interface/api.interface';
+import { IMember } from '../interface/api.interface';
 import { EndPointType, MembersSearchRequest, TQuery } from '../type/api.type';
 import { GetDataListQuery } from './index.api';
 
@@ -59,10 +59,33 @@ const getMembers = async (params: MembersSearchRequest) => {
     },
   ];
 
-  return await GetDataListQuery<Member>({
+  return await GetDataListQuery<IMember>({
     endPoint,
     queries,
   });
 };
 
-export { getMembers, getMemberPositionList, getMemberBusinessFieldList };
+const getMember = async (memberId: number) => {
+  const endPoint: EndPointType = 'members';
+  const queries: TQuery[] = [
+    {
+      queryType: 'where',
+      fieldPath: 'id',
+      opStr: '==',
+      value: memberId,
+    },
+  ];
+
+  const [member] = await GetDataListQuery<IMember>({
+    endPoint,
+    queries,
+  });
+  return member;
+};
+
+export {
+  getMembers,
+  getMemberPositionList,
+  getMemberBusinessFieldList,
+  getMember,
+};

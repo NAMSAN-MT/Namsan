@@ -45,12 +45,12 @@ const LanguageWrapper = styled.div`
   }
 `;
 
-const LanguageLink = styled(Link)<{ isActive: boolean }>`
+const LanguageLink = styled(Link)<{ $isActive: boolean }>`
   padding: 0 16px;
   text-align: center;
   letter-spacing: -0.1px;
-  color: ${({ theme, isActive }) =>
-    isActive ? theme.color.textBlackHigh : theme.color.textBlackMedium};
+  color: ${({ theme, $isActive }) =>
+    $isActive ? theme.color.textBlackHigh : theme.color.textBlackMedium};
 
   // FIXME: mixin으로 변경
   font-size: 14px;
