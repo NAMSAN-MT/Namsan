@@ -35,12 +35,16 @@ const ThirdSection: React.FC = () => {
             /> */}
             <S.CardWrapper>
               {ImageCardList1.map(item => (
-                <ImageCard imageUrl={item.url}>{item.title}</ImageCard>
+                <ImageCard key={item.url} imageUrl={item.url}>
+                  {item.title}
+                </ImageCard>
               ))}
             </S.CardWrapper>
             <S.CardWrapper isDown>
               {ImageCardList2.map(item => (
-                <ImageCard imageUrl={item.url}>{item.title}</ImageCard>
+                <ImageCard key={item.url} imageUrl={item.url}>
+                  {item.title}
+                </ImageCard>
               ))}
             </S.CardWrapper>
           </S.RightWrapper>
