@@ -1,3 +1,4 @@
-const introduceOrder = ['educations', 'careers', 'papers', 'awards'];
+const introduceOrder = ['careers', 'educations', 'papers', 'awards'];
+const MAXIMUM_OPEN_DATA_COUNT = 5;
 
-export { introduceOrder };
+export { introduceOrder, MAXIMUM_OPEN_DATA_COUNT };
