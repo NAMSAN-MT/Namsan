@@ -37,15 +37,17 @@
     "gatsby-plugin-sharp": "^5.7.0",
     "gatsby-plugin-sitemap": "^6.5.0",
     "gatsby-plugin-styled-components": "^6.5.0",
+    "gatsby-plugin-typescript": "^5.8.0",
     "gatsby-source-filesystem": "^5.5.0",
+    "gatsby-transformer-remark": "^6.8.0",
     "gatsby-transformer-sharp": "^5.7.0",
     "lodash": "^4.17.21",
     "prettier": "^2.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-full-page": "^0.1.12",
     "react-intersection-observer": "^9.4.3",
     "react-loading-skeleton": "^3.2.0",
-    "react-full-page": "^0.1.12",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.5"
   },
@@ -58,6 +60,7 @@
     "@typescript-eslint/parser": "^5.51.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "gatsby-remark-typescript": "^0.2.2",
     "typescript": "^4.9.5"
   }
 }
