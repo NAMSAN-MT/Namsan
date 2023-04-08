@@ -1,5 +1,5 @@
 ---
-slug: '/privacy'
+slug: '/disclaimer'
 date: '2023-04-02'
 title: '면책공고'
 ---
