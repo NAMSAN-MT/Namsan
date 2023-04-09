@@ -1,4 +1,4 @@
-import { flex, lineHeight } from '@Styles/mixin.style';
+import { flex, font, lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { Wrapper } from '../FirstSection/FirstSection.style';
 
@@ -28,10 +28,8 @@ const Title = styled.div`
   letter-spacing: -0.6px;
   color: ${({ theme }) => theme.color.textBlackHigh};
 
-  // FIXME: mixin으로 변경
-  font-size: 42px;
-  font-weight: 700;
-  ${lineHeight(42, 60)}};
+  ${font('display42', 'bold')};
+  ${lineHeight(42, 60)};
 `;
 
 export { TopWrapper, InnerWrapper, ForthWrapper, BottomWrapper, Title };

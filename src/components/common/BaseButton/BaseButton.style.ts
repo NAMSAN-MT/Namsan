@@ -1,4 +1,4 @@
-import { lineHeight } from '@Styles/mixin.style';
+import { font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import { flex } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import ArrowUpIcon from '@Images/ic_arrow_top.svg';
@@ -6,6 +6,8 @@ import HambergurIcon from '@Images/ic_hamburger.svg';
 import ShareIcon from '@Images/ic_share.svg';
 import MoreIcon from '@Images/ic_more.svg';
 import MoreHoverIcon from '@Images/ic_more_hover.svg';
+import DownloadIcon from '@Images/ic_download.svg';
+import DirectIcon from '@Images/ic_direct.svg';
 
 const Base = styled.button`
   ${flex()}
@@ -13,12 +15,18 @@ const Base = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  // FIXME: MIXIn으로 변경
-  ${lineHeight(16, 26)}};
-  font-size: 16px;
-  font-weight: 500;
+  ${lineHeight(16, 26)};
+  ${font('body16', 'medium')}
   letter-spacing: -0.2px;
   border-radius: 50px;
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile14', 'bold')},
+       letter-spacing: -0.1px;,
+       ${lineHeight(14, 22)};
+    `,
+  )};
 `;
 
 const Primary = styled(Base)`
@@ -29,6 +37,12 @@ const Primary = styled(Base)`
   &:hover {
     background-color: ${({ theme }) => theme.color.blue300};
   }
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 12px 20px;
+    `,
+  )};
 `;
 
 const Support = styled(Base)`
@@ -37,8 +51,14 @@ const Support = styled(Base)`
   min-width: 104px;
   background-color: ${({ theme }) => theme.color.dividerGrey100};
   &:hover {
-    background-color: ${({ theme }) => theme.color.textBlackDisable};
+    background-color: ${({ theme }) => theme.color.grey200};
   }
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 12px 20px;
+    `,
+  )};
 `;
 
 const SupportLine = styled(Base)`
@@ -48,8 +68,14 @@ const SupportLine = styled(Base)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   border: 1px solid ${({ theme }) => theme.color.grey300};
   &:hover {
-    background-color: ${({ theme }) => theme.color.textBlackDisable};
+    background-color: ${({ theme }) => theme.color.blue50};
   }
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 12px 20px;
+    `,
+  )};
 `;
 
 const Outline = styled(Base)`
@@ -59,9 +85,16 @@ const Outline = styled(Base)`
   border-radius: 24px;
   padding: 11px 20px;
   min-width: 84px;
+  font-weight: 700;
   &:hover {
-    background-color: ${({ theme }) => theme.color.textBlackDisable};
+    background-color: ${({ theme }) => theme.color.blue50};
   }
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 12px 20px;
+    `,
+  )};
 `;
 
 const Tag = styled(Base)`
@@ -72,9 +105,8 @@ const Tag = styled(Base)`
   padding: 4px 8px;
   letter-spacing: -0.1px;
   min-width: 68px;
-  // FIXME: MIXIn으로 변경
-  ${lineHeight(14, 22)}};
-  font-size: 14px;
+  ${font('body14', 'medium')}
+  ${lineHeight(14, 22)};
   &:hover {
     background-color: ${({ theme }) => theme.color.textBlackDisable};
   }
@@ -138,11 +170,9 @@ const More = styled(IconBase)`
   background-color: transparent;
   border: 1px solid transparent;
   letter-spacing: -0.2px;
-  
-  // FIXME: MIXIn으로 변경
-  ${lineHeight(18, 28)}};
-  font-size: 18px;
-  font-weight: 700;
+
+  ${lineHeight(18, 28)};
+  ${font('title18', 'bold')}
   &:hover {
     color: ${({ theme }) => theme.color.blue200};
   }
@@ -152,8 +182,86 @@ const More = styled(IconBase)`
     height: 28px;
     margin-left: 8px;
     &:hover {
-       background: ${`url(${MoreHoverIcon}) no-repeat center center`};
+      background: ${`url(${MoreHoverIcon}) no-repeat center center`};
     }
+  }
+`;
+
+const Download = styled(IconBase)`
+  color: ${({ theme }) => theme.color.blue200};
+  background-color: transparent;
+  border: 1px solid transparent;
+  letter-spacing: -0.2px;
+
+  ${lineHeight(18, 28)};
+  ${font('title18', 'bold')}
+  &:hover {
+    color: ${({ theme }) => theme.color.blue100};
+  }
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile14', 'bold')};
+      ${lineHeight(14, 22)};
+      letter-spacing: -0.1px;
+      min-height: 20px;
+    `,
+  )};
+  .icon {
+    background: ${`url(${DownloadIcon}) no-repeat center center`};
+    width: 28px;
+    height: 28px;
+    margin-left: 8px;
+    &:hover {
+      background: ${`url(${DownloadIcon}) no-repeat center center`};
+    }
+    ${mediaQuery(
+      'mobile',
+      `
+      width: 10px;
+      height: 10px;
+      margin-left: 7px;
+    `,
+    )};
+  }
+`;
+
+const Direct = styled(IconBase)`
+  color: ${({ theme }) => theme.color.blue200};
+  background-color: transparent;
+  border: 1px solid transparent;
+  letter-spacing: -0.2px;
+
+  ${lineHeight(18, 28)};
+  ${font('title18', 'bold')}
+  &:hover {
+    color: ${({ theme }) => theme.color.blue100};
+  }
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile14', 'bold')};
+      ${lineHeight(14, 22)};
+      letter-spacing: -0.1px;
+      min-height: 20px;
+    `,
+  )};
+  .icon {
+    background: ${`url(${DirectIcon}) no-repeat center center`};
+    width: 28px;
+    height: 28px;
+    margin-left: 8px;
+    &:hover {
+      background: ${`url(${DirectIcon}) no-repeat center center`};
+    }
+    ${mediaQuery(
+      'mobile',
+      `
+      width: 16px;
+      height: 16px;
+      margin-left: 7px;
+    `,
+    )};
   }
 `;
 
@@ -168,4 +276,6 @@ export {
   Hamburger,
   Share,
   More,
+  Download,
+  Direct,
 };

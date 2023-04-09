@@ -1,57 +1,54 @@
 import AnimationWrapper from '@Components/common/AnimationWrapper';
 import BaseButton from '@Components/common/BaseButton';
 import React from 'react';
-import ImageCard from '../ImageCard';
-import { ImageCardList1, ImageCardList2 } from '../ImageCard/ImageCard.const';
 import useThirdSection from './ThirdSection.hook';
 import * as S from './ThirdSection.style';
+import { IThirdSectionProps } from './ThirdSection.interface';
+import { injectIntl } from 'gatsby-plugin-intl';
 
-const ThirdSection: React.FC = () => {
+const ThirdSection = (props: IThirdSectionProps) => {
   const { handleNavigateTo, mainVideo } = useThirdSection();
+  const suffix = props.isMobile ? '_mobile' : '';
 
   return (
     <AnimationWrapper variantName="transition" initial="hidden" threshold={0.5}>
-      <S.ThirdWrapper>
-        <S.InnerWrapper>
-          <S.LeftWrapper>
-            <S.SubTitle>법무법인 남산은</S.SubTitle>
-            <S.Title>
-              고객에게 최적화된 <br />
-              맞춤형 법률서비스를 <br />
-              제공하고 있습니다.
-            </S.Title>
-            <BaseButton className="primary" onClick={handleNavigateTo}>
-              업무분야 바로가기
-            </BaseButton>
-          </S.LeftWrapper>
-          <S.RightWrapper>
-            {/* <video
-              src={mainVideo}
-              autoPlay
-              loop
-              muted
-              width="100%"
-              height="100%"
-            /> */}
-            <S.CardWrapper>
-              {ImageCardList1.map(item => (
-                <ImageCard key={item.url} imageUrl={item.url}>
-                  {item.title}
-                </ImageCard>
-              ))}
-            </S.CardWrapper>
-            <S.CardWrapper isDown>
-              {ImageCardList2.map(item => (
-                <ImageCard key={item.url} imageUrl={item.url}>
-                  {item.title}
-                </ImageCard>
-              ))}
-            </S.CardWrapper>
-          </S.RightWrapper>
-        </S.InnerWrapper>
-      </S.ThirdWrapper>
+      <S.BackgroundWrapper>
+        <S.ThirdWrapper>
+          <S.InnerWrapper>
+            <S.LeftWrapper>
+              <S.SubTitle>
+                {props.intl.formatMessage({
+                  id: 'main.title3_1',
+                })}
+              </S.SubTitle>
+              <S.Title
+                dangerouslySetInnerHTML={{
+                  __html: props.intl.formatMessage({
+                    id: `main.title3_2${suffix}`,
+                  }),
+                }}
+              ></S.Title>
+              <BaseButton className="primary" onClick={handleNavigateTo}>
+                {props.intl.formatMessage({
+                  id: 'main.button3_name',
+                })}
+              </BaseButton>
+            </S.LeftWrapper>
+            <S.RightWrapper>
+              <video
+                src={mainVideo}
+                autoPlay
+                loop
+                muted
+                width="100%"
+                height="100%"
+              />
+            </S.RightWrapper>
+          </S.InnerWrapper>
+        </S.ThirdWrapper>
+      </S.BackgroundWrapper>
     </AnimationWrapper>
   );
 };
 
-export default ThirdSection;
+export default injectIntl(ThirdSection);

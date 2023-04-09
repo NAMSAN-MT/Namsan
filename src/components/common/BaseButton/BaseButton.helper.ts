@@ -21,6 +21,10 @@ const bindStyle = (name: TClassName) => {
       return S.Share;
     case 'more':
       return S.More;
+    case 'download':
+      return S.Download;
+    case 'direct':
+      return S.Direct;
     default:
       return S.Base;
   }
@@ -45,6 +49,10 @@ const checkIsIcon = (name: TClassName) => {
     case 'share':
       return true;
     case 'more':
+      return true;
+    case 'download':
+      return true;
+    case 'direct':
       return true;
     default:
       return false;

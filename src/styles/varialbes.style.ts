@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 
 export const defaultColors = {
+  blue50: '#F1F7FD',
   blue100: '#103EAC',
   blue200: '#193F9A',
   blue300: '#142f71',
@@ -82,9 +83,15 @@ export const TextStyles = {
   title18_2: ['18px', 'regular', 'medium'],
   body16: ['16px', 'demilight', 'medium'],
   body14: ['14px', 'demilight', 'medium'],
+  mobile12: ['12px', 'regular', 'bold'],
   mobile14: ['14px', 'regular', 'bold'],
   mobile16: ['16px', 'regular', 'bold'],
+  mobile18: ['18px', 'regular', 'bold'],
+  mobile20: ['20px', 'regular', 'bold'],
   mobile24: ['24px', 'medium', 'bold'],
+  mobile26: ['26px', 'medium', 'bold'],
+  mobile_list14: ['14px', 'regular', 'regular'],
+  caption12: ['12px', 'regular', 'bold'],
 } as const;
 
 export const FontWeight: Record<string, number> = {
@@ -94,7 +101,16 @@ export const FontWeight: Record<string, number> = {
   bold: 700,
 };
 
+export const Screen = {
+  pc1380: 1920,
+  pc1024: 1380,
+  tablet: 1024,
+  mobile: 768,
+} as const;
+
 export const ScreenBreakPoints = {
-  mobile: '768px',
-  tablet: '1024px',
+  pc1380: `${Screen.pc1380}px`,
+  pc1024: `${Screen.pc1024}px`,
+  tablet: `${Screen.tablet}px`,
+  mobile: `${Screen.mobile}px`,
 } as const;

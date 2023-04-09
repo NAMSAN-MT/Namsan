@@ -1,4 +1,4 @@
-import { flex, lineHeight } from '@Styles/mixin.style';
+import { flex, font, lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import ArrowRightIcon from '@Images/ic_arrow_right_th20.svg';
 
@@ -23,30 +23,24 @@ const Divider = styled.div`
 const Tag = styled.span`
   color: ${({ theme }) => theme.color.blue200};
 
-  // FIXME: mixin으로 변경
-  font-size: 20px;
-  font-weight: 700;
-  ${lineHeight(20, 34)}};
+  ${font('title20', 'bold')};
+  ${lineHeight(20, 34)};
 `;
 
 const Date = styled.span`
   color: ${({ theme }) => theme.color.textBlackMedium};
   margin-left: 10px;
 
-  // FIXME: mixin으로 변경
-  font-size: 20px;
-  font-weight: 400;
-  ${lineHeight(20, 34)}};
+  ${font('title20', 'demilight')};
+  ${lineHeight(20, 34)};
 `;
 
 const Title = styled.div`
   color: ${({ theme }) => theme.color.textBlackHigh};
   letter-spacing: -0.4px;
 
-  // FIXME: mixin으로 변경
-  font-size: 26px;
-  font-weight: 500;
-  ${lineHeight(26, 40)}};
+  ${font('title26', 'medium')};
+  ${lineHeight(26, 40)};
 `;
 
 const IconWrapper = styled.div`

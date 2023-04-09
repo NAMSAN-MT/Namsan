@@ -18,8 +18,7 @@ const AnimationImage = (props: AnimationImageProps) => {
   }, []);
 
   return (
-    <S.AnimationImageWrapper>
-      <S.Background src={props.imageSrc} />
+    <S.AnimationImageWrapper src={props.imageSrc}>
       <S.Dim className={on ? 'on' : ''} />
       <S.TextWrapper ref={ref} className={on ? 'on' : ''}>
         <S.MainText>{props.mainText}</S.MainText>
