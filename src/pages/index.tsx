@@ -12,7 +12,7 @@ const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));
 const Main: React.FC<PageProps> = () => {
   const { isMobile } = useResize();
   return (
-    <Layout>
+    <Layout route="main">
       <React.Suspense fallback={<Loading height="500px" />}>
         <FirstSection />
       </React.Suspense>
