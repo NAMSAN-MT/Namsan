@@ -86,9 +86,7 @@ const PressContentList = styled.ul`
   )}
 `;
 
-const PressContent = styled.li`
-  width: 384px;
-`;
+const PressContent = styled.li``;
 
 const PressContentTitle = styled.div`
   ${font('title26', 'bold')};
