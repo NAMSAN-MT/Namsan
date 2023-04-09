@@ -1,12 +1,13 @@
 import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 const GNBWrapper = styled.div`
   ${flex('space-between')};
   width: 100%;
   padding: 0 90px;
-  height: 84px;
+  height: 86px;
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   border: 1px solid ${({ theme }) => theme.color.grey100};
 
@@ -37,6 +38,10 @@ const MainLinkWrapper = styled.div`
   .link {
     margin: 0 34px;
     color: ${({ theme }) => theme.color.textBlackMedium};
+    &:hover {
+      // color: ${({ theme }) => theme.color.blue200};
+    }
+
     text-align: center;
     letter-spacing: -0.2px;
 
@@ -49,6 +54,17 @@ const MainLinkWrapper = styled.div`
     display: none;`,
     )};
   }
+`;
+
+const LinkNameWrapper = styled(motion.div)<{ selected: boolean }>`
+  color: ${({ theme, selected }) =>
+    selected ? theme.color.blue200 : theme.color.textBlackMedium};
+`;
+const LinkUnderline = styled(motion.div)`
+  width: 100%;
+  height: 2px;
+  background-color: ${({ theme }) => theme.color.blue200};
+  border-radius: 15px;
 `;
 
 const LanguageWrapper = styled.ul`
@@ -157,6 +173,8 @@ export {
   GNBWrapper,
   LogoWrapper,
   MainLinkWrapper,
+  LinkNameWrapper,
+  LinkUnderline,
   LanguageWrapper,
   LanguageLink,
   MobileMenuWrapper,

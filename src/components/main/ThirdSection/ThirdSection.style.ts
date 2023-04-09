@@ -1,9 +1,14 @@
-import { flex, lineHeight } from '@Styles/mixin.style';
+import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { Wrapper } from '../FirstSection/FirstSection.style';
 
-const ThirdWrapper = styled(Wrapper)`
+const BackgroundWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.pointGrey};
+`;
+
+const ThirdWrapper = styled(Wrapper)`
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const InnerWrapper = styled.div`
@@ -12,11 +17,26 @@ const InnerWrapper = styled.div`
   overflow: hidden;
   height: 620px;
   padding: 0 calc((100% - 1290px) / 2);
+  ${mediaQuery(
+    'mobile',
+    `
+     height: 700px;
+     ${flex('start', 'start')};
+     flex-direction: column;
+     padding: 60px 0 72px;
+    `,
+  )};
 `;
 
 const LeftWrapper = styled.div`
   ${flex('center', 'start')};
   flex-direction: column;
+  ${mediaQuery(
+    'mobile',
+    `
+     padding: 0 24px 44px;
+    `,
+  )};
 `;
 
 const RightWrapper = styled.div`
@@ -40,24 +60,39 @@ const SubTitle = styled(Basic)`
   letter-spacing: -0.4px;
   color: ${({ theme }) => theme.color.textBlackMedium};
 
-  // FIXME: mixin으로 변경
-  font-size: 26px;
-  font-weight: 500;
-  ${lineHeight(26, 40)}};
+  ${font('title26', 'medium')}
+  ${lineHeight(26, 40)};
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile16', 'bold')};
+      ${lineHeight(16, 26)};
+      letter-spacing: -0.2px;
+    `,
+  )};
 `;
 
 const Title = styled(Basic)`
   letter-spacing: -0.6px;
   margin-top: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 
-  // FIXME: mixin으로 변경
-  font-size: 42px;
-  font-weight: 700;
-  ${lineHeight(42, 60)}};
+  ${font('display42', 'bold')}
+  ${lineHeight(42, 60)};
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile24', 'bold')};
+      ${lineHeight(24, 36)};
+      letter-spacing: -0.4px;
+      margin-top: 10px;
+      margin-bottom: 24px;
+    `,
+  )};
 `;
 
 export {
+  BackgroundWrapper,
   ThirdWrapper,
   InnerWrapper,
   LeftWrapper,

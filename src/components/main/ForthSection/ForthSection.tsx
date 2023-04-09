@@ -5,10 +5,13 @@ import React from 'react';
 import SummaryNews from '../SummaryNews';
 import useForthSection from './ForthSection.hook';
 import * as S from './ForthSection.style';
+import { IForthSectionProps } from './ForthSection.interface';
+import { injectIntl } from 'gatsby-plugin-intl';
 
-const ForthSection: React.FC = () => {
+const ForthSection = (props: IForthSectionProps) => {
   const { handleNavigateTo, newsList } = useForthSection();
   const { convertToDateString } = useDateFns();
+  const suffix = props.isMobile ? '_mobile' : '';
 
   return (
     <AnimationWrapper variantName="transition" initial="hidden" threshold={0.5}>
@@ -39,4 +42,4 @@ const ForthSection: React.FC = () => {
   );
 };
 
-export default ForthSection;
+export default injectIntl(ForthSection);

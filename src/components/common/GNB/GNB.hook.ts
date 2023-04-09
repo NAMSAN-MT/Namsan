@@ -1,5 +1,5 @@
 import { useIntl } from 'gatsby-plugin-intl';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { changeLocale } from 'gatsby-plugin-intl';
 import { getCurrentMenu } from '@Components/members/MembersWrapper/MembersWarpper.helper';
 

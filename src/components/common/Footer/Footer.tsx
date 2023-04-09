@@ -2,8 +2,10 @@ import React from 'react';
 import { TermAndConditionLink } from './Footer.const';
 import * as S from './Footer.style';
 import LogoFooter from '@Images/logo-footer.svg';
+import { injectIntl } from 'gatsby-plugin-intl';
+import { IFooterProps } from './Footer.interface';
 
-const Footer: React.FC = () => {
+const Footer = (props: IFooterProps) => {
   return (
     <S.FooterWrapper>
       <S.FirstSection>
@@ -17,7 +19,11 @@ const Footer: React.FC = () => {
               to={link.herf}
               about={link.alt}
             >
-              <span>{link.name}</span>
+              <span>
+                {props.intl.formatMessage({
+                  id: `footer.title_${index + 1}`,
+                })}
+              </span>
               {index !== TermAndConditionLink.length - 1 ? (
                 <span className="divider">|</span>
               ) : null}
@@ -27,9 +33,21 @@ const Footer: React.FC = () => {
       </S.FirstSection>
       <S.SecondSection>
         <div>
-          <span>대표전화 : 02.754.0550</span>
-          <span>대표팩스 : 02.754.0077</span>
-          <span>대표이메일 : namsan@namsanlaw.com</span>
+          <span className="fax">
+            {props.intl.formatMessage({
+              id: 'footer.phone',
+            })}
+          </span>
+          <span className="fax">
+            {props.intl.formatMessage({
+              id: 'footer.fax',
+            })}
+          </span>
+          <span>
+            {props.intl.formatMessage({
+              id: 'footer.email',
+            })}
+          </span>
         </div>
         <div>
           <span>© Copyright 2015 Lim, Chung & Suh All rights reserved</span>
@@ -39,4 +57,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default injectIntl(Footer);
