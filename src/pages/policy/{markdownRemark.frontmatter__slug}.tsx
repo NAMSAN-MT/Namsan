@@ -1,5 +1,5 @@
 import Layout from '@Components/common/Layout';
-import { PolicyStyleBox } from '@Components/policy/policy.style';
+import { PolicyStyleBox } from '@Components/policy/Policy.style';
 import { PageProps, graphql } from 'gatsby';
 import React from 'react';
 
