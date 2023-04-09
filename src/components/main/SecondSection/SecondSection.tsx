@@ -9,7 +9,6 @@ import { injectIntl } from 'gatsby-plugin-intl';
 const SecondSection = (props: ISecondSectionProps) => {
   const { handleNavigateTo } = useSecondSection();
   const suffix = props.isMobile ? '_mobile' : '';
-  console.log(props.isMobile);
 
   return (
     <AnimationWrapper variantName="transition" initial="hidden" threshold={0.5}>

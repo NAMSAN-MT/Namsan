@@ -4,9 +4,11 @@ import React from 'react';
 import useThirdSection from './ThirdSection.hook';
 import * as S from './ThirdSection.style';
 import { IThirdSectionProps } from './ThirdSection.interface';
+import { injectIntl } from 'gatsby-plugin-intl';
 
-const ThirdSection: React.FC<IThirdSectionProps> = ({ isMobile }) => {
+const ThirdSection = (props: IThirdSectionProps) => {
   const { handleNavigateTo, mainVideo } = useThirdSection();
+  const suffix = props.isMobile ? '_mobile' : '';
 
   return (
     <AnimationWrapper variantName="transition" initial="hidden" threshold={0.5}>
@@ -14,14 +16,22 @@ const ThirdSection: React.FC<IThirdSectionProps> = ({ isMobile }) => {
         <S.ThirdWrapper>
           <S.InnerWrapper>
             <S.LeftWrapper>
-              <S.SubTitle>법무법인 남산은</S.SubTitle>
-              <S.Title>
-                고객에게 최적화된 <br />
-                맞춤형 법률서비스를 <br />
-                제공하고 있습니다.
-              </S.Title>
+              <S.SubTitle>
+                {props.intl.formatMessage({
+                  id: 'main.title3_1',
+                })}
+              </S.SubTitle>
+              <S.Title
+                dangerouslySetInnerHTML={{
+                  __html: props.intl.formatMessage({
+                    id: `main.title3_2${suffix}`,
+                  }),
+                }}
+              ></S.Title>
               <BaseButton className="primary" onClick={handleNavigateTo}>
-                업무분야 바로가기
+                {props.intl.formatMessage({
+                  id: 'main.button3_name',
+                })}
               </BaseButton>
             </S.LeftWrapper>
             <S.RightWrapper>
@@ -41,4 +51,4 @@ const ThirdSection: React.FC<IThirdSectionProps> = ({ isMobile }) => {
   );
 };
 
-export default ThirdSection;
+export default injectIntl(ThirdSection);
