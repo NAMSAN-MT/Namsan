@@ -1,6 +1,10 @@
 {
-  "index": {
-    "test": "GATSBY PLUGIN INTL 테스트입니다🐳 {myValue}"
+  "common": {
+    "introduce": "남산소개",
+    "work": "업무분야",
+    "member": "구성원",
+    "news": "뉴스",
+    "contact": "Contact"
   },
   "introduce": {
     "phrase1": "세상과\n당신 사이,\n<span class='highlight'>법무법인 남산</span>이 있습니다.",

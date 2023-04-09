@@ -1,6 +1,10 @@
 {
-  "index": {
-    "test": "GATSBY PLUGIN INTL 테스트입니다🐳 {myValue}"
+  "common": {
+    "introduce": "ABOUT",
+    "work": "Expertise",
+    "member": "Professionals",
+    "news": "News",
+    "contact": "Contact"
   },
   "introduce": {
     "phrase1": "세상과<br/>당신 사이,<br/><span>{companyName}</span>이 있습니다.",

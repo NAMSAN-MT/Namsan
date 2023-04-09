@@ -11,7 +11,7 @@ export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Layout>{element}</Layout>
+      <>{element}</>
     </ThemeProvider>
   );
 };

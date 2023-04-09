@@ -1,3 +1,4 @@
+import Layout from '@Components/common/Layout';
 import Skeleton from '@Components/common/Skeleton';
 import FifthSection from '@Components/main/FifthSection';
 import SecondSection from '@Components/main/SecondSection';
@@ -9,7 +10,7 @@ const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));
 
 const Main: React.FC<PageProps> = () => {
   return (
-    <>
+    <Layout>
       <React.Suspense fallback={<Skeleton count={3} height={200} />}>
         <FirstSection />
       </React.Suspense>
@@ -21,7 +22,7 @@ const Main: React.FC<PageProps> = () => {
         <ForthSection />
       </React.Suspense>
       <FifthSection />
-    </>
+    </Layout>
   );
 };
 

@@ -1,7 +1,8 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const useGNB = () => {
   const language = useRef<'ko' | 'en'>('ko');
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleChangeLanguage = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target instanceof HTMLAnchorElement) {
@@ -14,9 +15,25 @@ const useGNB = () => {
     }
   };
 
+  const handleMenuButtonClick = () => {
+    setIsOpen(!isOpen);
+    console.log(isOpen);
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      window.document.body.style.overflow = 'hidden';
+      return;
+    }
+
+    window.document.body.style.overflow = 'auto';
+  }, [isOpen]);
+
   return {
     handleChangeLanguage,
     language,
+    handleMenuButtonClick,
+    isOpen,
   };
 };
 

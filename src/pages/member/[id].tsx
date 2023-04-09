@@ -1,15 +1,16 @@
 import React from 'react';
 import { PageProps } from 'gatsby';
 import Member from '@Components/member/Member';
+import Layout from '@Components/common/Layout';
 
 const MemberPage: React.FC<PageProps> = ({ params }) => {
   const { id: idStr } = params;
   const id = Number(idStr);
 
   return (
-    <div>
+    <Layout>
       <Member id={id} />
-    </div>
+    </Layout>
   );
 };
 
