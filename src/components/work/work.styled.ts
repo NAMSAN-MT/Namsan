@@ -45,5 +45,29 @@ export const Head = styled.div`
 `;
 
 export const Layout = styled.div`
-  margin: 100px 462px;
+  padding: 0px 90px;
+  margin: 100px auto;
+  max-width: 966px;
+  margin-bottom: 160px;
+`;
+
+export const MemberBox = styled.div`
+  margin-top: 80px;
+`;
+
+export const MemberList = styled.div`
+  display: inline-flex;
+  align-content: stretch;
+  flex-flow: row wrap;
+  margin-top: 32px;
+  justify-content: space-between;
+
+  & > li {
+    width: 230px;
+    img {
+      width: inherit;
+      object-fit: scale-down;
+      object-position: bottom;
+    }
+  }
 `;

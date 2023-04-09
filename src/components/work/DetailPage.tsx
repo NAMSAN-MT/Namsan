@@ -1,7 +1,19 @@
+import { getContainMember } from '@Api/work.api';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
-import React, { MouseEvent, useState } from 'react';
+import { IMember } from '@Interface/api.interface';
+import React, { MouseEvent, useState, useEffect } from 'react';
 import { CategoryDescription, CategoryPageProps } from './work.interface';
-import { Box, Contents, Head, Layout, SubTitle, Title } from './work.styled';
+import {
+  Box,
+  Contents,
+  Head,
+  Layout,
+  MemberBox,
+  MemberList,
+  SubTitle,
+  Title,
+} from './work.styled';
+import MemberItem from '@Components/members/MemberItem';
 
 export interface Props extends CategoryPageProps {}
 
@@ -19,6 +31,14 @@ const DetailPage = ({ categoryInfo, description }: Props) => {
       description: description[category.categoryId],
     })),
   ]);
+
+  const [memberList, setMemberList] = useState<IMember[]>([]);
+
+  useEffect(() => {
+    getContainMember(categoryInfo.name).then(memberList => {
+      setMemberList(memberList);
+    });
+  }, []);
 
   const isMainCategory = ({ categoryId }: CategoryDescription) =>
     categoryId.startsWith('C');
@@ -62,6 +82,21 @@ const DetailPage = ({ categoryInfo, description }: Props) => {
           )}
         </div>
       ))}
+      <MemberBox>
+        <SubTitle>주요 구성원</SubTitle>
+        <MemberList>
+          {memberList.map(member => (
+            <MemberItem
+              key={member.id}
+              name={member.name}
+              position={member.position}
+              businessFields={member.businessFields}
+              imagePath={member.imagePath}
+              id={member.id}
+            />
+          ))}
+        </MemberList>
+      </MemberBox>
     </Layout>
   );
 };

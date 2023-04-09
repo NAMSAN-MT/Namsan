@@ -2,6 +2,7 @@ import { Category, CategoryPageProps } from '@Components/work/work.interface';
 import { documentId } from 'firebase/firestore';
 import { GetDataListQuery } from './index.api';
 import { isEmpty } from 'lodash';
+import { IMember } from '@Interface/api.interface';
 
 export const getWorkFields = async (searchFields?: string[]) => {
   return await GetDataListQuery<Category>({
@@ -18,7 +19,7 @@ export const getWorkFields = async (searchFields?: string[]) => {
 };
 
 export const getContainMember = async (businessFields: string) => {
-  return await GetDataListQuery<Category>({
+  return await GetDataListQuery<IMember>({
     endPoint: 'members',
     queries: [
       {
