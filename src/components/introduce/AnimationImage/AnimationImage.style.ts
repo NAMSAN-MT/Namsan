@@ -1,9 +1,19 @@
-import { font, lineHeight, size } from '@Styles/mixin.style';
+import { font, lineHeight, mediaQuery, size } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
-const AnimationImageWrapper = styled.div`
+const AnimationImageWrapper = styled.div<{ src: string }>`
   position: relative;
   ${size('995px')}
+  background: url(${({ src }) => src});
+  background-size: cover;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    ${size('500px')};
+    background-position-x: -400px;
+  `,
+  )}
 `;
 
 const Background = styled.img`
@@ -33,6 +43,10 @@ const TextWrapper = styled.div`
   opacity: 0;
   transform: translateY(100%);
 
+  ${mediaQuery('pc1380', `left: 90px;`)}
+  ${mediaQuery('tablet', `left: 40px;`)}
+  ${mediaQuery('mobile', `top: 149px; bottom: 149px; left: 24px;`)}
+
   &.on {
     opacity: 1;
     transform: translateY(0);
@@ -44,12 +58,30 @@ const MainText = styled.div`
   ${font('display42', 'bold')};
   ${lineHeight(42, 60)};
   letter-spacing: -0.6px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    ${font('mobile24', 'bold')};
+    ${lineHeight(24, 36)};
+    letter-spacing: -0.4px;
+  `,
+  )}
 `;
 
 const SubText = styled.div`
   ${font('title26', 'regular')};
   ${lineHeight(26, 40)}
   letter-spacing: -0.4px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    ${font('mobile16', 'regular')};
+    ${lineHeight(16, 26)};
+    letter-spacing: -0.2px;
+  `,
+  )}
 `;
 
 export {

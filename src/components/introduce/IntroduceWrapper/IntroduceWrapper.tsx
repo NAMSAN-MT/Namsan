@@ -1,5 +1,5 @@
 import { injectIntl } from 'gatsby-plugin-intl';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AnimationImage from '../AnimationImage';
 import { IntroduceWrapperProps } from './IntroduceWrapper.interface';
 import * as S from './IntroduceWrapper.style';
@@ -7,26 +7,47 @@ import image1 from '@Images/introduce_bg1.png';
 import image2 from '@Images/introduce_bg2.png';
 
 const IntroduceWrapper = (props: IntroduceWrapperProps) => {
+  const [suffix, setSuffix] = useState<string>('');
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      const isMobile = window.innerWidth < 768;
+      setSuffix(isMobile ? '_mobile' : '');
+    });
+  });
+
   return (
     <S.IntroduceWrapper>
       <S.TextWrapper
         dangerouslySetInnerHTML={{
-          __html: props.intl.formatMessage({ id: 'introduce.phrase1' }),
+          __html: props.intl.formatMessage({
+            id: `introduce.phrase1${suffix}`,
+          }),
         }}
       ></S.TextWrapper>
       <AnimationImage
-        mainText={props.intl.formatMessage({ id: 'introduce.phrase2_main' })}
-        subText={props.intl.formatMessage({ id: 'introduce.phrase2_sub' })}
+        mainText={props.intl.formatMessage({
+          id: `introduce.phrase2_main${suffix}`,
+        })}
+        subText={props.intl.formatMessage({
+          id: `introduce.phrase2_sub${suffix}`,
+        })}
         imageSrc={image1}
       />
       <S.TextWrapper
         dangerouslySetInnerHTML={{
-          __html: props.intl.formatMessage({ id: 'introduce.phrase3_main' }),
+          __html: props.intl.formatMessage({
+            id: `introduce.phrase3_main${suffix}`,
+          }),
         }}
       ></S.TextWrapper>
       <AnimationImage
-        mainText={props.intl.formatMessage({ id: 'introduce.phrase4_main' })}
-        subText={props.intl.formatMessage({ id: 'introduce.phrase4_sub' })}
+        mainText={props.intl.formatMessage({
+          id: `introduce.phrase4_main${suffix}`,
+        })}
+        subText={props.intl.formatMessage({
+          id: `introduce.phrase4_sub${suffix}`,
+        })}
         imageSrc={image2}
       />
       <S.PressWrapper>

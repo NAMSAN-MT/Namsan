@@ -84,7 +84,9 @@ export const TextStyles = {
   body14: ['14px', 'demilight', 'medium'],
   mobile14: ['14px', 'regular', 'bold'],
   mobile16: ['16px', 'regular', 'bold'],
+  mobile18: ['18px', 'regular', 'bold'],
   mobile24: ['24px', 'medium', 'bold'],
+  mobile26: ['26px', 'medium', 'bold'],
 } as const;
 
 export const FontWeight: Record<string, number> = {
@@ -95,6 +97,8 @@ export const FontWeight: Record<string, number> = {
 };
 
 export const ScreenBreakPoints = {
-  mobile: '768px',
+  pc1380: '1920px',
+  pc1024: '1380px',
   tablet: '1024px',
+  mobile: '768px',
 } as const;
