@@ -6,7 +6,7 @@ const BannerWrapper = styled.div<{ even: boolean }>`
   height: 100%;
   background-color: ${({ theme }) => theme.color.grey50};
   border-radius: 20px;
-  padding: 26px 36px;
+  padding: 28px 36px 26px;
   margin-right: ${({ even }) => (even ? '24px' : '0')};
 `;
 
@@ -19,7 +19,6 @@ const ContentsWrapper = styled.div`
 const Tag = styled.span`
   color: ${({ theme }) => theme.color.textBlackMedium};
   letter-spacing: -0.2px;
-
   // FIXME: mixin으로 변경
   font-size: 16px;
   font-weight: 500;

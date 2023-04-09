@@ -8,6 +8,7 @@ import MenuIcon from '@Components/icons/MenuIcon';
 import { IGNBProps, IMobileMenuButtonProps } from './GNB.interface';
 import CloseIcon from '@Components/icons/CloseIcon';
 import { injectIntl } from 'gatsby-plugin-intl';
+import AnimationWrapper from '../AnimationWrapper/AnimationWrapper';
 
 const MobileMenuButton = ({ isOpen, onClick }: IMobileMenuButtonProps) => {
   return (
@@ -18,8 +19,14 @@ const MobileMenuButton = ({ isOpen, onClick }: IMobileMenuButtonProps) => {
 };
 
 const GNB = ({ intl }: IGNBProps) => {
-  const { handleChangeLanguage, language, isOpen, handleMenuButtonClick } =
-    useGNB();
+  const {
+    handleChangeLanguage,
+    language,
+    isOpen,
+    handleMenuButtonClick,
+    setSelected,
+    selected,
+  } = useGNB();
 
   return (
     <S.GNBWrapper className={isOpen ? 'open' : ''}>
@@ -30,8 +37,30 @@ const GNB = ({ intl }: IGNBProps) => {
       </S.LogoWrapper>
       <S.MainLinkWrapper>
         {GNBLink.map(link => (
-          <Link className="link" key={link.alt} to={link.herf} about={link.alt}>
-            {link.name}
+          <Link
+            key={link.alt}
+            onClick={() => {
+              if (selected === link.herf + '/') return;
+              setSelected(link.herf);
+            }}
+            className="link"
+            to={link.herf}
+            about={link.alt}
+          >
+            <S.LinkNameWrapper
+              whileHover={{
+                color: '#193F9A',
+                scale: 1.1,
+                originX: 0,
+              }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              selected={selected === link.herf + '/'}
+            >
+              {link.name}
+            </S.LinkNameWrapper>
+            {selected === link.herf + '/' && (
+              <S.LinkUnderline layoutId="underline" />
+            )}
           </Link>
         ))}
       </S.MainLinkWrapper>
@@ -49,28 +78,39 @@ const GNB = ({ intl }: IGNBProps) => {
         ))}
         <div className="divider">|</div>
       </S.LanguageWrapper>
-      <MobileMenuButton isOpen={isOpen} onClick={handleMenuButtonClick} />
+
       {isOpen && (
-        <S.MenuItemList className="menu-items">
-          <S.MenuItem>
-            <a href="/introduce">
-              {intl.formatMessage({ id: 'common.introduce' })}
-            </a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="work">{intl.formatMessage({ id: 'common.work' })}</a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="members">{intl.formatMessage({ id: 'common.member' })}</a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="news">{intl.formatMessage({ id: 'common.news' })}</a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="contact">{intl.formatMessage({ id: 'common.contact' })}</a>
-          </S.MenuItem>
-        </S.MenuItemList>
+        <AnimationWrapper
+          variantName="transition"
+          initial="hidden"
+          threshold={0.5}
+        >
+          <S.MenuItemList className="menu-items">
+            <S.MenuItem>
+              <a href="/introduce">
+                {intl.formatMessage({ id: 'common.introduce' })}
+              </a>
+            </S.MenuItem>
+            <S.MenuItem>
+              <a href="work">{intl.formatMessage({ id: 'common.work' })}</a>
+            </S.MenuItem>
+            <S.MenuItem>
+              <a href="members">
+                {intl.formatMessage({ id: 'common.member' })}
+              </a>
+            </S.MenuItem>
+            <S.MenuItem>
+              <a href="news">{intl.formatMessage({ id: 'common.news' })}</a>
+            </S.MenuItem>
+            <S.MenuItem>
+              <a href="contact">
+                {intl.formatMessage({ id: 'common.contact' })}
+              </a>
+            </S.MenuItem>
+          </S.MenuItemList>
+        </AnimationWrapper>
       )}
+      <MobileMenuButton isOpen={isOpen} onClick={handleMenuButtonClick} />
     </S.GNBWrapper>
   );
 };

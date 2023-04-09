@@ -2,8 +2,13 @@ import { flex, lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { Wrapper } from '../FirstSection/FirstSection.style';
 
-const ThirdWrapper = styled(Wrapper)`
+const BackgroundWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.pointGrey};
+`;
+
+const ThirdWrapper = styled(Wrapper)`
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const InnerWrapper = styled.div`
@@ -49,7 +54,7 @@ const SubTitle = styled(Basic)`
 const Title = styled(Basic)`
   letter-spacing: -0.6px;
   margin-top: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 
   // FIXME: mixin으로 변경
   font-size: 42px;
@@ -58,6 +63,7 @@ const Title = styled(Basic)`
 `;
 
 export {
+  BackgroundWrapper,
   ThirdWrapper,
   InnerWrapper,
   LeftWrapper,

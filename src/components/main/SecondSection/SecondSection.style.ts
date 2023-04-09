@@ -28,7 +28,7 @@ const Description = styled(Basic)`
   letter-spacing: -0.4px;
   color: ${({ theme }) => theme.color.textBlackMedium};
   margin-top: 12px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 
   // FIXME: mixin으로 변경
   font-size: 26px;

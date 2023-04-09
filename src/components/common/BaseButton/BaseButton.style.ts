@@ -37,7 +37,7 @@ const Support = styled(Base)`
   min-width: 104px;
   background-color: ${({ theme }) => theme.color.dividerGrey100};
   &:hover {
-    background-color: ${({ theme }) => theme.color.textBlackDisable};
+    background-color: ${({ theme }) => theme.color.grey200};
   }
 `;
 
@@ -48,7 +48,7 @@ const SupportLine = styled(Base)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   border: 1px solid ${({ theme }) => theme.color.grey300};
   &:hover {
-    background-color: ${({ theme }) => theme.color.textBlackDisable};
+    background-color: ${({ theme }) => theme.color.blue50};
   }
 `;
 
@@ -59,8 +59,9 @@ const Outline = styled(Base)`
   border-radius: 24px;
   padding: 11px 20px;
   min-width: 84px;
+  font-weight: 700;
   &:hover {
-    background-color: ${({ theme }) => theme.color.textBlackDisable};
+    background-color: ${({ theme }) => theme.color.blue50};
   }
 `;
 
@@ -143,7 +144,7 @@ const More = styled(IconBase)`
   ${lineHeight(18, 28)}};
   font-size: 18px;
   font-weight: 700;
-  &:hover {
+  &:hover { 
     color: ${({ theme }) => theme.color.blue200};
   }
   .icon {

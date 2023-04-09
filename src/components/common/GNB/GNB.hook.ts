@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from '@reach/router';
 
 const useGNB = () => {
+  const location = useLocation();
   const language = useRef<'ko' | 'en'>('ko');
   const [isOpen, setIsOpen] = useState(false);
+
+  const [selected, setSelected] = useState(location.pathname);
 
   const handleChangeLanguage = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target instanceof HTMLAnchorElement) {
@@ -34,6 +38,8 @@ const useGNB = () => {
     language,
     handleMenuButtonClick,
     isOpen,
+    setSelected,
+    selected,
   };
 };
 
