@@ -10,10 +10,13 @@ import CloseIcon from '@Components/icons/CloseIcon';
 import { injectIntl } from 'gatsby-plugin-intl';
 import AnimationWrapper from '../AnimationWrapper/AnimationWrapper';
 
-const MobileMenuButton = ({ isOpen, onClick }: IMobileMenuButtonProps) => {
+const MobileMenuButton = ({
+  isMobileMenuOpen,
+  onClick,
+}: IMobileMenuButtonProps) => {
   return (
     <S.MobileMenuButton onClick={onClick}>
-      {isOpen ? <CloseIcon /> : <MenuIcon />}
+      {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
     </S.MobileMenuButton>
   );
 };
@@ -22,31 +25,22 @@ const GNB = ({ intl }: IGNBProps) => {
   const {
     handleChangeLanguage,
     language,
-    isOpen,
+    isMobileMenuOpen,
     handleMenuButtonClick,
-    setSelected,
-    selected,
+    location,
   } = useGNB();
 
+  console.log(location);
   return (
-    <S.GNBWrapper className={isOpen ? 'open' : ''}>
+    <S.GNBWrapper className={isMobileMenuOpen ? 'open' : ''}>
       <S.LogoWrapper>
         <Link className="link" key="home" to="/" about="home">
           <img src={LogoGNB} width="100%" alt="icon" />
         </Link>
       </S.LogoWrapper>
       <S.MainLinkWrapper>
-        {GNBLink.map(link => (
-          <Link
-            key={link.alt}
-            onClick={() => {
-              if (selected === link.herf + '/') return;
-              setSelected(link.herf);
-            }}
-            className="link"
-            to={link.herf}
-            about={link.alt}
-          >
+        {GNBLink.map(({ href, alt, translationId }) => (
+          <Link key={alt} className="link" to={href} about={alt}>
             <S.LinkNameWrapper
               whileHover={{
                 color: '#193F9A',
@@ -54,63 +48,63 @@ const GNB = ({ intl }: IGNBProps) => {
                 originX: 0,
               }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-              selected={selected === link.herf + '/'}
+              selected={location === alt}
             >
-              {link.name}
+              {intl.formatMessage({ id: translationId })}
             </S.LinkNameWrapper>
-            {selected === link.herf + '/' && (
-              <S.LinkUnderline layoutId="underline" />
-            )}
+            {location === alt && <S.LinkUnderline layoutId="underline" />}
           </Link>
         ))}
       </S.MainLinkWrapper>
       <S.LanguageWrapper onClick={handleChangeLanguage}>
         {LanguageLink.map(link => (
           <S.LanguageLink
-            $isActive={language.current === link.lang}
+            $isActive={language === link.lang}
             key={link.alt}
-            to={link.herf}
             data-lang={link.lang}
-            about={link.alt}
           >
             {link.name}
           </S.LanguageLink>
         ))}
-        <div className="divider">|</div>
       </S.LanguageWrapper>
-
-      {isOpen && (
+      {isMobileMenuOpen && (
         <AnimationWrapper
           variantName="transition"
           initial="hidden"
           threshold={0.5}
         >
-          <S.MenuItemList className="menu-items">
-            <S.MenuItem>
-              <a href="/introduce">
-                {intl.formatMessage({ id: 'common.introduce' })}
-              </a>
-            </S.MenuItem>
-            <S.MenuItem>
-              <a href="work">{intl.formatMessage({ id: 'common.work' })}</a>
-            </S.MenuItem>
-            <S.MenuItem>
-              <a href="members">
-                {intl.formatMessage({ id: 'common.member' })}
-              </a>
-            </S.MenuItem>
-            <S.MenuItem>
-              <a href="news">{intl.formatMessage({ id: 'common.news' })}</a>
-            </S.MenuItem>
-            <S.MenuItem>
-              <a href="contact">
-                {intl.formatMessage({ id: 'common.contact' })}
-              </a>
-            </S.MenuItem>
-          </S.MenuItemList>
+          <S.MobileMenuWrapper>
+            <S.MobileMenuItemList className="menu-items">
+              {GNBLink.map(({ href, translationId, alt }) => (
+                <S.MobileMenuItem>
+                  <Link
+                    to={href}
+                    about={alt}
+                    key={alt}
+                    className={alt === location ? 'on' : ''}
+                  >
+                    {intl.formatMessage({ id: translationId })}
+                  </Link>
+                </S.MobileMenuItem>
+              ))}
+            </S.MobileMenuItemList>
+            <S.MobileLanguageWrapper onClick={handleChangeLanguage}>
+              {LanguageLink.map(link => (
+                <S.MobileLanguageLink
+                  $isActive={language === link.lang}
+                  data-lang={link.lang}
+                >
+                  {link.name}
+                </S.MobileLanguageLink>
+              ))}
+            </S.MobileLanguageWrapper>
+          </S.MobileMenuWrapper>
         </AnimationWrapper>
       )}
-      <MobileMenuButton isOpen={isOpen} onClick={handleMenuButtonClick} />
+      <MobileMenuButton
+        isMobileMenuOpen={isMobileMenuOpen}
+        onClick={handleMenuButtonClick}
+      />
     </S.GNBWrapper>
   );
 };

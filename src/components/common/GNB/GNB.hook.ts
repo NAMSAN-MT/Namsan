@@ -1,45 +1,47 @@
-import { useEffect, useRef, useState } from 'react';
 import { useLocation } from '@reach/router';
+import { useIntl } from 'gatsby-plugin-intl';
+import { useEffect, useMemo, useState } from 'react';
+import { changeLocale } from 'gatsby-plugin-intl';
+import { getCurrentMenu } from '@Components/members/MembersWrapper/MembersWarpper.helper';
 
 const useGNB = () => {
-  const location = useLocation();
-  const language = useRef<'ko' | 'en'>('ko');
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const intl = useIntl();
+  const location = useMemo(() => getCurrentMenu(), []);
+  const [selected, setSelected] = useState(location);
 
-  const [selected, setSelected] = useState(location.pathname);
+  const handleChangeLanguage = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    const { locale } = intl;
+    const { lang } = (e.target as HTMLElement).dataset as { lang: 'ko' | 'en' };
 
-  const handleChangeLanguage = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target instanceof HTMLAnchorElement) {
-      e.preventDefault();
-      // FIXME: 추후 수정 필요
-      const { lang } = e.target.dataset as { lang: 'ko' | 'en' };
-      if (!lang) return;
-      if (lang === language.current) return;
-      language.current = lang;
-    }
+    if (!lang) return;
+    if (lang === locale) return;
+
+    changeLocale(lang);
   };
 
   const handleMenuButtonClick = () => {
-    setIsOpen(!isOpen);
-    console.log(isOpen);
+    setMobileMenuOpen(!isMobileMenuOpen);
   };
 
   useEffect(() => {
-    if (isOpen) {
+    if (isMobileMenuOpen) {
       window.document.body.style.overflow = 'hidden';
       return;
     }
 
     window.document.body.style.overflow = 'auto';
-  }, [isOpen]);
+  }, [isMobileMenuOpen]);
 
   return {
     handleChangeLanguage,
-    language,
+    language: intl.locale,
     handleMenuButtonClick,
-    isOpen,
     setSelected,
     selected,
+    isMobileMenuOpen,
+    location,
   };
 };
 

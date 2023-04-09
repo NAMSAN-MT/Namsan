@@ -67,24 +67,14 @@ const LinkUnderline = styled(motion.div)`
   border-radius: 15px;
 `;
 
-const LanguageWrapper = styled.div`
+const LanguageWrapper = styled.ul`
   ${flex()};
   position: relative;
-  .divider {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    width: 1px;
-    font-weight: bold;
-    color: ${({ theme }) => theme.color.grey200};
-  }
   ${mediaQuery('tablet', `display: none;`)};
 `;
 
-const LanguageLink = styled(Link)<{ $isActive: boolean }>`
-  padding: 0 16px;
+const LanguageLink = styled.li<{ $isActive: boolean }>`
+  cursor: pointer;
   text-align: center;
   letter-spacing: -0.1px;
   color: ${({ theme, $isActive }) =>
@@ -93,9 +83,19 @@ const LanguageLink = styled(Link)<{ $isActive: boolean }>`
   ${font('body14', 'bold')}
   ${lineHeight(14, 22)};
   letter-spacing: -0.1px;
+
+  &::after {
+    content: '|';
+    color: ${({ theme }) => theme.color.textBlackDisable};
+    margin: 0 20px;
+  }
+
+  &:last-child::after {
+    content: '';
+  }
 `;
 
-const MenuItemList = styled.ul`
+const MobileMenuWrapper = styled.div`
   position: absolute;
   top: 55px;
   left: 0;
@@ -105,12 +105,15 @@ const MenuItemList = styled.ul`
   height: 100vh;
   padding: 0;
   padding-top: 55px;
+`;
+
+const MobileMenuItemList = styled.ul`
   ${flex('flex-start', 'flex-start')};
   flex-direction: column;
   gap: 24px;
 `;
 
-const MenuItem = styled.li`
+const MobileMenuItem = styled.li`
   ${font('mobile26', 'bold')};
   ${lineHeight(26, 36)};
   letter-spacing: -0.4px;
@@ -118,6 +121,45 @@ const MenuItem = styled.li`
 
   & a {
     color: ${({ theme }) => theme.color.textBlackHigh};
+    ${flex()}
+  }
+
+  & a.on {
+    &::after {
+      content: '';
+      display: block;
+      width: 44px;
+      height: 8px;
+      background-color: ${({ theme }) => theme.color.blue100};
+      margin-left: 20px;
+    }
+  }
+`;
+
+const MobileLanguageWrapper = styled.ul`
+  ${flex('flex-start', 'flex-start')};
+  ${font('mobile16', 'bold')};
+  ${lineHeight(16, 26)};
+  margin-top: 62px;
+  margin-left: 24px;
+
+  li {
+    cursor: pointer;
+  }
+`;
+
+const MobileLanguageLink = styled.li<{ $isActive: boolean }>`
+  color: ${({ theme, $isActive }) =>
+    $isActive ? theme.color.textBlackHigh : theme.color.textBlackDisable};
+
+  &::after {
+    content: '|';
+    color: ${({ theme }) => theme.color.textBlackDisable};
+    margin: 0 12px;
+  }
+
+  &:last-child::after {
+    content: '';
   }
 `;
 
@@ -135,7 +177,10 @@ export {
   LinkUnderline,
   LanguageWrapper,
   LanguageLink,
-  MenuItemList,
-  MenuItem,
+  MobileMenuWrapper,
+  MobileMenuItemList,
+  MobileMenuItem,
   MobileMenuButton,
+  MobileLanguageWrapper,
+  MobileLanguageLink,
 };
