@@ -1,33 +1,42 @@
-import { getWorkField } from '@Api/work.api';
+import { getContainMember } from '@Api/work.api';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
-import { RouteComponentProps } from '@reach/router';
-import React, { MouseEvent, useEffect, useState } from 'react';
-import { CategoryDescription } from './work.interface';
-import { Box, Contents, Head, Layout, SubTitle, Title } from './work.styled';
+import { IMember } from '@Interface/api.interface';
+import React, { MouseEvent, useState, useEffect } from 'react';
+import { CategoryDescription, CategoryPageProps } from './work.interface';
+import {
+  Box,
+  Contents,
+  Head,
+  Layout,
+  MemberBox,
+  MemberList,
+  SubTitle,
+  Title,
+} from './work.styled';
+import MemberItem from '@Components/members/MemberItem';
 
-export interface Props extends RouteComponentProps {
-  id?: string;
-}
+export interface Props extends CategoryPageProps {}
 
-const DetailPage = (props: Props) => {
+const DetailPage = ({ categoryInfo, description }: Props) => {
   const [category, setCategory] = useState<
     (CategoryDescription & { isOpen?: boolean })[]
-  >([]);
+  >([
+    {
+      categoryId: categoryInfo.categoryId,
+      name: categoryInfo.name,
+      description: description[categoryInfo.categoryId],
+    },
+    ...categoryInfo.subCategory.map(category => ({
+      ...category,
+      description: description[category.categoryId],
+    })),
+  ]);
+
+  const [memberList, setMemberList] = useState<IMember[]>([]);
+
   useEffect(() => {
-    getWorkField(props.id!).then(([{ categoryInfo, description }]) => {
-      setCategory(() => {
-        return [
-          {
-            categoryId: categoryInfo.categoryId,
-            name: categoryInfo.name,
-            description: description[categoryInfo.categoryId],
-          },
-          ...categoryInfo.subCategory.map(category => ({
-            ...category,
-            description: description[category.categoryId],
-          })),
-        ];
-      });
+    getContainMember(categoryInfo.name).then(memberList => {
+      setMemberList(memberList);
     });
   }, []);
 
@@ -73,6 +82,21 @@ const DetailPage = (props: Props) => {
           )}
         </div>
       ))}
+      <MemberBox>
+        <SubTitle>주요 구성원</SubTitle>
+        <MemberList>
+          {memberList.map(member => (
+            <MemberItem
+              key={member.id}
+              name={member.name}
+              position={member.position}
+              businessFields={member.businessFields}
+              imagePath={member.imagePath}
+              id={member.id}
+            />
+          ))}
+        </MemberList>
+      </MemberBox>
     </Layout>
   );
 };
