@@ -1,3 +1,4 @@
+import Layout from '@Components/common/Layout';
 import { PolicyStyleBox } from '@Components/policy/policy.style';
 import { PageProps, graphql } from 'gatsby';
 import React from 'react';
@@ -7,11 +8,13 @@ const PolicyTemplate = ({ data }: PageProps) => {
   const { html } = markdownRemark;
 
   return (
-    <PolicyStyleBox
-      dangerouslySetInnerHTML={{
-        __html: html,
-      }}
-    ></PolicyStyleBox>
+    <Layout>
+      <PolicyStyleBox
+        dangerouslySetInnerHTML={{
+          __html: html,
+        }}
+      ></PolicyStyleBox>
+    </Layout>
   );
 };
 

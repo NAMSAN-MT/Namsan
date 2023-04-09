@@ -1,4 +1,5 @@
 import { getWorkField } from '@Api/work.api';
+import Layout from '@Components/common/Layout';
 import DetailPage from '@Components/work/DetailPage';
 import { CategoryPageProps } from '@Components/work/work.interface';
 import { GetServerDataProps, PageProps } from 'gatsby';
@@ -13,7 +14,11 @@ interface Props {
 }
 
 const WorkDetail = ({ serverData }: PageProps & Props) => {
-  return <DetailPage {...serverData.data} />;
+  return (
+    <Layout>
+      <DetailPage {...serverData.data} />
+    </Layout>
+  );
 };
 
 export const getServerData = async (props: GetServerDataProps) => {
