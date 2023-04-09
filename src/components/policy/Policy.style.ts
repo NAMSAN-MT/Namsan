@@ -60,7 +60,6 @@ export const PolicyStyleBox = styled.div`
 
   & p {
     color: ${({ theme }) => theme.color.textBlackHigh};
-    /* ${font('body16', 'regular')}; */
     margin-top: 14px;
     line-height: 34px;
     font-size: 20px;
