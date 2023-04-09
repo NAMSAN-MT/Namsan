@@ -6,7 +6,7 @@ type TUrl = 'main' | 'introduce' | 'work' | 'members' | 'news' | 'contact';
 interface IGNBProps extends WrappedComponentProps {}
 
 interface IMobileMenuButtonProps {
-  isOpen: boolean;
+  isMobileMenuOpen: boolean;
   onClick: MouseEventHandler;
 }
 

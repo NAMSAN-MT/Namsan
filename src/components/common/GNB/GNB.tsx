@@ -9,20 +9,27 @@ import { IGNBProps, IMobileMenuButtonProps } from './GNB.interface';
 import CloseIcon from '@Components/icons/CloseIcon';
 import { injectIntl } from 'gatsby-plugin-intl';
 
-const MobileMenuButton = ({ isOpen, onClick }: IMobileMenuButtonProps) => {
+const MobileMenuButton = ({
+  isMobileMenuOpen,
+  onClick,
+}: IMobileMenuButtonProps) => {
   return (
     <S.MobileMenuButton onClick={onClick}>
-      {isOpen ? <CloseIcon /> : <MenuIcon />}
+      {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
     </S.MobileMenuButton>
   );
 };
 
 const GNB = ({ intl }: IGNBProps) => {
-  const { handleChangeLanguage, language, isOpen, handleMenuButtonClick } =
-    useGNB();
+  const {
+    handleChangeLanguage,
+    language,
+    isMobileMenuOpen,
+    handleMenuButtonClick,
+  } = useGNB();
 
   return (
-    <S.GNBWrapper className={isOpen ? 'open' : ''}>
+    <S.GNBWrapper className={isMobileMenuOpen ? 'open' : ''}>
       <S.LogoWrapper>
         <Link className="link" key="home" to="/" about="home">
           <img src={LogoGNB} width="100%" alt="icon" />
@@ -30,46 +37,46 @@ const GNB = ({ intl }: IGNBProps) => {
       </S.LogoWrapper>
       <S.MainLinkWrapper>
         {GNBLink.map(link => (
-          <Link className="link" key={link.alt} to={link.herf} about={link.alt}>
-            {link.name}
+          <Link className="link" key={link.alt} to={link.href} about={link.alt}>
+            {intl.formatMessage({ id: link.translationId })}
           </Link>
         ))}
       </S.MainLinkWrapper>
       <S.LanguageWrapper onClick={handleChangeLanguage}>
         {LanguageLink.map(link => (
           <S.LanguageLink
-            $isActive={language.current === link.lang}
+            $isActive={language === link.lang}
             key={link.alt}
-            to={link.herf}
             data-lang={link.lang}
-            about={link.alt}
           >
             {link.name}
           </S.LanguageLink>
         ))}
-        <div className="divider">|</div>
       </S.LanguageWrapper>
-      <MobileMenuButton isOpen={isOpen} onClick={handleMenuButtonClick} />
-      {isOpen && (
-        <S.MenuItemList className="menu-items">
-          <S.MenuItem>
-            <a href="/introduce">
-              {intl.formatMessage({ id: 'common.introduce' })}
-            </a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="work">{intl.formatMessage({ id: 'common.work' })}</a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="members">{intl.formatMessage({ id: 'common.member' })}</a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="news">{intl.formatMessage({ id: 'common.news' })}</a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="contact">{intl.formatMessage({ id: 'common.contact' })}</a>
-          </S.MenuItem>
-        </S.MenuItemList>
+      <MobileMenuButton
+        isMobileMenuOpen={isMobileMenuOpen}
+        onClick={handleMenuButtonClick}
+      />
+      {isMobileMenuOpen && (
+        <S.MobileMenuWrapper>
+          <S.MobileMenuItemList className="menu-items">
+            {GNBLink.map(({ href, translationId }) => (
+              <S.MobileMenuItem>
+                <a href={href}>{intl.formatMessage({ id: translationId })}</a>
+              </S.MobileMenuItem>
+            ))}
+          </S.MobileMenuItemList>
+          <S.MobileLanguageWrapper onClick={handleChangeLanguage}>
+            {LanguageLink.map(link => (
+              <S.MobileLanguageLink
+                $isActive={language === link.lang}
+                data-lang={link.lang}
+              >
+                {link.name}
+              </S.MobileLanguageLink>
+            ))}
+          </S.MobileLanguageWrapper>
+        </S.MobileMenuWrapper>
       )}
     </S.GNBWrapper>
   );
