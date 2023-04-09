@@ -61,12 +61,12 @@ const SubTitle = styled(Basic)`
   color: ${({ theme }) => theme.color.textBlackMedium};
 
   ${font('title26', 'medium')}
-  ${lineHeight(26, 40)}};
+  ${lineHeight(26, 40)};
   ${mediaQuery(
     'mobile',
     `
       ${font('mobile16', 'bold')};
-      ${lineHeight(16, 26)}};
+      ${lineHeight(16, 26)};
       letter-spacing: -0.2px;
     `,
   )};
@@ -78,12 +78,12 @@ const Title = styled(Basic)`
   margin-bottom: 32px;
 
   ${font('display42', 'bold')}
-  ${lineHeight(42, 60)}};
+  ${lineHeight(42, 60)};
   ${mediaQuery(
     'mobile',
     `
       ${font('mobile24', 'bold')};
-      ${lineHeight(24, 36)}};
+      ${lineHeight(24, 36)};
       letter-spacing: -0.4px;
       margin-top: 10px;
       margin-bottom: 24px;

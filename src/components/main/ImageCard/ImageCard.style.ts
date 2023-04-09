@@ -12,7 +12,7 @@ const CardWrapper = styled.div<{ url: string }>`
   //FIXME: mixin으로 변경
   font-size: 20px;
   font-weight: 700;
-  ${lineHeight(20, 34)}};
+  ${lineHeight(20, 34)};
 `;
 
 export { CardWrapper };

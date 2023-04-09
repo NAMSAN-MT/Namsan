@@ -26,7 +26,7 @@ const Tag = styled.span`
   // FIXME: mixin으로 변경
   font-size: 20px;
   font-weight: 700;
-  ${lineHeight(20, 34)}};
+  ${lineHeight(20, 34)};
 `;
 
 const Date = styled.span`
@@ -36,7 +36,7 @@ const Date = styled.span`
   // FIXME: mixin으로 변경
   font-size: 20px;
   font-weight: 400;
-  ${lineHeight(20, 34)}};
+  ${lineHeight(20, 34)};
 `;
 
 const Title = styled.div`
@@ -46,7 +46,7 @@ const Title = styled.div`
   // FIXME: mixin으로 변경
   font-size: 26px;
   font-weight: 500;
-  ${lineHeight(26, 40)}};
+  ${lineHeight(26, 40)};
 `;
 
 const IconWrapper = styled.div`

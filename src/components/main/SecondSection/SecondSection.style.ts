@@ -26,14 +26,14 @@ const Title = styled(Basic)`
   letter-spacing: -0.6px;
 
   ${font('display42', 'bold')}
-  ${lineHeight(42, 60)}};
+  ${lineHeight(42, 60)};
 
   ${mediaQuery(
     'mobile',
     `
       ${font('mobile24', 'bold')},
        letter-spacing: -0.4px;,
-       ${lineHeight(24, 36)}};
+       ${lineHeight(24, 36)};
     `,
   )};
 `;
@@ -45,18 +45,18 @@ const Description = styled(Basic)`
   margin-bottom: 32px;
 
   ${font('title26', 'medium')}
-  ${lineHeight(26, 40)}};
+  ${lineHeight(26, 40)};
 
-   ${mediaQuery(
-     'mobile',
-     `
+  ${mediaQuery(
+    'mobile',
+    `
       ${font('mobile16', 'regular')};
        letter-spacing: -0.4px;
-       ${lineHeight(16, 26)}};
+       ${lineHeight(16, 26)};
        margin-top: 8px;
        margin-bottom: 20px;
     `,
-   )};
+  )};
 `;
 
 export { SecondWrapper, Title, Description };

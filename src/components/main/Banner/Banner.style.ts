@@ -1,4 +1,4 @@
-import { flex, lineHeight } from '@Styles/mixin.style';
+import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const BannerWrapper = styled.div<{ even: boolean }>`
@@ -8,33 +8,63 @@ const BannerWrapper = styled.div<{ even: boolean }>`
   border-radius: 20px;
   padding: 28px 36px 26px;
   margin-right: ${({ even }) => (even ? '24px' : '0')};
+  ${mediaQuery(
+    'mobile',
+    `
+     margin-right: 0;
+     padding: 24px 20px 23px;
+    `,
+  )};
 `;
 
 const ContentsWrapper = styled.div`
   width: 100%;
   height: 100%;
   ${flex('space-between', 'center')};
+  ${mediaQuery(
+    'mobile',
+    `
+     ${flex('start', 'start')};
+     flex-direction: column;
+    `,
+  )};
 `;
 
 const Tag = styled.span`
   color: ${({ theme }) => theme.color.textBlackMedium};
   letter-spacing: -0.2px;
-  // FIXME: mixin으로 변경
-  font-size: 16px;
-  font-weight: 500;
-  ${lineHeight(16, 26)}};
+  ${font('body16', 'medium')}
+  ${lineHeight(16, 26)};
+  ${mediaQuery(
+    'mobile',
+    `
+    ${font('caption12', 'bold')};
+    ${lineHeight(12, 20)};
+    letter-spacing: -0.1px;
+    `,
+  )};
 `;
 
 const Title = styled.div`
   color: ${({ theme }) => theme.color.textBlackHigh};
   letter-spacing: -0.4px;
-  width: 240px;
   margin-top: 8px;
 
-  // FIXME: mixin으로 변경
-  font-size: 22px;
-  font-weight: 700;
-  ${lineHeight(22, 36)}};
+  ${font('title22', 'bold')}
+  ${lineHeight(22, 36)};
+  width: 240px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    ${font('mobile18', 'bold')};
+    ${lineHeight(18, 26)};
+    width: 200px;
+    letter-spacing: -0.2px;
+    margin-top: 4px;
+    margin-bottom: 16px;
+  `,
+  )}
 `;
 
 export { BannerWrapper, ContentsWrapper, Tag, Title };

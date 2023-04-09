@@ -31,7 +31,7 @@ const Title = styled.div`
   // FIXME: mixin으로 변경
   font-size: 42px;
   font-weight: 700;
-  ${lineHeight(42, 60)}};
+  ${lineHeight(42, 60)};
 `;
 
 export { TopWrapper, InnerWrapper, ForthWrapper, BottomWrapper, Title };
