@@ -11,7 +11,7 @@ const AnimationImageWrapper = styled.div<{ src: string }>`
     'mobile',
     `
     ${size('500px')};
-    background-position-x: -400px;
+    background-position-x: -300px;
   `,
   )}
 `;

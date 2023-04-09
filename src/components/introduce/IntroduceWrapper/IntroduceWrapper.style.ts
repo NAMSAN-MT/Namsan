@@ -4,7 +4,11 @@ import styled from 'styled-components';
 const IntroduceWrapper = styled.div`
   min-width: 1038px;
 
-  ${mediaQuery('mobile', `min-width: 0;`)}
+  ${mediaQuery(
+    'mobile',
+    `min-width: 0;
+    `,
+  )}
 
   .title {
     ${font('display42', 'bold')};
@@ -36,7 +40,7 @@ const TextWrapper = styled.div`
     'mobile',
     `
     ${size('100%')}
-    margin: 60px 0 60px 24px;
+    margin: 115px 0 60px 24px;
     ${font('mobile26', 'bold')};
     ${lineHeight(26, 36)};
     letter-spacing: -0.4px;
@@ -62,7 +66,7 @@ const PressWrapper = styled.div`
   ${mediaQuery(
     'mobile',
     `margin: 80px 0 36px 24px;
-    ${size('100%', '843px')};`,
+    ${size('100%', 'auto')};`,
   )}
 `;
 
@@ -82,9 +86,7 @@ const PressContentList = styled.ul`
   )}
 `;
 
-const PressContent = styled.li`
-  width: 384px;
-`;
+const PressContent = styled.li``;
 
 const PressContentTitle = styled.div`
   ${font('title26', 'bold')};

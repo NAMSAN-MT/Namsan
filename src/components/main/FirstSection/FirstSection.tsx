@@ -2,7 +2,7 @@ import React from 'react';
 import useFirstSection from './FirstSection.hook';
 import * as S from './FirstSection.style';
 
-const FirstSection: React.FC = () => {
+const FirstSection = () => {
   const { mainVideo } = useFirstSection();
 
   return (

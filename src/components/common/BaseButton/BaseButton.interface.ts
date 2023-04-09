@@ -7,6 +7,8 @@ type TClassName =
   | 'arrow-top'
   | 'hamburger'
   | 'share'
+  | 'download'
+  | 'direct'
   | 'more';
 type TType = 'button' | 'submit' | 'reset';
 

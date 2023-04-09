@@ -1,3 +1,4 @@
+import Layout from '@Components/common/Layout';
 import Work from '@Components/work';
 import DetailPage from '@Components/work/DetailPage';
 import { Router } from '@reach/router';
@@ -5,12 +6,12 @@ import React from 'react';
 
 const WorkIndex = () => {
   return (
-    <div>
+    <Layout>
       <Router basepath="/work">
         <Work path="/" />
         <DetailPage path="/:id" />
       </Router>
-    </div>
+    </Layout>
   );
 };
 
