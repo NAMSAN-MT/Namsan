@@ -82,11 +82,15 @@ export const TextStyles = {
   title18_2: ['18px', 'regular', 'medium'],
   body16: ['16px', 'demilight', 'medium'],
   body14: ['14px', 'demilight', 'medium'],
+  mobile12: ['12px', 'regular', 'bold'],
   mobile14: ['14px', 'regular', 'bold'],
   mobile16: ['16px', 'regular', 'bold'],
   mobile18: ['18px', 'regular', 'bold'],
+  mobile20: ['20px', 'regular', 'bold'],
   mobile24: ['24px', 'medium', 'bold'],
   mobile26: ['26px', 'medium', 'bold'],
+  mobile_list14: ['14px', 'regular', 'regular'],
+  caption12: ['12px', 'regular', 'bold'],
 } as const;
 
 export const FontWeight: Record<string, number> = {

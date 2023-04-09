@@ -49,6 +49,8 @@
     "educations": "학력",
     "careers": "자격 및 경력",
     "awards": "수상/연구실적",
-    "papers": "논문/저서"
+    "papers": "논문/저서",
+    "more": "더보기",
+    "less": "접기"
   }
 }
