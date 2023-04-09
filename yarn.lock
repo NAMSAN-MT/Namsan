@@ -1065,12 +1065,24 @@
   resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.7.5.tgz#f501e3db37a5ac659f21ba0c2e61b278e58b64b9"
   integrity sha512-Zbr2Eo0AQ4yzmQr/36/h+6LKjmdVBB3Q5cGzO6rtlIKB/IOpbQVUZW+XAnhpJmJr9sIF97OZjgbhG9k7Sjn4yw==
 
+"@emotion/is-prop-valid@^0.8.2":
+  version "0.8.8"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
+  integrity sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==
+  dependencies:
+    "@emotion/memoize" "0.7.4"
+
 "@emotion/is-prop-valid@^1.1.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-1.2.0.tgz#7f2d35c97891669f7e276eb71c83376a5dc44c83"
   integrity sha512-3aDpDprjM0AwaxGE09bOPkNxHpBd+kA6jty3RnaEXdweX1DF1U3VQpPYb0g1IStAuK7SVQ1cy+bNBBKp4W3Fjg==
   dependencies:
     "@emotion/memoize" "^0.8.0"
+
+"@emotion/memoize@0.7.4":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
+  integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
 "@emotion/memoize@^0.8.0":
   version "0.8.0"
@@ -5929,6 +5941,15 @@ fraction.js@^4.2.0:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
+framer-motion@^10.3.0:
+  version "10.8.5"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.8.5.tgz#3fc236a186913b8fbd4a61e70034168b668161c7"
+  integrity sha512-qwvUAIwCc6fEZhg7ST+/z+f7Vt882jJvLiWZUHNdq2oZ/Y7gM6mLlpKi9xQg+pLu6DQVypikcKQ+MKnoFoXAJg==
+  dependencies:
+    tslib "^2.4.0"
+  optionalDependencies:
+    "@emotion/is-prop-valid" "^0.8.2"
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -9890,6 +9911,11 @@ react-full-page@^0.1.12:
   dependencies:
     core-js "^3.16.2"
 
+react-intersection-observer@^9.4.3:
+  version "9.4.3"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.4.3.tgz#ec84ce0c25cad548075130ea045ac5c7adf908f3"
+  integrity sha512-WNRqMQvKpupr6MzecAQI0Pj0+JQong307knLP4g/nBex7kYfIaZsPpXaIhKHR+oV8z+goUbH9e10j6lGRnTzlQ==
+
 react-intl@^3.12.0:
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.12.1.tgz#e9a783ea20302e9da25e4eda59e5593a43d2ec80"
@@ -9926,6 +9952,11 @@ react-server-dom-webpack@0.0.0-experimental-c8b778b7f-20220825:
     acorn "^6.2.1"
     loose-envify "^1.1.0"
     neo-async "^2.6.1"
+
+react-spinners@^0.13.8:
+  version "0.13.8"
+  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.13.8.tgz#5262571be0f745d86bbd49a1e6b49f9f9cb19acc"
+  integrity sha512-3e+k56lUkPj0vb5NDXPVFAOkPC//XyhKPJjvcGjyMNPWsBKpplfeyialP74G7H7+It7KzhtET+MvGqbKgAqpZA==
 
 react@^18.2.0:
   version "18.2.0"

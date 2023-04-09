@@ -1,41 +1,39 @@
 const GNBLink = [
   {
-    name: '남산소개',
-    herf: '/introduce',
+    href: '/introduce',
     alt: 'introduce',
+    translationId: 'common.introduce',
   },
   {
-    name: '업무분야',
-    herf: '/work',
+    href: '/work',
     alt: 'work',
+    translationId: 'common.work',
   },
   {
-    name: '구성원',
-    herf: '/members',
+    href: '/members',
     alt: 'members',
+    translationId: 'common.members',
   },
   {
-    name: '소식',
-    herf: '/news',
+    href: '/news',
     alt: 'news',
+    translationId: 'common.news',
   },
   {
-    name: 'Contact',
-    herf: '/contact',
+    href: '/contact',
     alt: 'contact',
+    translationId: 'common.contact',
   },
 ] as const;
 
 const LanguageLink = [
   {
     name: 'KOR',
-    herf: '#ko',
     alt: 'kor',
     lang: 'ko',
   },
   {
     name: 'ENG',
-    herf: '#en',
     alt: 'eng',
     lang: 'en',
   },

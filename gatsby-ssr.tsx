@@ -9,8 +9,7 @@ export const wrapRootElement: GatsbySSR['wrapRootElement'] = ({ element }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-
-      <Layout>{element}</Layout>
+      <>{element}</>
     </ThemeProvider>
   );
 };

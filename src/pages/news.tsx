@@ -1,3 +1,4 @@
+import Layout from '@Components/common/Layout';
 import NewsMain from '@Components/news/Main';
 import { flex, font, mediaQuery, size } from '@Styles/mixin.style';
 import { PageProps } from 'gatsby';
@@ -6,12 +7,14 @@ import styled from 'styled-components';
 
 const Main: React.FC<PageProps> = () => {
   return (
-    <Wrapper>
-      <Header>
-        <Title>남산소식</Title>
-      </Header>
-      <NewsMain />
-    </Wrapper>
+    <Layout>
+      <Wrapper>
+        <Header>
+          <Title>남산소식</Title>
+        </Header>
+        <NewsMain />
+      </Wrapper>
+    </Layout>
   );
 };
 
