@@ -105,6 +105,18 @@ const MobileMenuItem = styled.li`
 
   & a {
     color: ${({ theme }) => theme.color.textBlackHigh};
+    ${flex()}
+  }
+
+  & a.on {
+    &::after {
+      content: '';
+      display: block;
+      width: 44px;
+      height: 8px;
+      background-color: ${({ theme }) => theme.color.blue100};
+      margin-left: 20px;
+    }
   }
 `;
 

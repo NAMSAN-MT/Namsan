@@ -26,6 +26,7 @@ const GNB = ({ intl }: IGNBProps) => {
     language,
     isMobileMenuOpen,
     handleMenuButtonClick,
+    location,
   } = useGNB();
 
   return (
@@ -60,9 +61,16 @@ const GNB = ({ intl }: IGNBProps) => {
       {isMobileMenuOpen && (
         <S.MobileMenuWrapper>
           <S.MobileMenuItemList className="menu-items">
-            {GNBLink.map(({ href, translationId }) => (
+            {GNBLink.map(({ href, translationId, alt }) => (
               <S.MobileMenuItem>
-                <a href={href}>{intl.formatMessage({ id: translationId })}</a>
+                <Link
+                  to={href}
+                  about={alt}
+                  key={alt}
+                  className={alt === location ? 'on' : ''}
+                >
+                  {intl.formatMessage({ id: translationId })}
+                </Link>
               </S.MobileMenuItem>
             ))}
           </S.MobileMenuItemList>

@@ -1,17 +1,21 @@
 import { useIntl } from 'gatsby-plugin-intl';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { changeLocale } from 'gatsby-plugin-intl';
+import { getCurrentMenu } from '@Components/members/MembersWrapper/MembersWarpper.helper';
 
 const useGNB = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const intl = useIntl();
+  const location = useMemo(() => getCurrentMenu(), []);
 
   const handleChangeLanguage = (e: React.MouseEvent<HTMLElement>) => {
-    const { locale } = intl;
     e.preventDefault();
+    const { locale } = intl;
     const { lang } = (e.target as HTMLElement).dataset as { lang: 'ko' | 'en' };
+
     if (!lang) return;
     if (lang === locale) return;
+
     changeLocale(lang);
   };
 
@@ -33,6 +37,7 @@ const useGNB = () => {
     language: intl.locale,
     handleMenuButtonClick,
     isMobileMenuOpen,
+    location,
   };
 };
 
