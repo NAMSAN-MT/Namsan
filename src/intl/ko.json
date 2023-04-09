@@ -22,6 +22,14 @@
     "tag5_2": "Career",
     "button5_2": "지원 바로가기"
   },
+  "footer": {
+    "title_1": "면책공고",
+    "title_2": "개인정보 처리방침",
+    "title_3": "Contact Us",
+    "phone": "대표전화 : 02.754.0550",
+    "fax": "대표팩스 : 02.754.0077",
+    "email": "대표이메일 : namsan@namsanlaw.com"
+  },
   "introduce": {
     "phrase1": "세상과\n당신 사이,\n<span class='highlight'>법무법인 남산</span>이 있습니다.",
     "phrase1_mobile": "세상과\n당신 사이,\n<span class='highlight'>법무법인 남산</span>이\n 있습니다.",
