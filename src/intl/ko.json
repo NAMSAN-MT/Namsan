@@ -6,6 +6,12 @@
     "news": "뉴스",
     "contact": "Contact"
   },
+  "main": {
+    "title2": "“40년 전통의 팀워크”",
+    "description2": "법무법인 남산은 깊이 있는 역량과 정성으로<br/> 고객에게 개별적이고도 충실한 맞춤형 서비스를 제공합니다.",
+    "description2_mobile": "남산은 깊이 있는 역량과 정성으로 고객에게<br/> 최고의 맞춤형 서비스를 제공합니다.",
+    "button2_name": "소개 바로가기"
+  },
   "introduce": {
     "phrase1": "세상과\n당신 사이,\n<span class='highlight'>법무법인 남산</span>이 있습니다.",
     "phrase1_mobile": "세상과\n당신 사이,\n<span class='highlight'>법무법인 남산</span>이\n 있습니다.",

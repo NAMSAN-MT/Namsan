@@ -1,4 +1,4 @@
-import { lineHeight } from '@Styles/mixin.style';
+import { font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import { flex } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import ArrowUpIcon from '@Images/ic_arrow_top.svg';
@@ -13,12 +13,18 @@ const Base = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-  // FIXME: MIXIn으로 변경
   ${lineHeight(16, 26)}};
-  font-size: 16px;
-  font-weight: 500;
+  ${font('body16', 'medium')}
   letter-spacing: -0.2px;
   border-radius: 50px;
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile14', 'bold')},
+       letter-spacing: -0.1px;,
+       ${lineHeight(14, 22)}};
+    `,
+  )};
 `;
 
 const Primary = styled(Base)`
@@ -29,6 +35,12 @@ const Primary = styled(Base)`
   &:hover {
     background-color: ${({ theme }) => theme.color.blue300};
   }
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 12px 20px;
+    `,
+  )};
 `;
 
 const Support = styled(Base)`
@@ -39,6 +51,12 @@ const Support = styled(Base)`
   &:hover {
     background-color: ${({ theme }) => theme.color.grey200};
   }
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 12px 20px;
+    `,
+  )};
 `;
 
 const SupportLine = styled(Base)`
@@ -50,6 +68,12 @@ const SupportLine = styled(Base)`
   &:hover {
     background-color: ${({ theme }) => theme.color.blue50};
   }
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 12px 20px;
+    `,
+  )};
 `;
 
 const Outline = styled(Base)`
@@ -63,6 +87,12 @@ const Outline = styled(Base)`
   &:hover {
     background-color: ${({ theme }) => theme.color.blue50};
   }
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 12px 20px;
+    `,
+  )};
 `;
 
 const Tag = styled(Base)`
@@ -73,9 +103,8 @@ const Tag = styled(Base)`
   padding: 4px 8px;
   letter-spacing: -0.1px;
   min-width: 68px;
-  // FIXME: MIXIn으로 변경
+  ${font('body14', 'medium')}
   ${lineHeight(14, 22)}};
-  font-size: 14px;
   &:hover {
     background-color: ${({ theme }) => theme.color.textBlackDisable};
   }
@@ -140,10 +169,8 @@ const More = styled(IconBase)`
   border: 1px solid transparent;
   letter-spacing: -0.2px;
   
-  // FIXME: MIXIn으로 변경
   ${lineHeight(18, 28)}};
-  font-size: 18px;
-  font-weight: 700;
+  ${font('title18', 'bold')}
   &:hover { 
     color: ${({ theme }) => theme.color.blue200};
   }

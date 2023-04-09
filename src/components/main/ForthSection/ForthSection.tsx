@@ -5,8 +5,9 @@ import React from 'react';
 import SummaryNews from '../SummaryNews';
 import useForthSection from './ForthSection.hook';
 import * as S from './ForthSection.style';
+import { IForthSectionProps } from './ForthSection.interface';
 
-const ForthSection: React.FC = () => {
+const ForthSection: React.FC<IForthSectionProps> = ({ isMobile }) => {
   const { handleNavigateTo, newsList } = useForthSection();
   const { convertToDateString } = useDateFns();
 

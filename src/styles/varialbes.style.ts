@@ -101,9 +101,16 @@ export const FontWeight: Record<string, number> = {
   bold: 700,
 };
 
+export const Screen = {
+  pc1380: 1920,
+  pc1024: 1380,
+  tablet: 1024,
+  mobile: 768,
+} as const;
+
 export const ScreenBreakPoints = {
-  pc1380: '1920px',
-  pc1024: '1380px',
-  tablet: '1024px',
-  mobile: '768px',
+  pc1380: `${Screen.pc1380}px`,
+  pc1024: `${Screen.pc1024}px`,
+  tablet: `${Screen.tablet}px`,
+  mobile: `${Screen.mobile}px`,
 } as const;

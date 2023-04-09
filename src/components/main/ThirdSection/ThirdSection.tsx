@@ -1,12 +1,11 @@
 import AnimationWrapper from '@Components/common/AnimationWrapper';
 import BaseButton from '@Components/common/BaseButton';
 import React from 'react';
-import ImageCard from '../ImageCard';
-import { ImageCardList1, ImageCardList2 } from '../ImageCard/ImageCard.const';
 import useThirdSection from './ThirdSection.hook';
 import * as S from './ThirdSection.style';
+import { IThirdSectionProps } from './ThirdSection.interface';
 
-const ThirdSection: React.FC = () => {
+const ThirdSection: React.FC<IThirdSectionProps> = ({ isMobile }) => {
   const { handleNavigateTo, mainVideo } = useThirdSection();
 
   return (

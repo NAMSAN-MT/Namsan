@@ -1,4 +1,4 @@
-import { flex } from '@Styles/mixin.style';
+import { flex, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { Wrapper } from '../FirstSection/FirstSection.style';
 

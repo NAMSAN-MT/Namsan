@@ -1,4 +1,4 @@
-import { flex, lineHeight } from '@Styles/mixin.style';
+import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { Wrapper } from '../FirstSection/FirstSection.style';
 
@@ -8,6 +8,13 @@ const SecondWrapper = styled(Wrapper)`
   width: 100%;
   min-height: 560px;
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
+
+  ${mediaQuery(
+    'mobile',
+    `
+      min-height: 460px;
+    `,
+  )};
 `;
 
 const Basic = styled.div`
@@ -18,10 +25,17 @@ const Basic = styled.div`
 const Title = styled(Basic)`
   letter-spacing: -0.6px;
 
-  // FIXME: mixin으로 변경
-  font-size: 42px;
-  font-weight: 700;
+  ${font('display42', 'bold')}
   ${lineHeight(42, 60)}};
+
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile24', 'bold')},
+       letter-spacing: -0.4px;,
+       ${lineHeight(24, 36)}};
+    `,
+  )};
 `;
 
 const Description = styled(Basic)`
@@ -30,10 +44,19 @@ const Description = styled(Basic)`
   margin-top: 12px;
   margin-bottom: 32px;
 
-  // FIXME: mixin으로 변경
-  font-size: 26px;
-  font-weight: 500;
+  ${font('title26', 'medium')}
   ${lineHeight(26, 40)}};
+
+   ${mediaQuery(
+     'mobile',
+     `
+      ${font('mobile16', 'regular')};
+       letter-spacing: -0.4px;
+       ${lineHeight(16, 26)}};
+       margin-top: 8px;
+       margin-bottom: 20px;
+    `,
+   )};
 `;
 
 export { SecondWrapper, Title, Description };

@@ -1,4 +1,4 @@
-import { flex, lineHeight } from '@Styles/mixin.style';
+import { flex, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -16,40 +16,15 @@ const FrirstWrapper = styled.div`
       rgba(0, 0, 0, 5e-5) 50%
     ),
     ${({ theme }) => theme.color.blue100};
+  video {
+    object-fit: cover;
+  }
+  ${mediaQuery(
+    'mobile',
+    `
+      height: 560px;
+    `,
+  )};
 `;
 
-const Basic = styled.div`
-  text-align: center;
-  color: ${({ theme }) => theme.color.textWhiteHigh};
-`;
-
-const Title = styled(Basic)`
-  letter-spacing: 5px;
-  text-transform: uppercase;
-
-  // FIXME: mixin으로 변경
-  font-family: 'FHAlphaTestLight';
-  font-size: 100px;
-  font-weight: 300;
-  ${lineHeight(100, 140)}};
-`;
-
-const SubTitle = styled(Basic)`
-  // FIXME: mixin으로 변경
-  font-size: 30px;
-  font-weight: 274;
-  ${lineHeight(30, 36)}};
-`;
-
-const Description = styled(Basic)`
-  letter-spacing: -0.4px;
-  color: ${({ theme }) => theme.color.textWhiteDisable};
-  margin-top: 38px;
-
-  // FIXME: mixin으로 변경
-  font-size: 26px;
-  font-weight: 500;
-  ${lineHeight(26, 40)}};
-`;
-
-export { Wrapper, FrirstWrapper, Title, SubTitle, Description };
+export { Wrapper, FrirstWrapper };
