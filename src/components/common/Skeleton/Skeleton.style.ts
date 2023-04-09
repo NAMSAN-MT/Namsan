@@ -1,4 +1,4 @@
-import { flex } from '@Styles/mixin.style';
+import { flex, font } from '@Styles/mixin.style';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
@@ -26,9 +26,7 @@ const TermAndConditionLink = styled(Link)`
   letter-spacing: -0.2px;
   color: ${({ theme }) => theme.color.grey500};
 
-  // FIXME: mixin으로 변경
-  font-size: 16px;
-  font-weight: 500;
+  ${font('body16', 'medium')};
   line-height: 26px;
 
   .divider {
@@ -48,9 +46,7 @@ const SecondSection = styled.div`
     color: ${({ theme }) => theme.color.grey500};
     margin-right: 10px;
 
-    // FIXME: mixin으로 변경
-    font-size: 14px;
-    font-weight: 350;
+    ${font('body14', 'demilight')};
     line-height: 22px;
   }
 `;

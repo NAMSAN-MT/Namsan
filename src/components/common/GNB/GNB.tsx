@@ -29,8 +29,6 @@ const GNB = ({ intl }: IGNBProps) => {
     handleMenuButtonClick,
     location,
   } = useGNB();
-
-  console.log(location);
   return (
     <S.GNBWrapper className={isMobileMenuOpen ? 'open' : ''}>
       <S.LogoWrapper>

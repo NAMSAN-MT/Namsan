@@ -1,4 +1,4 @@
-import { flex, lineHeight } from '@Styles/mixin.style';
+import { flex, font, lineHeight } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const CardWrapper = styled.div<{ url: string }>`
@@ -9,9 +9,7 @@ const CardWrapper = styled.div<{ url: string }>`
   text-align: center;
   color: ${({ theme }) => theme.color.textWhiteHigh};
 
-  //FIXME: mixin으로 변경
-  font-size: 20px;
-  font-weight: 700;
+  ${font('title20', 'bold')};
   ${lineHeight(20, 34)};
 `;
 
