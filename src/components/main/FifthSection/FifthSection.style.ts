@@ -5,12 +5,12 @@ import { Wrapper } from '../FirstSection/FirstSection.style';
 const FifthWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   margin-top: 150px;
-  margin-bottom: 160px;
+  margin-bottom: 40px;
   ${mediaQuery(
     'mobile',
     `
      margin-top: 60px;
-     margin-bottom: 100px;
+     margin-bottom: 18px;
     `,
   )};
 `;
