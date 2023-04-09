@@ -40,6 +40,13 @@ const config: GatsbyConfig = {
       __key: 'pages',
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/src/content`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
         alias: {
@@ -73,6 +80,22 @@ const config: GatsbyConfig = {
         languages: [`en`, `ko`],
         defaultLanguage: `ko`,
         redirect: false,
+      },
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-typescript',
+            options: {
+              prettierOptions: {
+                semi: false,
+                singleQuote: false,
+              },
+            },
+          },
+        ],
       },
     },
   ],
