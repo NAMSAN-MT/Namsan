@@ -1,5 +1,5 @@
 import Layout from '@Components/common/Layout';
-import Skeleton from '@Components/common/Skeleton';
+import Loading from '@Components/common/Loading';
 import FifthSection from '@Components/main/FifthSection';
 import SecondSection from '@Components/main/SecondSection';
 import useResize from '@Hooks/useResize';
@@ -13,14 +13,14 @@ const Main: React.FC<PageProps> = () => {
   const { isMobile } = useResize();
   return (
     <Layout>
-      <React.Suspense fallback={<Skeleton count={3} height={200} />}>
+      <React.Suspense fallback={<Loading height="500px" />}>
         <FirstSection />
       </React.Suspense>
       <SecondSection isMobile={isMobile} />
-      <React.Suspense fallback={<Skeleton count={2} />}>
+      <React.Suspense fallback={<Loading height="500px" />}>
         <ThirdSection isMobile={isMobile} />
       </React.Suspense>
-      <React.Suspense fallback={<Skeleton count={3} />}>
+      <React.Suspense fallback={<Loading height="500px" />}>
         <ForthSection isMobile={isMobile} />
       </React.Suspense>
       <FifthSection isMobile={isMobile} />
