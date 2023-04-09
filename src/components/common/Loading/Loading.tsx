@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './Loading.style';
-import 'react-loading-skeleton/dist/skeleton.css';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { ILoadingProps } from './Loading.interface';
 import { color } from '@Styles/varialbes.style';
