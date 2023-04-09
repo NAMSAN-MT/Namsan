@@ -26,28 +26,14 @@ const ThirdSection: React.FC = () => {
               </BaseButton>
             </S.LeftWrapper>
             <S.RightWrapper>
-              {/* <video
-              src={mainVideo}
-              autoPlay
-              loop
-              muted
-              width="100%"
-              height="100%"
-            /> */}
-              <S.CardWrapper>
-                {ImageCardList1.map(item => (
-                  <ImageCard key={item.url} imageUrl={item.url}>
-                    {item.title}
-                  </ImageCard>
-                ))}
-              </S.CardWrapper>
-              <S.CardWrapper isDown>
-                {ImageCardList2.map(item => (
-                  <ImageCard key={item.url} imageUrl={item.url}>
-                    {item.title}
-                  </ImageCard>
-                ))}
-              </S.CardWrapper>
+              <video
+                src={mainVideo}
+                autoPlay
+                loop
+                muted
+                width="100%"
+                height="100%"
+              />
             </S.RightWrapper>
           </S.InnerWrapper>
         </S.ThirdWrapper>

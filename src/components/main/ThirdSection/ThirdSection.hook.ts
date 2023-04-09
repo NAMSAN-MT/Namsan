@@ -8,7 +8,7 @@ const useThirdSection = () => {
 
   useEffect(() => {
     const init = async () => {
-      const mainVideo = await getVideo('main/card2.mov');
+      const mainVideo = await getVideo('main/cardFull.mp4');
       setMainVideo(mainVideo);
     };
     init();
