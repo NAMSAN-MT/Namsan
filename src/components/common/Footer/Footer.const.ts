@@ -2,12 +2,12 @@
 const TermAndConditionLink = [
   {
     name: '면책공고',
-    herf: '#disclaimer',
+    herf: '/policy/disclaimer',
     alt: 'disclaimer',
   },
   {
     name: '개인정보 처리방침',
-    herf: '#privacy',
+    herf: '/policy/privacy',
     alt: 'privacy',
   },
   {
