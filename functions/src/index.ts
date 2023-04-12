@@ -1,8 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import algoliasearch from "algoliasearch";
-import {TextEncoder, TextDecoder} from "util";
-
+import * as Helper from "./helper";
 // admin.initializeApp({
 //   credential: admin.credential.cert(serviceAccount as ServiceAccount),
 //   databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -31,32 +30,6 @@ const INDEX_NAME = "dev_namsan";
 const REGION = "asia-northeast2";
 const COLLECTION_INDEX = algoliaClient.initIndex(INDEX_NAME);
 
-const cutStringTo1000Bytes = (myString: string) => {
-  const encoder = new TextEncoder();
-  // eslint-disable-next-line
-  const specialTypeReg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"”“‘’·…]/gi;
-  const str = myString.replace(specialTypeReg, "").replace(/\s/g, "");
-  const bytes = encoder.encode(str);
-
-  if (bytes.length <= 1000) {
-    return [str];
-  }
-
-  const numChunks = Math.ceil(bytes.length / 1000);
-  const truncatedStrings = [];
-
-  for (let i = 0; i < numChunks; i++) {
-    const start = i * 1000;
-    const end = start + 1000;
-    const truncatedBytes = bytes.slice(start, end);
-    const decoder = new TextDecoder();
-    const truncatedString = decoder.decode(truncatedBytes);
-    truncatedStrings.push(truncatedString);
-  }
-
-  return truncatedStrings;
-};
-
 export const helloWorld = functions
   .region(REGION)
   .https.onRequest(async (request, response) => {
@@ -64,80 +37,29 @@ export const helloWorld = functions
     const algoliaCollection: any[] = [];
     const snapshot = await firestore.collection("news").listDocuments();
 
-    await new Promise(
-      (resolve, reject) => {
-        snapshot.forEach(async ( doc: any
-        ) => {
-          const document = (await doc.get()).data();
-          const contentRecordList = cutStringTo1000Bytes(document.content);
-          const content = contentRecordList.reduce((acc, cur, index) => {
-            return {...acc, [`content${index + 1}`]: cur};
-          }, {});
+    await new Promise((resolve, reject) => {
+      snapshot.forEach(async (doc: any) => {
+        const document = (await doc.get()).data();
+        const contentRecordList = Helper.cutStringTo1000Bytes(document.content);
+        const content = Helper.contentReduce(contentRecordList);
 
-          algoliaCollection.push({
-            title: document.title,
-            ...content,
-          });
+        algoliaCollection.push({
+          title: document.title,
+          ...content,
+        });
 
-          resolve(algoliaCollection);
-        }),
-        (error: unknown) => {
-          reject(error);
-        };
-      });
+        resolve(algoliaCollection);
+      }),
+      (error: unknown) => {
+        reject(error);
+      };
+    });
 
     // After all records are created, save them to Algolia
-    COLLECTION_INDEX.saveObjects(
-      algoliaCollection,
-      {autoGenerateObjectIDIfNotExist: true},
-    );
+    COLLECTION_INDEX.saveObjects(algoliaCollection, {
+      autoGenerateObjectIDIfNotExist: true,
+    }).catch((res) => console.log("Error with: ", res));
   });
-
-//  export const helloWorld = functions
-//   .region(REGION)
-//   .https.onRequest(async (request, response) => {
-//     console.log("## Request ## >>> ", request);
-//     const firestore = admin.firestore();
-//     // const algoliaCollection: any[] = [];
-
-//     const snapshot = await firestore.collection("news").listDocuments();
-//     snapshot.forEach((doc: any) => {
-//       const document = doc.data();
-//       const collectionDoc = {
-//         // objectId: doc.id,
-//         collectionId: doc.id,
-//         title: document.title,
-//         content: document.content,
-//         test: document.toString(),
-//       };
-//       // algoliaCollection.push(collectionDoc);
-//       // firestore.collection("news").doc().set(collectionDoc);
-
-//       firestore
-//         .collection("news")
-//         .doc()
-//         .set(collectionDoc)
-//         .then(function(docRef) {
-//           console.log("Document written");
-//         })
-//         .catch(function(error) {
-//           console.error("Error adding document: ", error);
-//         });
-//     });
-
-//     // // After all records are created, save them to Algolia
-//     // COLLECTION_INDEX.saveObjects(
-//     //   algoliaCollection,
-//     //   (err: any, content: any) => {
-//     //     if (err) console.error("### [ERROR] ### ", err);
-//     //     if (content) console.log("@@@ [CONTENT] @@@ ", content);
-
-//     //     response
-//     //       .status(200)
-//     //       .send("COLLECTION was indexed to Algolia successfully.");
-//     //   },
-//     // );
-//   });
 
 // define functions:collectionOnCreate
 export const collectionOnCreate = functions
@@ -151,9 +73,12 @@ const saveDocumentInAlgolia = async (sanpshot: any) => {
   if (sanpshot.exists) {
     const data = sanpshot.data();
     if (data) {
+      const contentRecordList = Helper.cutStringTo1000Bytes(data.content);
+      const content = Helper.contentReduce(contentRecordList);
+
       const collectionDoc = {
         title: data.title,
-        content: data.content,
+        ...content,
       };
 
       COLLECTION_INDEX.saveObjects([collectionDoc], {
