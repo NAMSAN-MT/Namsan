@@ -12,7 +12,7 @@ const GNBWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.grey100};
 
   ${mediaQuery(
-    'tablet',
+    'mobile',
     `
   position: fixed;
   z-index: 100;
@@ -49,7 +49,7 @@ const MainLinkWrapper = styled.div`
     ${lineHeight(16, 26)}
 
     ${mediaQuery(
-      'tablet',
+      'mobile',
       `
     display: none;`,
     )};
@@ -70,7 +70,7 @@ const LinkUnderline = styled(motion.div)`
 const LanguageWrapper = styled.ul`
   ${flex()};
   position: relative;
-  ${mediaQuery('tablet', `display: none;`)};
+  ${mediaQuery('mobile', `display: none;`)};
 `;
 
 const LanguageLink = styled.li<{ $isActive: boolean }>`
@@ -166,7 +166,7 @@ const MobileLanguageLink = styled.li<{ $isActive: boolean }>`
 const MobileMenuButton = styled.div`
   display: none;
 
-  ${mediaQuery('tablet', `display: block;`)};
+  ${mediaQuery('mobile', `display: block;`)};
 `;
 
 export {

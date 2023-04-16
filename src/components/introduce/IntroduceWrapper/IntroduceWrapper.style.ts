@@ -35,7 +35,7 @@ const TextWrapper = styled.div`
   margin: 120px 0 155px 368px;
 
   ${mediaQuery('pc1380', `margin: 120px 0 155px 90px;`)}
-  ${mediaQuery('tablet', `margin: 120px 0 155px 40px;`)}
+  ${mediaQuery('mobile', `margin: 120px 0 155px 40px;`)}
   ${mediaQuery(
     'mobile',
     `
@@ -59,7 +59,7 @@ const PressWrapper = styled.div`
 
   ${mediaQuery('pc1380', `margin: 120px 0 200px 90px;`)}
   ${mediaQuery(
-    'tablet',
+    'mobile',
     `margin: 120px 0 200px 40px;
     ${size('100%', '843px')};`,
   )}
@@ -76,7 +76,7 @@ const PressContentList = styled.ul`
   gap: 128px;
   white-space: pre-wrap;
 
-  ${mediaQuery('pc1024', `gap: 50px`)}
+  ${mediaQuery('tablet1024', `gap: 50px`)}
   ${mediaQuery(
     'mobile',
     `gap: 32x

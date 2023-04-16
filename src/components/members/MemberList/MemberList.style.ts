@@ -5,14 +5,10 @@ const MemberList = styled.ul`
   ${flex('space-around')}
   flex-wrap: wrap;
   margin-top: 80px;
-  gap: 24px;
+  gap: 60px 24px;
 
-  ${mediaQuery(
-    'mobile',
-    `
-      margin-top: 32px;
-    `,
-  )}
+  ${mediaQuery('tablet1024', `margin-top: 72px;`)}
+  ${mediaQuery('mobile', `margin-top: 32px;`)}
 `;
 
 const EmptyMember = styled.div`

@@ -7,15 +7,9 @@ const MemberItemWrapper = styled.li`
 
   cursor: pointer;
   list-style: none;
-  margin-bottom: 52px;
 
-  ${mediaQuery(
-    'mobile',
-    `
-    ${size('234px', '154px')};
-    margin-bottom: 24px;
-    `,
-  )}
+  ${mediaQuery('pc1278', `${size('auto', 'calc((100% - 48px) / 3)')};`)}
+  ${mediaQuery('mobile', `${size('auto', 'calc((100% - 24px) / 2)')};`)}
 `;
 
 const TagsWrapper = styled.div`
@@ -40,11 +34,13 @@ const Tag = styled.span`
 `;
 
 const ImageSection = styled.div`
-  ${size('80%', '100%')}
+  ${size('320px', '100%')}
   // FIXME: 팔레트에 지정되면 추후 변수로 변경하기
   background-color: #F6F8FA;
   position: relative;
   user-select: none;
+
+  ${mediaQuery('pc1278', `${size('auto', '100%')}`)}
 
   &:hover {
     ${TagsWrapper} {
@@ -66,7 +62,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  ${size('85%', 'auto')}
+  ${size('100%', '100%')}
 `;
 
 const TextSection = styled.div``;

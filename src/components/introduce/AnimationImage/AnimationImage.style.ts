@@ -44,7 +44,7 @@ const TextWrapper = styled.div`
   transform: translateY(100%);
 
   ${mediaQuery('pc1380', `left: 90px;`)}
-  ${mediaQuery('tablet', `left: 40px;`)}
+  ${mediaQuery('mobile', `left: 40px;`)}
   ${mediaQuery('mobile', `top: 149px; bottom: 149px; left: 24px;`)}
 
   &.on {
