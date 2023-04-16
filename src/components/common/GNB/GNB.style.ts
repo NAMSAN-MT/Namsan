@@ -26,7 +26,7 @@ const GNBWrapper = styled.div`
   }`,
   )};
 
-  ${mediaQuery('mobile', `height: 56px;padding: 0 24px;`)}
+  ${mediaQuery('mobile', `height: 56px; padding: 0 24px;`)}
 `;
 
 const LogoWrapper = styled.div`

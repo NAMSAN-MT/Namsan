@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { mediaQuery } from '../../../styles/mixin.style';
 const Outer = styled.div`
-  margin: 100px 90px;
+  padding: 100px 90px;
   box-sizing: content-box;
 
-  ${mediaQuery('tablet1024', `margin: 60px 40px;`)}
+  ${mediaQuery('tablet1024', `padding: 60px 40px;`)}
 
   ${mediaQuery(
     'mobile',
     `
-  margin: 0px auto;
+  padding: 0px auto;
   padding: 32px 24px;
   `,
   )}
