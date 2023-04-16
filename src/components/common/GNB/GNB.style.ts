@@ -1,5 +1,4 @@
 import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
-import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -7,19 +6,18 @@ const GNBWrapper = styled.div`
   ${flex('space-between')};
   width: 100%;
   padding: 0 90px;
-  height: 86px;
+  height: 84px;
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   border: 1px solid ${({ theme }) => theme.color.grey100};
 
   ${mediaQuery(
-    'mobile',
+    'tablet1024',
     `
   position: fixed;
   z-index: 100;
-  height: 55px;
   top: 0;
   border: none;
-  padding: 0 24px;
+  padding: 0 40px;
   background-color: rgba(255, 255, 255, 0.6);)};
   width: 100%;
   
@@ -27,6 +25,8 @@ const GNBWrapper = styled.div`
     background-color: rgba(255, 255, 255);)}
   }`,
   )};
+
+  ${mediaQuery('mobile', `height: 56px;padding: 0 24px;`)}
 `;
 
 const LogoWrapper = styled.div`
@@ -49,7 +49,7 @@ const MainLinkWrapper = styled.div`
     ${lineHeight(16, 26)}
 
     ${mediaQuery(
-      'mobile',
+      'tablet1024',
       `
     display: none;`,
     )};
@@ -70,7 +70,7 @@ const LinkUnderline = styled(motion.div)`
 const LanguageWrapper = styled.ul`
   ${flex()};
   position: relative;
-  ${mediaQuery('mobile', `display: none;`)};
+  ${mediaQuery('tablet1024', `display: none;`)};
 `;
 
 const LanguageLink = styled.li<{ $isActive: boolean }>`
@@ -166,7 +166,7 @@ const MobileLanguageLink = styled.li<{ $isActive: boolean }>`
 const MobileMenuButton = styled.div`
   display: none;
 
-  ${mediaQuery('mobile', `display: block;`)};
+  ${mediaQuery('tablet1024', `display: block;`)};
 `;
 
 export {

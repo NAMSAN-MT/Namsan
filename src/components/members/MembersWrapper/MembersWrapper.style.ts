@@ -10,7 +10,7 @@ const Outer = styled.div`
     'mobile',
     `
   margin: 0px auto;
-  padding: 48px 24px;
+  padding: 32px 24px;
   `,
   )}
 `;
