@@ -19,7 +19,7 @@ const ImageWrapper = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  ${size(undefined, '325px')};
+  ${size('auto', '406px')};
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
