@@ -6,6 +6,31 @@
     "news": "News",
     "contact": "Contact"
   },
+  "main": {
+    "title2": "“40년 전통의 팀워크”",
+    "description2": "법무법인 남산은 깊이 있는 역량과 정성으로<br/> 고객에게 최적화된 맞춤형 서비스를 제공합니다.",
+    "description2_mobile": "남산은 깊이 있는 역량과 정성으로 고객에게<br/> 최고의 맞춤형 서비스를 제공합니다.",
+    "button2_name": "소개 바로가기",
+    "title3_1": "법무법인 남산은",
+    "title3_2": "언제나 신속·정확한 <br/> 법률서비스를 <br/> 제공합니다.",
+    "title3_2_mobile": "전문성을 바탕으로,<br/> 고객에게 최적화된 <br/> 법률서비스를 제공합니다.",
+    "button3_name": "업무분야 바로가기",
+    "button4_name": "새로운 소식 더보기",
+    "title5_1": "고객에게 진정으로 도움이 되는 \n 맞춤형 법률서비스를 제공합니다.",
+    "tag5_1": "회사 소개서",
+    "button5_1": "브로슈어 다운로드",
+    "title5_2": "법무법인 남산과 함께 걸어갈 \n 능력있는 동료를 기다립니다.",
+    "tag5_2": "Career",
+    "button5_2": "지원 바로가기"
+  },
+  "footer": {
+    "title_1": "면책공고",
+    "title_2": "개인정보 처리방침",
+    "title_3": "Contact Us",
+    "phone": "대표전화 : 02.754.0550",
+    "fax": "대표팩스 : 02.754.0077",
+    "email": "대표이메일 : namsan@namsanlaw.com"
+  },
   "introduce": {
     "phrase1": "세상과\n당신 사이,\n<span class='highlight'>법무법인 남산</span>이 있습니다.",
     "phrase1_mobile": "세상과\n당신 사이,\n<span class='highlight'>법무법인 남산</span>이\n 있습니다.",
