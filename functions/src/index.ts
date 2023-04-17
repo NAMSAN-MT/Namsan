@@ -1,11 +1,9 @@
+/* eslint-disable require-jsdoc */
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import algoliasearch from "algoliasearch";
 import * as Helper from "./helper";
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount as ServiceAccount),
-//   databaseURL: process.env.REACT_APP_DATABASE_URL,
-// });
+import {DocumentData} from "firebase-admin/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.GATSBY_FIREBASE_API_KEY,
@@ -30,36 +28,68 @@ const INDEX_NAME = "dev_namsan";
 const REGION = "asia-northeast2";
 const COLLECTION_INDEX = algoliaClient.initIndex(INDEX_NAME);
 
+// 데이터 모델 클래스 생성
+class MyData {
+  constructor(public data: any, public id: string) {}
+}
+
+// Firestore 데이터 모델 클래스에 id 속성 추가
+const myDataConverter = {
+  toFirestore(data: MyData): DocumentData {
+    return data;
+  },
+  fromFirestore(
+    snapshot: any,
+    options: any,
+  ): MyData {
+    const data = snapshot.data(options);
+    return new MyData(data, snapshot.id);
+  },
+};
+
+
 export const helloWorld = functions
   .region(REGION)
   .https.onRequest(async (request, response) => {
     console.log("## Request ## >>> ");
-    const algoliaCollection: any[] = [];
-    const snapshot = await firestore.collection("news").listDocuments();
+    try {
+      const collectionRef = firestore.collection("news");
+      const list: any[] = [];
+      // 해당 컬렉션에 있는 모든 문서들 가져오기
+      await new Promise((resolve, reject) => {
+        collectionRef
+          .withConverter(myDataConverter as any)
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              const document = doc.data().data;
+              const content = Helper.minifyBytes(document.content);
 
-    await new Promise((resolve, reject) => {
-      snapshot.forEach(async (doc: any) => {
-        const document = (await doc.get()).data();
-        const contentRecordList = Helper.cutStringTo1000Bytes(document.content);
-        const content = Helper.contentReduce(contentRecordList);
+              list.push({
+                documentId: doc.data().id,
+                title: document.title,
+                content,
+              });
+            });
+            resolve(list);
+          })
+          .catch((error) => {
+            console.log("Error getting documents: ", error);
+          });
+      });
 
-        algoliaCollection.push({
-          title: document.title,
-          ...content,
-        });
-
-        resolve(algoliaCollection);
-      }),
-      (error: unknown) => {
-        reject(error);
-      };
-    });
-
-    // After all records are created, save them to Algolia
-    COLLECTION_INDEX.saveObjects(algoliaCollection, {
-      autoGenerateObjectIDIfNotExist: true,
-    }).catch((res) => console.log("Error with: ", res));
+      // After all records are created, save them to Algolia
+      await COLLECTION_INDEX.saveObjects(list, {
+        autoGenerateObjectIDIfNotExist: true,
+      }).then(() => {
+        response.send("SUCCESS");
+      }).catch((res) => console.log("Error with: ", res));
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("#### end #### ");
   });
+
 
 // define functions:collectionOnCreate
 export const collectionOnCreate = functions
