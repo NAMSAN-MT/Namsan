@@ -59,14 +59,16 @@ const IntroduceItemWrapper = styled.div`
 const ShowMoreButton = styled.div<{ isFullData: boolean }>`
   border: 1.5px solid ${props => props.theme.color.grey600};
   border-radius: 35px;
-  padding: 10px 20px;
+  padding: 10px 24px 10px 25px;
   margin-top: 24px;
   cursor: pointer;
+  height: 46px;
   ${size('100%', 'fit-content')};
   ${font('body16', 'bold')};
   ${lineHeight(16, 26)};
   letter-spacing: -0.2px;
   ${flex('center', 'center')};
+  color: ${({ theme }) => theme.color.grey700};
 
   ${mediaQuery(
     'mobile',

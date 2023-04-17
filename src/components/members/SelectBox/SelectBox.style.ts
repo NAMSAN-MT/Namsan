@@ -4,11 +4,9 @@ import styled from 'styled-components';
 
 const Base = styled.div`
   height: 100%;
-  /* width: 100%; */
   ${flex('flex-start', 'center')};
 
   & > span {
-    margin-left: 12px;
     ${font('title18', 'medium')}
     letter-spacing: -0.4px;
 
@@ -44,11 +42,16 @@ const OptionWrapper = styled.ul`
   overflow-y: scroll;
   background-color: ${({ theme }) => theme.color.white};
   z-index: 100;
+  ${flex('flex-start', 'flex-start')};
+  flex-direction: column;
+  padding-top: 6px;
+  padding-bottom: 4px;
 `;
 
 const Option = styled(Base)<{ isSelected: boolean }>`
+  width: 100%;
   cursor: pointer;
-  margin: 12px;
+  padding: 20px 10px;
 
   & > span {
     color: ${({ isSelected, theme }) =>
