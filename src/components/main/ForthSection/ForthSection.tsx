@@ -24,10 +24,16 @@ const ForthSection = (props: IForthSectionProps) => {
       <S.ForthWrapper>
         <S.InnerWrapper>
           <S.TopWrapper>
-            <S.Title>남산소식</S.Title>
+            <S.Title>
+              {props.intl.formatMessage({
+                id: `main.button4_title`,
+              })}
+            </S.Title>
             {!props.isMobile ? (
               <BaseButton className="more" onClick={handleNavigateTo}>
-                더 보러가기
+                {props.intl.formatMessage({
+                  id: `main.button4_name1`,
+                })}
               </BaseButton>
             ) : null}
           </S.TopWrapper>
@@ -53,7 +59,7 @@ const ForthSection = (props: IForthSectionProps) => {
               <S.ButtonWrapper>
                 <BaseButton className="support-line" onClick={handleNavigateTo}>
                   {props.intl.formatMessage({
-                    id: `main.button4_name`,
+                    id: `main.button4_name2`,
                   })}
                 </BaseButton>
               </S.ButtonWrapper>
