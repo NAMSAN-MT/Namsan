@@ -58,6 +58,7 @@ const MainText = styled.div`
   ${font('display42', 'bold')};
   ${lineHeight(42, 60)};
   letter-spacing: -0.6px;
+  margin-bottom: 28px;
 
   ${mediaQuery(
     'mobile',
@@ -66,7 +67,7 @@ const MainText = styled.div`
     ${lineHeight(24, 36)};
     letter-spacing: -0.4px;
   `,
-  )}
+  )};
 `;
 
 const SubText = styled.div`

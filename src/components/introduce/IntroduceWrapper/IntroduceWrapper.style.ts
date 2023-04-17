@@ -32,7 +32,7 @@ const TextWrapper = styled.div`
   ${font('display42', 'bold')};
   ${lineHeight(42, 60)};
   letter-spacing: -0.6px;
-  margin: 120px 0 155px 368px;
+  margin: 150px 0 150px 368px;
 
   ${mediaQuery('pc1380', `margin: 120px 0 155px 90px;`)}
   ${mediaQuery('mobile', `margin: 120px 0 155px 40px;`)}
@@ -71,7 +71,7 @@ const PressWrapper = styled.div`
 `;
 
 const PressContentList = styled.ul`
-  ${flex('flex-start')};
+  ${flex('flex-start', 'flex-start')};
   flex-wrap: wrap;
   gap: 128px;
   white-space: pre-wrap;
