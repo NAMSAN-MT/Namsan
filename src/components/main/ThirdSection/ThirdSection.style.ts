@@ -43,6 +43,13 @@ const RightWrapper = styled.div`
   ${flex('end', 'center')};
   width: 670px;
   gap: 24px;
+  ${mediaQuery(
+    'mobile',
+    `
+     width: 100%;
+     gap: 0;
+    `,
+  )};
 `;
 
 const CardWrapper = styled.div<{ isDown?: boolean }>`

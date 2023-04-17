@@ -7,7 +7,7 @@ import { IThirdSectionProps } from './ThirdSection.interface';
 import { injectIntl } from 'gatsby-plugin-intl';
 
 const ThirdSection = (props: IThirdSectionProps) => {
-  const { handleNavigateTo, mainVideo } = useThirdSection();
+  const { handleNavigateTo, mainVideo } = useThirdSection(props);
   const suffix = props.isMobile ? '_mobile' : '';
 
   return (

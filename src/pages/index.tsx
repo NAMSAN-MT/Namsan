@@ -14,7 +14,7 @@ const Main: React.FC<PageProps> = () => {
   return (
     <Layout route="main">
       <React.Suspense fallback={<Loading height="500px" />}>
-        <FirstSection />
+        <FirstSection isMobile={isMobile} />
       </React.Suspense>
       <SecondSection isMobile={isMobile} />
       <React.Suspense fallback={<Loading height="500px" />}>

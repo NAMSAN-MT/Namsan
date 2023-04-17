@@ -1,9 +1,10 @@
 import React from 'react';
 import useFirstSection from './FirstSection.hook';
 import * as S from './FirstSection.style';
+import { IFirstSectionProps } from './FirstSection.interface';
 
-const FirstSection = () => {
-  const { mainVideo } = useFirstSection();
+const FirstSection = (props: IFirstSectionProps) => {
+  const { mainVideo } = useFirstSection(props);
 
   return (
     <S.FrirstWrapper>

@@ -10,6 +10,7 @@ const FrirstWrapper = styled.div`
   ${flex()};
   flex-direction: column;
   width: 100%;
+  height: 760px;
   background: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.1) 0%,
