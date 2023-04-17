@@ -4,13 +4,14 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "outDir": "lib",
+    "lib": ["ES6"],
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "compileOnSave": true,
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
