@@ -1,8 +1,12 @@
-import { font } from '@Styles/mixin.style';
+import { font, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const RecruiteSectionWrapper = styled.div`
-  margin-top: 80px;
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 78px;
+
+  ${mediaQuery('tablet1024', `width: 944px;`)}
 `;
 
 const Description = styled.div`

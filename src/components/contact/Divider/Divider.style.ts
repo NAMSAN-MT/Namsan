@@ -1,10 +1,13 @@
+import { mediaQuery, size } from '@Styles/mixin.style';
 import { defaultColors } from '@Styles/varialbes.style';
 import styled from 'styled-components';
 
 const DividerWrapper = styled.div`
-  margin: 20px 360px 80px;
-  height: 1px;
+  ${size('1px', '1200px')}
+  margin: 0 auto;
   background-color: ${defaultColors.grey200};
+
+  ${mediaQuery('tablet1024', `${size('1px', '944px')}`)}
 `;
 
 export { DividerWrapper };
