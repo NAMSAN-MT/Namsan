@@ -8,12 +8,12 @@ import * as S from './ForthSection.style';
 import { IForthSectionProps } from './ForthSection.interface';
 import { injectIntl } from 'gatsby-plugin-intl';
 import Card from '@Components/news/Card/Card';
+import { WithFixedWrapper } from '../FirstSection/FirstSection.style';
 
 const ForthSection = (props: IForthSectionProps) => {
   const { handleNavigateTo, newsList } = useForthSection();
   const { convertToDateString } = useDateFns();
-  const suffix = props.isMobile ? '_mobile' : '';
-  const threshold = props.isMobile ? 0.2 : 0.5;
+  const threshold = props.isMobile ? 0.2 : props.isTablet ? 0 : 0.5;
 
   return (
     <AnimationWrapper
@@ -21,52 +21,57 @@ const ForthSection = (props: IForthSectionProps) => {
       initial="hidden"
       threshold={threshold}
     >
-      <S.ForthWrapper>
-        <S.InnerWrapper>
-          <S.TopWrapper>
-            <S.Title>
-              {props.intl.formatMessage({
-                id: `main.button4_title`,
-              })}
-            </S.Title>
-            {!props.isMobile ? (
-              <BaseButton className="more" onClick={handleNavigateTo}>
+      <WithFixedWrapper>
+        <S.ForthWrapper>
+          <S.InnerWrapper>
+            <S.TopWrapper>
+              <S.Title>
                 {props.intl.formatMessage({
-                  id: `main.button4_name1`,
+                  id: `main.button4_title`,
                 })}
-              </BaseButton>
-            ) : null}
-          </S.TopWrapper>
-          <S.BottomWrapper>
-            {newsList
-              ? newsList.map((news, index) => (
-                  <Card
-                    key={index}
-                    title={news.title}
-                    newsType={news.newsType}
-                    content={news.content}
-                    agency={news.agency}
-                    originalLink={news.originalLink}
-                    date={news.date}
-                    dateYearMonth={convertToDateString(
-                      news.date.toDate(),
-                      'yyyy.MM',
-                    )}
-                  />
-                ))
-              : null}
-            {props.isMobile ? (
-              <S.ButtonWrapper>
-                <BaseButton className="support-line" onClick={handleNavigateTo}>
+              </S.Title>
+              {!props.isMobile ? (
+                <BaseButton className="more" onClick={handleNavigateTo}>
                   {props.intl.formatMessage({
-                    id: `main.button4_name2`,
+                    id: `main.button4_name1`,
                   })}
                 </BaseButton>
-              </S.ButtonWrapper>
-            ) : null}
-          </S.BottomWrapper>
-        </S.InnerWrapper>
-      </S.ForthWrapper>
+              ) : null}
+            </S.TopWrapper>
+            <S.BottomWrapper>
+              {newsList
+                ? newsList.map((news, index) => (
+                    <Card
+                      key={index}
+                      title={news.title}
+                      newsType={news.newsType}
+                      content={news.content}
+                      agency={news.agency}
+                      originalLink={news.originalLink}
+                      date={news.date}
+                      dateYearMonth={convertToDateString(
+                        news.date.toDate(),
+                        'yyyy.MM',
+                      )}
+                    />
+                  ))
+                : null}
+              {props.isMobile ? (
+                <S.ButtonWrapper>
+                  <BaseButton
+                    className="support-line"
+                    onClick={handleNavigateTo}
+                  >
+                    {props.intl.formatMessage({
+                      id: `main.button4_name2`,
+                    })}
+                  </BaseButton>
+                </S.ButtonWrapper>
+              ) : null}
+            </S.BottomWrapper>
+          </S.InnerWrapper>
+        </S.ForthWrapper>
+      </WithFixedWrapper>
     </AnimationWrapper>
   );
 };

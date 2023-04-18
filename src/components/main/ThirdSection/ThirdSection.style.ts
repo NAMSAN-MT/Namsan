@@ -6,21 +6,19 @@ const BackgroundWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.pointGrey};
 `;
 
-const ThirdWrapper = styled(Wrapper)`
-  max-width: 1200px;
-  margin: 0 auto;
-`;
+const ThirdWrapper = styled(Wrapper)``;
 
 const InnerWrapper = styled.div`
   ${flex('space-between')};
   width: 100%;
   overflow: hidden;
-  height: 620px;
   padding: 0 calc((100% - 1290px) / 2);
+  min-height: 620px;
+
   ${mediaQuery(
     'mobile',
     `
-     height: 730px;
+     min-height: 730px;
      ${flex('start', 'start')};
      flex-direction: column;
      padding: 60px 0 72px;
@@ -30,18 +28,20 @@ const InnerWrapper = styled.div`
 
 const LeftWrapper = styled.div`
   ${flex('center', 'start')};
+  width: 50%;
   flex-direction: column;
   ${mediaQuery(
     'mobile',
     `
      padding: 0 24px 44px;
+     width: 100%;
     `,
   )};
 `;
 
 const RightWrapper = styled.div`
   ${flex('end', 'center')};
-  width: 670px;
+  width: 50%;
   gap: 24px;
   ${mediaQuery(
     'mobile',
@@ -50,6 +50,18 @@ const RightWrapper = styled.div`
      gap: 0;
     `,
   )};
+  video {
+    min-height: 620px;
+    object-fit: cover;
+
+    ${mediaQuery(
+      'mobile',
+      `
+      min-height: 100%;
+      object-fit: contain;
+      `,
+    )};
+  }
 `;
 
 const CardWrapper = styled.div<{ isDown?: boolean }>`

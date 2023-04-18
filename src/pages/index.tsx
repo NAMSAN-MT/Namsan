@@ -10,7 +10,7 @@ const ThirdSection = React.lazy(() => import('@Components/main/ThirdSection'));
 const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));
 
 const Main: React.FC<PageProps> = () => {
-  const { isMobile } = useResize();
+  const { isMobile, isTablet } = useResize();
   return (
     <Layout route="main">
       <React.Suspense fallback={<Loading height="500px" />}>
@@ -21,7 +21,7 @@ const Main: React.FC<PageProps> = () => {
         <ThirdSection isMobile={isMobile} />
       </React.Suspense>
       <React.Suspense fallback={<Loading height="500px" />}>
-        <ForthSection isMobile={isMobile} />
+        <ForthSection isMobile={isMobile} isTablet={isTablet} />
       </React.Suspense>
       <FifthSection isMobile={isMobile} />
     </Layout>

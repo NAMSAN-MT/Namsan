@@ -1,5 +1,4 @@
 import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
-import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 

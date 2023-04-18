@@ -1,6 +1,22 @@
 import { flex, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
+const WithFixedWrapper = styled.div`
+  padding: 0 90px;
+  ${mediaQuery(
+    'tablet',
+    `
+      padding: 0 40px;
+    `,
+  )};
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 0;
+    `,
+  )};
+`;
+
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -28,4 +44,4 @@ const FrirstWrapper = styled.div`
   )};
 `;
 
-export { Wrapper, FrirstWrapper };
+export { WithFixedWrapper, Wrapper, FrirstWrapper };

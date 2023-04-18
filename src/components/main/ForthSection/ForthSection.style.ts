@@ -1,6 +1,5 @@
 import {
   ellipsis,
-  ellipsisMulti,
   flex,
   font,
   lineHeight,
@@ -12,7 +11,6 @@ import { Wrapper } from '../FirstSection/FirstSection.style';
 const ForthWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   margin-top: 140px;
-
   ${mediaQuery(
     'mobile',
     `
@@ -24,7 +22,7 @@ const ForthWrapper = styled(Wrapper)`
 const InnerWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 calc((100% - 1290px) / 2);
+  // padding: 0 calc((100% - 1290px) / 2);
   ${mediaQuery(
     'mobile',
     `
@@ -44,6 +42,14 @@ const BottomWrapper = styled.div`
   gap: 24px;
 
   ${mediaQuery(
+    'tablet',
+    `
+      flex-direction: column;
+      width: 100%;
+    `,
+  )};
+
+  ${mediaQuery(
     'mobile',
     `
       flex-direction: column;
@@ -53,15 +59,34 @@ const BottomWrapper = styled.div`
   )};
 
   .card-wrapper {
+    width: 32%;
+
+    ${mediaQuery(
+      'tablet',
+      `
+      width: 100%;
+      max-width: 100%;
+      padding: 40px 32px;
+      height: unset;
+    `,
+    )};
+
     ${mediaQuery(
       'mobile',
       `
       width: 100%;
+      max-width: 100%;
       height: 100%;
       padding: 24px 20px;
     `,
     )};
     .card-label {
+      ${mediaQuery(
+        'tablet',
+        `
+          margin-bottom: 12px;
+        `,
+      )};
       ${mediaQuery(
         'mobile',
         `
@@ -69,6 +94,14 @@ const BottomWrapper = styled.div`
       `,
       )};
       p {
+        ${mediaQuery(
+          'tablet',
+          `
+          ${font('body16', 'bold')};
+          ${lineHeight(16, 26)};
+          ${ellipsis()};
+        `,
+        )};
         ${mediaQuery(
           'mobile',
           `
@@ -80,6 +113,18 @@ const BottomWrapper = styled.div`
       }
     }
     .card-title {
+      ${mediaQuery(
+        'tablet',
+        `
+        max-width: 100%;
+        margin-bottom: 12px;
+        height: unset;
+        ${font('title24', 'regular')};
+        ${lineHeight(24, 38)};
+        ${ellipsis()};
+        display: inline-block;
+      `,
+      )};
       ${mediaQuery(
         'mobile',
         `
@@ -95,11 +140,20 @@ const BottomWrapper = styled.div`
     }
     .card-content {
       ${mediaQuery(
+        'tablet',
+        `
+        margin-bottom: 40px;
+        ${font('title18', 'regular')};
+        ${lineHeight(18, 28)};
+        color: rgba(6, 11, 17, 0.56);
+      `,
+      )};
+      ${mediaQuery(
         'mobile',
         `
         margin-bottom: 16px;
         height: 100%;
-        ${font('mobile14', 'normal')};
+        ${font('mobile14', 'regular')};
         ${lineHeight(14, 22)};
         color: rgba(6, 11, 17, 0.56);
       `,
@@ -108,6 +162,15 @@ const BottomWrapper = styled.div`
     .card-date {
       p {
         ${mediaQuery(
+          'tablet',
+          `
+          height: unset;
+          ${font('title18', 'regular')};
+          ${lineHeight(18, 28)};
+          letter-spacing: -0.2px;
+        `,
+        )};
+        ${mediaQuery(
           'mobile',
           `
         height: 100%;
@@ -115,6 +178,20 @@ const BottomWrapper = styled.div`
         ${lineHeight(12, 20)};
          letter-spacing: -0.1px;
       `,
+        )};
+      }
+      .divider {
+        ${mediaQuery(
+          'tablet',
+          `
+          width: 100%;
+        `,
+        )};
+        ${mediaQuery(
+          'mobile',
+          `
+          width: 100%;
+        `,
         )};
       }
     }
