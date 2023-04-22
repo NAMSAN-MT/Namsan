@@ -1,4 +1,5 @@
 interface IFirstSectionProps {
-  isMobile: boolean;
+  isDesktop: boolean;
+  eventBus: (isView: boolean) => void;
 }
 export { IFirstSectionProps };
