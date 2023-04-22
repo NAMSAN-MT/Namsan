@@ -1,5 +1,7 @@
 import { News } from '@Interface/api.interface';
 import { EndPointType, NewsType, TQuery } from '@Type/api.type';
+import { documentId } from 'firebase/firestore';
+import { index } from './algolia';
 import { GetDataListQuery } from './index.api';
 
 export const getMainNewsList = async (limit: number) => {
@@ -28,38 +30,53 @@ export const getMainNewsList = async (limit: number) => {
 interface INewSearchListRequest {
   newsType: NewsType;
   searchValue?: string;
+  page?: number;
 }
-export const getNewsSearchList = async (param: INewSearchListRequest) => {
-  const endPoint: EndPointType = 'news';
-  const queries: TQuery[] = [];
-  if (param.newsType !== 'all') {
-    queries.push({
-      queryType: 'where',
-      fieldPath: 'newsType',
-      opStr: '==',
-      value: param.newsType,
+export const getNewsSearchList = (param: INewSearchListRequest) => {
+  const { searchValue = '', page } = param;
+  const newsTypeFilter =
+    param.newsType !== 'all' ? { filters: `newsType:${param.newsType}` } : {};
+
+  return index
+    .search(searchValue, {
+      ...newsTypeFilter,
+      page,
+      hitsPerPage: 9,
+    })
+    .then(async algoliaResult => {
+      const ids = algoliaResult.hits.map(
+        (hit: any) => hit.documentId as string,
+      );
+      const newDataList = await getNewsIdDataList(ids);
+      const resultList = newDataList.map(news => ({
+        ...news,
+        dateYearMonth: `${news.date.toDate().getFullYear()}.${
+          news.date.toDate().getMonth() < 9
+            ? `0${news.date.toDate().getMonth()}`
+            : news.date.toDate().getMonth()
+        }`,
+      }));
+      return { resultList, algoliaResult };
+    })
+    .catch(err => {
+      console.error('## search error:', err);
+      return { resultList: [], algoliaResult: undefined };
     });
-  }
+};
 
-  queries.push({
-    queryType: 'orderby',
-    fieldPath: 'date',
-    directionStr: 'desc',
-    limit: 9,
-  });
+export const getNewsIdDataList = async (ids: string[]) => {
+  const endPoint: EndPointType = 'news';
+  const queries: TQuery[] = [
+    {
+      queryType: 'where',
+      fieldPath: documentId(),
+      opStr: 'in',
+      value: ids,
+    },
+  ];
 
-  const result = await GetDataListQuery<News>({
+  return await GetDataListQuery<News>({
     endPoint,
     queries,
-    fullTextSearch: param.searchValue,
   });
-
-  return result.map(news => ({
-    ...news,
-    dateYearMonth: `${news.date.toDate().getFullYear()}.${
-      news.date.toDate().getMonth() < 9
-        ? `0${news.date.toDate().getMonth()}`
-        : news.date.toDate().getMonth()
-    }`,
-  }));
 };
