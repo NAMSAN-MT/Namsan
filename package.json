@@ -42,6 +42,7 @@
     "gatsby-source-filesystem": "^5.5.0",
     "gatsby-transformer-remark": "^6.8.0",
     "gatsby-transformer-sharp": "^5.7.0",
+    "instantsearch.js": "^4.54.1",
     "lodash": "^4.17.21",
     "prettier": "^2.8.4",
     "react": "^18.2.0",
