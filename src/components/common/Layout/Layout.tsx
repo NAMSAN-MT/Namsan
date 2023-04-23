@@ -12,7 +12,9 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
 
   return (
     <S.LayoutWrapper>
-      {isHeader ? <GNB /> : null}
+      {isHeader ? (
+        <GNB isMobile={props.isMobile} isTransparent={props.isTransparent} />
+      ) : null}
       <S.LayoutContent>
         {children}
         {route === 'main' && (

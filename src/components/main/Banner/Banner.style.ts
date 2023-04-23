@@ -9,6 +9,12 @@ const BannerWrapper = styled.div<{ even: boolean }>`
   padding: 28px 36px 26px;
   margin-right: ${({ even }) => (even ? '24px' : '0')};
   ${mediaQuery(
+    'tablet',
+    `
+     padding: 28px 32px;
+    `,
+  )};
+  ${mediaQuery(
     'mobile',
     `
      margin-right: 0;
@@ -22,6 +28,13 @@ const ContentsWrapper = styled.div`
   height: 100%;
   ${flex('space-between', 'center')};
   ${mediaQuery(
+    'tablet',
+    `
+     ${flex('start', 'start')};
+     flex-direction: column;
+    `,
+  )};
+  ${mediaQuery(
     'mobile',
     `
      ${flex('start', 'start')};
@@ -33,7 +46,7 @@ const ContentsWrapper = styled.div`
 const Tag = styled.span`
   color: ${({ theme }) => theme.color.textBlackMedium};
   letter-spacing: -0.2px;
-  ${font('body16', 'medium')}
+  ${font('body16', 'bold')}
   ${lineHeight(16, 26)};
   ${mediaQuery(
     'mobile',
@@ -46,20 +59,27 @@ const Tag = styled.span`
 `;
 
 const Title = styled.div`
+  white-space: pre-wrap;
   color: ${({ theme }) => theme.color.textBlackHigh};
   letter-spacing: -0.4px;
   margin-top: 8px;
 
   ${font('title22', 'bold')}
   ${lineHeight(22, 36)};
-  width: 240px;
+  max-width: 90%;
+
+  ${mediaQuery(
+    'tablet',
+    `
+    margin-bottom: 20px;
+  `,
+  )}
 
   ${mediaQuery(
     'mobile',
     `
     ${font('mobile18', 'bold')};
     ${lineHeight(18, 26)};
-    width: 200px;
     letter-spacing: -0.2px;
     margin-top: 4px;
     margin-bottom: 16px;
