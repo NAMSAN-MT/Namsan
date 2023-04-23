@@ -56,4 +56,5 @@ export interface IMember {
   papers?: IMemberAttribute[];
   awards?: IMemberAttribute[];
   imagePath: string;
+  bgImagePath: string;
 }

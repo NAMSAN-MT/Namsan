@@ -1,9 +1,10 @@
+import { mediaQuery, size } from '@Styles/mixin.style';
 import { defaultColors } from '@Styles/varialbes.style';
 import styled from 'styled-components';
 
 const DividerWrapper = styled.div`
-  margin: 20px 360px 80px;
-  height: 1px;
+  ${size('1px', '100%')}
+  margin: 0 auto;
   background-color: ${defaultColors.grey200};
 `;
 
