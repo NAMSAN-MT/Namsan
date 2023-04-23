@@ -1,7 +1,6 @@
 import { getMember } from '@Api/member.api';
 import Divider from '@Components/common/Divider';
 import { IMember } from '@Interface/api.interface';
-import { injectIntl } from 'gatsby-plugin-intl';
 import React, { useEffect, useState } from 'react';
 import IntroduceItem from '../IntroduceItem';
 import { IntroduceType } from '../IntroduceItem/IntroduceItem.type';
@@ -27,7 +26,7 @@ const Member = (props: MemberProps) => {
 
   return (
     <S.MemberWrapper>
-      <S.ImageWrapper>
+      <S.ImageWrapper src={member.bgImagePath}>
         <S.ProfileImage src={member.imagePath} />
       </S.ImageWrapper>
       <S.TextWrapper>

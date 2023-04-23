@@ -3,7 +3,11 @@ import * as S from './MembersWrapper.style';
 import { IMembersWrapperProps } from './MembersWrapper.interface';
 
 const MembersWrapper = (props: IMembersWrapperProps) => {
-  return <S.Wrapper>{props.children}</S.Wrapper>;
+  return (
+    <S.Outer>
+      <S.Inner>{props.children}</S.Inner>
+    </S.Outer>
+  );
 };
 
 export default MembersWrapper;

@@ -18,6 +18,7 @@ const MemberItem = ({
     <S.MemberItemWrapper onClick={_handleClick}>
       <S.ImageSection>
         <S.ImageWrapper>
+          <div className="dim"></div>
           <S.Image src={imagePath} />
         </S.ImageWrapper>
         <S.TagsWrapper>

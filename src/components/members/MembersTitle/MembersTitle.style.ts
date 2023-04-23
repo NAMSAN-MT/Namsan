@@ -12,7 +12,7 @@ const MembersTitle = styled.h1`
     `
     ${font('mobile24', 'bold')}
     ${lineHeight(24, 36)}
-    margin-top: 48px;
+    margin-top: 0;
     margin-bottom: 28px;
     `,
   )}
