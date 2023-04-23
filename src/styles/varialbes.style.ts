@@ -94,12 +94,13 @@ export const TextStyles = {
   caption12: ['12px', 'regular', 'bold'],
 } as const;
 
-export const FontWeight: Record<string, number> = {
+type FontWeightType = 'demilight' | 'regular' | 'medium' | 'bold';
+export const FontWeight: Record<FontWeightType, number> = {
   demilight: 300,
   regular: 400,
   medium: 500,
   bold: 700,
-};
+} as const;
 
 export const Screen = {
   pc1380: 1920,
