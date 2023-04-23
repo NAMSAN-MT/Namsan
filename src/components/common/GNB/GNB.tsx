@@ -46,10 +46,8 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
             <S.LinkNameWrapper
               whileHover={{
                 color: '#193F9A',
-                scale: 1.1,
                 originX: 0,
               }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               selected={location === alt}
             >
               {intl.formatMessage({ id: translationId })}
