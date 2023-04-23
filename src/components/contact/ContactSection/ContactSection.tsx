@@ -40,8 +40,12 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
   }, []);
   return (
     <S.ContentSectionWrapper>
-      <Title title="CONTACT" />
-      <S.Map ref={mapRef}></S.Map>
+      <div className="title">
+        <Title title="CONTACT" />
+      </div>
+      <S.Map>
+        <div className="map" ref={mapRef}></div>
+      </S.Map>
       <Info.Wrapper>
         <Info.Column>
           <Info

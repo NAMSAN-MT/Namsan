@@ -64,5 +64,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "gatsby-remark-typescript": "^0.2.2",
     "typescript": "^4.9.5"
-  }
+  },
+  "packageManager": "yarn@1.22.1"
 }
