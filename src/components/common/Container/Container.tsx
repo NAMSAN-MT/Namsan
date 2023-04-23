@@ -7,12 +7,12 @@ export type ContainerType = {
 };
 
 export const ContainerWrapper = styled.div`
-  margin: 180px 180px 386px 180px;
+  margin: 104px 180px 186px 180px;
 `;
 const Title = styled.h1`
   color: ${({ theme }) => theme.color.textBlackHigh};
   ${font('display40', 'bold')}
-  margin-bottom: 60px;
+  margin-bottom: 53px;
 `;
 
 export const Container = ({

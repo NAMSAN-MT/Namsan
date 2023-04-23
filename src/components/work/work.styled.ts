@@ -5,6 +5,7 @@ export const Grid = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 52px;
 `;
 
 export const Title = styled.h1`
