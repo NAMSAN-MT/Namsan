@@ -2,17 +2,13 @@ import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const MemberList = styled.ul`
-  ${flex('space-around')}
+  ${flex('flex-start')}
   flex-wrap: wrap;
   margin-top: 80px;
-  gap: 24px;
+  gap: 60px 24px;
 
-  ${mediaQuery(
-    'mobile',
-    `
-      margin-top: 32px;
-    `,
-  )}
+  ${mediaQuery('tablet1024', `margin-top: 72px;`)}
+  ${mediaQuery('mobile', `margin-top: 32px;`)}
 `;
 
 const EmptyMember = styled.div`

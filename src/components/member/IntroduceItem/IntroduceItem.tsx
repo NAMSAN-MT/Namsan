@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { MAXIMUM_OPEN_DATA_COUNT } from '../Member/Member.const';
 import { IntroduceItemProps } from './IntroduceItem.interface';
 import * as S from './IntroduceItem.style';
+import AddIcon from '@Components/icons/AddIcon/AddIcon';
 
 const IntroduceItem = (props: IntroduceItemProps) => {
   const isOverflowed = props.values.length > MAXIMUM_OPEN_DATA_COUNT;
@@ -42,6 +43,7 @@ const IntroduceItem = (props: IntroduceItemProps) => {
             isFullData={isFullData}
             onClick={() => setIsFullData(state => !state)}
           >
+            {isFullData && <AddIcon />}
             {isFullData
               ? props.intl.formatMessage({ id: 'member.less' })
               : props.intl.formatMessage({ id: 'member.more' })}

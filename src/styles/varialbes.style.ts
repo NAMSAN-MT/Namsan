@@ -95,23 +95,24 @@ export const TextStyles = {
   caption12: ['12px', 'regular', 'bold'],
 } as const;
 
-export const FontWeight: Record<string, number> = {
+type FontWeightType = 'demilight' | 'regular' | 'medium' | 'bold';
+export const FontWeight: Record<FontWeightType, number> = {
   demilight: 300,
   regular: 400,
   medium: 500,
   bold: 700,
-};
+} as const;
 
 export const Screen = {
-  pc1380: 1920,
-  pc1024: 1380,
-  tablet: 1024,
+  pc1380: 1380,
+  pc1278: 1278,
+  tablet1024: 1024,
   mobile: 768,
 } as const;
 
 export const ScreenBreakPoints = {
   pc1380: `${Screen.pc1380}px`,
-  pc1024: `${Screen.pc1024}px`,
-  tablet: `${Screen.tablet}px`,
+  pc1278: `${Screen.pc1278}px`,
+  tablet1024: `${Screen.tablet1024}px`,
   mobile: `${Screen.mobile}px`,
 } as const;

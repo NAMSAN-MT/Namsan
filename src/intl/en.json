@@ -67,7 +67,11 @@
     "intern": "신입변호사, 인턴 문의",
     "intern_sub": "선구완 변호사\nsun@namsanlaw.com",
     "foreign": "신입/경력 외국변호사 문의",
-    "foreign_sub": "윤희경 미국변호사\nhyoon@namsanlaw.com"
+    "foreign_sub": "윤희경 미국변호사\nhyoon@namsanlaw.com",
+    "title_address": "Address",
+    "title_email": "E-mail",
+    "title_tel": "Tel",
+    "title_fax": "Fax"
   },
   "members": {
     "introduce_members": "구성원 소개",

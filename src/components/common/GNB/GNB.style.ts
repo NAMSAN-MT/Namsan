@@ -15,7 +15,7 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
 
   ${({ isTransparent, theme }) =>
     mediaQuery(
-      'tablet',
+      'tablet1024',
       `
       position: fixed;
       z-index: 100;
@@ -74,7 +74,7 @@ const MainLinkWrapper = styled.div`
     ${lineHeight(16, 26)}
 
     ${mediaQuery(
-      'tablet',
+      'tablet1024',
       `
     display: none;`,
     )};
@@ -95,7 +95,7 @@ const LinkUnderline = styled(motion.div)`
 const LanguageWrapper = styled.ul`
   ${flex()};
   position: relative;
-  ${mediaQuery('tablet', `display: none;`)};
+  ${mediaQuery('tablet1024', `display: none;`)};
 `;
 
 const LanguageLink = styled.li<{ $isActive: boolean }>`
@@ -191,7 +191,7 @@ const MobileLanguageLink = styled.li<{ $isActive: boolean }>`
 const MobileMenuButton = styled.div`
   display: none;
 
-  ${mediaQuery('tablet', `display: block;`)};
+  ${mediaQuery('tablet1024', `display: block;`)};
 `;
 
 export {

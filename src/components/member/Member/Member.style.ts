@@ -6,12 +6,12 @@ const MemberWrapper = styled.div`
   position: relative;
 `;
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.div<{ src: string }>`
   position: relative;
   ${size('460px')}
   max-width: 1200px;
 
-  background: url('${MemberBackgroundImage}');
+  background: url('${props => props.src}');
   background-size: cover;
   margin: 0 auto;
 
@@ -19,7 +19,7 @@ const ImageWrapper = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  ${size(undefined, '325px')};
+  ${size('auto', '406px')};
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -44,9 +44,9 @@ const TextWrapper = styled.div`
   )}
 
   .name {
-    ${font('display40', 'bold')};
-    ${lineHeight(40, 60)};
-    letter-spacing: -0.6px;
+    ${font('display36', 'bold')};
+    ${lineHeight(36, 60)};
+    letter-spacing: -0.4px;
 
     ${mediaQuery(
       'mobile',
@@ -57,6 +57,7 @@ const TextWrapper = styled.div`
   .position {
     ${font('title20', 'bold')};
     ${lineHeight(20, 34)};
+    margin-bottom: 8px;
 
     ${mediaQuery(
       'mobile',
@@ -82,7 +83,7 @@ const TextWrapper = styled.div`
     .description {
       ${font('title20', 'regular')};
       ${lineHeight(20, 34)};
-      margin: 40px 0;
+      margin: 32px 0;
 
       ${mediaQuery(
         'mobile',
@@ -111,6 +112,7 @@ const TagWrapper = styled.div`
     ${lineHeight(14, 22)};
     letter-spacing: -0.1px;
     color: ${props => props.theme.color.blue100};
+    height: 30px;
 
     ${mediaQuery(
       'mobile',
