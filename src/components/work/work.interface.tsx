@@ -19,5 +19,10 @@ export interface CategoryDescription {
 
 export interface CategoryPageProps {
   categoryInfo: Category;
-  description: Record<string, string>;
+  description: { key: `C${number}` | `S${number}`; val: string }[];
+  imagePath: string;
+  member: {
+    main: string[];
+    sub: string[];
+  };
 }

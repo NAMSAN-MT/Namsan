@@ -1,4 +1,4 @@
-import { font } from '@Styles/mixin.style';
+import { font, mediaQuery, size } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 export const Grid = styled.div`
@@ -13,10 +13,15 @@ export const Title = styled.h1`
   &:hover {
     color: ${theme => theme.theme.color.textBlue};
   }
+  margin-bottom: 24px;
 `;
 
 export const SubTitle = styled.h2`
   ${font('title26', 'bold')}
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const Contents = styled.p`
@@ -49,25 +54,87 @@ export const Layout = styled.div`
   margin: 100px auto;
   max-width: 966px;
   margin-bottom: 160px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 0px 24px;
+      margin-bottom: 100px;
+  `,
+  )}
 `;
 
 export const MemberBox = styled.div`
-  margin-top: 80px;
+  margin-top: 60px;
+
+  ${mediaQuery(
+    'mobile',
+    `margin-top:32px;
+      `,
+  )}
+`;
+
+export const CategoryBox = styled.div`
+  margin-bottom: 20px;
 `;
 
 export const MemberList = styled.div`
-  display: inline-flex;
-  align-content: stretch;
-  flex-flow: row wrap;
+  grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  justify-content: space-evenly;
+  align-items: center;
   margin-top: 32px;
-  justify-content: space-between;
+  grid-column-gap: 24px;
+
+  ${mediaQuery(
+    'mobile',
+    `grid-template-columns: repeat(2, 1fr);
+      `,
+  )}
 
   & > li {
-    width: 230px;
+    max-width: 282px;
+    width: auto;
+    height: auto;
+    margin-bottom: 0px;
+
+    ${mediaQuery(
+      'mobile',
+      `
+      width: auto; 
+      min-width: 154px;`,
+    )}
     img {
       width: inherit;
       object-fit: scale-down;
       object-position: bottom;
     }
   }
+`;
+
+export const Image = styled.img`
+  ${size('auto', '100%')}
+  margin-top: 8px;
+  margin-bottom: 80px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    ${size('160px', '100%')}
+    overflow:hidden;
+    margin-top: 0px;
+    margin-bottom: 32px;`,
+  )}
+`;
+
+export const ButtonWrapper = styled.div`
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-around;
+
+  ${mediaQuery(
+    'mobile',
+    `
+  margin-top: 24px;`,
+  )}
 `;

@@ -32,6 +32,20 @@ export const getContainMember = async (businessFields: string) => {
   });
 };
 
+export const getMemberByName = async (names: string[]) => {
+  return await GetDataListQuery<IMember>({
+    endPoint: 'members',
+    queries: [
+      {
+        queryType: 'where',
+        fieldPath: 'name',
+        opStr: 'in',
+        value: names,
+      },
+    ],
+  });
+};
+
 export const getWorkField = async (code: string) => {
   return GetDataListQuery<CategoryPageProps>({
     endPoint: 'work',
@@ -43,5 +57,5 @@ export const getWorkField = async (code: string) => {
         value: code,
       },
     ],
-  }).then(result => (!isEmpty(result) ? result[0] : null));
+  }).then(result => result[0]);
 };
