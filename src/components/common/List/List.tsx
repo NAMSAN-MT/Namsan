@@ -1,12 +1,28 @@
 import React from 'react';
-import { Wrapper, MainAnchor, HR, List, ListItem, Anchor } from './List.style';
+import {
+  Wrapper,
+  MainAnchor,
+  HR,
+  List,
+  ListItem,
+  Anchor,
+  MainWrapper,
+} from './List.style';
 import { MainCategoryType, SubCategoryType } from './List.type';
+import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
 
 // TODO: 아이콘 추가 필요
 export const MainCategory = ({ id, name, children }: MainCategoryType) => {
   return (
     <Wrapper>
-      <MainAnchor href={id}>{name}</MainAnchor>
+      <MainWrapper
+        onClick={() => {
+          location.href = id;
+        }}
+      >
+        <MainAnchor>{name}</MainAnchor>
+        <LineArrowIcon direction="RIGHT" weight="BOLD" />
+      </MainWrapper>
       <HR />
       <List>
         {children?.map(item => ({
