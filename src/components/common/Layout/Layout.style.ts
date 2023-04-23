@@ -18,7 +18,7 @@ const TopButtonWrapper = styled.div`
   padding-right: 90px;
   padding-bottom: 90px;
   ${mediaQuery(
-    'tablet',
+    'tablet1024',
     `
      padding-right: 40px;
      padding-bottom: 40px;

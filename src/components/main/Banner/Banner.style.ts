@@ -9,7 +9,7 @@ const BannerWrapper = styled.div<{ even: boolean }>`
   padding: 28px 36px 26px;
   margin-right: ${({ even }) => (even ? '24px' : '0')};
   ${mediaQuery(
-    'tablet',
+    'tablet1024',
     `
      padding: 28px 32px;
     `,
@@ -28,7 +28,7 @@ const ContentsWrapper = styled.div`
   height: 100%;
   ${flex('space-between', 'center')};
   ${mediaQuery(
-    'tablet',
+    'tablet1024',
     `
      ${flex('start', 'start')};
      flex-direction: column;
@@ -69,8 +69,9 @@ const Title = styled.div`
   max-width: 90%;
 
   ${mediaQuery(
-    'tablet',
+    'tablet1024',
     `
+    max-width: 100%;
     margin-bottom: 20px;
   `,
   )}
