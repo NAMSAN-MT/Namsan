@@ -14,9 +14,6 @@ const ForthSection = (props: IForthSectionProps) => {
   const { handleNavigateTo, newsList } = useForthSection();
   const { convertToDateString } = useDateFns();
   const threshold = props.isMobile ? 0.2 : props.isTablet ? 0 : 0.5;
-
-  console.log(props, '--');
-
   return (
     <AnimationWrapper
       variantName="transition"
