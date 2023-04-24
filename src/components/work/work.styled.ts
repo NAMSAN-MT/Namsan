@@ -4,17 +4,42 @@ import styled from 'styled-components';
 export const Grid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-row-gap: 52px;
+  grid-template-columns: repeat(3, 1fr);
+
+  grid-row-gap: 80px;
+  grid-column-gap: 24px;
+
+  ${mediaQuery(
+    'pc1278',
+    `
+    grid-template-columns: repeat(2, 1fr);
+      `,
+  )}
+
+  ${mediaQuery(
+    'mobile',
+    `
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 28px;
+      `,
+  )}
 `;
 
 export const Title = styled.h1`
   color: ${theme => theme.theme.color.textBlackHigh};
+  margin-bottom: 24px;
   ${font('title32', 'bold')};
   &:hover {
     color: ${theme => theme.theme.color.textBlue};
   }
-  margin-bottom: 24px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    margin-bottom: 16px;
+    ${font('mobile24', 'bold')}
+      `,
+  )}
 `;
 
 export const SubTitle = styled.h2`
@@ -23,17 +48,46 @@ export const SubTitle = styled.h2`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    line-height: 26px;
+    ${font('mobile18', 'bold')}
+      `,
+  )}
 `;
 
 export const Contents = styled.p`
   color: ${theme => theme.theme.color.textBlackMedium};
   ${font('title20', 'regular')};
   margin-bottom: 32px;
+  line-height: 36px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    line-height: 26px;
+    ${font('mobile16', 'regular')};
+
+    margin-bottom: 24px;
+      `,
+  )}
 `;
 
 export const Box = styled.div`
   border-top: 1px solid ${({ theme }) => theme.color.dividerGrey200};
   border-bottom: 1px solid ${({ theme }) => theme.color.dividerGrey200};
+
+  ${mediaQuery(
+    'mobile',
+    `
+    & > p {
+      line-height: 22px;
+      ${font('mobile14', 'regular')}
+    }
+      `,
+  )}
 `;
 
 export const Head = styled.div`
@@ -48,13 +102,19 @@ export const Head = styled.div`
   &:hover {
     color: ${theme => theme.theme.color.textBlue};
   }
+
+  ${mediaQuery(
+    'mobile',
+    `
+    height: 74px;
+  `,
+  )}
 `;
 
 export const Layout = styled.div`
   padding: 0px 90px;
-  margin: 100px auto;
+  margin: 100px auto 200px auto;
   max-width: 966px;
-  margin-bottom: 160px;
 
   ${mediaQuery(
     'mobile',
@@ -86,7 +146,14 @@ export const MemberList = styled.div`
   align-items: center;
   margin-top: 32px;
   grid-column-gap: 24px;
+  column-gap: 24px;
+  row-gap: 24px;
 
+  ${mediaQuery(
+    'tablet1024',
+    `grid-template-columns: repeat(3, 1fr);
+      `,
+  )}
   ${mediaQuery(
     'mobile',
     `grid-template-columns: repeat(2, 1fr);
@@ -98,6 +165,9 @@ export const MemberList = styled.div`
     width: auto;
     height: auto;
     margin-bottom: 0px;
+    & > div {
+      height: auto;
+    }
 
     ${mediaQuery(
       'mobile',
@@ -123,7 +193,7 @@ export const Image = styled.img`
     `
     ${size('160px', '100%')}
     overflow:hidden;
-    margin-top: 0px;
+    margin-top: 8px;
     margin-bottom: 32px;`,
   )}
 `;

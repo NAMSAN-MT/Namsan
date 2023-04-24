@@ -1,3 +1,4 @@
+import { font, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 export const List = styled.ul`
@@ -15,6 +16,14 @@ export const HR = styled.hr`
   height: 2px;
   background: ${({ theme }) => theme.color.dividerBlack};
   margin-bottom: 15px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+    height: 1px;
+    margin-bottom: 13px;
+  `,
+  )}
 `;
 
 export const MainWrapper = styled.div`
@@ -41,15 +50,32 @@ export const Anchor = styled.a`
   &:hover {
     background-color: ${({ theme }) => theme.color.grey100};
   }
+
+  ${mediaQuery(
+    'mobile',
+    `
+    ${font('mobile16', 'regular')}
+    padding-left: 0px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  `,
+  )}
 `;
 
 export const MainAnchor = styled(Anchor)`
-  font-weight: 700;
-  font-size: 24px;
   line-height: 38px;
   padding-bottom: 9px;
+
+  ${font('title24', 'bold')}
+  ${mediaQuery(
+    'mobile',
+    `
+    padding-left: 0px;
+    ${font('mobile18', 'bold')}
+  `,
+  )}
 `;
 
 export const Wrapper = styled.div`
-  margin: 12px;
+  /* margin: 12px; */
 `;
