@@ -6,9 +6,9 @@ import * as S from './GNB.style';
 import MenuIcon from '@Components/icons/MenuIcon';
 import { IGNBProps, IMobileMenuButtonProps } from './GNB.interface';
 import CloseIcon from '@Components/icons/CloseIcon';
-import { injectIntl } from 'gatsby-plugin-intl';
 import AnimationWrapper from '../AnimationWrapper/AnimationWrapper';
 import LogoIcon from '@Components/icons/LogoIcon';
+import { injectIntl } from 'gatsby-plugin-intl';
 
 const MobileMenuButton = ({
   isMobileMenuOpen,
