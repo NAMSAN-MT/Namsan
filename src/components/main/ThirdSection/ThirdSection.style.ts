@@ -50,9 +50,15 @@ const RightWrapper = styled.div`
      gap: 0;
     `,
   )};
+  height: 620px;
   video {
-    min-height: 620px;
-    object-fit: cover;
+    height: 100%;
+    ${mediaQuery(
+      'tablet1024',
+      `
+      object-fit: fill;
+      `,
+    )};
 
     ${mediaQuery(
       'mobile',

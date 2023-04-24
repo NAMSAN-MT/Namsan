@@ -19,7 +19,6 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
       `
       position: fixed;
       z-index: 100;
-      height: 55px;
       top: 0;
       border: none;
       padding: 0 24px;
@@ -37,9 +36,9 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
     mediaQuery(
       'mobile',
       `
-      position: fixed;
       z-index: 100;
       height: 55px;
+      position: fixed;
       top: 0;
       border: none;
       padding: 0 24px;

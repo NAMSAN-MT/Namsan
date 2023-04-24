@@ -1,11 +1,15 @@
 import { flex, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
-const LayoutWrapper = styled.div`
+const LayoutWrapper = styled.div<{ isMainPage: boolean }>`
   height: 100%;
 
   ${mediaQuery('tablet1024', `margin-top: 84px;`)};
-  ${mediaQuery('mobile', `margin-top: 56px;`)};
+  ${({ isMainPage }) =>
+    mediaQuery(
+      'mobile',
+      `${isMainPage ? 'margin-top: 0;' : 'margin-top: 56px;'}`,
+    )};
 `;
 
 const LayoutContent = styled.div`
