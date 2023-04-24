@@ -1,20 +1,13 @@
 import { resolve } from 'path';
 
-exports.createPages = async ({ actions }) => {
-  const { createPage } = actions;
-  createPage({
-    path: '/member',
-    matchPath: '/member/:param',
+exports.createPages = async ({ actions }: { actions: any }) => {
+  actions.createPage({
+    path: '/member/1',
     component: resolve('./src/pages/member/[id].tsx'),
   });
 
-  console.log(createPage);
-};
-
-exports.onCreatePage = ({ page, actions: { createPage, deletePage } }) => {
-  deletePage(page);
-  createPage({
-    ...page,
-    // Whatever additional logic you might need here
+  actions.createPage({
+    path: '/work/C01',
+    component: resolve('./src/pages/work/[id].tsx'),
   });
 };
