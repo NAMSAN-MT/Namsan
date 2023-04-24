@@ -113,14 +113,14 @@ export const Head = styled.div`
 
 export const Layout = styled.div`
   padding: 0px 90px;
-  margin: 100px auto 200px auto;
+  margin: 100px auto 80px auto;
   max-width: 966px;
 
   ${mediaQuery(
     'mobile',
     `
       padding: 0px 24px;
-      margin-bottom: 100px;
+      margin-bottom: 32px;
   `,
   )}
 `;

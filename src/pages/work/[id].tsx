@@ -6,7 +6,7 @@ import React from 'react';
 export default ({ params }: PageProps) => {
   const id = params?.id as string;
   const router = (
-    <Layout>
+    <Layout route="workDetail">
       <DetailPage id={id}></DetailPage>
     </Layout>
   );
