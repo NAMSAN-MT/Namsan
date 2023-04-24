@@ -49,6 +49,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                 scale: 1.1,
                 originX: 0,
               }}
+              className={location === alt ? 'on' : ''}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               selected={location === alt}
             >

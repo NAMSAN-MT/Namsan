@@ -1,4 +1,6 @@
-interface MemberProps {
+import { WrappedComponentProps } from 'gatsby-plugin-intl';
+
+interface MemberProps extends WrappedComponentProps {
   id: number;
 }
 
