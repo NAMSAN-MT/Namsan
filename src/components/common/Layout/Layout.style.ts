@@ -1,19 +1,24 @@
 import { flex, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
-const LayoutWrapper = styled.div<{ isMainPage: boolean }>`
+const LayoutWrapper = styled.div`
   height: 100%;
+`;
 
-  ${mediaQuery('tablet1024', `margin-top: 84px;`)};
+const LayoutContent = styled.div<{ isMainPage: boolean }>`
+  min-height: calc(100% - 84px - 224px);
+  padding-top: 86px;
+  ${mediaQuery(
+    'tablet1024',
+    `
+     padding-top: 86px;
+    `,
+  )};
   ${({ isMainPage }) =>
     mediaQuery(
       'mobile',
-      `${isMainPage ? 'margin-top: 0;' : 'margin-top: 56px;'}`,
+      `${isMainPage ? 'padding-top: 0;' : 'padding-top: 56px;'}`,
     )};
-`;
-
-const LayoutContent = styled.div`
-  min-height: calc(100% - 84px - 224px);
 `;
 
 const TopButtonWrapper = styled.div`

@@ -12,11 +12,11 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const isMainPage = route === 'main';
 
   return (
-    <S.LayoutWrapper isMainPage={isMainPage}>
+    <S.LayoutWrapper>
       {isHeader ? (
         <GNB isMobile={props.isMobile} isTransparent={props.isTransparent} />
       ) : null}
-      <S.LayoutContent>
+      <S.LayoutContent isMainPage={isMainPage}>
         {children}
         {isMainPage && (
           <S.TopButtonWrapper>
