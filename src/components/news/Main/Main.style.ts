@@ -7,12 +7,13 @@ import {
   mediaQuery,
   size,
 } from '@Styles/mixin.style';
-import { ScreenBreakPoints } from '@Styles/varialbes.style';
+import { color, FontWeight, ScreenBreakPoints } from '@Styles/varialbes.style';
 import styled from 'styled-components';
 import { NewsType } from '../../../type/api.type';
 
 export const TabSearchBox = styled.div`
   ${flex('space-between', 'center')}
+  ${size('64p', '1200px')}
 
   margin: 60px 0px;
   padding: 8px 0px;
@@ -39,7 +40,7 @@ export const Tab = styled.li<{ isActive: boolean }>`
 
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${FontWeight.bold};
   ${font('title22', 'bold')}
 
   background: ${({ isActive, theme }) =>
@@ -65,13 +66,13 @@ export const Tab = styled.li<{ isActive: boolean }>`
       margin-right: 16px;
 
       ${font('body16', 'bold')}
-      background: #fff;
+      background: ${color.white};
   `,
   )}
 `;
 
 export const SearchBox = styled.div`
-  ${size('64px', '384px')}
+  ${size('64px', '1200px')}
   ${flex('end')}
   min-width: 100px;
 
@@ -114,18 +115,16 @@ export const SearchBox = styled.div`
 `;
 
 export const CardBox = styled.div`
-  max-width: 1200px;
   margin: 0 auto;
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
 
   margin-bottom: 80px;
 `;
 
 export const Card = styled.a`
-  ${size('464px')}
-  max-width: 384px;
+  ${size('426px', '384px')}
 
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.color.grey200};

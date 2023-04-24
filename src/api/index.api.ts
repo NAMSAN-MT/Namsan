@@ -18,73 +18,13 @@ import {
   setDoc,
   Timestamp,
 } from 'firebase/firestore';
-import { getDownloadURL, listAll, ref, StorageReference } from 'firebase/storage';
+import {
+  getDownloadURL,
+  listAll,
+  ref,
+  StorageReference,
+} from 'firebase/storage';
 import { db, storage } from './firebase';
-
-// TODO: 삭제해야함
-export const GetData: Api = async ({ endPoint, param }) => {
-  try {
-    const docRef = doc(db, endPoint, param.id);
-    const resultData = await getDoc(docRef);
-    return resultData.exists()
-      ? resultData.data()
-      : new Error('Document does not exist');
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-};
-
-export const GetDataList = async <U>({
-  endPoint,
-  searchField,
-}: Parameter<U>) => {
-  try {
-    const snapshot = await getDocs(collection(db, endPoint));
-    return snapshot.docs.map(doc => getData(doc, searchField));
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-};
-
-export const GetDataListQueryOrderBy: Api = async <
-  U extends QueryOrderByOptions,
->({
-  endPoint,
-  param,
-}: Parameter<U>) => {
-  try {
-    const collectionRef = db.collection(endPoint);
-    const resultData: any = [];
-    let orderByRef: firebase.firestore.DocumentData = new Promise(
-      (resolve, reject) => {
-        collectionRef.orderBy(param.fieldPath, param.directionStr);
-
-        if (param.limit) {
-          orderByRef = orderByRef.limit(param.limit);
-        }
-
-        orderByRef.onSnapshot((docs: { docs: any[] }) => {
-          docs.docs.forEach(doc => {
-            resultData.push({
-              id: doc.id,
-              ...doc.data(),
-              time: doc.data().time,
-            });
-          }),
-            resolve(resultData);
-        }),
-          (error: unknown) => {
-            reject(error);
-          };
-      },
-    );
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-};
 
 /*
   U: interface type of response array.
@@ -139,8 +79,6 @@ export const PostWithId = async <T extends { [x: string]: any }>({
 };
 
 /* utils */
-export const getTimestampToDate = (date: Timestamp): Date => date.toDate();
-
 const getData = <U>(doc: QueryDocumentSnapshot, fieldNames?: string[]) => {
   return (fieldNames ? doc.get(new FieldPath(...fieldNames)) : doc.data()) as U;
 };
@@ -148,7 +86,6 @@ const getData = <U>(doc: QueryDocumentSnapshot, fieldNames?: string[]) => {
 const getMultipleWhereQueries = (
   ref: firebase.firestore.DocumentData,
   conditions: QueryWhereOptions[],
-  orderBy?: QueryOrderByOptions,
 ) => {
   return conditions.reduce<firebase.firestore.DocumentData>(
     (acc: DocumentData, cur) => {

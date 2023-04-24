@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { mediaQuery } from '../../../styles/mixin.style';
 
 const SearchBarWrapper = styled.div`
-  ${flex('space-between')}
+  ${flex('flex-start')};
+  gap: 24px;
 
+  ${mediaQuery('pc1278', `flex-wrap: wrap;`)}
   ${mediaQuery('mobile', `flex-direction: column;`)}
 `;
 

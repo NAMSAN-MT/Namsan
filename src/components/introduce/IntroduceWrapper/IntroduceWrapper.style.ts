@@ -32,10 +32,10 @@ const TextWrapper = styled.div`
   ${font('display42', 'bold')};
   ${lineHeight(42, 60)};
   letter-spacing: -0.6px;
-  margin: 120px 0 155px 368px;
+  margin: 150px 0 150px 368px;
 
   ${mediaQuery('pc1380', `margin: 120px 0 155px 90px;`)}
-  ${mediaQuery('tablet', `margin: 120px 0 155px 40px;`)}
+  ${mediaQuery('mobile', `margin: 120px 0 155px 40px;`)}
   ${mediaQuery(
     'mobile',
     `
@@ -59,7 +59,7 @@ const PressWrapper = styled.div`
 
   ${mediaQuery('pc1380', `margin: 120px 0 200px 90px;`)}
   ${mediaQuery(
-    'tablet',
+    'mobile',
     `margin: 120px 0 200px 40px;
     ${size('100%', '843px')};`,
   )}
@@ -71,12 +71,12 @@ const PressWrapper = styled.div`
 `;
 
 const PressContentList = styled.ul`
-  ${flex('flex-start')};
+  ${flex('flex-start', 'flex-start')};
   flex-wrap: wrap;
   gap: 128px;
   white-space: pre-wrap;
 
-  ${mediaQuery('pc1024', `gap: 50px`)}
+  ${mediaQuery('tablet1024', `gap: 50px`)}
   ${mediaQuery(
     'mobile',
     `gap: 32x

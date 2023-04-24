@@ -14,16 +14,7 @@ const RecruiteSection = ({ intl }: IRecruiteSectionProps) => {
       </S.Description>
       <Info.Wrapper>
         <Info.Column>
-          <Info
-            title={intl.formatMessage({ id: 'contact.intern' })}
-            content={intl.formatMessage({ id: 'contact.intern_sub' })}
-          />
-        </Info.Column>
-        <Info.Column>
-          <Info
-            title={intl.formatMessage({ id: 'contact.foreign' })}
-            content={intl.formatMessage({ id: 'contact.foreign_sub' })}
-          />
+          <Info title="E-MAIL" content="namsan@namsanlaw.com" />
         </Info.Column>
       </Info.Wrapper>
     </S.RecruiteSectionWrapper>

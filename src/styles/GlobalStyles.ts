@@ -27,7 +27,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     line-height: 1.5;
-    min-width: 1024px;
+    /* min-width: 1024px; */
+    font: -webkit-control;
+
 
     ${mediaQuery(
       'mobile',
