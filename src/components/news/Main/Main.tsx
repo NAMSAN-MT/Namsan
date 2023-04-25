@@ -15,22 +15,21 @@ import React, {
   useState,
 } from 'react';
 import * as SearchBar from '../../members/SearchBar/SearchBar.style';
-const Card = React.lazy(() => import('@Components/news/Card'));
-
 import Pagination from '../Pagination';
 import { TPagination, TTab } from './main.interface';
 import * as S from './Main.style';
+const Card = React.lazy(() => import('@Components/news/Card'));
 
 const NewsMain = () => {
-  const [tab, setTab] = useState<TTab>('all');
-  const [list, setList] = useState<News[]>([]);
-  const [searchValue, setSearchValue] = useState('');
-  const [pageNationState, setPageNation] = useState<TPagination>();
   const params = new URLSearchParams(useLocation().search);
   const urlPage = Number(params.get('page') || '0');
   const newsType = (params.get('newsType') as NewsType) || 'all';
-  console.log(newsType);
-  const url = new URL(useLocation().href);
+
+  const [tab, setTab] = useState<TTab>(newsType);
+  const [list, setList] = useState<News[]>([]);
+  const [searchValue, setSearchValue] = useState('');
+  const [pageNationState, setPageNation] = useState<TPagination>();
+
   useEffect(() => {
     onCallNewsList(newsType);
   }, [urlPage]);
@@ -117,11 +116,7 @@ const NewsMain = () => {
           </div>
         }
       >
-        <S.CardBox>
-          {list.map((item, i) => (
-            <Card key={i} {...{ ...item, i }} />
-          ))}
-        </S.CardBox>
+        <Card list={list} />
       </Suspense>
       {isPagination && (
         <Pagination
