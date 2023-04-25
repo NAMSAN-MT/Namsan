@@ -5,3 +5,5 @@ src/gatsby-types.d.ts
 .vscode
 
 .env.development
+
+./firebase-key.json
