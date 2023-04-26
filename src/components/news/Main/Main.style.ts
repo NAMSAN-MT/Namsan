@@ -1,4 +1,3 @@
-import SearchIcon from '@Images/ic_search.svg';
 import {
   flex,
   flexDirection,
@@ -12,15 +11,17 @@ import styled from 'styled-components';
 export const TabSearchBox = styled.div`
   ${flex('space-between', 'center')}
   ${size('64p', '1200px')}
-
   margin: 60px 0px;
-  padding: 8px 0px;
+
+  ${mediaQuery('tablet1024', `width: 100%;`)};
 
   ${mediaQuery(
     'mobile',
     `
       ${flexDirection('column')}
       ${flex('', 'flex-start')}
+      height: 100%;
+      margin: 24px 0px 36px 0px;
     `,
   )}
 `;
@@ -36,8 +37,6 @@ export const Tab = styled.li<{ isActive: boolean }>`
   padding: 6px 20px;
   letter-spacing: -0.4px;
 
-  font-family: 'Noto Sans CJK KR';
-  font-style: normal;
   font-weight: ${FontWeight.bold};
   ${font('title22', 'bold')}
 
@@ -67,47 +66,4 @@ export const Tab = styled.li<{ isActive: boolean }>`
       background: ${color.white};
   `,
   )}
-`;
-
-export const SearchBox = styled.div`
-  ${size('64px', '1200px')}
-  ${flex('end')}
-  min-width: 100px;
-
-  border-bottom: 2px solid ${({ theme }) => theme.color.grey200};
-
-  input {
-    width: 100%;
-    padding-left: 12px;
-    border: none;
-
-    font-family: 'Noto Sans CJK KR';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    ${font('title18', 'regular')}
-
-    line-height: 28px;
-    letter-spacing: -0.2px;
-
-    ::placeholder {
-      color: rgba(6, 11, 17, 0.3);
-    }
-
-    :-ms-input-placeholder {
-      color: rgba(6, 11, 17, 0.3);
-    }
-
-    ::-ms-input-placeholder {
-      color: rgba(6, 11, 17, 0.3);
-    }
-  }
-
-  ::after {
-    content: '';
-    display: inline-block;
-    background: ${`url(${SearchIcon}) no-repeat center center`};
-    margin-right: 5px;
-    ${size('24px', '24px')}
-  }
 `;
