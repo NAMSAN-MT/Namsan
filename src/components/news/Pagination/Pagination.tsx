@@ -3,23 +3,20 @@ import ArrowLeftStrongIcon from '@Images/arrow_left_th10_strong.svg';
 import ArrowRightIcon from '@Images/arrow_right_th10.svg';
 import ArrowRightStrongIcon from '@Images/arrow_right_th10_strong.svg';
 import { useLocation } from '@reach/router';
-import { NewsType } from '@Type/api.type';
 import { Link, navigate } from 'gatsby';
 import React from 'react';
-import { TPagination } from '../Main/main.interface';
-import { getNewQueryString, getPageList, toQuery } from './Pagination.helper';
+import {
+  getNewQueryString,
+  getPageList,
+  getPageNationState,
+  toQuery,
+} from './Pagination.helper';
+import { PaginationProps } from './Pagination.interface';
 import * as S from './Pagination.style';
 
-interface Props {
-  newsType: NewsType;
-  urlPage?: number;
-  pageNationState: TPagination;
-}
-
-const Pagination = (props: Props) => {
+const Pagination = (props: PaginationProps) => {
   const params = new URLSearchParams(useLocation().search);
-  const { nbPages, page } = props.pageNationState;
-  const currentPage = props.urlPage || page || 1;
+  const { currentPage, nbPages, page } = getPageNationState(props);
 
   // Pagination
   let pageList: number[] = [];

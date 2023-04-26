@@ -1,6 +1,15 @@
+import { PaginationProps } from './Pagination.interface';
 import { NewsType } from '@Type/api.type';
 import { isEmpty } from 'lodash';
 import { URLSearchParams } from 'url';
+
+export const getPageNationState = ({
+  pageNationState,
+  urlPage,
+}: PaginationProps) => {
+  const currentPage = urlPage || pageNationState.page || 1;
+  return { ...pageNationState, currentPage };
+};
 
 export const getPageList = (length: number) => Array.from({ length });
 
