@@ -11,7 +11,9 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { handleTopEvent } = useLayout();
   return (
     <S.LayoutWrapper>
-      {isHeader ? <GNB /> : null}
+      {isHeader ? (
+        <GNB isMobile={props.isMobile} isTransparent={props.isTransparent} />
+      ) : null}
       <S.LayoutContent>
         {children}
         {['main', 'workDetail'].includes(route ?? '') && (

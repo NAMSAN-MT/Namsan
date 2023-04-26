@@ -11,8 +11,6 @@ import {
   doc,
   DocumentData,
   FieldPath,
-  getDoc,
-  getDocs,
   QueryDocumentSnapshot,
   QuerySnapshot,
   setDoc,

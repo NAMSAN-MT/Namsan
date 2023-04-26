@@ -15,8 +15,15 @@ const LayoutContent = styled.div`
 const TopButtonWrapper = styled.div`
   width: 100%;
   ${flex('flex-end', 'center ')};
-  padding-right: 60px;
-  padding-bottom: 60px;
+  padding-right: 90px;
+  padding-bottom: 90px;
+  ${mediaQuery(
+    'tablet',
+    `
+     padding-right: 40px;
+     padding-bottom: 40px;
+    `,
+  )};
   ${mediaQuery(
     'mobile',
     `

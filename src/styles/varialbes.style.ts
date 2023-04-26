@@ -18,6 +18,7 @@ export const defaultColors = {
   grey800: '#2E3338',
   grey900: '#191C20',
   black: '#060B11',
+  transparent: 'transparent',
 };
 
 export const color = {

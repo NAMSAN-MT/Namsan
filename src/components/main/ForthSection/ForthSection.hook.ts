@@ -10,7 +10,7 @@ const useForthSection = () => {
 
   useEffect(() => {
     const init = async () => {
-      const newsList = await getMainNewsList();
+      const newsList = await getMainNewsList(3);
       setNewsList(newsList);
     };
     init();

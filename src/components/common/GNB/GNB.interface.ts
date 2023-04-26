@@ -10,11 +10,15 @@ type TUrl =
   | 'news'
   | 'contact';
 
-interface IGNBProps extends WrappedComponentProps {}
+interface IGNBProps extends WrappedComponentProps {
+  isTransparent?: boolean;
+  isMobile?: boolean;
+}
 
 interface IMobileMenuButtonProps {
   isMobileMenuOpen: boolean;
   onClick: MouseEventHandler;
+  isMobile?: boolean;
 }
 
 export { TUrl, IGNBProps, IMobileMenuButtonProps };

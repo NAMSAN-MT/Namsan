@@ -2,10 +2,11 @@ import { font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const RecruiteSectionWrapper = styled.div`
-  width: 100%;
+  width: 1200px;
   margin: 0 auto;
   margin-top: 78px;
 
+  ${mediaQuery('pc1380', `width: 100%;`)}
   ${mediaQuery('tablet1024', `margin-top: 49px;`)};
 `;
 
