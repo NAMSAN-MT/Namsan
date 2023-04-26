@@ -1,14 +1,15 @@
-import { News } from '@Interface/api.interface';
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from '../Card/Card.style';
+import { CardProps } from './Card.interface';
 
-interface Props {
-  list: News[];
-}
-const Card = ({ list }: Props) => {
+const Card = (props: CardProps) => {
+  useEffect(() => {
+    props.onCallNewsList(props.newsType, props.searchValue);
+  }, [props.urlPage]);
+
   return (
     <S.CardBox>
-      {list.map((item, i) => (
+      {props.newsList.map((item, i) => (
         <S.Card key={i} href="#" className="card-wrapper">
           <S.LabelBox type={item.newsType} className="card-label">
             <p>{item.newsType === 'media' ? item.agency : '최근 업무사례'}</p>
