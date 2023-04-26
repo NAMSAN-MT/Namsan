@@ -1,3 +1,4 @@
+import { font } from './../../../styles/mixin.style';
 import { flex, flexDirection, mediaQuery, size } from '@Styles/mixin.style';
 import { FontWeight } from '@Styles/varialbes.style';
 import styled from 'styled-components';
@@ -5,10 +6,9 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   ${flex('center', 'flex-end')}
   ${flexDirection('row')}
+  ${size('1200px', '36px')}
   padding: 0px;
   gap: 8px;
-  width: 1200px;
-  height: 36px;
   margin: 90px 0px 200px 0px;
 
   .ellipse {
@@ -16,18 +16,15 @@ export const Wrapper = styled.div`
     padding-left: 10px;
     margin-bottom: 3px;
 
-    ${mediaQuery(
-      'mobile',
-      `
-        padding-left: 8px;
-        margin-bottom: 20px;  
-    `,
-    )};
+    ${mediaQuery('mobile', ` padding-left: 8px; margin-bottom: 20px;`)};
   }
   .ellipse::before {
     content: '...';
     color: ${({ theme }) => theme.color.grey400};
   }
+
+  ${mediaQuery('tablet1024', `width:100%;`)};
+  ${mediaQuery('mobile', `margin: 40px 0px 100px 0px;`)};
 `;
 
 export const Arrow = styled.img`
@@ -36,8 +33,6 @@ export const Arrow = styled.img`
 
 export const ArrowNavigation = styled.button`
   ${size('24px', '24px')}
-
-  /* Inside auto layout */
   flex: none;
   flex-grow: 0;
 
@@ -52,11 +47,8 @@ export const PageNumber = styled.span<{ isSelected?: boolean }>`
   ${flexDirection()}
   ${size('32px', '32px')}
 
-  font-family: 'Noto Sans CJK KR';
-  font-style: normal;
   font-size: 16px;
   line-height: 26px;
-
   text-align: center;
   letter-spacing: -0.2px;
 

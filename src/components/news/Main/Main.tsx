@@ -7,7 +7,7 @@ import * as SearchBar from '../../members/SearchBar/SearchBar.style';
 import Pagination from '../Pagination';
 import { TTab } from './Main.interface';
 import * as S from './Main.style';
-import useMain from './useMain.hook';
+import useMain from './Main.hook';
 const Card = React.lazy(() => import('@Components/news/Card'));
 
 const NewsMain = () => {
