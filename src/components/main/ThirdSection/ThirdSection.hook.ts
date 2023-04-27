@@ -19,7 +19,7 @@ const useThirdSection = (props: IThirdSectionProps) => {
       setMainVideo(mainVideo);
     };
     init();
-  }, []);
+  }, [props.isMobile]);
 
   const handleNavigateTo = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

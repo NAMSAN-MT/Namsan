@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const WithFixedWrapper = styled.div`
   padding: 0 90px;
   ${mediaQuery(
-    'tablet',
+    'tablet1024',
     `
       padding: 0 40px;
     `,

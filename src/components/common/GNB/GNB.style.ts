@@ -7,25 +7,19 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
   width: 100%;
   padding: 0 90px;
   height: 86px;
-  background-color: ${({ theme, isTransparent }) =>
-    isTransparent ? theme.color.transparent : theme.color.textWhiteHigh};
-  border: 1px solid
-    ${({ theme, isTransparent }) =>
-      isTransparent ? theme.color.transparent : theme.color.grey100};
+  position: fixed;
+  z-index: 999;
+  background-color: ${({ theme }) => theme.color.textWhiteHigh};
+  border: 1px solid ${({ theme }) => theme.color.grey100};
 
-  ${({ isTransparent, theme }) =>
+  ${({ theme }) =>
     mediaQuery(
       'tablet1024',
       `
-      position: fixed;
       z-index: 100;
-      height: 55px;
       top: 0;
-      border: none;
       padding: 0 24px;
-      background-color: ${
-        isTransparent ? theme.color.white : theme.color.blue100
-      };
+      background-color: ${theme.color.white};
       width: 100%;
       
       &.open{
@@ -37,14 +31,13 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
     mediaQuery(
       'mobile',
       `
-      position: fixed;
       z-index: 100;
       height: 55px;
       top: 0;
-      border: none;
+      border: ${isTransparent ? 'none' : `1px solid ${theme.color.grey100}`};;
       padding: 0 24px;
       background-color: ${
-        isTransparent ? theme.color.transparent : theme.color.blue100
+        isTransparent ? theme.color.transparent : theme.color.white
       };
       width: 100%;
       

@@ -7,10 +7,11 @@ const useResize = () => {
   const [isDesktop, setDesktop] = useState(false);
 
   const checkMobile = () => {
-    const isDesktop = window.outerWidth > Screen.tablet;
+    const isDesktop = window.outerWidth > Screen.tablet1024;
     const isMobile = window.outerWidth < Screen.mobile;
     const isTablet =
-      window.outerWidth > Screen.mobile && window.outerWidth < Screen.tablet;
+      window.outerWidth > Screen.mobile &&
+      window.outerWidth < Screen.tablet1024;
 
     setDesktop(isDesktop);
     setMobile(isMobile);
