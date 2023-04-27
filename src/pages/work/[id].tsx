@@ -3,8 +3,9 @@ import DetailPage from '@Components/work/DetailPage';
 import { PageProps } from 'gatsby';
 import React from 'react';
 
-export default ({ params }: PageProps) => {
-  const id = params?.id as string;
+export default ({ pageContext }: PageProps) => {
+  const { id } = pageContext as { id: string };
+
   const router = (
     <Layout>
       <DetailPage id={id}></DetailPage>
