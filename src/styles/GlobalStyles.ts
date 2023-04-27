@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
   }
   *, *::before, *::after {
     box-sizing: border-box;
-    font-family: "Noto Sans KR";
+    font-family: "noto-sans-cjk-kr", sans-serif;
   }
   html, 
   body {
