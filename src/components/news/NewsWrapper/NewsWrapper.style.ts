@@ -1,12 +1,11 @@
-import { flex, font, mediaQuery, size } from '@Styles/mixin.style';
+import { flex, font, lineHeight, mediaQuery, size } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
-export const NewsWrapper = styled.section`
-  max-width: 1200px;
+export const Outer = styled.section`
+  padding: 100px 90px;
+  box-sizing: content-box;
 
-  padding: 0 296px;
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
-  margin-top: 101px;
 
   font-family: 'Noto Sans CJK KR';
   font-style: normal;
@@ -20,40 +19,22 @@ export const NewsWrapper = styled.section`
     ${flex()}
     ${size('500px', '1200px')}
   }
-
-  ${mediaQuery(
-    'tablet1024',
-    `
-      max-width: 100%;
-      grid-template-columns: repeat(2, 1fr);
-      padding: 0px 90px;
-    `,
-  )};
-
-  ${mediaQuery(
-    'mobile',
-    ` 
-      ${font('mobile24', 'bold')}
-      letter-spacing: -0.4px;
-      line-height: 36px;
-      padding: 0 24px;
-    `,
-  )}
+  ${mediaQuery('tablet1024', `padding: 60px 40px;`)}
+  ${mediaQuery('mobile', ` padding: 0 24px;`)}
 `;
 
-export const Header = styled.div`
-  ${size('100%', '100%')};
-  ${flex('space-between', 'center')};
+export const Inner = styled.div`
+  width: 1200px;
+  margin: 0 auto;
+
+  ${mediaQuery('pc1278', `width: 100%;`)}
 `;
 
-export const Title = styled.div`
-  ${size('60px', '146px')}
-  left: 360px;
-  top: 185px;
-
+export const Title = styled.h1`
   ${font('display40', 'bold')}
-  line-height: 60px;
+  ${lineHeight(40, 60)}
   letter-spacing: -0.6px;
 
   color: ${({ theme }) => theme.color.textBlackHigh};
+  ${mediaQuery('mobile', ` padding-top: 48px;`)}
 `;

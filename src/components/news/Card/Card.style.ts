@@ -1,10 +1,11 @@
 import {
-  flex,
-  font,
   ellipsisMulti,
+  flex,
   flexDirection,
-  size,
+  font,
+  lineHeight,
   mediaQuery,
+  size,
 } from '@Styles/mixin.style';
 import { NewsType } from '@Type/api.type';
 import styled from 'styled-components';
@@ -17,42 +18,22 @@ export const CardBox = styled.div`
 
   margin-bottom: 80px;
 
-  ${mediaQuery(
-    'tablet1024',
-    `
-      grid-template-columns: repeat(1, 1fr);
-    `,
-  )};
+  ${mediaQuery('tablet1024', `grid-template-columns: repeat(1, 1fr);`)};
 `;
 
 export const Card = styled.a`
   ${size('426px', '384px')}
-
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.color.grey200};
   border-radius: 10px;
-
   padding: 52px 40px 40px 40px;
 
   :hover {
     background: #f1f7fd;
   }
 
-  ${mediaQuery(
-    'tablet1024',
-    `
-      ${size('300px', '100%')}
-      padding: 40px 32px;
-    `,
-  )};
-
-  ${mediaQuery(
-    'mobile',
-    `
-      ${size('188px', '100%')}
-      padding: 24px 20px;
-    `,
-  )}
+  ${mediaQuery('tablet1024', `${size('300px', '100%')}padding: 40px 32px;`)};
+  ${mediaQuery('mobile', `${size('188px', '100%')}padding: 24px 20px;`)}
 `;
 
 export const LabelBox = styled.div<{ type: NewsType }>`
@@ -65,15 +46,14 @@ export const LabelBox = styled.div<{ type: NewsType }>`
     padding: 6px 10px 4px 10px;
 
     ${font('body16', 'bold')}
-    line-height: 26px;
-
+    ${lineHeight(16, 26)}
     color: ${({ theme }) => theme.color.white};
 
     ${mediaQuery(
       'mobile',
       `
       ${font('mobile12', 'bold')}
-      line-height: 20px;
+      ${lineHeight(12, 20)}
       letter-spacing: -0.1px;
       padding: 2px 8px;
     `,
@@ -83,6 +63,7 @@ export const LabelBox = styled.div<{ type: NewsType }>`
   ${mediaQuery(
     'mobile',
     `
+      ${lineHeight(12, 20)}
       height: 24px;
       display: flex;
       flex-direction: row;
@@ -91,14 +72,13 @@ export const LabelBox = styled.div<{ type: NewsType }>`
 `;
 
 export const Title = styled.p`
-  height: 76px;
+  ${size('76px', '320px')}
   margin-top: 12px;
   margin-bottom: 16px;
 
   ${ellipsisMulti(2)}
-
   ${font('title24', 'regular')}
-  line-height: 38px;
+  ${lineHeight(24, 38)}
   letter-spacing: -0.4px;
 
   color: ${({ theme }) => theme.color.black};
@@ -106,9 +86,8 @@ export const Title = styled.p`
   ${mediaQuery(
     'tablet1024',
     `
-      height: 38px;
       margin: 12px 0px;
-      max-width: 880px;
+      ${size('38px', 'auto')}
       ${ellipsisMulti(1)}
     `,
   )};
@@ -116,46 +95,35 @@ export const Title = styled.p`
   ${mediaQuery(
     'mobile',
     `
-      height: 26px;
       margin: 8px 0px 2px 0px;
-      max-width: 880px;
-
-      ${ellipsisMulti(1)}
+      ${size('26px', 'auto')}
       ${font('mobile16', 'bold')}
-      line-height: 26px;
+      ${lineHeight(16, 26)}
+      ${ellipsisMulti(1)}
     `,
   )};
 `;
 
 export const Content = styled.p`
-  height: 88px;
-
+  ${size('88px', 'auto')}
   ${ellipsisMulti(3)}
-
   ${font('title18_2', 'regular')}
-  line-height: 28px;
-  letter-spacing: -0.2px;
+  ${lineHeight(18, 28)}
 
+  letter-spacing: -0.2px;
   color: rgba(6, 11, 17, 0.56);
 
   ${mediaQuery(
     'tablet1024',
-    `
-      height: 56px;
-      max-width: 880px;
-      ${ellipsisMulti(2)}
-    `,
+    `${ellipsisMulti(2)} height: 56px; ${lineHeight(18, 28)}`,
   )};
-
   ${mediaQuery(
     'mobile',
     `
-      height: 44px;
-      max-width: 287px;
-      
-      line-height: 22px;
-      ${ellipsisMulti(2)}
+      ${size('44px', 'auto')}
+      ${lineHeight(14, 22)}
       ${font('mobile14', 'regular')}
+      ${ellipsisMulti(2)}
     `,
   )};
 `;
@@ -166,22 +134,20 @@ export const Date = styled.div`
   margin: 88px 0px 44px 0px;
 
   p {
-    ${font('title18_2', 'regular')}
-    line-height: 28px;
-
     ${flex('')}
+    ${font('title18_2', 'regular')}
+    ${lineHeight(18, 28)}
     letter-spacing: -0.2px;
 
     color: rgba(6, 11, 17, 0.3);
 
     ${mediaQuery('tablet1024', ``)};
-
     ${mediaQuery(
       'mobile',
       `
       ${font('mobile12', 'demilight')}
-        font-weight: 350;
-        line-height: 20px;
+      ${lineHeight(12, 20)}
+      font-weight: 350;
     `,
     )};
   }
@@ -190,34 +156,13 @@ export const Date = styled.div`
     ${size('1px', '221px')}
     background: ${({ theme }) => theme.color.grey200};
 
-    ${mediaQuery(
-      'tablet1024',
-      `
-      ${size('1px', '100%')}
-    `,
-    )};
-
-    ${mediaQuery(
-      'mobile',
-      `
-      ${size('0.5px', '100%')}
-    `,
-    )};
+    ${mediaQuery('tablet1024', `${size('1px', '100%')}`)};
+    ${mediaQuery('mobile', `${size('0.5px', '100%')}`)};
   }
 
-  ${mediaQuery(
-    'tablet1024',
-    `
-      ${size('28px', '100%')}
-      margin: 40px 0px;
-    `,
-  )};
-
+  ${mediaQuery('tablet1024', `${size('28px', '100%')}margin: 40px 0px;`)};
   ${mediaQuery(
     'mobile',
-    `
-    ${size('20px', '100%')}
-      margin: 16px 0px 24px 0px;
-    `,
+    `${size('20px', '100%')}  margin: 16px 0px 24px 0px;`,
   )};
 `;

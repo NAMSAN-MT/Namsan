@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   ${flex('center', 'flex-end')}
   ${flexDirection('row')}
-  ${size('1200px', '36px')}
+  ${size('36px', '1200px')}
   padding: 0px;
   gap: 8px;
   margin: 90px 0px 200px 0px;
