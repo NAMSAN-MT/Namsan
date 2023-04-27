@@ -1,77 +1,33 @@
-import { getNewsSearchList } from '@Api/news.api';
 import Input from '@Components/common/Input';
 import Loading from '@Components/common/Loading';
-import { News } from '@Interface/api.interface';
-import { useLocation } from '@reach/router';
-import { NewsType } from '@Type/api.type';
 import { navigate } from 'gatsby';
 import { isEmpty } from 'lodash';
-import React, {
-  ChangeEvent,
-  FormEvent,
-  MouseEvent,
-  Suspense,
-  useEffect,
-  useState,
-} from 'react';
+import React, { Suspense, useState } from 'react';
 import * as SearchBar from '../../members/SearchBar/SearchBar.style';
+import Pagination from '../Pagination';
+import { TTab } from './Main.interface';
+import * as S from './Main.style';
+import useMain from './Main.hook';
 const Card = React.lazy(() => import('@Components/news/Card'));
 
-import Pagination from '../Pagination';
-import { TPagination, TTab } from './main.interface';
-import * as S from './Main.style';
-
 const NewsMain = () => {
-  const [tab, setTab] = useState<TTab>('all');
-  const [list, setList] = useState<News[]>([]);
   const [searchValue, setSearchValue] = useState('');
-  const [pageNationState, setPageNation] = useState<TPagination>();
-  const params = new URLSearchParams(useLocation().search);
-  const urlPage = Number(params.get('page') || '0');
-  const newsType = (params.get('newsType') as NewsType) || 'all';
-  console.log(newsType);
-  const url = new URL(useLocation().href);
-  useEffect(() => {
-    onCallNewsList(newsType);
-  }, [urlPage]);
+  const { urlPage, newsType, tab, newsList, pageNationState, onCallNewsList } =
+    useMain();
 
-  const onCallNewsList = async (
-    newsType: NewsType = 'all',
-    searchValue?: string,
-  ) => {
-    const { resultList, algoliaResult } = await getNewsSearchList({
-      newsType,
-      searchValue,
-      page: urlPage > 0 ? urlPage - 1 : 0,
-    });
-
-    if (!algoliaResult) {
-      navigate(`/news`);
-      return;
-    }
-
-    const { nbPages, page } = algoliaResult;
-    setPageNation({ nbPages, page: page + 1 });
-    setList(resultList);
-    setTab(newsType);
-  };
-
-  const handleTab = (e: MouseEvent<HTMLAnchorElement>, type: TTab) => {
+  const handleTab = (e: React.MouseEvent<HTMLAnchorElement>, type: TTab) => {
     e.preventDefault();
     setSearchValue('');
     onCallNewsList(type);
-
-    const navigateUrl = type === 'all' ? '' : `?newsType=${type}`;
-    navigate(`/news${navigateUrl}`);
+    navigate(`/news${type === 'all' ? '' : `?newsType=${type}`}`);
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-
     onCallNewsList(tab, searchValue);
   };
 
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
@@ -102,9 +58,9 @@ const NewsMain = () => {
         {/* TODO: searchBar common 영역으로 옮겨갈때 반영(feat. @ttumzzi) */}
         <SearchBar.ItemWrapper width="384px">
           <Input
-            handleSubmit={handleSubmit}
             placeholder={'검색'} // TODO: 다국어
             value={searchValue}
+            handleSubmit={handleSubmit}
             handleChange={handleNameChange}
           />
         </SearchBar.ItemWrapper>
@@ -113,22 +69,16 @@ const NewsMain = () => {
       <Suspense
         fallback={
           <div className="loading_cards">
-            <Loading height="" />
+            <Loading height="500px" />
           </div>
         }
       >
-        <S.CardBox>
-          {list.map((item, i) => (
-            <Card key={i} {...{ ...item, i }} />
-          ))}
-        </S.CardBox>
+        <Card
+          {...{ newsList, urlPage, newsType, onCallNewsList, searchValue }}
+        />
       </Suspense>
       {isPagination && (
-        <Pagination
-          newsType={newsType}
-          urlPage={urlPage}
-          pageNationState={pageNationState}
-        />
+        <Pagination {...{ newsType, urlPage, pageNationState }} />
       )}
     </>
   );

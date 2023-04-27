@@ -7,6 +7,7 @@ import { IntroduceType } from '../IntroduceItem/IntroduceItem.type';
 import { introduceOrder } from './Member.const';
 import { MemberProps } from './Member.interface';
 import * as S from './Member.style';
+import { injectIntl } from 'gatsby-plugin-intl';
 
 const Member = (props: MemberProps) => {
   const [member, setMember] = useState<IMember>();
@@ -60,4 +61,4 @@ const Member = (props: MemberProps) => {
   );
 };
 
-export default Member;
+export default injectIntl(Member);

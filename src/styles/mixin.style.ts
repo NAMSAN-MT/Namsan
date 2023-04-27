@@ -45,14 +45,14 @@ export const position = (
   left: ${left};
 `;
 
-export const ellipsis = () => css`
+export const ellipsis = () => `
   overflow: hidden;
   white-space: nowrap;
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
 `;
 
-export const ellipsisMulti = (lines: number) => css`
+export const ellipsisMulti = (lines: number) => `
   display: -webkit-box;
   -webkit-line-clamp: ${lines};
   -webkit-box-orient: vertical;

@@ -6,9 +6,9 @@ import * as S from './GNB.style';
 import MenuIcon from '@Components/icons/MenuIcon';
 import { IGNBProps, IMobileMenuButtonProps } from './GNB.interface';
 import CloseIcon from '@Components/icons/CloseIcon';
-import { injectIntl } from 'gatsby-plugin-intl';
 import AnimationWrapper from '../AnimationWrapper/AnimationWrapper';
 import LogoIcon from '@Components/icons/LogoIcon';
+import { injectIntl } from 'gatsby-plugin-intl';
 
 const MobileMenuButton = ({
   isMobileMenuOpen,
@@ -48,6 +48,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                 color: '#193F9A',
                 originX: 0,
               }}
+              className={location === alt ? 'on' : ''}
               selected={location === alt}
             >
               {intl.formatMessage({ id: translationId })}

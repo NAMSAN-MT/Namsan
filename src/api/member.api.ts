@@ -54,7 +54,7 @@ const getMembers = async (params: MembersSearchRequest) => {
     },
     {
       queryType: 'orderby',
-      fieldPath: 'id',
+      fieldPath: 'order',
       directionStr: 'asc',
     },
   ];
@@ -65,7 +65,7 @@ const getMembers = async (params: MembersSearchRequest) => {
   });
 };
 
-const getMember = async (memberId: number) => {
+const getMember = async (memberId: string) => {
   const endPoint: EndPointType = 'members';
   const queries: TQuery[] = [
     {

@@ -1,9 +1,10 @@
 import { injectIntl } from 'gatsby-plugin-intl';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Info from '../Info';
 import Title from '../Title';
 import { IContactSectionProps } from './ContactSection.interface';
 import * as S from './ContactSection.style';
+import { theme } from '@Styles/varialbes.style';
 
 let isMapSet = false;
 
@@ -22,7 +23,7 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
       if (!naver) return;
 
       isMapSet = true;
-      const location = new naver.maps.LatLng(37.3595704, 127.105399);
+      const location = new naver.maps.LatLng(37.560925, 126.982527);
       const mapOptions: naver.maps.MapOptions = {
         center: location,
         zoom: 17,
@@ -32,16 +33,28 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
         },
       };
       const map = new naver.maps.Map(mapRef.current!, mapOptions);
-      new naver.maps.Marker({
-        position: location,
-        map,
+      const marker = new naver.maps.Marker({ position: location, map });
+
+      const contentString = `<h3 style='padding: 10px;'>법무법인 남산</h3>`;
+
+      const infowindow = new naver.maps.InfoWindow({
+        content: contentString,
+        maxWidth: 140,
+        backgroundColor: theme.color.white,
+        borderWidth: 2,
+        borderColor: theme.color.grey300,
+        anchorSize: new naver.maps.Size(10, 1),
+        anchorColor: theme.color.white,
+        // pixelOffset: new naver.maps.Point(20, -20),
       });
+
+      infowindow.open(map, marker);
     }, 100);
   }, []);
   return (
     <S.ContentSectionWrapper>
       <div className="title">
-        <Title title="CONTACT" />
+        <Title title={intl.formatMessage({ id: 'common.contact' })} />
       </div>
       <S.Map>
         <div className="map" ref={mapRef}></div>
