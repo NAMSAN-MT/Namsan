@@ -37,10 +37,10 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
       border: ${isTransparent ? 'none' : `1px solid ${theme.color.grey100}`};;
       padding: 0 24px;
       background-color: ${
-        isTransparent ? theme.color.transparent : theme.color.white
+        isTransparent ? theme.color.transparent : 'rgba(255, 255, 255, 0.9)'
       };
       width: 100%;
-      
+      backdrop-filter: blur(20px);
       &.open{
         background-color: rgba(255, 255, 255);
       }`,
