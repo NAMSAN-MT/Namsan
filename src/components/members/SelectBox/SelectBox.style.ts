@@ -44,14 +44,14 @@ const OptionWrapper = styled.ul`
   z-index: 100;
   ${flex('flex-start', 'flex-start')};
   flex-direction: column;
-  padding-top: 6px;
-  padding-bottom: 4px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 `;
 
 const Option = styled(Base)<{ isSelected: boolean }>`
   width: 100%;
   cursor: pointer;
-  padding: 20px 10px;
+  padding: 14px 10px;
 
   & > span {
     color: ${({ isSelected, theme }) =>
