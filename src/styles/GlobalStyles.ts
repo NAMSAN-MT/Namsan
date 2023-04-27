@@ -61,6 +61,7 @@ const GlobalStyle = createGlobalStyle`
     background: none;
     padding: 0;
     cursor: pointer;
-  }
+  }}
 `;
+
 export default GlobalStyle;
