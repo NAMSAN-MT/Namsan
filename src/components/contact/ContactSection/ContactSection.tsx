@@ -54,7 +54,7 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
   return (
     <S.ContentSectionWrapper>
       <div className="title">
-        <Title title="CONTACT" />
+        <Title title={intl.formatMessage({ id: 'common.contact' })} />
       </div>
       <S.Map>
         <div className="map" ref={mapRef}></div>
