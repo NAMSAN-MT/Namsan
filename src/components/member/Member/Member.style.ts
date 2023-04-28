@@ -84,6 +84,7 @@ const TextWrapper = styled.div`
       ${font('title20', 'regular')};
       ${lineHeight(20, 34)};
       margin: 32px 0;
+      white-space: pre-wrap;
 
       ${mediaQuery(
         'mobile',

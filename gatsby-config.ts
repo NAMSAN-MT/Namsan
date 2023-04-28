@@ -80,7 +80,7 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/intl`,
         languages: [`en`, `ko`],
         defaultLanguage: `ko`,
-        redirect: false,
+        redirect: true,
       },
     },
     {

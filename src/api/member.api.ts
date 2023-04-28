@@ -1,6 +1,6 @@
 import { IMember } from '../interface/api.interface';
 import { EndPointType, MembersSearchRequest, TQuery } from '../type/api.type';
-import { GetDataListQuery } from './index.api';
+import { GetDataListQuery, getFileFromStorage } from './index.api';
 
 const getMemberPositionList = async () => {
   const positionList = await GetDataListQuery<string>({
@@ -59,10 +59,17 @@ const getMembers = async (params: MembersSearchRequest) => {
     },
   ];
 
-  return await GetDataListQuery<IMember>({
+  const members = await GetDataListQuery<IMember>({
     endPoint,
     queries,
   });
+  const memberListWithImage = await Promise.all(
+    members.map(async member => ({
+      ...member,
+      imagePath: await getFileFromStorage(member.imagePath),
+    })),
+  );
+  return memberListWithImage;
 };
 
 const getMember = async (memberId: string) => {
@@ -80,7 +87,14 @@ const getMember = async (memberId: string) => {
     endPoint,
     queries,
   });
-  return member;
+
+  const memberWithImage = {
+    ...member,
+    imagePath: await getFileFromStorage(member.imagePath),
+    bgImagePath: await getFileFromStorage(member.bgImagePath),
+  };
+
+  return memberWithImage;
 };
 
 export {

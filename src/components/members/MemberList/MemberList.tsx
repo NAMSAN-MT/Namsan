@@ -7,6 +7,7 @@ import MemberItem from '../MemberItem';
 import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
 import { IMemberListProps } from './MemberList.interface';
 import * as S from './MemberList.style';
+import { getFileFromStorage } from '@Api/index.api';
 
 const MemberList = ({ intl }: IMemberListProps) => {
   const { name, position, businessField } = getSearchParams();
