@@ -7,7 +7,7 @@ export default ({ pageContext }: PageProps) => {
   const { id } = pageContext as { id: string };
 
   const router = (
-    <Layout>
+    <Layout route="workDetail">
       <DetailPage id={id}></DetailPage>
     </Layout>
   );
