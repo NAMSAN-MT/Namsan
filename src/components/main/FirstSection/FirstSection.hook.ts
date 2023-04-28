@@ -12,13 +12,11 @@ const useFirstSection = (props: IFirstSectionProps) => {
         setMainVideo(mainVideo);
         return;
       }
-      // TODO: check it
-      // const mainVideo = await getVideo('main/mainFull1.mp4');
       const mainVideo = await getVideo('main/mainFull2.mp4');
       setMainVideo(mainVideo);
     };
     init();
-  }, []);
+  }, [props.isMobile]);
 
   return {
     mainVideo,

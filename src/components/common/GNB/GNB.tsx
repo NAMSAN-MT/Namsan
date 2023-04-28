@@ -37,7 +37,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
     >
       <S.LogoWrapper>
         <Link className="link" key="home" to="/" about="home">
-          <LogoIcon width="100%" isMobile={isMobile} />
+          <LogoIcon width="100%" isMobile={isMobile && isTransparent} />
         </Link>
       </S.LogoWrapper>
       <S.MainLinkWrapper>
@@ -46,11 +46,9 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
             <S.LinkNameWrapper
               whileHover={{
                 color: '#193F9A',
-                scale: 1.1,
                 originX: 0,
               }}
               className={location === alt ? 'on' : ''}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               selected={location === alt}
             >
               {intl.formatMessage({ id: translationId })}
@@ -107,7 +105,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
       <MobileMenuButton
         isMobileMenuOpen={isMobileMenuOpen}
         onClick={handleMenuButtonClick}
-        isMobile={isMobile}
+        isMobile={isMobile && isTransparent}
       />
     </S.GNBWrapper>
   );

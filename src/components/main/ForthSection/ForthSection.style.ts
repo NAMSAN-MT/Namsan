@@ -42,7 +42,7 @@ const BottomWrapper = styled.div`
   gap: 24px;
 
   ${mediaQuery(
-    'tablet',
+    'tablet1024',
     `
       flex-direction: column;
       width: 100%;
@@ -62,7 +62,7 @@ const BottomWrapper = styled.div`
     width: 32%;
 
     ${mediaQuery(
-      'tablet',
+      'tablet1024',
       `
       width: 100%;
       max-width: 100%;
@@ -82,7 +82,7 @@ const BottomWrapper = styled.div`
     )};
     .card-label {
       ${mediaQuery(
-        'tablet',
+        'tablet1024',
         `
           margin-bottom: 12px;
         `,
@@ -95,7 +95,7 @@ const BottomWrapper = styled.div`
       )};
       p {
         ${mediaQuery(
-          'tablet',
+          'tablet1024',
           `
           ${font('body16', 'bold')};
           ${lineHeight(16, 26)};
@@ -114,7 +114,7 @@ const BottomWrapper = styled.div`
     }
     .card-title {
       ${mediaQuery(
-        'tablet',
+        'tablet1024',
         `
         max-width: 100%;
         margin-bottom: 12px;
@@ -140,7 +140,7 @@ const BottomWrapper = styled.div`
     }
     .card-content {
       ${mediaQuery(
-        'tablet',
+        'tablet1024',
         `
         margin-bottom: 40px;
         ${font('title18', 'regular')};
@@ -162,7 +162,7 @@ const BottomWrapper = styled.div`
     .card-date {
       p {
         ${mediaQuery(
-          'tablet',
+          'tablet1024',
           `
           height: unset;
           ${font('title18', 'regular')};
@@ -182,7 +182,7 @@ const BottomWrapper = styled.div`
       }
       .divider {
         ${mediaQuery(
-          'tablet',
+          'tablet1024',
           `
           width: 100%;
         `,
