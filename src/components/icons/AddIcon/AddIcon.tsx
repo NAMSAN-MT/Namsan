@@ -1,7 +1,7 @@
-import React from "react";
-import IconWrapper from "../IconWrapper";
-import addIcon from "../../../assets/imgs/ic_+_nor.svg";
-import addHoverIcon from "../../../assets/imgs/ic_+_hover.svg";
+import React from 'react';
+import IconWrapper from '../IconWrapper';
+import addIcon from '@Images/ic_+_nor.svg';
+import addHoverIcon from '@Images/ic_+_hover.svg';
 
 interface PropTypes {
   width?: string;
@@ -11,8 +11,9 @@ interface PropTypes {
 
 const AddIcon = (props: PropTypes) => {
   const src = props.hover ? addHoverIcon : addIcon;
+
   return (
-    <IconWrapper width={props.width || "24px"} height={props.height || "24px"}>
+    <IconWrapper width={props.width || '24px'} height={props.height || '24px'}>
       <img src={src} alt="add icon" />
     </IconWrapper>
   );

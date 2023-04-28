@@ -1,24 +1,34 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
+import { FontWeight, ScreenBreakPoints, TextStyles } from './varialbes.style';
 
-export const size = (height?: string, width?: string) => css`
-  height: ${height ?? "auto"};
-  width: ${width ?? "auto"};
+export const size = (height = 'auto', width = 'auto') => `
+  height: ${height};
+  width: ${width};
 `;
 
-export const flex = (jc?: string, ai?: string) => css`
+export const flex = (jc = 'center', ai = 'center') => `
   display: flex;
-  justify-content: ${jc ?? "center"};
-  align-items: ${ai ?? "center"};
+  justify-content: ${jc};
+  align-items: ${ai};
 `;
 
-export const inlineblock = (va?: string) => css`
-  display: inline-block;
-  vertical-align: ${va ?? "top"};
+export const flexDirection = (
+  fd: 'row' | 'row-reverse' | 'column' | 'column-reverse' = 'column',
+  ai = 'center',
+) => `
+  display: flex;
+  flex-direction: ${fd};
+  align-items: ${ai};
 `;
 
-export const inlineblockJustFunction = (va?: string) => css`
+export const inlineblock = (va = 'top') => css`
   display: inline-block;
-  vertical-align: ${() => va ?? "top"};
+  vertical-align: ${va};
+`;
+
+export const inlineblockJustFunction = (va = 'top') => css`
+  display: inline-block;
+  vertical-align: ${va};
 `;
 
 export const position = (
@@ -35,9 +45,40 @@ export const position = (
   left: ${left};
 `;
 
-export const ellipsis = () => css`
+export const ellipsis = () => `
   overflow: hidden;
   white-space: nowrap;
   -ms-text-overflow: ellipsis;
   text-overflow: ellipsis;
 `;
+
+export const ellipsisMulti = (lines: number) => `
+  display: -webkit-box;
+  -webkit-line-clamp: ${lines};
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+`;
+
+export const font = (
+  style: keyof typeof TextStyles,
+  weight: keyof typeof FontWeight,
+) => `
+  font-weight: ${FontWeight[weight]};
+  font-size: ${TextStyles[style][0]};
+`;
+
+export const lineHeight = (fontSizePx: number, lineHeightPx: number) => `
+  line-height: ${lineHeightPx / fontSizePx};
+`;
+
+export const mediaQuery = (
+  breakPoint: keyof typeof ScreenBreakPoints,
+  content: string,
+) => {
+  return css`
+    @media (max-width: ${ScreenBreakPoints[breakPoint]}) {
+      ${content}
+    }
+  `;
+};
