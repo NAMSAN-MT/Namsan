@@ -5,6 +5,7 @@ import algoliasearch from "algoliasearch";
 import * as Helper from "./helper";
 import { DocumentData } from "firebase-admin/firestore";
 
+
 const firebaseConfig = {
   apiKey: process.env.GATSBY_FIREBASE_API_KEY,
   authDomain: process.env.GATSBY_FIREBASE_AUTH_DOMAIN,
@@ -24,8 +25,10 @@ const algoliaClient = algoliasearch(
   functions.config().algolia.apikey,
 );
 
+
 const INDEX_NAME = "dev_namsan";
 const REGION = "asia-northeast2";
+
 const COLLECTION_INDEX = algoliaClient.initIndex(INDEX_NAME);
 
 // 데이터 모델 클래스 생성
