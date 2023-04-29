@@ -114,7 +114,7 @@ const config: GatsbyConfig = {
     },
   ],
   flags: {
-    DEV_SSR: false,
+    DEV_SSR: true,
   },
 };
 
