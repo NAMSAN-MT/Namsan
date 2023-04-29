@@ -40,6 +40,12 @@ const BottomWrapper = styled.div`
   ${flex()};
   margin-top: 36px;
   gap: 24px;
+  .card-box {
+    margin: 0;
+  }
+  .card-wrapper {
+    width: 100% !important;
+  }
 
   ${mediaQuery(
     'tablet1024',
@@ -55,6 +61,14 @@ const BottomWrapper = styled.div`
       flex-direction: column;
       margin-top: 19px;
       gap: 16px;
+
+      .card-title {
+        height: unset !important;
+      }
+
+      .card-content {
+        height: unset !important;
+      }
     `,
   )};
 
@@ -160,6 +174,12 @@ const BottomWrapper = styled.div`
       )};
     }
     .card-date {
+      ${mediaQuery(
+        'tablet1024',
+        `
+         margin-bottom: 0;
+      `,
+      )};
       p {
         ${mediaQuery(
           'tablet1024',

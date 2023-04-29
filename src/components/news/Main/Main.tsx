@@ -74,7 +74,8 @@ const NewsMain = () => {
         }
       >
         <Card
-          {...{ newsList, urlPage, newsType, onCallNewsList, searchValue }}
+          newsList={newsList}
+          {...{ urlPage, newsType, onCallNewsList, searchValue }}
         />
       </Suspense>
       {isPagination && (
