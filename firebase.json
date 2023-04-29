@@ -16,6 +16,7 @@
     }
   ],
   "hosting": {
+    "site": "namsan",
     "public": "public",
     "ignore": [
       "firebase.json",
