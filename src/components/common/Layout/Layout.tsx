@@ -9,7 +9,7 @@ import * as S from './Layout.style';
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { isHeader = true, isFooter = true, children, route } = props;
   const { handleTopEvent } = useLayout();
-  const isMainPage = route === 'main';
+  const isMainPage = ['main', 'workDetail'].includes(route ?? '');
 
   return (
     <S.LayoutWrapper>
