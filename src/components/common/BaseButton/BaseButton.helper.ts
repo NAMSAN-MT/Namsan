@@ -15,8 +15,12 @@ const bindStyle = (name: TClassName) => {
       return S.Tag;
     case 'arrow-top':
       return S.ArrowTop;
+    case 'copy':
+      return S.Copy;
     case 'hamburger':
       return S.Hamburger;
+    case 'hamburger-news':
+      return S.HamburgerNews;
     case 'share':
       return S.Share;
     case 'more':
@@ -44,7 +48,11 @@ const checkIsIcon = (name: TClassName) => {
       return false;
     case 'arrow-top':
       return true;
+    case 'copy':
+      return true;
     case 'hamburger':
+      return true;
+    case 'hamburger-news':
       return true;
     case 'share':
       return true;
