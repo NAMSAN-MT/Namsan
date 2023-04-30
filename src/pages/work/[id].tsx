@@ -1,5 +1,6 @@
 import Layout from '@Components/common/Layout/Layout';
 import DetailPage from '@Components/work/DetailPage';
+import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
   pageContext: { language: 'ko' | 'en' };
 }
 
-export default (props: Props) => {
+const Detail = (props: WrappedComponentProps & Props) => {
   const { pageContext, id } = props;
   const router = (
     <Layout route="workDetail">
@@ -16,3 +17,11 @@ export default (props: Props) => {
   );
   return router;
 };
+
+export const getServerData = async (props: WrappedComponentProps) => {
+  return {
+    props,
+  };
+};
+
+export default injectIntl(Detail);
