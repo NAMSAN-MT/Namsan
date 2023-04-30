@@ -22,7 +22,6 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
         businessField,
         language: intl.locale as TLanguage,
       };
-      if (!name && !position && !businessField) return;
 
       const newMembers = members.filter(member => {
         return (
@@ -53,7 +52,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
           name={member.name}
           position={member.position}
           businessFields={member.businessFields}
-          imagePath={member.imagePath}
+          image={member.image}
           id={member.id}
         />
       ))}

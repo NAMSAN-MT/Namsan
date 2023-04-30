@@ -1,31 +1,32 @@
 import styled from 'styled-components';
-import MemberBackgroundImage from '@Images/member_bg.jpg';
 import { font, lineHeight, mediaQuery, size } from '@Styles/mixin.style';
 
 const MemberWrapper = styled.div`
   position: relative;
 `;
 
-const ImageWrapper = styled.div<{ src: string }>`
+const ImageWrapper = styled.div`
   position: relative;
-  ${size('460px')}
+  ${size('460px')};
   max-width: 1200px;
 
-  background: url('${props => props.src}');
-  background-size: cover;
   margin: 0 auto;
 
-  ${mediaQuery('mobile', `${size('360px')};`)}
-`;
+  ${mediaQuery('mobile', `${size('360px')};`)};
 
-const ProfileImage = styled.img`
-  ${size('auto', '406px')};
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
+  .bg {
+    ${size('100%', '100%')};
+  }
 
-  ${mediaQuery('mobile', `${size(undefined, '215px')}`)}
+  .profile {
+    ${size('auto', '406px')};
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+
+    ${mediaQuery('mobile', `${size(undefined, '215px')}`)}
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -125,4 +126,4 @@ const TagWrapper = styled.div`
   }
 `;
 
-export { MemberWrapper, ImageWrapper, ProfileImage, TextWrapper, TagWrapper };
+export { MemberWrapper, ImageWrapper, TextWrapper, TagWrapper };

@@ -2,12 +2,13 @@ import { injectIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 import { IMemberItemProps } from './MemberItem.interface';
 import * as S from './MemberItem.style';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const MemberItem = ({
   name,
   position,
   businessFields,
-  imagePath,
+  image,
   id,
 }: IMemberItemProps) => {
   const _handleClick = async () => {
@@ -19,7 +20,7 @@ const MemberItem = ({
       <S.ImageSection>
         <S.ImageWrapper>
           <div className="dim"></div>
-          <S.Image src={imagePath} />
+          <GatsbyImage alt={id} image={image} />
         </S.ImageWrapper>
         <S.TagsWrapper>
           {businessFields.map(businessField => (

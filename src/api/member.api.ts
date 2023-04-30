@@ -66,7 +66,7 @@ const getMembers = async (params: MembersSearchRequest) => {
   const memberListWithImage = await Promise.all(
     members.map(async member => ({
       ...member,
-      imagePath: await getFileFromStorage(member.imagePath),
+      imagePath: await getFileFromStorage(member.image),
     })),
   );
   return memberListWithImage;
@@ -90,8 +90,8 @@ const getMember = async (memberId: string) => {
 
   const memberWithImage = {
     ...member,
-    imagePath: await getFileFromStorage(member.imagePath),
-    bgImagePath: await getFileFromStorage(member.bgImagePath),
+    imagePath: await getFileFromStorage(member.image),
+    bgImagePath: await getFileFromStorage(member.bgImage),
   };
 
   return memberWithImage;
