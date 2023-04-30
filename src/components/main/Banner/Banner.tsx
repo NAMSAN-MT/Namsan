@@ -4,7 +4,7 @@ import { IBannerProps } from './Banner.interface';
 import BaseButton from '@Components/common/BaseButton';
 import { injectIntl } from 'gatsby-plugin-intl';
 
-const SummaryNews = (props: IBannerProps) => {
+const Banner = (props: IBannerProps) => {
   return (
     <S.BannerWrapper even={props.even}>
       <S.Tag>
@@ -28,7 +28,11 @@ const SummaryNews = (props: IBannerProps) => {
             })}
           </BaseButton>
         ) : (
-          <BaseButton className="outline" onClick={props.onClick}>
+          <BaseButton
+            data-id={props.index === 1 ? 'download' : 'direct'}
+            className="outline"
+            onClick={props.onClick}
+          >
             {props.intl.formatMessage({
               id: `main.button5_${props.index}`,
             })}
@@ -39,4 +43,4 @@ const SummaryNews = (props: IBannerProps) => {
   );
 };
 
-export default injectIntl(SummaryNews);
+export default injectIntl(Banner);

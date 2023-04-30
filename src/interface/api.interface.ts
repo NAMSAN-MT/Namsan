@@ -44,11 +44,12 @@ export interface IMemberAttribute {
 }
 
 export interface IMember {
-  id: number;
+  id: string;
   language: 'ko' | 'en';
   name: string;
   position: string;
   email: string;
+  order: number;
   businessFields: string[];
   description?: string;
   educations?: IMemberAttribute[];

@@ -3,25 +3,26 @@ import React from 'react';
 import { GNBLink, LanguageLink } from './GNB.const';
 import useGNB from './GNB.hook';
 import * as S from './GNB.style';
-import LogoGNB from '@Images/logo-gnb.svg';
 import MenuIcon from '@Components/icons/MenuIcon';
 import { IGNBProps, IMobileMenuButtonProps } from './GNB.interface';
 import CloseIcon from '@Components/icons/CloseIcon';
-import { injectIntl } from 'gatsby-plugin-intl';
 import AnimationWrapper from '../AnimationWrapper/AnimationWrapper';
+import LogoIcon from '@Components/icons/LogoIcon';
+import { injectIntl } from 'gatsby-plugin-intl';
 
 const MobileMenuButton = ({
   isMobileMenuOpen,
   onClick,
+  isMobile,
 }: IMobileMenuButtonProps) => {
   return (
     <S.MobileMenuButton onClick={onClick}>
-      {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+      {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon isMobile={isMobile} />}
     </S.MobileMenuButton>
   );
 };
 
-const GNB = ({ intl }: IGNBProps) => {
+const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
   const {
     handleChangeLanguage,
     language,
@@ -30,10 +31,13 @@ const GNB = ({ intl }: IGNBProps) => {
     location,
   } = useGNB();
   return (
-    <S.GNBWrapper className={isMobileMenuOpen ? 'open' : ''}>
+    <S.GNBWrapper
+      className={isMobileMenuOpen ? 'open' : ''}
+      isTransparent={isTransparent}
+    >
       <S.LogoWrapper>
         <Link className="link" key="home" to="/" about="home">
-          <img src={LogoGNB} width="100%" alt="icon" />
+          <LogoIcon width="100%" isMobile={isMobile && isTransparent} />
         </Link>
       </S.LogoWrapper>
       <S.MainLinkWrapper>
@@ -42,10 +46,9 @@ const GNB = ({ intl }: IGNBProps) => {
             <S.LinkNameWrapper
               whileHover={{
                 color: '#193F9A',
-                scale: 1.1,
                 originX: 0,
               }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              className={location === alt ? 'on' : ''}
               selected={location === alt}
             >
               {intl.formatMessage({ id: translationId })}
@@ -102,6 +105,7 @@ const GNB = ({ intl }: IGNBProps) => {
       <MobileMenuButton
         isMobileMenuOpen={isMobileMenuOpen}
         onClick={handleMenuButtonClick}
+        isMobile={isMobile && isTransparent}
       />
     </S.GNBWrapper>
   );

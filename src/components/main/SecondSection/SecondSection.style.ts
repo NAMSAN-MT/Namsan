@@ -42,7 +42,7 @@ const Description = styled(Basic)`
   letter-spacing: -0.4px;
   color: ${({ theme }) => theme.color.textBlackMedium};
   margin-top: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 
   ${font('title26', 'medium')}
   ${lineHeight(26, 40)};

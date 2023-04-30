@@ -9,12 +9,16 @@ import * as S from './Layout.style';
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { isHeader = true, isFooter = true, children, route } = props;
   const { handleTopEvent } = useLayout();
+  const isMainPage = ['main', 'workDetail'].includes(route ?? '');
+
   return (
     <S.LayoutWrapper>
-      {isHeader ? <GNB /> : null}
-      <S.LayoutContent>
+      {isHeader ? (
+        <GNB isMobile={props.isMobile} isTransparent={props.isTransparent} />
+      ) : null}
+      <S.LayoutContent isMainPage={isMainPage}>
         {children}
-        {['main', 'workDetail'].includes(route ?? '') && (
+        {isMainPage && (
           <S.TopButtonWrapper>
             <BaseButton className="arrow-top" onClick={handleTopEvent} />
           </S.TopButtonWrapper>

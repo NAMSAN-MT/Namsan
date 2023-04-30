@@ -7,6 +7,13 @@ const FifthWrapper = styled(Wrapper)`
   margin-top: 150px;
   margin-bottom: 40px;
   ${mediaQuery(
+    'tablet1024',
+    `
+     margin-top: 100px;
+     margin-bottom: 20px;
+    `,
+  )};
+  ${mediaQuery(
     'mobile',
     `
      margin-top: 60px;

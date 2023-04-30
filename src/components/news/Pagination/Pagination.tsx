@@ -1,79 +1,87 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import * as S from './Pagination.style';
 import ArrowLeftIcon from '@Images/arrow_left_th10.svg';
 import ArrowLeftStrongIcon from '@Images/arrow_left_th10_strong.svg';
 import ArrowRightIcon from '@Images/arrow_right_th10.svg';
 import ArrowRightStrongIcon from '@Images/arrow_right_th10_strong.svg';
-import { TPagination } from '../Main/main.interface';
-import { NewsType } from '@Type/api.type';
-import { toQuery } from './Pagination.helper';
+import { useLocation } from '@reach/router';
+import { Link, navigate } from 'gatsby';
+import React from 'react';
+import {
+  getNewQueryString,
+  getPageList,
+  getPageNationState,
+  toQuery,
+} from './Pagination.helper';
+import { PaginationProps } from './Pagination.interface';
+import * as S from './Pagination.style';
 
-interface Props {
-  newsType: NewsType;
-  urlPage?: number;
-  pageNationState: TPagination;
-}
+const Pagination = (props: PaginationProps) => {
+  const params = new URLSearchParams(useLocation().search);
+  const { currentPage, nbPages, page } = getPageNationState(props);
 
-const Pagination = (props: Props) => {
-  const { nbPages, page } = props.pageNationState;
-  const currentPage = props.urlPage || page || 1;
-
-  // 첫 번째 페이지 라인
-  const firstPage = nbPages > 0 ? 1 : undefined;
-  let isFirstPageArea = currentPage < 10 && firstPage;
-
-  // 마지막 페이지 라인
-  const lastPage = nbPages;
-  let isLastPageArea =
-    nbPages === currentPage ||
-    (nbPages > currentPage && nbPages - 10 < currentPage);
-  console.log(lastPage, isLastPageArea);
-
+  // Pagination
   let pageList: number[] = [];
-  console.log(nbPages, props.urlPage);
-
-  // TODO: 세부로직 작업 필요 작업중
-  if (nbPages <= 10 || currentPage <= 10) {
-    if (nbPages > 7 && nbPages <= 10 && currentPage > 4) {
-      console.log('2>>');
-      isFirstPageArea = false;
-      isLastPageArea = true;
-      const length = 6;
-      pageList = Array.from({ length }).map((_, index) => index - 1 + length);
-    } else {
-      if (nbPages > 7) {
-        console.log('3>>');
-        isLastPageArea = false;
-        pageList = Array.from({ length: 7 }).map((_, index) => index + 1);
-      } else {
-        console.log('4>>');
-        pageList = Array.from({ length: nbPages }).map((_, index) => index + 1);
-      }
-    }
-  } else if (nbPages > currentPage && nbPages - 10 < currentPage) {
-    console.log('5>>');
-    const length = nbPages - 7;
-    pageList = Array.from({ length }).map((_, index) => index + length);
-  } else {
-    console.log('6>>');
-    const length = nbPages - 5;
-    pageList = Array.from({ length: nbPages }).map((_, index) => index + 1);
+  let booleanObj = {
+    isPrev: false,
+    isNext: false,
+    isFirstPageArea: false,
+    isLastPageArea: false,
+  };
+  const front = page - 3 > 1;
+  const end = page + 3 < nbPages;
+  if (nbPages < 10) {
+    pageList = getPageList(nbPages).map((_, i) => i + 1);
+  } else if (front && end) {
+    booleanObj = {
+      isPrev: true,
+      isNext: true,
+      isFirstPageArea: true,
+      isLastPageArea: true,
+    };
+    pageList = getPageList(5).map((_, i) => page - 2 + i + 1);
+  } else if (!front && end) {
+    booleanObj = {
+      isPrev: false,
+      isNext: true,
+      isFirstPageArea: false,
+      isLastPageArea: true,
+    };
+    pageList = getPageList(6).map((_, i) => i + 1);
+  } else if (front && !end) {
+    booleanObj = {
+      isPrev: true,
+      isNext: false,
+      isFirstPageArea: true,
+      isLastPageArea: false,
+    };
+    pageList = getPageList(6).map((_, i) => nbPages - 6 + i + 1);
   }
 
-  const isPrev = !isFirstPageArea,
-    isNext = !isLastPageArea;
-  const PrevIcon = isPrev ? ArrowLeftStrongIcon : ArrowLeftIcon;
-  const NextsIcon = isNext ? ArrowRightStrongIcon : ArrowRightIcon;
+  const PrevIcon = booleanObj.isPrev ? ArrowLeftStrongIcon : ArrowLeftIcon;
+  const NextsIcon = booleanObj.isNext ? ArrowRightStrongIcon : ArrowRightIcon;
+
+  const handleMovePrev = () => {
+    if (booleanObj.isPrev) {
+      const newPage = page - 9 < 1 ? 1 : page - 9;
+      navigate(`?${getNewQueryString(params, newPage)}`);
+    }
+  };
+
+  const handleMoveNext = () => {
+    if (booleanObj.isNext) {
+      const newPage = 9 + page > nbPages ? nbPages : 9 + page;
+      navigate(`?${getNewQueryString(params, newPage)}`);
+    }
+  };
+
   return (
     <S.Wrapper className="pagination">
-      <S.ArrowNavigation disabled={isPrev}>
+      <S.ArrowNavigation disabled={!booleanObj.isPrev} onClick={handleMovePrev}>
         <img src={PrevIcon} alt="prev" />
       </S.ArrowNavigation>
-      {!isFirstPageArea && (
+      {booleanObj.isFirstPageArea && (
         <>
-          <Link key={firstPage} to={toQuery(props.newsType, firstPage)}>
-            <S.PageNumber>{firstPage}</S.PageNumber>
+          <Link key={1} to={toQuery(props.newsType, 1)}>
+            <S.PageNumber>1</S.PageNumber>
           </Link>
           <span className="ellipse"></span>
         </>
@@ -83,15 +91,15 @@ const Pagination = (props: Props) => {
           <S.PageNumber isSelected={currentPage === num}>{num}</S.PageNumber>
         </Link>
       ))}
-      {!isLastPageArea && (
+      {booleanObj.isLastPageArea && (
         <>
           <span className="ellipse"></span>
-          <Link key={lastPage} to={toQuery(props.newsType, lastPage)}>
-            <S.PageNumber>{lastPage}</S.PageNumber>
+          <Link key={nbPages} to={toQuery(props.newsType, nbPages)}>
+            <S.PageNumber>{nbPages}</S.PageNumber>
           </Link>
         </>
       )}
-      <S.ArrowNavigation disabled={isNext}>
+      <S.ArrowNavigation disabled={!booleanObj.isNext} onClick={handleMoveNext}>
         <img src={NextsIcon} alt="next" />
       </S.ArrowNavigation>
     </S.Wrapper>

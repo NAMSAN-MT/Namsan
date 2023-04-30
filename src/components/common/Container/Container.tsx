@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import { font, mediaQuery } from '../../../styles/mixin.style';
+import { font, mediaQuery } from '@Styles/mixin.style';
 
 export type ContainerType = {
   title: string;

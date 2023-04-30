@@ -3,17 +3,25 @@ import { useEffect, useState } from 'react';
 
 const useResize = () => {
   const [isMobile, setMobile] = useState(false);
+  const [isTablet, setTablet] = useState(false);
+  const [isDesktop, setDesktop] = useState(false);
 
   const checkMobile = () => {
-    const isMobile = window.innerWidth < Screen.mobile;
+    const isDesktop = window.outerWidth > Screen.tablet1024;
+    const isMobile = window.outerWidth < Screen.mobile;
+    const isTablet =
+      window.outerWidth > Screen.mobile &&
+      window.outerWidth < Screen.tablet1024;
+
+    setDesktop(isDesktop);
     setMobile(isMobile);
+    setTablet(isTablet);
   };
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    setMobile(window.innerWidth < Screen.mobile);
     window.addEventListener('resize', checkMobile);
-
+    checkMobile();
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
@@ -21,6 +29,8 @@ const useResize = () => {
 
   return {
     isMobile,
+    isTablet,
+    isDesktop,
   };
 };
 

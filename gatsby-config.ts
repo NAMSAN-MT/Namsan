@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
 import { resolve, join } from 'path';
+import dotenv from "dotenv";
+dotenv.config();
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -99,7 +101,21 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    {
+      resolve: `gatsby-source-firestore-easy`,
+      options: {
+        adminCredential: {
+          credential: require('./firebase-key.json'),
+          databaseURL:
+            'https://namsan-801de-default-rtdb.asia-southeast1.firebasedatabase.app',
+        },
+        collections: ['members', 'work'],
+      },
+    },
   ],
+  flags: {
+    DEV_SSR: true,
+  },
 };
 
 export default config;

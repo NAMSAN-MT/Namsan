@@ -2,31 +2,49 @@ import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-const GNBWrapper = styled.div`
+const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
   ${flex('space-between')};
   width: 100%;
   padding: 0 90px;
-  height: 84px;
+  height: 86px;
+  position: fixed;
+  z-index: 999;
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   border: 1px solid ${({ theme }) => theme.color.grey100};
 
-  ${mediaQuery(
-    'tablet1024',
-    `
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  border: none;
-  padding: 0 40px;
-  background-color: rgba(255, 255, 255, 0.6);)};
-  width: 100%;
-  
-  &.open{
-    background-color: rgba(255, 255, 255);)}
-  }`,
-  )};
+  ${({ theme }) =>
+    mediaQuery(
+      'tablet1024',
+      `
+      z-index: 100;
+      top: 0;
+      padding: 0 24px;
+      background-color: ${theme.color.white};
+      width: 100%;
+      
+      &.open{
+        background-color: rgba(255, 255, 255);
+      }`,
+    )};
 
-  ${mediaQuery('mobile', `height: 56px; padding: 0 24px;`)}
+  ${({ isTransparent, theme }) =>
+    mediaQuery(
+      'mobile',
+      `
+      z-index: 100;
+      height: 55px;
+      top: 0;
+      border: ${isTransparent ? 'none' : `1px solid ${theme.color.grey100}`};;
+      padding: 0 24px;
+      background-color: ${
+        isTransparent ? theme.color.transparent : 'rgba(255, 255, 255, 0.9)'
+      };
+      width: 100%;
+      backdrop-filter: blur(20px);
+      &.open{
+        background-color: rgba(255, 255, 255);
+      }`,
+    )};
 `;
 
 const LogoWrapper = styled.div`
