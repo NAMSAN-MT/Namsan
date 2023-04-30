@@ -87,5 +87,8 @@
     "papers": "논문/저서",
     "more": "더보기",
     "less": "접기"
+  },
+  "work": {
+    "title": "Our Practice"
   }
 }

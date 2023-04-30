@@ -4,13 +4,22 @@ import { GetDataListQuery } from './index.api';
 import { isEmpty } from 'lodash';
 import { IMember } from '@Interface/api.interface';
 
-export const getWorkFields = async (searchFields?: string[]) => {
-  return await GetDataListQuery<Category>({
+export const getWorkFields = async <T>(
+  searchFields?: string[],
+  language?: string,
+) => {
+  return await GetDataListQuery<T>({
     endPoint: 'work',
     queries: [
       {
+        queryType: 'where',
+        fieldPath: 'language',
+        opStr: '==',
+        value: language ?? 'ko',
+      },
+      {
         queryType: 'orderby',
-        fieldPath: documentId(),
+        fieldPath: 'categoryId',
         directionStr: 'asc',
       },
     ],

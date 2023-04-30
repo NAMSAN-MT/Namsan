@@ -1,27 +1,34 @@
-import { Container } from '@Components/common/Container/Container';
 import { LE } from '@Components/common/List';
 import React, { useState } from 'react';
-import { Category } from './work.interface';
 import { Grid } from './work.styled';
 
 export interface Props {
-  data: Category[];
+  data: string[][];
 }
 
 const Work = ({ data }: Props) => {
-  const [mainCategory] = useState<Category[]>(data);
+  const [mainCategory] = useState<string[][]>(data);
   return (
-    <Container title="업무분야">
-      <Grid>
-        {mainCategory?.map(({ categoryId: id, name, subCategory }) => (
-          <LE.MainCategory id={id} name={name} key={id}>
-            {subCategory?.map(({ categoryId: subId, name: subName }) => (
-              <LE.SubCategory subId={subId} name={subName} key={subId} />
-            ))}
+    <Grid>
+      {mainCategory?.map((category, index) => {
+        const id = String(index + 1).padStart(2, '0');
+        return (
+          <LE.MainCategory id={`C${id}`} name={category[0]} key={`C${id}`}>
+            {category?.map((subName, subIndex) => {
+              if (subIndex === 0) return <></>;
+              const subId = String(subIndex).padStart(2, '0');
+              return (
+                <LE.SubCategory
+                  subId={`S${id}${subId}`}
+                  name={subName}
+                  key={`S${id}${subId}`}
+                />
+              );
+            })}
           </LE.MainCategory>
-        ))}
-      </Grid>
-    </Container>
+        );
+      })}
+    </Grid>
   );
 };
 

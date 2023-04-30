@@ -8,7 +8,7 @@ export default ({ pageContext }: PageProps) => {
 
   const router = (
     <Layout route="workDetail">
-      <DetailPage id={id}></DetailPage>
+      <DetailPage id={id} />
     </Layout>
   );
   return router;
