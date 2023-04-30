@@ -5,26 +5,29 @@ export const PolicyStyleBox = styled.div`
   padding: 0px 90px;
   margin: 0px auto;
   max-width: 1200px;
-  margin-bottom: 160px;
+  padding-top: 100px;
+  padding-bottom: 180px;
 
   ${mediaQuery(
     'mobile',
     `
       margin: 0px 24px;
-      margin-bottom: 100px;
+      padding: 0px;
+      padding-top: 30px;
+      padding-bottom: 100px;
+
       `,
   )}
 
   & h1 {
     color: ${({ theme }) => theme.color.textBlackHigh};
     ${font('title32', 'bold')};
-    margin-top: 100px;
 
     ${mediaQuery(
       'mobile',
       `
       ${font('mobile24', 'bold')};
-      line-height: 36px;
+    line-height: 36px;
       `,
     )}
   }
@@ -106,6 +109,30 @@ export const PolicyStyleBox = styled.div`
   & table {
     width: 100%;
     border: 1px solid ${({ theme }) => theme.color.grey200};
+    margin-top: 20px;
+    ${font('body16', 'regular')}
+
+    &.pc {
+      ${mediaQuery(
+        'mobile',
+        `
+        display: none;
+        `,
+      )}
+    }
+
+    &.mobile {
+      display: none;
+      ${mediaQuery(
+        'mobile',
+        `
+        display: inline-table;
+        text-align: center;
+        ${font('mobile14', 'regular')};
+        `,
+      )}
+    }
+
     tbody {
       border: inherit;
       tr {
@@ -119,24 +146,18 @@ export const PolicyStyleBox = styled.div`
         }
         th {
           vertical-align: middle;
+          ${font('body16', 'bold')}
           background: ${({ theme }) => theme.color.grey50};
           border: inherit;
+        }
 
-          &.need-convert[colspan='2'] {
-            display: none;
-          }
-
+        td,
+        th {
           ${mediaQuery(
             'mobile',
-            ` 
-          &.need-convert[rowspan="2"] {
-            display:none;
-          };
-
-          &.need-convert[colspan='2'] {
-            display: table-cell;
-          };
-      `,
+            `
+            padding: 20px 22px;
+          `,
           )}
         }
       }

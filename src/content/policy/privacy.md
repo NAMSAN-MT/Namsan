@@ -12,7 +12,7 @@ title: '개인정보 처리방침'
 
 ### 변호사 입사지원
 
-<table>
+<table class="pc">
   <tr>
     <th colspan="2">
       정보주체
@@ -42,9 +42,47 @@ title: '개인정보 처리방침'
   </tr>
 </table>
 
+<table class='mobile'>
+  <colgroup>
+    <col style="width:50%">
+    <col style="width:50%">
+  </colgroup>
+  <tr>
+    <th colspan="2">
+      정보주체
+    </th>
+  </tr>
+  <tr> 
+    <td colspan="2">
+      사법연수생, 로스쿨생(국내), 법무관, 로클럭, 경력변호사, 외국변호사
+    </td>
+  </tr>
+  <tr>
+    <th colspan="2">
+      처리항목
+    </th>
+  </tr>
+  <tr>
+    <th>
+      필수항목
+    </th>
+    <th>
+      선택항목
+    </th>
+  </tr>
+  <tr>
+    <td>
+      성명, 성별, 생년월일, 전화번호, 이메일주소, 학력사항, 병역사항, 경력사항, 지원 이유, 성적표
+    </td>
+    <td>
+      주소, 사진, 희망분야, 외국어 및 기타 자격증, 지원 이유, 기타 참고사항
+    </td>
+  </tr>
+</table>
+
 ### 인턴 입사지원
 
-<table>
+<table class="pc">
   <tr>
     <th colspan="2">
       정보주체
@@ -74,9 +112,47 @@ title: '개인정보 처리방침'
   </tr>
 </table>
 
+<table class="mobile">
+  <colgroup>
+    <col style="width:50%">
+    <col style="width:50%">
+  </colgroup>
+  <tr>
+    <th colspan="2">
+      정보주체
+    </th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      사법연수생, 로스쿨생(국내,국외)
+    </td>
+  </tr>
+  <tr>
+    <th colspan="2">
+      처리항목
+    </th>
+  </tr>
+  <tr>
+   <th>
+      필수항목
+    </th>
+    <th>
+      선택항목
+    </th>
+  </tr>
+  <tr>
+    <td>
+      성명, 성별, 생년월일, 전화번호, 이메일주소, 학력사항, 병역사항, 경력사항, 지원 이유, 성적표
+    </td>
+    <td>
+      주소, 사진, 희망분야, 외국어 및 기타 자격증, 지원 이유, 기타 참고사항
+    </td>
+  </tr>
+</table>
+
 ### 직업 입사지원
 
-<table>
+<table class="pc">
   <tr>
     <th colspan="2">
       정보주체
@@ -93,13 +169,51 @@ title: '개인정보 처리방침'
       필수항목
     </th>
     <td>
-      사진, 성명(영문포함), 성별, 생년월일, 전화번호, 이메일주소, 주소, 학력사항, 병역사항, 경력사항, 자격사항, 외국어 및 기타 자격증
+      사진, 성명(영문포함), 성별, 생년월일, 전화번호, 이메일주소, 주소, 학력사항, 병역사항, 경력사항, 자격사항, 외국어 및 기타 자격증    
     </td>
   </tr>
   <tr>
     <th>
       선택항목
     </th>
+    <td>
+      비상연락처, 특이사항
+    </td>
+  </tr>
+</table>
+
+<table class="mobile">
+  <colgroup>
+    <col style="width:50%">
+    <col style="width:50%">
+  </colgroup>
+  <tr>
+    <th colspan="2">
+      정보주체
+    </th>
+  </tr>
+  <tr>
+    <td colspan="2">
+      비서직, 사무직
+    </td>
+  </tr>
+  <tr>
+    <th colspan="2">
+      처리항목
+    </th>
+  </tr>
+  <tr>
+   <th>
+      필수항목
+    </th>
+    <th>
+      선택항목
+    </th>
+  </tr>
+  <tr>
+    <td>
+      사진, 성명(영문포함), 성별, 생년월일, 전화번호, 이메일주소, 주소, 학력사항, 병역사항, 경력사항, 자격사항, 외국어 및 기타 자격증
+    </td>
     <td>
       비상연락처, 특이사항
     </td>
@@ -120,7 +234,7 @@ title: '개인정보 처리방침'
 
 법무법인 남산은 위탁계약체결시개인정보보호법 제26조에 따라 위탁업무 수행목적 외 개인정보 처리금지,기술적․관리적 보호조치,재위탁제한,수탁자에 대한 관리․감독,손해배상 등 책임에 관한 사항을 계약서 등 문서에 명시하고,수탁자가 개인정보를 안전하게 처리하는지를 감독하고 있습니다.위탁업무의 내용이나 수탁자가 변경될 경우에는 지체 없이 본 개인정보 처리방침을 통하여 공개하도록 하겠습니다.
 
-<table class="type2">
+<table class="pc">
   <tr>
     <th>
       수탁업체명
@@ -131,6 +245,29 @@ title: '개인정보 처리방침'
     <th>
       위탁업무의 내용
     </th>
+    <td>
+      웹사이트 호스팅
+    </td>
+  </tr>
+</table>
+
+<table class="mobile">
+  <colgroup>
+    <col style="width:50%">
+    <col style="width:50%">
+  </colgroup>
+  <tr>
+    <th>
+      수탁업체명
+    </th>
+    <th>
+      위탁업무의 내용
+    </th>
+  </tr>
+  <tr>
+    <td>
+      한국디지털미디어
+    </td>
     <td>
       웹사이트 호스팅
     </td>
