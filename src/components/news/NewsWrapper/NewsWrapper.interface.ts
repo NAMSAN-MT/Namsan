@@ -1,6 +1,14 @@
-interface NewsWrapperProps {
+interface NewsWrapperProps extends OuterPadding, InnerWidth {
   children: React.ReactNode;
-  title: string;
+  title?: string;
 }
 
-export { NewsWrapperProps };
+interface OuterPadding {
+  outerPadding: string;
+}
+
+interface InnerWidth {
+  innerWidth: string;
+}
+
+export { NewsWrapperProps, OuterPadding, InnerWidth };

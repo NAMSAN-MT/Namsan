@@ -1,8 +1,9 @@
 import { flex, font, lineHeight, mediaQuery, size } from '@Styles/mixin.style';
 import styled from 'styled-components';
+import { InnerWidth, OuterPadding } from './NewsWrapper.interface';
 
-export const Outer = styled.section`
-  padding: 100px 90px;
+export const Outer = styled.section<OuterPadding>`
+  padding: ${props => props.outerPadding};
   box-sizing: content-box;
 
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
@@ -23,8 +24,8 @@ export const Outer = styled.section`
   ${mediaQuery('mobile', ` padding: 0 24px;`)}
 `;
 
-export const Inner = styled.div`
-  width: 1200px;
+export const Inner = styled.div<InnerWidth>`
+  width: ${props => props.innerWidth};
   margin: 0 auto;
 
   ${mediaQuery('pc1278', `width: 100%;`)}
