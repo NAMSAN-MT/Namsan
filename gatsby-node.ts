@@ -42,4 +42,25 @@ exports.createPages = async ({ actions, graphql }: any) => {
       },
     });
   });
+
+  const news = await graphql(`
+    query {
+      allNews {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  `);
+  news.data.allNews.edges.forEach(({ node }: any) => {
+    actions.createPage({
+      path: `/news/${node.id}`,
+      component: resolve('./src/pages/news/[id].tsx'),
+      context: {
+        id: node.id,
+      },
+    });
+  });
 };
