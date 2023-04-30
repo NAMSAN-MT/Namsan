@@ -1,14 +1,17 @@
 import Layout from '@Components/common/Layout/Layout';
 import DetailPage from '@Components/work/DetailPage';
-import { PageProps } from 'gatsby';
 import React from 'react';
 
-export default ({ pageContext }: PageProps) => {
-  const { id } = pageContext as { id: string };
+interface Props {
+  id: string;
+  pageContext: { language: 'ko' | 'en' };
+}
 
+export default (props: Props) => {
+  const { pageContext, id } = props;
   const router = (
     <Layout route="workDetail">
-      <DetailPage id={id} />
+      <DetailPage id={id} lang={pageContext.language} />
     </Layout>
   );
   return router;

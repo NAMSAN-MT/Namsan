@@ -8,7 +8,6 @@ export interface SubCategory {
 }
 
 export interface CategoryDescription {
-  categoryId: `C${number}` | `S${number}`;
   name: string;
   description: string;
 }

@@ -55,16 +55,25 @@ export const getMemberByName = async (names: string[]) => {
   });
 };
 
-export const getWorkField = async (code: string) => {
+export const getWorkField = async (code: string, lang?: string) => {
   return GetDataListQuery<CategoryPageProps>({
     endPoint: 'work',
     queries: [
       {
         queryType: 'where',
-        fieldPath: documentId(),
+        fieldPath: 'language',
+        opStr: '==',
+        value: lang ?? 'ko',
+      },
+      {
+        queryType: 'where',
+        fieldPath: 'categoryId',
         opStr: '==',
         value: code,
       },
     ],
-  }).then(result => result[0]);
+  }).then(result => {
+    if (isEmpty(result)) throw new Error('no data');
+    return result[0];
+  });
 };
