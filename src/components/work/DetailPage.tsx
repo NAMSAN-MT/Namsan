@@ -127,7 +127,7 @@ const DetailPage = ({ id, lang }: Props) => {
               name={member.name}
               position={member.position}
               businessFields={member.businessFields}
-              imagePath={member.imagePath}
+              image={member.image}
               id={member.id}
             />
           ))}
@@ -151,7 +151,7 @@ const DetailPage = ({ id, lang }: Props) => {
                 name={member.name}
                 position={member.position}
                 businessFields={member.businessFields}
-                imagePath={member.imagePath}
+                image={member.image}
                 id={member.id}
               />
             ))}

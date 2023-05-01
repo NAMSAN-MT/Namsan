@@ -5,7 +5,6 @@ import algoliasearch from "algoliasearch";
 import * as Helper from "./helper";
 import { DocumentData } from "firebase-admin/firestore";
 
-
 const firebaseConfig = {
   apiKey: process.env.GATSBY_FIREBASE_API_KEY,
   authDomain: process.env.GATSBY_FIREBASE_AUTH_DOMAIN,
@@ -24,7 +23,6 @@ const algoliaClient = algoliasearch(
   functions.config().algolia.appid,
   functions.config().algolia.apikey,
 );
-
 
 const INDEX_NAME = "dev_namsan";
 const REGION = "asia-northeast2";

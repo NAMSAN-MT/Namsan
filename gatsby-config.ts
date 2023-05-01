@@ -3,6 +3,10 @@ import { resolve, join } from 'path';
 import dotenv from "dotenv";
 dotenv.config();
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Namsan`,
@@ -82,7 +86,7 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/intl`,
         languages: [`en`, `ko`],
         defaultLanguage: `ko`,
-        redirect: false,
+        redirect: true,
       },
     },
     {
@@ -109,12 +113,13 @@ const config: GatsbyConfig = {
           databaseURL:
             'https://namsan-801de-default-rtdb.asia-southeast1.firebasedatabase.app',
         },
-        collections: ['members', 'work'],
+        collections: ['members', 'work', 'news'],
       },
     },
   ],
+
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
 };
 

@@ -4,11 +4,9 @@ import * as S from './NewsWrapper.style';
 
 const NewsWrapper = (props: NewsWrapperProps) => {
   return (
-    <S.Outer>
-      <S.Inner>
-        {/* <S.Header> */}
-        <S.Title>남산소식</S.Title>
-        {/* </S.Header> */}
+    <S.Outer outerPadding={props.outerPadding}>
+      <S.Inner innerWidth={props.innerWidth}>
+        {props.title && <S.Title>남산소식</S.Title>}
         {props.children}
       </S.Inner>
     </S.Outer>

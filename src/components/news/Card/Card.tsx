@@ -9,8 +9,12 @@ const Card = (props: CardProps) => {
 
   return (
     <S.CardBox>
-      {props.newsList.map((item, i) => (
-        <S.Card key={i} href="#" className="card-wrapper">
+      {props.newsList?.map((item, i) => (
+        <S.Card
+          key={i}
+          href={`/news/${item.documentId}`}
+          className="card-wrapper"
+        >
           <S.LabelBox type={item.newsType} className="card-label">
             <p>{item.newsType === 'media' ? item.agency : '최근 업무사례'}</p>
           </S.LabelBox>

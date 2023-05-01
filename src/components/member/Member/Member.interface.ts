@@ -1,7 +1,8 @@
+import { IMember } from '@Interface/api.interface';
 import { WrappedComponentProps } from 'gatsby-plugin-intl';
 
 interface MemberProps extends WrappedComponentProps {
-  id: string;
+  member: IMember;
 }
 
 export { MemberProps };
