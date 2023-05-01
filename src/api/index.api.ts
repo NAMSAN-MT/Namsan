@@ -1,4 +1,4 @@
-import { Api, IParameter, Parameter } from '@Interface/api.interface';
+import { Api, IParameter } from '@Interface/api.interface';
 import {
   QueryWhereOptions,
   QueryOrderByOptions,

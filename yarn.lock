@@ -6659,7 +6659,7 @@ gatsby-plugin-alias-imports@^1.0.5:
   dependencies:
     "@babel/runtime" "^7.2.0"
 
-gatsby-plugin-image@^3.5.0:
+gatsby-plugin-image@^3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-image/-/gatsby-plugin-image-3.9.0.tgz#d181060c34481e4bdb62c8cb00525de0d9e82e4e"
   integrity sha512-9oTzosYPRwrw3BNgHgh+0BCpqBE83tBnuM7wuorHehdo1dmcGmz96e7qWfaRLY1LR08kxXLmbW0dWNZJXv66CQ==
@@ -6752,7 +6752,7 @@ gatsby-plugin-react-svg@^3.3.0:
   dependencies:
     svg-react-loader "^0.4.6"
 
-gatsby-plugin-sharp@^5.7.0:
+gatsby-plugin-sharp@^5.9.0:
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-5.9.0.tgz#72b97bb27a4d4c936621a0c7f1eda77f4715b4da"
   integrity sha512-RXiRmuAwRZf7uqzoqBoG+7qbWWXCuf359Td+yKBLC7M+ktsfw9FMfivS6PpY6v+XmEztO8so1n+Sx+nOU5FScw==
@@ -6914,7 +6914,7 @@ gatsby-transformer-remark@^6.8.0:
     unist-util-select "^3.0.4"
     unist-util-visit "^2.0.3"
 
-gatsby-transformer-sharp@^5.7.0:
+gatsby-transformer-sharp@^5.9.0:
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-5.9.0.tgz#5d63ce75fed511497262769711c1201ca2c32605"
   integrity sha512-kA1KTWxV9gcnwCW7r9JSdibGjK4XjnGQgVup05WDGRWw+oAZjW/aZGvHXhGfl1DhyL9t9DinJvoUpdSkk2jdNg==

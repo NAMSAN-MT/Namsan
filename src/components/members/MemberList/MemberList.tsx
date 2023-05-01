@@ -7,11 +7,12 @@ import MemberItem from '../MemberItem';
 import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
 import { IMemberListProps } from './MemberList.interface';
 import * as S from './MemberList.style';
+import { getFileFromStorage } from '@Api/index.api';
 
-const MemberList = ({ intl }: IMemberListProps) => {
+const MemberList = ({ intl, members }: IMemberListProps) => {
   const { name, position, businessField } = getSearchParams();
 
-  const [memberList, setMemberList] = useState<IMember[]>([]);
+  const [memberList, setMemberList] = useState<IMember[]>(members);
 
   useEffect(() => {
     (async () => {
@@ -21,10 +22,19 @@ const MemberList = ({ intl }: IMemberListProps) => {
         businessField,
         language: intl.locale as TLanguage,
       };
-      const memberList = await getMembers(params);
-      setMemberList(memberList);
+
+      const newMembers = members.filter(member => {
+        return (
+          (!params.name || member.name.includes(params.name)) &&
+          (!params.position || member.position === params.position) &&
+          (!params.businessField ||
+            member.businessFields.includes(params.businessField)) &&
+          (!params.language || member.language === intl.locale)
+        );
+      });
+      setMemberList(newMembers);
     })();
-  }, []);
+  }, [name, position, businessField, intl.locale]);
 
   if (memberList.length === 0) {
     return (
@@ -42,7 +52,7 @@ const MemberList = ({ intl }: IMemberListProps) => {
           name={member.name}
           position={member.position}
           businessFields={member.businessFields}
-          imagePath={member.imagePath}
+          image={member.image}
           id={member.id}
         />
       ))}
