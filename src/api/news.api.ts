@@ -1,6 +1,7 @@
 import { News } from '@Interface/api.interface';
 import { EndPointType, NewsType, TQuery } from '@Type/api.type';
 import { documentId } from 'firebase/firestore';
+import { getTimestampToDate } from '../utils/date';
 import { index } from './algolia';
 import { GetDataListQuery } from './index.api';
 
@@ -47,9 +48,13 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
       const ids = algoliaResult.hits.map(
         (hit: any) => hit.documentId as string,
       );
-      const newDataList = await getNewsIdDataList(ids);
-      const resultList = newDataList.map(news => ({
+      const newDataList = await getNewsIdDataList(ids.reverse());
+      console.log(ids);
+      console.log(newDataList);
+
+      const resultList = newDataList.map((news, index) => ({
         ...news,
+        documentId: ids[index],
         dateYearMonth: `${news.date.toDate().getFullYear()}.${
           news.date.toDate().getMonth() < 9
             ? `0${news.date.toDate().getMonth()}`
@@ -78,5 +83,23 @@ export const getNewsIdDataList = async (ids: string[]) => {
   return await GetDataListQuery<News>({
     endPoint,
     queries,
+  });
+};
+
+export const getNewsData = async (_documentId: string) => {
+  return GetDataListQuery<News>({
+    endPoint: 'news',
+    queries: [
+      {
+        queryType: 'where',
+        fieldPath: documentId(),
+        opStr: '==',
+        value: _documentId,
+      },
+    ],
+  }).then(result => {
+    const data = result[0];
+    const { fullDate } = getTimestampToDate(data.date);
+    return { ...data, dateYearMonthDate: fullDate };
   });
 };

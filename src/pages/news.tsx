@@ -9,7 +9,11 @@ import styled from 'styled-components';
 const Main: React.FC<PageProps> = props => {
   return (
     <Layout>
-      <NewsWrapper title="남산소식">
+      <NewsWrapper
+        title="남산소식"
+        outerPadding="100px 90px"
+        innerWidth="1200px"
+      >
         <NewsMain />
       </NewsWrapper>
     </Layout>
@@ -28,7 +32,6 @@ export const getServerData = async (props: GetServerDataProps) => {
     mediaType?: NewsType;
     keyword?: string;
   };
-  console.log('>> props query: ', page, mediaType, keyword);
 
   return { props: { page, mediaType, keyword } };
 };
