@@ -4,13 +4,22 @@ import { GetDataListQuery } from './index.api';
 import { isEmpty } from 'lodash';
 import { IMember } from '@Interface/api.interface';
 
-export const getWorkFields = async (searchFields?: string[]) => {
-  return await GetDataListQuery<Category>({
+export const getWorkFields = async <T>(
+  searchFields?: string[],
+  language?: string,
+) => {
+  return await GetDataListQuery<T>({
     endPoint: 'work',
     queries: [
       {
+        queryType: 'where',
+        fieldPath: 'language',
+        opStr: '==',
+        value: language ?? 'ko',
+      },
+      {
         queryType: 'orderby',
-        fieldPath: documentId(),
+        fieldPath: 'categoryId',
         directionStr: 'asc',
       },
     ],
@@ -46,16 +55,25 @@ export const getMemberByName = async (names: string[]) => {
   });
 };
 
-export const getWorkField = async (code: string) => {
+export const getWorkField = async (code: string, lang?: string) => {
   return GetDataListQuery<CategoryPageProps>({
     endPoint: 'work',
     queries: [
       {
         queryType: 'where',
-        fieldPath: documentId(),
+        fieldPath: 'language',
+        opStr: '==',
+        value: lang ?? 'ko',
+      },
+      {
+        queryType: 'where',
+        fieldPath: 'categoryId',
         opStr: '==',
         value: code,
       },
     ],
-  }).then(result => result[0]);
+  }).then(result => {
+    if (isEmpty(result)) throw new Error('no data');
+    return result[0];
+  });
 };
