@@ -4,6 +4,7 @@ import {
   QueryOrderByOptions,
   EndPointType,
 } from '@Type/api.type';
+import { id } from 'date-fns/locale';
 import firebase from 'firebase/compat/app';
 import {
   addDoc,
@@ -78,7 +79,10 @@ export const PostWithId = async <T extends { [x: string]: any }>({
 
 /* utils */
 const getData = <U>(doc: QueryDocumentSnapshot, fieldNames?: string[]) => {
-  return (fieldNames ? doc.get(new FieldPath(...fieldNames)) : doc.data()) as U;
+  return {
+    documentId: doc?.id,
+    ...(fieldNames ? doc.get(new FieldPath(...fieldNames)) : doc.data()),
+  } as U;
 };
 
 const getMultipleWhereQueries = (
