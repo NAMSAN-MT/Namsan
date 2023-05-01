@@ -1,12 +1,12 @@
-import { SubCategory } from './List'
+import { SubCategory } from './List';
 
 export type MainCategoryType = {
-  id: string
-  name: string
-  children?: ReturnType<typeof SubCategory>[]
-}
+  id: string;
+  name: string;
+  children?: ReturnType<typeof SubCategory>[];
+};
 
 export type SubCategoryType = {
-  subId: string
-  name: string
-}
+  sub_id: string;
+  name: string;
+};

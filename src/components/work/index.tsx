@@ -15,13 +15,13 @@ const Work = ({ data }: Props) => {
         return (
           <LE.MainCategory id={`C${id}`} name={category[0]} key={`C${id}`}>
             {category?.map((subName, subIndex) => {
-              if (subIndex === 0) return <></>;
-              const subId = String(subIndex).padStart(2, '0');
+              const subid = String(subIndex).padStart(2, '0');
+              if (subIndex === 0) return <span key={`S${id}${subid}`}></span>;
               return (
                 <LE.SubCategory
-                  subId={`S${id}${subId}`}
+                  sub_id={`S${id}${subid}`}
                   name={subName}
-                  key={`S${id}${subId}`}
+                  key={`S${id}${subid}`}
                 />
               );
             })}

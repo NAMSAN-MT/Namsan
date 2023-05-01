@@ -27,17 +27,17 @@ export const MainCategory = ({ id, name, children }: MainCategoryType) => {
       <List>
         {children?.map(item => ({
           ...item,
-          props: { ...item.props, subId: `work/${id}#${item.props.subId}` },
+          props: { ...item.props, sub_id: `work/${id}#${item.props.sub_id}` },
         }))}
       </List>
     </Wrapper>
   );
 };
 
-export const SubCategory = ({ name, subId }: SubCategoryType) => {
+export const SubCategory = ({ name, sub_id }: SubCategoryType) => {
   return (
     <ListItem>
-      <Anchor href={subId}>{name}</Anchor>
+      <Anchor href={sub_id}>{name}</Anchor>
     </ListItem>
   );
 };

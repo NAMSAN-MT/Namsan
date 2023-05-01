@@ -127,30 +127,82 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
   const works = await graphql(`
     query {
-      allWork {
+      allWork(sort: { categoryId: ASC }) {
         edges {
           node {
             id
             language
             categoryId
+            categoryInfo
+            member {
+              main
+              sub
+            }
           }
         }
       }
     }
   `);
-  works.data.allWork.edges.forEach(({ node }: any) => {
+
+  actions.createPage({
+    path: `/work`,
+    component: resolve('./src/pages/work/index.tsx'),
+    context: {
+      data: works.data.allWork.edges,
+    },
+  });
+
+  works.data.allWork.edges.forEach(async ({ node }: any) => {
+    const query = (member: string) => `
+    query {
+      members(name: { eq: "${member}" }) {
+        id
+        language
+        name
+        position
+        order
+        businessFields
+        imagePath
+        bgImagePath
+      }
+    }
+`;
+    // const imageQuery = (id: string) => `
+    // query {
+    //   file(parent: {id: {eq: ${id}}}) {
+    //     childImageSharp {
+    //       gatsbyImageData
+    //     }
+    //   }
+    // }`;
+    const mainMemberData = await Promise.all(
+      node.member.main.map((member: string) =>
+        graphql(query(member)).then((r: any) => r.data.members),
+      ),
+    );
+
+    // const mainMemberImageData = await Promise.all(
+    //   node.member.main.map(
+    //     async (member: string) =>
+    //       await graphql(query(member)).then(async (r: any) => {
+    //         console.log(r);
+    //         return await graphql(imageQuery(r.data.members.id));
+    //       }),
+    //   ),
+    // );
+
+    const subMemberData = await Promise.all(
+      node.member.sub.map((member: string) =>
+        graphql(query(member)).then((r: any) => r.data.members),
+      ),
+    );
     actions.createPage({
       path: `/work/${node.categoryId}`,
       component: resolve('./src/pages/work/[id].tsx'),
       context: {
         id: node.categoryId,
-      },
-    });
-    actions.createPage({
-      path: `/${node.language}/work/${node.categoryId}`,
-      component: resolve('./src/pages/work/[id].tsx'),
-      context: {
-        id: node.categoryId,
+        mainMemberData,
+        subMemberData,
       },
     });
   });

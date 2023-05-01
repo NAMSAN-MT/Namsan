@@ -1,9 +1,8 @@
-import { getMemberByName, getWorkField } from '@Api/work.api';
+import { getWorkField } from '@Api/work.api';
 import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
 import MemberItem from '@Components/members/MemberItem';
-import { IMember } from '@Interface/api.interface';
-import { indexOf, sortBy } from 'lodash';
+import { miniMember } from '@Pages/work/[id]';
 import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { CategoryDescription } from './work.interface';
 import {
@@ -23,20 +22,25 @@ import {
 export interface Props {
   id: string;
   lang?: string;
+
+  language: 'ko' | 'en';
+  mainMemberData: miniMember[];
+  subMemberData: miniMember[];
 }
 
-const DetailPage = ({ id, lang }: Props) => {
+const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
   const [category, setCategory] = useState<
     (CategoryDescription & { isOpen?: boolean })[]
   >([]);
-  const [memberList, setMemberList] = useState<IMember[]>([]);
-  const [subMemberList, setSubMemberList] = useState<IMember[]>([]);
+  const [memberList, setMemberList] = useState<miniMember[]>(mainMemberData);
+  const [subMemberList, setSubMemberList] =
+    useState<miniMember[]>(subMemberData);
   const [isShowMore, setIsShowMore] = useState(false);
   const ip = useRef<string>('');
+
   useEffect(() => {
     getWorkField(id, lang).then(data => {
       const { categoryInfo, description, member, imagePath } = data;
-      console.log(member);
       ip.current = imagePath;
       const newData = categoryInfo.map((name, index) => ({
         name,
@@ -54,21 +58,21 @@ const DetailPage = ({ id, lang }: Props) => {
       //   );
       // });
 
-      getMemberByName(member.main).then(memberList => {
-        setMemberList(
-          sortBy(memberList, ({ name }) => {
-            return indexOf(member.main, name);
-          }),
-        );
-      });
-      getMemberByName(member.sub).then(memberList => {
-        setSubMemberList(
-          sortBy(memberList, ({ name }) => {
-            const i = indexOf(member.sub, name);
-            return i < 0 ? member.sub.length : i;
-          }),
-        );
-      });
+      // getMemberByName(member.main).then(memberList => {
+      //   setMemberList(
+      //     sortBy(memberList, ({ name }) => {
+      //       return indexOf(member.main, name);
+      //     }),
+      //   );
+      // });
+      // getMemberByName(member.sub).then(memberList => {
+      //   setSubMemberList(
+      //     sortBy(memberList, ({ name }) => {
+      //       const i = indexOf(member.sub, name);
+      //       return i < 0 ? member.sub.length : i;
+      //     }),
+      //   );
+      // });
     });
   }, []);
 
@@ -121,16 +125,12 @@ const DetailPage = ({ id, lang }: Props) => {
       <MemberBox>
         <SubTitle>주요 구성원</SubTitle>
         <MemberList>
-          {memberList.map(member => (
-            <MemberItem
-              key={member.id}
-              name={member.name}
-              position={member.position}
-              businessFields={member.businessFields}
-              image={member.image}
-              id={member.id}
-            />
-          ))}
+          {memberList.map(
+            member =>
+              member && (
+                <MemberItem key={member.id} {...member} image={member.image} />
+              ),
+          )}
         </MemberList>
       </MemberBox>
 
@@ -145,16 +145,9 @@ const DetailPage = ({ id, lang }: Props) => {
         <MemberBox>
           <SubTitle>관련 구성원</SubTitle>
           <MemberList>
-            {subMemberList.map(member => (
-              <MemberItem
-                key={member.id}
-                name={member.name}
-                position={member.position}
-                businessFields={member.businessFields}
-                image={member.image}
-                id={member.id}
-              />
-            ))}
+            {subMemberList.map(
+              member => member && <MemberItem key={member.id} {...member} />,
+            )}
           </MemberList>
         </MemberBox>
       )}

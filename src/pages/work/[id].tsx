@@ -1,18 +1,34 @@
 import Layout from '@Components/common/Layout/Layout';
 import DetailPage from '@Components/work/DetailPage';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 
-interface Props {
+export interface DetailProps {
   id: string;
-  pageContext: { language: 'ko' | 'en' };
+  pageContext: {
+    language: 'ko' | 'en';
+    mainMemberData: miniMember[];
+    subMemberData: miniMember[];
+  };
 }
 
-const Detail = (props: WrappedComponentProps & Props) => {
-  const { pageContext, id } = props;
+export interface miniMember {
+  bgImagePath: string;
+  businessFields: string[];
+  id: string;
+  imagePath: string;
+  language: 'ko' | 'en';
+  name: string;
+  order: number;
+  position: string;
+  image: IGatsbyImageData;
+}
+
+const Detail = ({ pageContext, id }: WrappedComponentProps & DetailProps) => {
   const router = (
     <Layout route="workDetail">
-      <DetailPage id={id} lang={pageContext.language} />
+      <DetailPage id={id} lang={pageContext.language} {...pageContext} />
     </Layout>
   );
   return router;

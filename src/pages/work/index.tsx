@@ -7,19 +7,20 @@ import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 
 export interface ServerProps {
-  data: string[][];
+  data: { node: { categoryInfo: string[] } }[];
 }
 
 interface Props extends WrappedComponentProps {
-  serverData: ServerProps;
+  pageContext: ServerProps;
 }
 
 const Index = (props: PageProps & Props) => {
-  const { serverData, intl } = props;
+  const { pageContext, intl } = props;
+  const data = pageContext.data.map(({ node }) => node.categoryInfo);
   return (
     <Layout>
       <Container title={intl.formatMessage({ id: 'work.title' })}>
-        <Work {...serverData} />
+        <Work {...{ data }} />
       </Container>
     </Layout>
   );
@@ -28,20 +29,7 @@ const Index = (props: PageProps & Props) => {
 export default injectIntl(Index);
 
 export const getServerData = async (props: GetServerDataProps) => {
-  try {
-    const data = await getWorkFields<string[]>(
-      ['categoryInfo'],
-      (props.pageContext.intl as { language: string })?.language,
-    );
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      props: {},
-    };
-  }
+  return {
+    props,
+  };
 };
