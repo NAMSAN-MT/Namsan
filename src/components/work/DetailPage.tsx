@@ -37,7 +37,6 @@ const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
     useState<miniMember[]>(subMemberData);
   const [isShowMore, setIsShowMore] = useState(false);
   const ip = useRef<string>('');
-  console.log(subMemberList);
 
   useEffect(() => {
     getWorkField(id, lang).then(data => {
