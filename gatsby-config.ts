@@ -1,6 +1,6 @@
 import type { GatsbyConfig } from 'gatsby';
 import { resolve, join } from 'path';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config();
 
 require('dotenv').config({
@@ -119,7 +119,7 @@ const config: GatsbyConfig = {
   ],
 
   flags: {
-    DEV_SSR: false,
+    DEV_SSR: true,
   },
 };
 
