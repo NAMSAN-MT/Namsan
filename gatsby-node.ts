@@ -146,7 +146,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
   actions.createPage({
     path: `/work`,
-    component: resolve('./src/pages/work/index.tsx'),
+    component: resolve('./src/templates/work.tsx'),
     context: {
       data: works.data.allWork.edges,
     },

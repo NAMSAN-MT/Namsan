@@ -15,7 +15,8 @@ interface Props extends WrappedComponentProps {
 
 const Index = (props: PageProps & Props) => {
   const { pageContext, intl } = props;
-  const data = pageContext?.data.map(({ node }) => node.categoryInfo);
+  console.log(props);
+  const data = pageContext?.data?.map(({ node }) => node.categoryInfo);
   return (
     <Layout>
       <Container title={intl.formatMessage({ id: 'work.title' })}>
@@ -26,9 +27,3 @@ const Index = (props: PageProps & Props) => {
 };
 
 export default injectIntl(Index);
-
-export const getServerData = async (props: GetServerDataProps) => {
-  return {
-    props,
-  };
-};

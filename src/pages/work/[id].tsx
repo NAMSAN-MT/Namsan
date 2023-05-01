@@ -42,10 +42,8 @@ const Detail = ({ pageContext, id }: WrappedComponentProps & DetailProps) => {
   return router;
 };
 
-export const getServerData = async (props: WrappedComponentProps) => {
-  return {
-    props,
-  };
-};
+export const getServerData = async (props: WrappedComponentProps) => ({
+  props,
+});
 
 export default injectIntl(Detail);
