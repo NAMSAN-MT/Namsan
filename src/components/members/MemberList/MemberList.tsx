@@ -34,7 +34,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
     })();
   }, [name, position, businessField, intl.locale]);
 
-  if (memberList.length === 0) {
+  if (!memberList || memberList.length === 0) {
     return (
       <S.EmptyMember>
         {intl.formatMessage({ id: 'members.empty_result' })}
