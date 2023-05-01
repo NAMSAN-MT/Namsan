@@ -5,7 +5,7 @@ interface ISearchBar extends WrappedComponentProps {}
 interface IHooksInterface {
   defaultOption: string;
   initOption: string;
-  getOptionList: () => Promise<string[]>;
+  optionList: string[];
 }
 
 export { ISearchBar, IHooksInterface };
