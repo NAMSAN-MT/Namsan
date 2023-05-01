@@ -9,7 +9,11 @@ export interface DetailProps {
   pageContext: {
     language: 'ko' | 'en';
     mainMemberData: miniMember[];
+    mainMemberImageData: IGatsbyImageData[];
+    mainMemberBgImageData: IGatsbyImageData[];
     subMemberData: miniMember[];
+    subMemberImageData: IGatsbyImageData[];
+    subMemberBgImageData: IGatsbyImageData[];
   };
 }
 
@@ -23,6 +27,7 @@ export interface miniMember {
   order: number;
   position: string;
   image: IGatsbyImageData;
+  bgImage: IGatsbyImageData;
 }
 
 const Detail = ({ pageContext, id }: WrappedComponentProps & DetailProps) => {
