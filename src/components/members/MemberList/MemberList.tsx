@@ -1,4 +1,3 @@
-import { getMembers } from '@Api/member.api';
 import { IMember } from '@Interface/api.interface';
 import { injectIntl } from 'gatsby-plugin-intl';
 import React, { useEffect, useState } from 'react';
@@ -7,7 +6,6 @@ import MemberItem from '../MemberItem';
 import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
 import { IMemberListProps } from './MemberList.interface';
 import * as S from './MemberList.style';
-import { getFileFromStorage } from '@Api/index.api';
 
 const MemberList = ({ intl, members }: IMemberListProps) => {
   const { name, position, businessField } = getSearchParams();
@@ -36,7 +34,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
     })();
   }, [name, position, businessField, intl.locale]);
 
-  if (memberList.length === 0) {
+  if (!memberList || memberList.length === 0) {
     return (
       <S.EmptyMember>
         {intl.formatMessage({ id: 'members.empty_result' })}

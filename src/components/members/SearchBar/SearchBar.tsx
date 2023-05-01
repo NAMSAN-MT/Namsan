@@ -2,16 +2,13 @@ import * as S from './SearchBar.style';
 import React, { useCallback, useEffect, useState } from 'react';
 import SelectBox from '../SelectBox';
 import useSearchBar from './SearchBar.hook';
-import {
-  getMemberBusinessFieldList,
-  getMemberPositionList,
-} from '@Api/member.api';
 import Input from '../../common/Input';
 import { useIntl } from 'gatsby-plugin-intl';
 import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
 import { navigate } from 'gatsby';
+import { IMember } from '../../../interface/api.interface';
 
-const SearchBar = () => {
+const SearchBar = ({ members }: { members: IMember[] }) => {
   const {
     name: initName,
     position: initPosition,
@@ -30,6 +27,12 @@ const SearchBar = () => {
   const INIT_BUSINESS_FIELD_OPTION = intl.formatMessage({
     id: 'members.total_business_field',
   });
+  
+  const positionList = members?.map(member => member.position) || [];
+  const uniquePositionList = [...new Set(positionList)];
+  const businessFieldList =
+    members?.map(member => member.businessFields)?.flat() || [];
+  const uniqueBusinessFieldList = [...new Set(businessFieldList)];
 
   const {
     optionList: positionOptionList,
@@ -41,7 +44,7 @@ const SearchBar = () => {
   } = useSearchBar({
     defaultOption: INIT_POSITION_OPTION,
     initOption: initPosition,
-    getOptionList: getMemberPositionList,
+    optionList: uniquePositionList,
   });
 
   const {
@@ -54,7 +57,7 @@ const SearchBar = () => {
   } = useSearchBar({
     defaultOption: INIT_BUSINESS_FIELD_OPTION,
     initOption: initBusinessField,
-    getOptionList: getMemberBusinessFieldList,
+    optionList: uniqueBusinessFieldList,
   });
 
   // Handlers
@@ -106,12 +109,13 @@ const SearchBar = () => {
     <div>
       <S.SearchBarWrapper>
         <S.ItemWrapper
+          key="position_wrapper"
           width="282px"
           data-id="position"
           onClick={_handleClickPositionSelectBox}
         >
           <SelectBox
-            key={currentPosition}
+            key="position"
             title={currentPosition}
             options={positionOptionList}
             handleClick={handleClickPositionOption}
@@ -121,6 +125,7 @@ const SearchBar = () => {
           />
         </S.ItemWrapper>
         <S.ItemWrapper
+          key="businessField_wrapper"
           width="384px"
           data-id="businessField"
           onClick={_handleClickBusinessFieldSelectBox}
