@@ -1,9 +1,5 @@
-import { CommonPage } from '@Interface/api.interface';
-
-export interface Category extends CommonPage {
-  categoryId: `C${number}`;
-  name: string;
-  subCategory: SubCategory[];
+export interface Category {
+  names: string[];
 }
 
 export interface SubCategory {
@@ -12,17 +8,15 @@ export interface SubCategory {
 }
 
 export interface CategoryDescription {
-  categoryId: `C${number}` | `S${number}`;
   name: string;
   description: string;
 }
 
 export interface CategoryPageProps {
-  categoryInfo: Category;
-  description: { key: `C${number}` | `S${number}`; val: string }[];
+  categoryId: string;
   imagePath: string;
-  member: {
-    main: string[];
-    sub: string[];
-  };
+  description: string[];
+  language: 'ko' | 'en';
+  member: { sub: string[]; main: string[] };
+  categoryInfo: string[];
 }

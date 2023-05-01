@@ -8,23 +8,24 @@ import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { CategoryDescription } from './work.interface';
 import {
   Box,
+  ButtonWrapper,
+  CategoryBox,
   Contents,
   Head,
+  Image,
   Layout,
   MemberBox,
   MemberList,
   SubTitle,
   Title,
-  Image,
-  ButtonWrapper,
-  CategoryBox,
 } from './work.styled';
 
 export interface Props {
   id: string;
+  lang?: string;
 }
 
-const DetailPage = ({ id }: Props) => {
+const DetailPage = ({ id, lang }: Props) => {
   const [category, setCategory] = useState<
     (CategoryDescription & { isOpen?: boolean })[]
   >([]);
@@ -32,22 +33,26 @@ const DetailPage = ({ id }: Props) => {
   const [subMemberList, setSubMemberList] = useState<IMember[]>([]);
   const [isShowMore, setIsShowMore] = useState(false);
   const ip = useRef<string>('');
-
   useEffect(() => {
-    getWorkField(id).then(data => {
+    getWorkField(id, lang).then(data => {
       const { categoryInfo, description, member, imagePath } = data;
+      console.log(member);
       ip.current = imagePath;
-      setCategory([
-        {
-          categoryId: categoryInfo.categoryId,
-          name: categoryInfo.name,
-          description: description[0].val,
-        },
-        ...categoryInfo.subCategory.map((category, index) => ({
-          ...category,
-          description: description[index + 1].val,
-        })),
-      ]);
+      const newData = categoryInfo.map((name, index) => ({
+        name,
+        description: description[index],
+      }));
+      setCategory(newData);
+
+      // CHECK: 현재 제공된 업무분야 구성원 자료와, 구성원 businessField 내용이 상이함. 확인 필요.
+      // getContainMember(categoryInfo[0]).then(memberList => {
+      //   setMemberList(
+      //     sortBy(memberList, ({ name }) => {
+      //       const i = indexOf(member.main, name);
+      //       return i < 0 ? member.main.length : i;
+      //     }),
+      //   );
+      // });
 
       getMemberByName(member.main).then(memberList => {
         setMemberList(
@@ -56,11 +61,11 @@ const DetailPage = ({ id }: Props) => {
           }),
         );
       });
-
       getMemberByName(member.sub).then(memberList => {
         setSubMemberList(
           sortBy(memberList, ({ name }) => {
-            return indexOf(member.sub, name);
+            const i = indexOf(member.sub, name);
+            return i < 0 ? member.sub.length : i;
           }),
         );
       });
@@ -70,9 +75,6 @@ const DetailPage = ({ id }: Props) => {
   const onClickShowMore = () => {
     setIsShowMore(true);
   };
-
-  const isMainCategory = ({ categoryId }: CategoryDescription) =>
-    categoryId.startsWith('C');
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     const { index } = e.currentTarget.dataset;
@@ -92,16 +94,16 @@ const DetailPage = ({ id }: Props) => {
       <CategoryBox>
         {category.map((item, index) => (
           <div key={index}>
-            {isMainCategory(item) ? (
+            {index === 0 ? (
               <>
-                <Title id={item.categoryId}>{item.name}</Title>
+                <Title>{item.name}</Title>
                 <Contents>{item.description}</Contents>
                 <Image src={ip.current ?? ''}></Image>
               </>
             ) : (
               <Box>
                 <Head onClick={handleClick} data-index={index}>
-                  <SubTitle id={item.categoryId}>{item.name}</SubTitle>
+                  <SubTitle>{item.name}</SubTitle>
                   {/* TODO: SVG color 적용 */}
                   <LineArrowIcon
                     direction={item.isOpen ? 'UP' : 'DOWN'}
@@ -125,7 +127,7 @@ const DetailPage = ({ id }: Props) => {
               name={member.name}
               position={member.position}
               businessFields={member.businessFields}
-              imagePath={member.imagePath}
+              image={member.image}
               id={member.id}
             />
           ))}
@@ -149,7 +151,7 @@ const DetailPage = ({ id }: Props) => {
                 name={member.name}
                 position={member.position}
                 businessFields={member.businessFields}
-                imagePath={member.imagePath}
+                image={member.image}
                 id={member.id}
               />
             ))}

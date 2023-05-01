@@ -3,12 +3,10 @@ import { PageProps } from 'gatsby';
 import Member from '@Components/member/Member';
 import Layout from '@Components/common/Layout';
 
-const MemberPage: React.FC<PageProps> = ({ pageContext }) => {
-  const { id } = pageContext as { id: string };
-
+const MemberPage: React.FC<PageProps> = ({ pageContext: { member } }: any) => {
   return (
     <Layout>
-      <Member id={id} />
+      <Member member={member} />
     </Layout>
   );
 };

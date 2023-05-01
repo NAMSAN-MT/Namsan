@@ -6,13 +6,13 @@ import SearchBar from '@Components/members/SearchBar';
 import MemberList from '@Components/members/MemberList';
 import Layout from '@Components/common/Layout';
 
-const Members: React.FC<PageProps> = () => {
+const Members: React.FC<PageProps> = ({ pageContext: { members } }: any) => {
   return (
     <Layout>
       <MembersWrapper>
         <MembersTitle />
         <SearchBar />
-        <MemberList />
+        <MemberList members={members.map(item => item)} />
       </MembersWrapper>
     </Layout>
   );

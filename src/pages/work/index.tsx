@@ -1,31 +1,38 @@
 import { getWorkFields } from '@Api/work.api';
+import { Container } from '@Components/common/Container/Container';
 import Layout from '@Components/common/Layout';
 import Work from '@Components/work';
-import { Category } from '@Components/work/work.interface';
 import { GetServerDataProps, PageProps } from 'gatsby';
+import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 
 export interface ServerProps {
-  data: Category[];
+  data: string[][];
 }
 
-interface Props {
+interface Props extends WrappedComponentProps {
   serverData: ServerProps;
 }
 
-const Index = ({ serverData }: PageProps & Props) => {
+const Index = (props: PageProps & Props) => {
+  const { serverData, intl } = props;
   return (
     <Layout>
-      <Work {...serverData} />
+      <Container title={intl.formatMessage({ id: 'work.title' })}>
+        <Work {...serverData} />
+      </Container>
     </Layout>
   );
 };
 
-export default Index;
+export default injectIntl(Index);
 
 export const getServerData = async (props: GetServerDataProps) => {
   try {
-    const data = await getWorkFields(['categoryInfo']);
+    const data = await getWorkFields<string[]>(
+      ['categoryInfo'],
+      (props.pageContext.intl as { language: string })?.language,
+    );
     return {
       props: {
         data,
@@ -34,9 +41,6 @@ export const getServerData = async (props: GetServerDataProps) => {
   } catch (error) {
     console.log(error);
     return {
-      headers: {
-        status: 500,
-      },
       props: {},
     };
   }

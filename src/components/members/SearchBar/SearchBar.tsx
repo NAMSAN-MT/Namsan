@@ -9,6 +9,7 @@ import {
 import Input from '../../common/Input';
 import { useIntl } from 'gatsby-plugin-intl';
 import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
+import { navigate } from 'gatsby';
 
 const SearchBar = () => {
   const {
@@ -17,7 +18,12 @@ const SearchBar = () => {
     businessField: initBusinessField,
   } = getSearchParams();
 
+  // State
+  const [name, setName] = useState<string>(initName || '');
+
+  // Hooks
   const intl = useIntl();
+
   const INIT_POSITION_OPTION = intl.formatMessage({
     id: 'members.total_position',
   });
@@ -25,10 +31,6 @@ const SearchBar = () => {
     id: 'members.total_business_field',
   });
 
-  // State
-  const [name, setName] = useState<string>(initName || '');
-
-  // Hooks
   const {
     optionList: positionOptionList,
     currentOption: currentPosition,
@@ -65,7 +67,9 @@ const SearchBar = () => {
       currentBusinessField === INIT_BUSINESS_FIELD_OPTION
         ? ''
         : currentBusinessField;
-    window.location.href = `/members?position=${position}&businessField=${businessField}&name=${name}`;
+
+    const newUrl = `?position=${position}&businessField=${businessField}&name=${name}`;
+    navigate(newUrl, { replace: false });
   };
 
   const _handleBlur = useCallback(() => {
@@ -107,7 +111,7 @@ const SearchBar = () => {
           onClick={_handleClickPositionSelectBox}
         >
           <SelectBox
-            key="position"
+            key={currentPosition}
             title={currentPosition}
             options={positionOptionList}
             handleClick={handleClickPositionOption}
