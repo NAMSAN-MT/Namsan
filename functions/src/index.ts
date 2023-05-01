@@ -26,6 +26,7 @@ const algoliaClient = algoliasearch(
 
 const INDEX_NAME = "dev_namsan";
 const REGION = "asia-northeast2";
+
 const COLLECTION_INDEX = algoliaClient.initIndex(INDEX_NAME);
 
 // 데이터 모델 클래스 생성
