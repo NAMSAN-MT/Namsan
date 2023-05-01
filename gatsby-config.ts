@@ -113,13 +113,13 @@ const config: GatsbyConfig = {
           databaseURL:
             'https://namsan-801de-default-rtdb.asia-southeast1.firebasedatabase.app',
         },
-        collections: ['members', 'work'],
+        collections: ['members', 'work', 'news'],
       },
     },
   ],
 
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
 };
 
