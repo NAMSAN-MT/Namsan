@@ -13,7 +13,7 @@ export const getMainNewsList = async (limit: number) => {
     queryType: 'orderby',
     fieldPath: 'date',
     directionStr: 'desc',
-    limit: 3,
+    limit,
   });
 
   const result = await GetDataListQuery<News>({ endPoint, queries });

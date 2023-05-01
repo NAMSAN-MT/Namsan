@@ -74,6 +74,7 @@ const NewsMain = () => {
         }
       >
         <Card
+          type="news"
           newsList={newsList}
           {...{ urlPage, newsType, onCallNewsList, searchValue }}
         />
