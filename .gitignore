@@ -7,3 +7,5 @@ src/gatsby-types.d.ts
 .env
 
 firebase-key.json
+
+.firebase

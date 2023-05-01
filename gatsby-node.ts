@@ -3,6 +3,15 @@ import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import { resolve } from 'path';
 import { getFileFromStorage } from './src/api/index.api';
 
+const fs = require('fs');
+exports.onPostBuild = () => {
+  fs.copyFile(`./firebase.json`, `./public/firebase.json`, (err: unknown) => {
+    if (err) {
+      throw err;
+    }
+  });
+};
+
 exports.onCreateNode = async ({
   node,
   actions: { createNode, createNodeField },
