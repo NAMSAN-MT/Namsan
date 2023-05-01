@@ -27,4 +27,4 @@ const getMember = async (memberId: string) => {
   return memberWithImage;
 };
 
-export { , getMember };
+export { getMember };
