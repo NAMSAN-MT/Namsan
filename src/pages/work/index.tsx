@@ -1,4 +1,3 @@
-import { getWorkFields } from '@Api/work.api';
 import { Container } from '@Components/common/Container/Container';
 import Layout from '@Components/common/Layout';
 import Work from '@Components/work';
@@ -16,7 +15,7 @@ interface Props extends WrappedComponentProps {
 
 const Index = (props: PageProps & Props) => {
   const { pageContext, intl } = props;
-  const data = pageContext.data.map(({ node }) => node.categoryInfo);
+  const data = pageContext?.data.map(({ node }) => node.categoryInfo);
   return (
     <Layout>
       <Container title={intl.formatMessage({ id: 'work.title' })}>

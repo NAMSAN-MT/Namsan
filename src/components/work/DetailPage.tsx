@@ -1,9 +1,7 @@
-import { getWorkField } from '@Api/work.api';
 import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
 import MemberItem from '@Components/members/MemberItem';
-import { miniMember } from '@Pages/work/[id]';
-import { IGatsbyImageData } from 'gatsby-plugin-image';
+import { PageContextProps } from '@Pages/work/[id]';
 import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { CategoryDescription } from './work.interface';
 import {
@@ -25,58 +23,27 @@ export interface Props {
   lang?: string;
 
   language: 'ko' | 'en';
-  mainMemberData: miniMember[];
-  mainMemberImageData: IGatsbyImageData[];
-  mainMemberBgImageData: IGatsbyImageData[];
-  subMemberData: miniMember[];
-  subMemberImageData: IGatsbyImageData[];
-  subMemberBgImageData: IGatsbyImageData[];
 }
 
 const DetailPage = ({
   id,
   lang,
   mainMemberData,
-  mainMemberImageData,
-  mainMemberBgImageData,
   subMemberData,
-  subMemberImageData,
-  subMemberBgImageData,
-}: Props) => {
-  const [category, setCategory] = useState<
-    (CategoryDescription & { isOpen?: boolean })[]
-  >([]);
-  const [memberList, setMemberList] = useState<miniMember[]>(mainMemberData);
-  const [subMemberList, setSubMemberList] =
-    useState<miniMember[]>(subMemberData);
+  workInfo,
+}: Props & PageContextProps) => {
+  const [category, setCategory] = useState<CategoryDescription[]>([]);
   const [isShowMore, setIsShowMore] = useState(false);
   const ip = useRef<string>('');
 
   useEffect(() => {
-    getWorkField(id, lang).then(data => {
-      const { categoryInfo, description, member, imagePath } = data;
-      ip.current = imagePath;
-      const newData = categoryInfo.map((name, index) => ({
+    ip.current = workInfo.imagePath;
+    setCategory(
+      workInfo.categoryInfo.map((name, index) => ({
         name,
-        description: description[index],
-      }));
-      setCategory(newData);
-
-      setMemberList(
-        mainMemberData.map((member, index) => ({
-          ...member,
-          image: mainMemberImageData[index],
-          bgImage: mainMemberBgImageData[index],
-        })),
-      );
-      setSubMemberList(
-        subMemberList.map((member, index) => ({
-          ...member,
-          image: subMemberImageData[index],
-          bgImage: subMemberBgImageData[index],
-        })),
-      );
-    });
+        description: workInfo.description[index],
+      })),
+    );
   }, []);
 
   const onClickShowMore = () => {
@@ -128,7 +95,7 @@ const DetailPage = ({
       <MemberBox>
         <SubTitle>주요 구성원</SubTitle>
         <MemberList>
-          {memberList.map(
+          {mainMemberData?.map(
             member =>
               member && (
                 <MemberItem
@@ -153,7 +120,7 @@ const DetailPage = ({
         <MemberBox>
           <SubTitle>관련 구성원</SubTitle>
           <MemberList>
-            {subMemberList.map(
+            {subMemberData?.map(
               member =>
                 member && (
                   <MemberItem

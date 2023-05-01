@@ -6,14 +6,17 @@ import React from 'react';
 
 export interface DetailProps {
   id: string;
-  pageContext: {
-    language: 'ko' | 'en';
-    mainMemberData: miniMember[];
-    mainMemberImageData: IGatsbyImageData[];
-    mainMemberBgImageData: IGatsbyImageData[];
-    subMemberData: miniMember[];
-    subMemberImageData: IGatsbyImageData[];
-    subMemberBgImageData: IGatsbyImageData[];
+  pageContext: PageContextProps;
+}
+
+export interface PageContextProps {
+  language: 'ko' | 'en';
+  mainMemberData: miniMember[];
+  subMemberData: miniMember[];
+  workInfo: {
+    categoryInfo: string[];
+    description: string[];
+    imagePath: string;
   };
 }
 

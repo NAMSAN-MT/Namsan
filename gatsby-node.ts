@@ -153,7 +153,16 @@ exports.createPages = async ({ actions, graphql }: any) => {
   });
 
   works.data.allWork.edges.forEach(async ({ node }: any) => {
-    const query = (member: string) => `
+    const workQuery = (work: string) => `
+      query {
+        work (categoryId: { eq: "${work}" }) {
+          categoryInfo,
+          description,
+          imagePath
+        }
+      }
+    `;
+    const memberQuery = (member: string) => `
       query {
         members(name: { eq: "${member}" }) {
           id
@@ -185,56 +194,30 @@ exports.createPages = async ({ actions, graphql }: any) => {
         }
     }`;
 
-    const mainMemberData = await Promise.all(
-      node.member.main.map((member: string) =>
-        graphql(query(member)).then((r: any) => r.data.members),
-      ),
-    );
-    const mainMemberImageData = await Promise.all(
-      mainMemberData.map(
-        async member =>
-          (await member?.id) &&
-          graphql(imageQuery(member.id)).then(
-            (r: any) => r.data.file.childImageSharp.gatsbyImageData,
-          ),
-      ),
-    );
+    const getMemberData = (data: string[]) =>
+      data.map(
+        async (member: string) =>
+          await graphql(memberQuery(member))
+            .then((r: any) => r.data.members)
+            .then(
+              async (memberData: any) =>
+                memberData && {
+                  ...memberData,
+                  image: await graphql(imageQuery(memberData.id)).then(
+                    (r: any) => r.data.file.childImageSharp.gatsbyImageData,
+                  ),
+                  bgImage: await graphql(
+                    bgImageQuery(memberData.bgImagePath),
+                  ).then(
+                    (r: any) => r.data.file.childImageSharp.gatsbyImageData,
+                  ),
+                },
+            ),
+      );
 
-    const mainMemberBgImageData = await Promise.all(
-      mainMemberData.map(
-        async member =>
-          (await member?.id) &&
-          graphql(bgImageQuery(member.bgImagePath)).then(
-            (r: any) => r.data.file.childImageSharp.gatsbyImageData,
-          ),
-      ),
-    );
-
-    const subMemberData = await Promise.all(
-      node.member.sub.map((member: string) =>
-        graphql(query(member)).then((r: any) => r.data.members),
-      ),
-    );
-
-    const subMemberImageData = await Promise.all(
-      subMemberData.map(
-        async member =>
-          (await member?.id) &&
-          graphql(imageQuery(member.id)).then(
-            (r: any) => r.data.file.childImageSharp.gatsbyImageData,
-          ),
-      ),
-    );
-
-    const subMemberBgImageData = await Promise.all(
-      subMemberData.map(
-        async member =>
-          (await member?.id) &&
-          graphql(bgImageQuery(member.bgImagePath)).then(
-            (r: any) => r.data.file.childImageSharp.gatsbyImageData,
-          ),
-      ),
-    );
+    const mainMemberData = await Promise.all(getMemberData(node.member.main));
+    const subMemberData = await Promise.all(getMemberData(node.member.sub));
+    const workInfo = await graphql(workQuery(node.categoryId));
 
     actions.createPage({
       path: `/work/${node.categoryId}`,
@@ -242,11 +225,8 @@ exports.createPages = async ({ actions, graphql }: any) => {
       context: {
         id: node.categoryId,
         mainMemberData,
-        mainMemberImageData,
-        mainMemberBgImageData,
         subMemberData,
-        subMemberImageData,
-        subMemberBgImageData,
+        workInfo: workInfo.data.work,
       },
     });
   });
