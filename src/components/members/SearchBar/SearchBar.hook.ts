@@ -4,17 +4,17 @@ import { IHooksInterface } from './SearchBar.interface';
 const useSerachBar = ({
   defaultOption,
   initOption,
-  getOptionList,
+  optionList,
 }: IHooksInterface) => {
   const [currentOption, setCurrentOption] = useState(
     initOption || defaultOption,
   );
-  const [optionList, setOptionList] = useState<string[]>([]);
+  const [currentOptionList, setOptionList] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const _optionList = [defaultOption, ...(await getOptionList())];
+      const _optionList = [defaultOption, ...optionList];
       setOptionList(_optionList);
     })();
   }, []);
@@ -29,7 +29,7 @@ const useSerachBar = ({
   };
 
   return {
-    optionList,
+    optionList: currentOptionList,
     currentOption,
     isOpen,
     setIsOpen,

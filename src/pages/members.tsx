@@ -11,8 +11,8 @@ const Members: React.FC<PageProps> = ({ pageContext: { members } }: any) => {
     <Layout>
       <MembersWrapper>
         <MembersTitle />
-        <SearchBar />
-        <MemberList members={members.map(item => item)} />
+        <SearchBar members={members} />
+        <MemberList members={members} />
       </MembersWrapper>
     </Layout>
   );
