@@ -8,6 +8,7 @@ type TUrl =
   | 'workDetail'
   | 'members'
   | 'news'
+  | 'newsDetail'
   | 'contact';
 
 interface IGNBProps extends WrappedComponentProps {

@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash';
 import React from 'react';
 import BaseButton from '../BaseButton';
 import Footer from '../Footer';
@@ -8,8 +9,9 @@ import * as S from './Layout.style';
 
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { isHeader = true, isFooter = true, children, route } = props;
-  const { handleTopEvent } = useLayout();
+  const { toastMessage, handleTopEvent, handleCopyLink } = useLayout();
   const isMainPage = ['main', 'workDetail'].includes(route ?? '');
+  const isFloating = ['newsDetail'].includes(route ?? '');
 
   return (
     <S.LayoutWrapper>
@@ -23,6 +25,18 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
             <BaseButton className="arrow-top" onClick={handleTopEvent} />
           </S.TopButtonWrapper>
         )}
+        {isFloating && (
+          <S.FloatingWrapper>
+            <div className="blank" />
+            <div className="area">
+              <BaseButton className="copy" onClick={handleCopyLink} />
+              <BaseButton className="arrow-top" onClick={handleTopEvent} />
+            </div>
+          </S.FloatingWrapper>
+        )}
+        <S.ToastWrapper isVisible={!isEmpty(toastMessage)}>
+          <S.Toast>{toastMessage}</S.Toast>
+        </S.ToastWrapper>
       </S.LayoutContent>
       {isFooter ? <Footer /> : null}
     </S.LayoutWrapper>

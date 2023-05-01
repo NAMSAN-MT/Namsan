@@ -2,6 +2,7 @@ import { font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import { flex } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import ArrowUpIcon from '@Images/ic_arrow_top.svg';
+import CopyIcon from '@Images/ic_copy.svg';
 import HambergurIcon from '@Images/ic_hamburger.svg';
 import ShareIcon from '@Images/ic_share.svg';
 import MoreIcon from '@Images/ic_more.svg';
@@ -49,6 +50,10 @@ const Support = styled(Base)`
   color: ${({ theme }) => theme.color.textBlackHigh};
   padding: 11px 30px;
   min-width: 104px;
+
+  font-weight: 700;
+  text-align: center;
+
   background-color: ${({ theme }) => theme.color.dividerGrey100};
   &:hover {
     background-color: ${({ theme }) => theme.color.grey200};
@@ -136,6 +141,19 @@ const ArrowTop = styled(IconBase)`
   }
 `;
 
+const Copy = styled(IconBase)`
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.color.backgroundGrey50};
+  &:hover {
+    background-color: ${({ theme }) => theme.color.textBlackDisable};
+  }
+  .icon {
+    background: ${`url(${CopyIcon}) no-repeat center center`};
+    width: 60px;
+    height: 60px;
+  }
+`;
+
 const Hamburger = styled(IconBase)`
   border-radius: 32px;
   width: 56px;
@@ -144,6 +162,22 @@ const Hamburger = styled(IconBase)`
   border: 1px solid ${({ theme }) => theme.color.dividerGrey200};
   &:hover {
     background-color: ${({ theme }) => theme.color.textBlackDisable};
+  }
+  .icon {
+    background: ${`url(${HambergurIcon}) no-repeat center center`};
+    width: 56px;
+    height: 56px;
+  }
+`;
+
+const HamburgerNews = styled(IconBase)`
+  border-radius: 32px;
+  width: 56px;
+  height: 56px;
+  background-color: ${({ theme }) => theme.color.textWhiteHigh};
+  border: 1px solid ${({ theme }) => theme.color.dividerGrey200};
+  &:hover {
+    background-color: ${({ theme }) => theme.color.blue50};
   }
   .icon {
     background: ${`url(${HambergurIcon}) no-repeat center center`};
@@ -273,7 +307,9 @@ export {
   Outline,
   Tag,
   ArrowTop,
+  Copy,
   Hamburger,
+  HamburgerNews,
   Share,
   More,
   Download,
