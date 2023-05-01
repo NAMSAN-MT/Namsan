@@ -27,10 +27,11 @@ const SearchBar = ({ members }: { members: IMember[] }) => {
   const INIT_BUSINESS_FIELD_OPTION = intl.formatMessage({
     id: 'members.total_business_field',
   });
-
-  const positionList = members.map(member => member.position);
+  
+  const positionList = members?.map(member => member.position) || [];
   const uniquePositionList = [...new Set(positionList)];
-  const businessFieldList = members.map(member => member.businessFields).flat();
+  const businessFieldList =
+    members?.map(member => member.businessFields)?.flat() || [];
   const uniqueBusinessFieldList = [...new Set(businessFieldList)];
 
   const {
