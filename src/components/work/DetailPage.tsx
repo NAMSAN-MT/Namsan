@@ -37,6 +37,8 @@ const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
     useState<miniMember[]>(subMemberData);
   const [isShowMore, setIsShowMore] = useState(false);
   const ip = useRef<string>('');
+  console.log(subMemberList);
+
   useEffect(() => {
     getWorkField(id, lang).then(data => {
       const { categoryInfo, description, member, imagePath } = data;
@@ -124,11 +126,12 @@ const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
       <MemberBox>
         <SubTitle>주요 구성원</SubTitle>
         <MemberList>
-          {memberList.map(member => {
-            return (
-              <MemberItem key={member.id} {...member} image={member.image} />
-            );
-          })}
+          {memberList.map(
+            member =>
+              member && (
+                <MemberItem key={member.id} {...member} image={member.image} />
+              ),
+          )}
         </MemberList>
       </MemberBox>
 
@@ -143,9 +146,9 @@ const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
         <MemberBox>
           <SubTitle>관련 구성원</SubTitle>
           <MemberList>
-            {subMemberList.map(member => (
-              <MemberItem key={member.id} {...member} />
-            ))}
+            {subMemberList.map(
+              member => member && <MemberItem key={member.id} {...member} />,
+            )}
           </MemberList>
         </MemberBox>
       )}

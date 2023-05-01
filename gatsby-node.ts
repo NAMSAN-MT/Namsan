@@ -127,12 +127,13 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
   const works = await graphql(`
     query {
-      allWork {
+      allWork(sort: { categoryId: ASC }) {
         edges {
           node {
             id
             language
             categoryId
+            categoryInfo
             member {
               main
               sub
@@ -142,6 +143,15 @@ exports.createPages = async ({ actions, graphql }: any) => {
       }
     }
   `);
+
+  actions.createPage({
+    path: `/work`,
+    component: resolve('./src/pages/work/index.tsx'),
+    context: {
+      data: works.data.allWork.edges,
+    },
+  });
+
   works.data.allWork.edges.forEach(async ({ node }: any) => {
     const query = (member: string) => `
     query {
