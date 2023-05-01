@@ -16,6 +16,13 @@ const InnerWrapper = styled.div`
   min-height: 620px;
 
   ${mediaQuery(
+    'tablet1024',
+    `
+    //  min-height: unset;
+    `,
+  )};
+
+  ${mediaQuery(
     'mobile',
     `
      min-height: 730px;
@@ -51,7 +58,7 @@ const RightWrapper = styled.div`
     `,
   )};
   video {
-    height: 620px;
+    height: 100%;
     object-fit: cover;
     ${mediaQuery(
       'tablet1024',

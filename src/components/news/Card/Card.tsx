@@ -8,7 +8,7 @@ const Card = (props: CardProps) => {
   }, [props.urlPage]);
 
   return (
-    <S.CardBox>
+    <S.CardBox className="card-box">
       {props.newsList.map((item, i) => (
         <S.Card key={i} href="#" className="card-wrapper">
           <S.LabelBox type={item.newsType} className="card-label">

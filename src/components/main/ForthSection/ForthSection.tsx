@@ -1,18 +1,19 @@
 import AnimationWrapper from '@Components/common/AnimationWrapper';
 import BaseButton from '@Components/common/BaseButton';
-import useDateFns from '@Hooks/useDateFns';
-import React from 'react';
-import SummaryNews from '../SummaryNews';
+import React, { useState } from 'react';
 import useForthSection from './ForthSection.hook';
 import * as S from './ForthSection.style';
 import { IForthSectionProps } from './ForthSection.interface';
 import { injectIntl } from 'gatsby-plugin-intl';
 import Card from '@Components/news/Card/Card';
 import { WithFixedWrapper } from '../FirstSection/FirstSection.style';
+import useMain from '@Components/news/Main/Main.hook';
 
 const ForthSection = (props: IForthSectionProps) => {
-  const { handleNavigateTo, newsList } = useForthSection();
-  const { convertToDateString } = useDateFns();
+  const { handleNavigateTo } = useForthSection();
+  const { urlPage, newsType, newsList, onCallNewsList } = useMain();
+  const [searchValue, setSearchValue] = useState('');
+
   const threshold = props.isMobile ? 0.2 : props.isTablet ? 0 : 0.5;
   return (
     <AnimationWrapper
@@ -38,23 +39,10 @@ const ForthSection = (props: IForthSectionProps) => {
               ) : null}
             </S.TopWrapper>
             <S.BottomWrapper>
-              {newsList
-                ? newsList.map((news, index) => (
-                    <Card
-                      key={index}
-                      title={news.title}
-                      newsType={news.newsType}
-                      content={news.content}
-                      agency={news.agency}
-                      originalLink={news.originalLink}
-                      date={news.date}
-                      dateYearMonth={convertToDateString(
-                        news.date.toDate(),
-                        'yyyy.MM',
-                      )}
-                    />
-                  ))
-                : null}
+              <Card
+                newsList={newsList.slice(0, 3)}
+                {...{ urlPage, newsType, onCallNewsList, searchValue }}
+              />
               {props.isMobile ? (
                 <S.ButtonWrapper>
                   <BaseButton
