@@ -1,4 +1,4 @@
-import { getNewsSearchList } from '@Api/news.api';
+import { getMainNewsList, getNewsSearchList } from '@Api/news.api';
 import { News } from '@Interface/api.interface';
 import { useLocation } from '@reach/router';
 import { NewsType } from '@Type/api.type';
@@ -39,7 +39,20 @@ const useMain = () => {
       console.error(error);
     }
   };
-  return { urlPage, newsType, tab, newsList, pageNationState, onCallNewsList };
+
+  const onCallMainNewsList = () => {
+    getMainNewsList(3).then(setNewsList).catch(console.error);
+  };
+
+  return {
+    urlPage,
+    newsType,
+    tab,
+    newsList,
+    pageNationState,
+    onCallNewsList,
+    onCallMainNewsList,
+  };
 };
 
 export default useMain;

@@ -3,9 +3,17 @@ import * as S from '../Card/Card.style';
 import { CardProps } from './Card.interface';
 
 const Card = (props: CardProps) => {
-  useEffect(() => {
-    props.onCallNewsList(props.newsType, props.searchValue);
-  }, [props.urlPage]);
+  if (props.type === 'main') {
+    useEffect(() => {
+      props.onCallMainNewsList?.(3);
+    }, []);
+  }
+
+  if (props.type === 'news') {
+    useEffect(() => {
+      props.onCallNewsList?.(props.newsType, props.searchValue);
+    }, [props.urlPage]);
+  }
 
   return (
     <S.CardBox>
