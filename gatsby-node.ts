@@ -1,7 +1,7 @@
+import { IMember } from '@Interface/api.interface';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import { resolve } from 'path';
 import { getFileFromStorage } from './src/api/index.api';
-import { IMember } from '@Interface/api.interface';
 
 exports.onCreateNode = async ({
   node,
@@ -154,55 +154,99 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
   works.data.allWork.edges.forEach(async ({ node }: any) => {
     const query = (member: string) => `
-    query {
-      members(name: { eq: "${member}" }) {
-        id
-        language
-        name
-        position
-        order
-        businessFields
-        imagePath
-        bgImagePath
+      query {
+        members(name: { eq: "${member}" }) {
+          id
+          language
+          name
+          position
+          order
+          businessFields
+          imagePath
+          bgImagePath
+        }
       }
-    }
-`;
-    // const imageQuery = (id: string) => `
-    // query {
-    //   file(parent: {id: {eq: ${id}}}) {
-    //     childImageSharp {
-    //       gatsbyImageData
-    //     }
-    //   }
-    // }`;
+    `;
+    const imageQuery = (id: string) => `
+    query {
+      file(parent: {id: {eq: "${id}"}}) {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+    }`;
+
+    const bgImageQuery = (path: string) => `
+      query {
+        file(name: {eq: "${path}"}) {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+    }`;
+
     const mainMemberData = await Promise.all(
       node.member.main.map((member: string) =>
         graphql(query(member)).then((r: any) => r.data.members),
       ),
     );
+    const mainMemberImageData = await Promise.all(
+      mainMemberData.map(
+        async member =>
+          (await member?.id) &&
+          graphql(imageQuery(member.id)).then(
+            (r: any) => r.data.file.childImageSharp.gatsbyImageData,
+          ),
+      ),
+    );
 
-    // const mainMemberImageData = await Promise.all(
-    //   node.member.main.map(
-    //     async (member: string) =>
-    //       await graphql(query(member)).then(async (r: any) => {
-    //         console.log(r);
-    //         return await graphql(imageQuery(r.data.members.id));
-    //       }),
-    //   ),
-    // );
+    const mainMemberBgImageData = await Promise.all(
+      mainMemberData.map(
+        async member =>
+          (await member?.id) &&
+          graphql(bgImageQuery(member.bgImagePath)).then(
+            (r: any) => r.data.file.childImageSharp.gatsbyImageData,
+          ),
+      ),
+    );
 
     const subMemberData = await Promise.all(
       node.member.sub.map((member: string) =>
         graphql(query(member)).then((r: any) => r.data.members),
       ),
     );
+
+    const subMemberImageData = await Promise.all(
+      subMemberData.map(
+        async member =>
+          (await member?.id) &&
+          graphql(imageQuery(member.id)).then(
+            (r: any) => r.data.file.childImageSharp.gatsbyImageData,
+          ),
+      ),
+    );
+
+    const subMemberBgImageData = await Promise.all(
+      subMemberData.map(
+        async member =>
+          (await member?.id) &&
+          graphql(bgImageQuery(member.bgImagePath)).then(
+            (r: any) => r.data.file.childImageSharp.gatsbyImageData,
+          ),
+      ),
+    );
+
     actions.createPage({
       path: `/work/${node.categoryId}`,
       component: resolve('./src/pages/work/[id].tsx'),
       context: {
         id: node.categoryId,
         mainMemberData,
+        mainMemberImageData,
+        mainMemberBgImageData,
         subMemberData,
+        subMemberImageData,
+        subMemberBgImageData,
       },
     });
   });

@@ -3,6 +3,7 @@ import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
 import MemberItem from '@Components/members/MemberItem';
 import { miniMember } from '@Pages/work/[id]';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { CategoryDescription } from './work.interface';
 import {
@@ -25,10 +26,23 @@ export interface Props {
 
   language: 'ko' | 'en';
   mainMemberData: miniMember[];
+  mainMemberImageData: IGatsbyImageData[];
+  mainMemberBgImageData: IGatsbyImageData[];
   subMemberData: miniMember[];
+  subMemberImageData: IGatsbyImageData[];
+  subMemberBgImageData: IGatsbyImageData[];
 }
 
-const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
+const DetailPage = ({
+  id,
+  lang,
+  mainMemberData,
+  mainMemberImageData,
+  mainMemberBgImageData,
+  subMemberData,
+  subMemberImageData,
+  subMemberBgImageData,
+}: Props) => {
   const [category, setCategory] = useState<
     (CategoryDescription & { isOpen?: boolean })[]
   >([]);
@@ -48,31 +62,20 @@ const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
       }));
       setCategory(newData);
 
-      // CHECK: 현재 제공된 업무분야 구성원 자료와, 구성원 businessField 내용이 상이함. 확인 필요.
-      // getContainMember(categoryInfo[0]).then(memberList => {
-      //   setMemberList(
-      //     sortBy(memberList, ({ name }) => {
-      //       const i = indexOf(member.main, name);
-      //       return i < 0 ? member.main.length : i;
-      //     }),
-      //   );
-      // });
-
-      // getMemberByName(member.main).then(memberList => {
-      //   setMemberList(
-      //     sortBy(memberList, ({ name }) => {
-      //       return indexOf(member.main, name);
-      //     }),
-      //   );
-      // });
-      // getMemberByName(member.sub).then(memberList => {
-      //   setSubMemberList(
-      //     sortBy(memberList, ({ name }) => {
-      //       const i = indexOf(member.sub, name);
-      //       return i < 0 ? member.sub.length : i;
-      //     }),
-      //   );
-      // });
+      setMemberList(
+        mainMemberData.map((member, index) => ({
+          ...member,
+          image: mainMemberImageData[index],
+          bgImage: mainMemberBgImageData[index],
+        })),
+      );
+      setSubMemberList(
+        subMemberList.map((member, index) => ({
+          ...member,
+          image: subMemberImageData[index],
+          bgImage: subMemberBgImageData[index],
+        })),
+      );
     });
   }, []);
 
@@ -128,7 +131,12 @@ const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
           {memberList.map(
             member =>
               member && (
-                <MemberItem key={member.id} {...member} image={member.image} />
+                <MemberItem
+                  email={''}
+                  careers={[]}
+                  key={member.id}
+                  {...member}
+                />
               ),
           )}
         </MemberList>
@@ -146,7 +154,15 @@ const DetailPage = ({ id, lang, mainMemberData, subMemberData }: Props) => {
           <SubTitle>관련 구성원</SubTitle>
           <MemberList>
             {subMemberList.map(
-              member => member && <MemberItem key={member.id} {...member} />,
+              member =>
+                member && (
+                  <MemberItem
+                    email={''}
+                    careers={[]}
+                    key={member.id}
+                    {...member}
+                  />
+                ),
             )}
           </MemberList>
         </MemberBox>
