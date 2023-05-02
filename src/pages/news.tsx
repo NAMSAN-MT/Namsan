@@ -6,7 +6,7 @@ import { GetServerDataProps, PageProps } from 'gatsby';
 import * as React from 'react';
 import styled from 'styled-components';
 
-const Main: React.FC<PageProps> = props => {
+const Main: React.FC<PageProps> = () => {
   return (
     <Layout>
       <NewsWrapper
@@ -21,17 +21,3 @@ const Main: React.FC<PageProps> = props => {
 };
 
 export default Main;
-
-export const getServerData = async (props: GetServerDataProps) => {
-  const {
-    page,
-    mediaType = 'all',
-    keyword,
-  } = props.query as {
-    page?: string;
-    mediaType?: NewsType;
-    keyword?: string;
-  };
-
-  return { props: { page, mediaType, keyword } };
-};

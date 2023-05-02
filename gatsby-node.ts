@@ -1,7 +1,16 @@
+import { IMember } from '@Interface/api.interface';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import { resolve } from 'path';
 import { getFileFromStorage } from './src/api/index.api';
-import { IMember } from '@Interface/api.interface';
+
+const fs = require('fs');
+exports.onPostBuild = () => {
+  fs.copyFile(`./firebase.json`, `./public/firebase.json`, (err: unknown) => {
+    if (err) {
+      throw err;
+    }
+  });
+};
 
 exports.onCreateNode = async ({
   node,
@@ -64,33 +73,9 @@ exports.createPages = async ({ actions, graphql }: any) => {
     }
   `);
 
-  actions.createPage({
-    path: '/members',
-    component: resolve('./src/pages/members.tsx'),
-    context: {
-      id: 'members',
-      members: await Promise.all(
-        members.data.allMembers.nodes.map(async (node: IMember) => {
-          const file = await graphql(`
-          query {
-            file(parent: {id: {eq: "${node.id}"}}) {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-        }`);
-          return {
-            ...node,
-            image: file.data.file.childImageSharp.gatsbyImageData,
-          };
-        }),
-      ),
-    },
-  });
-
-  await Promise.all(
-    members.data.allMembers.nodes.map(async (node: any) => {
-      const profile = await graphql(`
+  const contextMembers = await Promise.all(
+    members.data.allMembers.nodes.map(async (node: IMember) => {
+      const file = await graphql(`
       query {
         file(parent: {id: {eq: "${node.id}"}}) {
           childImageSharp {
@@ -98,7 +83,27 @@ exports.createPages = async ({ actions, graphql }: any) => {
           }
         }
     }`);
+      return {
+        ...node,
+        image: {
+          ...file.data.file.childImageSharp.gatsbyImageData,
+          backgroundColor: '#F6F8FA',
+        },
+      };
+    }),
+  );
 
+  actions.createPage({
+    path: '/members',
+    component: resolve('./src/templates/members.tsx'),
+    context: {
+      id: 'members',
+      members: contextMembers,
+    },
+  });
+
+  await Promise.all(
+    contextMembers.map(async (node: any) => {
       const bg = await graphql(`
     query {
       file(name: {eq: "${node.bgImagePath}"}) {
@@ -110,7 +115,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
       const member = {
         ...node,
-        image: profile.data.file.childImageSharp.gatsbyImageData,
         bgImage: bg.data.file.childImageSharp.gatsbyImageData,
       };
 
@@ -127,30 +131,106 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
   const works = await graphql(`
     query {
-      allWork {
+      allWork(sort: { categoryId: ASC }) {
         edges {
           node {
             id
             language
             categoryId
+            categoryInfo
+            member {
+              main
+              sub
+            }
           }
         }
       }
     }
   `);
-  works.data.allWork.edges.forEach(({ node }: any) => {
+
+  actions.createPage({
+    path: `/work`,
+    component: resolve('./src/templates/work.tsx'),
+    context: {
+      data: works.data.allWork.edges,
+    },
+  });
+
+  works.data.allWork.edges.forEach(async ({ node }: any) => {
+    const workQuery = (work: string) => `
+      query {
+        work (categoryId: { eq: "${work}" }) {
+          categoryInfo,
+          description,
+          imagePath
+        }
+      }
+    `;
+    const memberQuery = (member: string) => `
+      query {
+        members(name: { eq: "${member}" }) {
+          id
+          language
+          name
+          position
+          order
+          businessFields
+          imagePath
+          bgImagePath
+        }
+      }
+    `;
+    const imageQuery = (id: string) => `
+    query {
+      file(parent: {id: {eq: "${id}"}}) {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+    }`;
+
+    const bgImageQuery = (path: string) => `
+      query {
+        file(name: {eq: "${path}"}) {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+    }`;
+
+    const getMemberData = (data: string[]) =>
+      data.map(
+        async (member: string) =>
+          await graphql(memberQuery(member))
+            .then((r: any) => r.data.members)
+            .then(
+              async (memberData: any) =>
+                memberData && {
+                  ...memberData,
+                  image: await graphql(imageQuery(memberData.id)).then(
+                    (r: any) => r.data.file.childImageSharp.gatsbyImageData,
+                  ),
+                  bgImage: await graphql(
+                    bgImageQuery(memberData.bgImagePath),
+                  ).then(
+                    (r: any) => r.data.file.childImageSharp.gatsbyImageData,
+                  ),
+                },
+            ),
+      );
+
+    const mainMemberData = await Promise.all(getMemberData(node.member.main));
+    const subMemberData = await Promise.all(getMemberData(node.member.sub));
+    const workInfo = await graphql(workQuery(node.categoryId));
+
     actions.createPage({
       path: `/work/${node.categoryId}`,
       component: resolve('./src/pages/work/[id].tsx'),
       context: {
         id: node.categoryId,
-      },
-    });
-    actions.createPage({
-      path: `/${node.language}/work/${node.categoryId}`,
-      component: resolve('./src/pages/work/[id].tsx'),
-      context: {
-        id: node.categoryId,
+        mainMemberData,
+        subMemberData,
+        workInfo: workInfo.data.work,
       },
     });
   });

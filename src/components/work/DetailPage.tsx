@@ -1,9 +1,7 @@
-import { getMemberByName, getWorkField } from '@Api/work.api';
 import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
 import MemberItem from '@Components/members/MemberItem';
-import { IMember } from '@Interface/api.interface';
-import { indexOf, sortBy } from 'lodash';
+import { PageContextProps } from '@Pages/work/[id]';
 import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import { CategoryDescription } from './work.interface';
 import {
@@ -23,53 +21,29 @@ import {
 export interface Props {
   id: string;
   lang?: string;
+
+  language: 'ko' | 'en';
 }
 
-const DetailPage = ({ id, lang }: Props) => {
-  const [category, setCategory] = useState<
-    (CategoryDescription & { isOpen?: boolean })[]
-  >([]);
-  const [memberList, setMemberList] = useState<IMember[]>([]);
-  const [subMemberList, setSubMemberList] = useState<IMember[]>([]);
+const DetailPage = ({
+  id,
+  lang,
+  mainMemberData,
+  subMemberData,
+  workInfo,
+}: Props & PageContextProps) => {
+  const [category, setCategory] = useState<CategoryDescription[]>([]);
   const [isShowMore, setIsShowMore] = useState(false);
   const ip = useRef<string>('');
+
   useEffect(() => {
-    getWorkField(id, lang).then(data => {
-      const { categoryInfo, description, member, imagePath } = data;
-      console.log(member);
-      ip.current = imagePath;
-      const newData = categoryInfo.map((name, index) => ({
+    ip.current = workInfo.imagePath;
+    setCategory(
+      workInfo.categoryInfo.map((name, index) => ({
         name,
-        description: description[index],
-      }));
-      setCategory(newData);
-
-      // CHECK: 현재 제공된 업무분야 구성원 자료와, 구성원 businessField 내용이 상이함. 확인 필요.
-      // getContainMember(categoryInfo[0]).then(memberList => {
-      //   setMemberList(
-      //     sortBy(memberList, ({ name }) => {
-      //       const i = indexOf(member.main, name);
-      //       return i < 0 ? member.main.length : i;
-      //     }),
-      //   );
-      // });
-
-      getMemberByName(member.main).then(memberList => {
-        setMemberList(
-          sortBy(memberList, ({ name }) => {
-            return indexOf(member.main, name);
-          }),
-        );
-      });
-      getMemberByName(member.sub).then(memberList => {
-        setSubMemberList(
-          sortBy(memberList, ({ name }) => {
-            const i = indexOf(member.sub, name);
-            return i < 0 ? member.sub.length : i;
-          }),
-        );
-      });
-    });
+        description: workInfo.description[index],
+      })),
+    );
   }, []);
 
   const onClickShowMore = () => {
@@ -121,16 +95,17 @@ const DetailPage = ({ id, lang }: Props) => {
       <MemberBox>
         <SubTitle>주요 구성원</SubTitle>
         <MemberList>
-          {memberList.map(member => (
-            <MemberItem
-              key={member.id}
-              name={member.name}
-              position={member.position}
-              businessFields={member.businessFields}
-              image={member.image}
-              id={member.id}
-            />
-          ))}
+          {mainMemberData?.map(
+            member =>
+              member && (
+                <MemberItem
+                  email={''}
+                  careers={[]}
+                  key={member.id}
+                  {...member}
+                />
+              ),
+          )}
         </MemberList>
       </MemberBox>
 
@@ -145,16 +120,17 @@ const DetailPage = ({ id, lang }: Props) => {
         <MemberBox>
           <SubTitle>관련 구성원</SubTitle>
           <MemberList>
-            {subMemberList.map(member => (
-              <MemberItem
-                key={member.id}
-                name={member.name}
-                position={member.position}
-                businessFields={member.businessFields}
-                image={member.image}
-                id={member.id}
-              />
-            ))}
+            {subMemberData?.map(
+              member =>
+                member && (
+                  <MemberItem
+                    email={''}
+                    careers={[]}
+                    key={member.id}
+                    {...member}
+                  />
+                ),
+            )}
           </MemberList>
         </MemberBox>
       )}
