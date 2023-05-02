@@ -18,7 +18,12 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   trailingSlash: 'never',
   plugins: [
-    'gatsby-plugin-styled-components',
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
     'gatsby-plugin-image',
     'gatsby-plugin-sitemap',
     {
