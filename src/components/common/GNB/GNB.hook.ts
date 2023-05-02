@@ -1,3 +1,4 @@
+import { useLocation } from '@reach/router';
 import { useIntl } from 'gatsby-plugin-intl';
 import { useEffect, useMemo, useState } from 'react';
 import { changeLocale } from 'gatsby-plugin-intl';
@@ -7,6 +8,7 @@ const useGNB = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const intl = useIntl();
   const location = useMemo(() => getCurrentMenu(), []);
+  const path = useLocation();
 
   const handleChangeLanguage = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -16,6 +18,10 @@ const useGNB = () => {
     if (!lang) return;
     if (lang === locale) return;
 
+    if (path.pathname === '/en' || path.pathname === '/ko') {
+      changeLocale(lang, '/');
+      return;
+    }
     changeLocale(lang);
   };
 
