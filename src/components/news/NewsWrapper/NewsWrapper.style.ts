@@ -5,16 +5,7 @@ import { InnerWidth, OuterPadding } from './NewsWrapper.interface';
 export const Outer = styled.section<OuterPadding>`
   padding: ${props => props.outerPadding};
   box-sizing: content-box;
-
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
-
-  font-family: 'Noto Sans CJK KR';
-  font-style: normal;
-
-  & > p {
-    font-family: 'Noto Sans CJK KR';
-    font-style: normal;
-  }
 
   .loading_cards {
     ${flex()}
