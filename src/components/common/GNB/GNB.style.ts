@@ -11,8 +11,9 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
   z-index: 999;
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   border: 1px solid ${({ theme }) => theme.color.grey100};
-
-  ${({ theme }) =>
+  backdrop-filter: blur(20px);
+  opacity: 0.9;
+  ${({ isTransparent, theme }) =>
     mediaQuery(
       'tablet1024',
       `
@@ -21,7 +22,8 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
       padding: 0 24px;
       background-color: ${theme.color.white};
       width: 100%;
-      
+      backdrop-filter: ${!isTransparent ? 'blur(20px)' : 'blur(0px)'};
+      opacity: ${!isTransparent ? 0.9 : 1};
       &.open{
         background-color: rgba(255, 255, 255);
       }`,
@@ -40,7 +42,8 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
         isTransparent ? theme.color.transparent : 'rgba(255, 255, 255, 0.9)'
       };
       width: 100%;
-      backdrop-filter: blur(20px);
+      backdrop-filter: ${!isTransparent ? 'blur(20px)' : 'blur(0px)'};
+      opacity: ${!isTransparent ? 0.9 : 1};
       &.open{
         background-color: rgba(255, 255, 255);
       }`,

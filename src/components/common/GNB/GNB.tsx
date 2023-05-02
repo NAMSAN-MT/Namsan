@@ -31,7 +31,6 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
     location,
     path,
   } = useGNB();
-  console.log(path);
 
   return (
     <S.GNBWrapper
