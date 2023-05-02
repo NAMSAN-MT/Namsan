@@ -7,7 +7,7 @@ export const getPageNationState = ({
   pageNationState,
   urlPage,
 }: PaginationProps) => {
-  const currentPage = urlPage || pageNationState.page || 1;
+  const currentPage = Number(urlPage) || pageNationState.page || 1;
   return { ...pageNationState, currentPage };
 };
 

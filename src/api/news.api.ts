@@ -49,17 +49,10 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
         (hit: any) => hit.documentId as string,
       );
       const newDataList = await getNewsIdDataList(ids.reverse());
-      console.log(ids);
-      console.log(newDataList);
-
       const resultList = newDataList.map((news, index) => ({
         ...news,
         documentId: ids[index],
-        dateYearMonth: `${news.date.toDate().getFullYear()}.${
-          news.date.toDate().getMonth() < 9
-            ? `0${news.date.toDate().getMonth()}`
-            : news.date.toDate().getMonth()
-        }`,
+        dateYearMonth: getTimestampToDate(news.date).yearMoth,
       }));
       return { resultList, algoliaResult };
     })
@@ -99,7 +92,9 @@ export const getNewsData = async (_documentId: string) => {
     ],
   }).then(result => {
     const data = result[0];
-    const { fullDate } = getTimestampToDate(data.date);
-    return { ...data, dateYearMonthDate: fullDate };
+    return {
+      ...data,
+      dateYearMonthDate: getTimestampToDate(data.date).fullDate,
+    };
   });
 };
