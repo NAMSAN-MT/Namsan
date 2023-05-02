@@ -2,22 +2,48 @@ import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon';
 import { News } from '@Interface/api.interface';
 import { navigate } from 'gatsby';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './NewsDetail.style';
+import { useLocation } from '@reach/router';
+import { getNewsData } from '@Api/news.api';
+import { injectIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
 
-const NewsDetail = ({
-  agency,
-  newsType,
-  originalLink,
-  title,
-  content,
-  dateYearMonthDate,
-}: News) => {
+interface DetailNewsState extends Omit<News, 'date'> {}
+const init: DetailNewsState = {
+  agency: '',
+  newsType: 'media',
+  originalLink: '',
+  title: '',
+  content: '',
+  dateYearMonthDate: '',
+};
+
+interface Props extends WrappedComponentProps {}
+
+const NewsDetail = (props: Props) => {
+  const { pathname } = useLocation();
+  const id = pathname.substring(pathname.lastIndexOf('/') + 1);
+  const [detail, setDetail] = useState<DetailNewsState>(init);
+  const { agency, newsType, originalLink, title, content, dateYearMonthDate } =
+    detail;
+
+  useEffect(() => {
+    onGetNewData();
+  }, []);
+
+  const onGetNewData = () => {
+    getNewsData(id)
+      .then(setDetail)
+      .catch((error: unknown) => {
+        console.log(error);
+      });
+  };
+
   const onClickOiriginal = () => {
     window.open(originalLink ?? '', '_blank');
   };
   const handleClickList = () => {
-    navigate('/news');
+    navigate(`/${props.intl.locale}/news`);
   };
   const handleMove = (event: React.MouseEvent<HTMLButtonElement>) => {};
 
@@ -85,4 +111,4 @@ const NewsDetail = ({
   );
 };
 
-export default NewsDetail;
+export default injectIntl(NewsDetail);

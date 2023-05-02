@@ -90,5 +90,8 @@
   },
   "work": {
     "title": "업무분야"
+  },
+  "news": {
+    "search_placeholder": "검색"
   }
 }
