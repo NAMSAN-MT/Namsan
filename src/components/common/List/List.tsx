@@ -17,7 +17,7 @@ export const MainCategory = ({ id, name, children }: MainCategoryType) => {
     <Wrapper>
       <MainWrapper
         onClick={() => {
-          location.href = `work/${id}`;
+          location.href = `/work/${id}`;
         }}
       >
         <MainAnchor>{name}</MainAnchor>
@@ -27,7 +27,7 @@ export const MainCategory = ({ id, name, children }: MainCategoryType) => {
       <List>
         {children?.map(item => ({
           ...item,
-          props: { ...item.props, sub_id: `work/${id}#${item.props.sub_id}` },
+          props: { ...item.props, sub_id: `/work/${id}#${item.props.sub_id}` },
         }))}
       </List>
     </Wrapper>
