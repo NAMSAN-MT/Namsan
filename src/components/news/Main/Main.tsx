@@ -1,7 +1,7 @@
 import Input from '@Components/common/Input';
 import Loading from '@Components/common/Loading';
 import { isEmpty } from 'lodash';
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, lazy } from 'react';
 import * as SearchBar from '../../members/SearchBar/SearchBar.style';
 import Pagination from '../Pagination';
 import { TTab } from './Main.interface';
@@ -9,7 +9,7 @@ import * as S from './Main.style';
 import useMain from './Main.hook';
 import { navigate } from 'gatsby';
 import { injectIntl, useIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
-const Card = React.lazy(() => import('@Components/news/Card'));
+const Card = lazy(() => import('@Components/news/Card'));
 
 interface Props extends WrappedComponentProps {}
 const NewsMain = (props: Props) => {
