@@ -8,11 +8,12 @@ import { TTab } from './Main.interface';
 import * as S from './Main.style';
 import useMain from './Main.hook';
 import { navigate } from 'gatsby';
-import { injectIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
+import { injectIntl, useIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
 const Card = React.lazy(() => import('@Components/news/Card'));
 
 interface Props extends WrappedComponentProps {}
 const NewsMain = (props: Props) => {
+  const intl = useIntl();
   const [searchValue, setSearchValue] = useState('');
   const { urlPage, newsType, tab, newsList, pageNationState, onCallNewsList } =
     useMain();
@@ -60,7 +61,9 @@ const NewsMain = (props: Props) => {
         {/* TODO: searchBar common 영역으로 옮겨갈때 반영(feat. @ttumzzi) */}
         <SearchBar.ItemWrapper width="384px">
           <Input
-            placeholder={'검색'} // TODO: 다국어
+            placeholder={intl.formatMessage({
+              id: 'news.search_placeholder',
+            })}
             value={searchValue}
             handleSubmit={handleSubmit}
             handleChange={handleNameChange}
