@@ -8,5 +8,6 @@ export const getTimestampToDate = (date: Timestamp) => {
   const fullDate = `${_year}.${_month < 9 ? `0${_month}` : _month}.${
     _date < 9 ? `0${_date}` : _date
   }`;
-  return { fullDate, year: _year, month: _month, date: _date };
+  const yearMoth = `${_year}.${_month < 9 ? `0${_month}` : _month}`;
+  return { fullDate, yearMoth, year: _year, month: _month, date: _date };
 };

@@ -4,7 +4,7 @@ import { NewsType } from '@Type/api.type';
 export interface CardProps {
   type: 'main' | 'news';
   newsList: News[];
-  urlPage?: number;
+  urlPage?: string;
   newsType?: NewsType;
   searchValue?: string;
   onCallNewsList?: (newsType?: NewsType, searchValue?: string) => Promise<void>;

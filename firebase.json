@@ -23,6 +23,11 @@
       {
         "source": "**",
         "destination": "/index.html"
+      },
+      {
+        "source": "**/news/**",
+        "function": "news",
+        "region": "asia-northeast2"
       }
     ],
     "headers": [

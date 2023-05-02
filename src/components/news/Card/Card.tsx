@@ -12,7 +12,7 @@ const Card = (props: CardProps) => {
   if (props.type === 'news') {
     useEffect(() => {
       props.onCallNewsList?.(props.newsType, props.searchValue);
-    }, [props.urlPage]);
+    }, [props.urlPage, props.newsType]);
   }
 
   return (

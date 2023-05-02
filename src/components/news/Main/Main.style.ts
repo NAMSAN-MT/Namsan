@@ -30,7 +30,7 @@ export const TabBox = styled.ul`
   ${flex()}
 `;
 
-export const Tab = styled.li<{ isActive: boolean }>`
+export const Tab = styled.li<{ isActive?: boolean }>`
   ${flex()}
   min-width: 81px;
   padding: 6px 20px;

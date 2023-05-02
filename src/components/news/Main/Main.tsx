@@ -1,6 +1,5 @@
 import Input from '@Components/common/Input';
 import Loading from '@Components/common/Loading';
-import { navigate } from 'gatsby';
 import { isEmpty } from 'lodash';
 import React, { Suspense, useState } from 'react';
 import * as SearchBar from '../../members/SearchBar/SearchBar.style';
@@ -8,9 +7,12 @@ import Pagination from '../Pagination';
 import { TTab } from './Main.interface';
 import * as S from './Main.style';
 import useMain from './Main.hook';
+import { navigate } from 'gatsby';
+import { injectIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
 const Card = React.lazy(() => import('@Components/news/Card'));
 
-const NewsMain = () => {
+interface Props extends WrappedComponentProps {}
+const NewsMain = (props: Props) => {
   const [searchValue, setSearchValue] = useState('');
   const { urlPage, newsType, tab, newsList, pageNationState, onCallNewsList } =
     useMain();
@@ -18,8 +20,9 @@ const NewsMain = () => {
   const handleTab = (e: React.MouseEvent<HTMLAnchorElement>, type: TTab) => {
     e.preventDefault();
     setSearchValue('');
-    onCallNewsList(type);
-    navigate(`/news${type === 'all' ? '' : `?newsType=${type}`}`);
+    navigate(
+      `/${props.intl.locale}/news${type === 'all' ? '' : `?newsType=${type}`}`,
+    );
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
@@ -84,4 +87,4 @@ const NewsMain = () => {
   );
 };
 
-export default NewsMain;
+export default injectIntl(NewsMain);

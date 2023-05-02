@@ -3,6 +3,6 @@ import { TPagination } from '../Main/Main.interface';
 
 export interface PaginationProps {
   newsType: NewsType;
-  urlPage?: number;
+  urlPage?: string;
   pageNationState: TPagination;
 }

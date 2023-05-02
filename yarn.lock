@@ -3957,7 +3957,7 @@ babel-plugin-remove-graphql-queries@^5.9.0:
     "@babel/types" "^7.20.7"
     gatsby-core-utils "^4.9.0"
 
-"babel-plugin-styled-components@>= 1.12.0", babel-plugin-styled-components@^2.0.7:
+"babel-plugin-styled-components@>= 1.12.0", babel-plugin-styled-components@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-2.1.1.tgz#cd977cc0ff8410d5cbfdd142e42576e9c8794b87"
   integrity sha512-c8lJlszObVQPguHkI+akXv8+Jgb9Ccujx0EetL7oIvwU100LxO6XAGe45qry37wUL40a5U9f23SYrivro2XKhA==
@@ -6780,7 +6780,7 @@ gatsby-plugin-sitemap@^6.5.0:
     minimatch "^3.1.2"
     sitemap "^7.1.1"
 
-gatsby-plugin-styled-components@^6.5.0:
+gatsby-plugin-styled-components@^6.9.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-styled-components/-/gatsby-plugin-styled-components-6.9.0.tgz#1dc0d817cfad948f1651e69de8daa4ad73b5fb11"
   integrity sha512-2f6hnKXRUj1Vt4bx6RlNSA18LzfQielHjy3luFiJ6fDnnOP7hsu6+5I5Nvot3aOte+zP4TM0dKZD0+j9FS3oKg==
