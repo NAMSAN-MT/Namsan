@@ -34,16 +34,10 @@ export interface miniMember {
 }
 
 const Detail = ({ pageContext, id }: WrappedComponentProps & DetailProps) => {
-  const router = (
+  return (
     <Layout route="workDetail">
       <DetailPage id={id} lang={pageContext.language} {...pageContext} />
     </Layout>
   );
-  return router;
 };
-
-export const getServerData = async (props: WrappedComponentProps) => ({
-  props,
-});
-
 export default injectIntl(Detail);

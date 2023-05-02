@@ -15,7 +15,6 @@ interface Props extends WrappedComponentProps {
 
 const Index = (props: PageProps & Props) => {
   const { pageContext, intl } = props;
-  console.log(props);
   const data = pageContext?.data?.map(({ node }) => node.categoryInfo);
   return (
     <Layout>
