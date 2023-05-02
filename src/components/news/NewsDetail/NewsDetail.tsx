@@ -5,13 +5,14 @@ import { navigate } from 'gatsby';
 import { injectIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
 import React from 'react';
 import { convertDateStr } from './NewsDetail.helper';
+import * as S from './NewsDetail.style';
 
 interface Props extends News, WrappedComponentProps {}
 
 const NewsDetail = (props: Props) => {
   const { agency, newsType, originalLink, title, content, date } = props;
   const dateYearMonthDate = convertDateStr(date);
-
+  
   const onClickOiriginal = () => {
     window.open(originalLink ?? '', '_blank');
   };
