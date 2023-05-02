@@ -44,6 +44,7 @@ const useGNB = () => {
     handleMenuButtonClick,
     isMobileMenuOpen,
     location,
+    path,
   };
 };
 

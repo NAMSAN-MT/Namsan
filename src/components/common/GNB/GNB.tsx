@@ -29,27 +29,35 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
     isMobileMenuOpen,
     handleMenuButtonClick,
     location,
+    path,
   } = useGNB();
+  console.log(path);
+
   return (
     <S.GNBWrapper
       className={isMobileMenuOpen ? 'open' : ''}
       isTransparent={isTransparent}
     >
       <S.LogoWrapper>
-        <Link className="link" key="home" to="/" about="home">
+        <Link className="link" key="home" to={`/${language}/`} about="home">
           <LogoIcon width="100%" isMobile={isMobile && isTransparent} />
         </Link>
       </S.LogoWrapper>
       <S.MainLinkWrapper>
         {GNBLink.map(({ href, alt, translationId }) => (
-          <Link key={alt} className="link" to={href} about={alt}>
+          <Link
+            key={alt}
+            className="link"
+            to={`/${language}${href}`}
+            about={alt}
+          >
             <S.LinkNameWrapper
               whileHover={{
                 color: '#193F9A',
                 originX: 0,
               }}
               className={location === alt ? 'on' : ''}
-              selected={location === alt}
+              selected={path.pathname === `/${language}${href}`}
             >
               {intl.formatMessage({ id: translationId })}
             </S.LinkNameWrapper>
