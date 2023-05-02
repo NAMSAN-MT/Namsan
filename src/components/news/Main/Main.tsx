@@ -36,7 +36,6 @@ const NewsMain = () => {
   return (
     <>
       <S.TabSearchBox>
-        {/* 탭리스트 */}
         <S.TabBox>
           <S.Tab isActive={tab === 'all'}>
             <a href="#" onClick={e => handleTab(e, 'all')}>
@@ -65,7 +64,6 @@ const NewsMain = () => {
           />
         </SearchBar.ItemWrapper>
       </S.TabSearchBox>
-      {/* 카드 리스트 영역 */}
       <Suspense
         fallback={
           <div className="loading_cards">
