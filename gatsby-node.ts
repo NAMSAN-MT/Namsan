@@ -73,33 +73,9 @@ exports.createPages = async ({ actions, graphql }: any) => {
     }
   `);
 
-  actions.createPage({
-    path: '/members',
-    component: resolve('./src/pages/members.tsx'),
-    context: {
-      id: 'members',
-      members: await Promise.all(
-        members.data.allMembers.nodes.map(async (node: IMember) => {
-          const file = await graphql(`
-          query {
-            file(parent: {id: {eq: "${node.id}"}}) {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-        }`);
-          return {
-            ...node,
-            image: file.data.file.childImageSharp.gatsbyImageData,
-          };
-        }),
-      ),
-    },
-  });
-
-  await Promise.all(
-    members.data.allMembers.nodes.map(async (node: any) => {
-      const profile = await graphql(`
+  const contextMembers = await Promise.all(
+    members.data.allMembers.nodes.map(async (node: IMember) => {
+      const file = await graphql(`
       query {
         file(parent: {id: {eq: "${node.id}"}}) {
           childImageSharp {
@@ -107,7 +83,27 @@ exports.createPages = async ({ actions, graphql }: any) => {
           }
         }
     }`);
+      return {
+        ...node,
+        image: {
+          ...file.data.file.childImageSharp.gatsbyImageData,
+          backgroundColor: '#F6F8FA',
+        },
+      };
+    }),
+  );
 
+  actions.createPage({
+    path: '/members',
+    component: resolve('./src/templates/members.tsx'),
+    context: {
+      id: 'members',
+      members: contextMembers,
+    },
+  });
+
+  await Promise.all(
+    contextMembers.map(async (node: any) => {
       const bg = await graphql(`
     query {
       file(name: {eq: "${node.bgImagePath}"}) {
@@ -119,7 +115,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
       const member = {
         ...node,
-        image: profile.data.file.childImageSharp.gatsbyImageData,
         bgImage: bg.data.file.childImageSharp.gatsbyImageData,
       };
 
