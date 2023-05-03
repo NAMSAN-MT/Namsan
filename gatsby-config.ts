@@ -91,7 +91,6 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/intl`,
         languages: [`en`, `ko`],
         defaultLanguage: `ko`,
-        redirect: true,
       },
     },
     {
@@ -124,7 +123,7 @@ const config: GatsbyConfig = {
   ],
 
   flags: {
-    DEV_SSR: true,
+    DEV_SSR: false,
   },
 };
 
