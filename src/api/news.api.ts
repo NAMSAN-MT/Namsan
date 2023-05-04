@@ -46,7 +46,6 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
       hitsPerPage: 9,
     })
     .then(async algoliaResult => {
-      console.log('??', algoliaResult.hits);
       if (isEmpty(algoliaResult.hits)) {
         return { resultList: [] };
       }
@@ -58,7 +57,6 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
       const resultList: NewsMin[] = newDataList.map(
         (news, index) =>
           ({
-            // ...news,
             title: news.title,
             summary: news.summary,
             agency: news.agency,
