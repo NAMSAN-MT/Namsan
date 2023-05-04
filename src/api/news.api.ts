@@ -1,4 +1,5 @@
-import { News } from '@Interface/api.interface';
+import { isEmpty } from 'lodash';
+import { News, NewsMin } from '@Interface/api.interface';
 import { EndPointType, NewsType, TQuery } from '@Type/api.type';
 import { documentId } from 'firebase/firestore';
 import { getTimestampToDate } from '../utils/date';
@@ -45,15 +46,27 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
       hitsPerPage: 9,
     })
     .then(async algoliaResult => {
+      console.log('??', algoliaResult.hits);
+      if (isEmpty(algoliaResult.hits)) {
+        return { resultList: [] };
+      }
+
       const ids = algoliaResult.hits.map(
         (hit: any) => hit.documentId as string,
       );
       const newDataList = await getNewsIdDataList(ids.reverse());
-      const resultList = newDataList.map((news, index) => ({
-        ...news,
-        documentId: ids[index],
-        dateYearMonth: getTimestampToDate(news.date).yearMoth,
-      }));
+      const resultList: NewsMin[] = newDataList.map(
+        (news, index) =>
+          ({
+            // ...news,
+            title: news.title,
+            summary: news.summary,
+            agency: news.agency,
+            newsType: news.newsType,
+            documentId: ids[index],
+            dateYearMonth: getTimestampToDate(news.date).yearMoth,
+          } as NewsMin),
+      );
       return { resultList, algoliaResult };
     })
     .catch(err => {
