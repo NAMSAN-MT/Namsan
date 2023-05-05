@@ -89,6 +89,9 @@
     "less": "접기"
   },
   "work": {
-    "title": "Our Practice"
+    "title": "Our Practice",
+    "main_member": "주요 구성원",
+    "sub_member": "관련 구성원",
+    "show_more": "구성원 더보기"
   }
 }

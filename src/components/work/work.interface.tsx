@@ -8,7 +8,7 @@ export interface SubCategory {
 }
 
 export interface CategoryDescription {
-  name: string;
+  categoryTitle: string;
   description: string;
   isOpen?: boolean;
 }
