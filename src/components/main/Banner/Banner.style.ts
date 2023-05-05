@@ -7,7 +7,7 @@ const BannerWrapper = styled.div<{ even: boolean }>`
   background-color: ${({ theme }) => theme.color.grey50};
   border-radius: 20px;
   padding: 28px 36px 26px;
-  margin-right: ${({ even }) => (even ? '24px' : '0')};
+  margin-right: ${({ even }) => (even ? '20px' : '0')};
   ${mediaQuery(
     'tablet1024',
     `

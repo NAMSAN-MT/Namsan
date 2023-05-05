@@ -87,7 +87,7 @@ const SecondSection = styled.div`
     color: ${({ theme }) => theme.color.grey500};
     margin-right: 10px;
 
-    ${font('body14', 'demilight')};
+    ${font('body14', 'regular')};
     ${lineHeight(14, 22)};
     ${mediaQuery(
       'mobile',

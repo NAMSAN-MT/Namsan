@@ -22,7 +22,6 @@ const ForthWrapper = styled(Wrapper)`
 const InnerWrapper = styled.div`
   width: 100%;
   height: 100%;
-  // padding: 0 calc((100% - 1290px) / 2);
   ${mediaQuery(
     'mobile',
     `
@@ -36,15 +35,13 @@ const TopWrapper = styled.div`
   ${flex('space-between', 'center')};
 `;
 
+// 52px 40px 40px
 const BottomWrapper = styled.div`
   ${flex()};
   margin-top: 36px;
   gap: 24px;
   .card-box {
     margin: 0;
-  }
-  .card-wrapper {
-    width: 100% !important;
   }
 
   ${mediaQuery(
@@ -73,7 +70,8 @@ const BottomWrapper = styled.div`
   )};
 
   .card-wrapper {
-    width: 32%;
+    width: 100%;
+    padding: 0;
 
     ${mediaQuery(
       'tablet1024',
@@ -94,17 +92,21 @@ const BottomWrapper = styled.div`
       padding: 24px 20px;
     `,
     )};
+
     .card-label {
+      padding: 52px 40px 0 40px;
       ${mediaQuery(
         'tablet1024',
         `
           margin-bottom: 12px;
+          padding: 0
         `,
       )};
       ${mediaQuery(
         'mobile',
         `
         margin-bottom: 8px;
+        padding: 0
       `,
       )};
       p {
@@ -127,6 +129,7 @@ const BottomWrapper = styled.div`
       }
     }
     .card-title {
+      padding: 0 40px;
       ${mediaQuery(
         'tablet1024',
         `
@@ -137,6 +140,7 @@ const BottomWrapper = styled.div`
         ${lineHeight(24, 38)};
         ${ellipsis()};
         display: inline-block;
+         padding: 0
       `,
       )};
       ${mediaQuery(
@@ -149,10 +153,12 @@ const BottomWrapper = styled.div`
         ${lineHeight(16, 26)};
         ${ellipsis()};
         display: inline-block;
+         padding: 0
       `,
       )};
     }
     .card-content {
+      padding: 0 40px;
       ${mediaQuery(
         'tablet1024',
         `
@@ -160,6 +166,7 @@ const BottomWrapper = styled.div`
         ${font('title18', 'regular')};
         ${lineHeight(18, 28)};
         color: rgba(6, 11, 17, 0.56);
+         padding: 0
       `,
       )};
       ${mediaQuery(
@@ -170,14 +177,23 @@ const BottomWrapper = styled.div`
         ${font('mobile14', 'regular')};
         ${lineHeight(14, 22)};
         color: rgba(6, 11, 17, 0.56);
+        padding: 0
       `,
       )};
     }
     .card-date {
+      padding: 0 40px;
       ${mediaQuery(
         'tablet1024',
         `
          margin-bottom: 0;
+        padding: 0
+      `,
+      )};
+      ${mediaQuery(
+        'mobile',
+        `
+        padding: 0
       `,
       )};
       p {

@@ -16,7 +16,7 @@ const Card = (props: CardProps) => {
   }
 
   return (
-    <S.CardBox>
+    <S.CardBox className="card-box">
       {props.newsList?.map((item, i) => (
         <S.Card
           key={i}

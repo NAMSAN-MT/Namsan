@@ -32,7 +32,7 @@ const TopButtonWrapper = styled.div`
   width: 100%;
   ${flex('flex-end', 'center ')};
   padding-right: 90px;
-  padding-bottom: 90px;
+  padding-bottom: 60px;
   ${mediaQuery(
     'tablet1024',
     `
