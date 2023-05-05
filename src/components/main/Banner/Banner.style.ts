@@ -18,7 +18,7 @@ const BannerWrapper = styled.div<{ even: boolean }>`
     'mobile',
     `
      margin-right: 0;
-     padding: 24px 20px 23px;
+     padding: 24px 20px 18px;
     `,
   )};
 `;
@@ -83,7 +83,7 @@ const Title = styled.div`
     ${lineHeight(18, 26)};
     letter-spacing: -0.2px;
     margin-top: 4px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   `,
   )}
 `;

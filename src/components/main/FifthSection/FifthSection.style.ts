@@ -32,7 +32,7 @@ const InnerWrapper = styled.div`
     `
     ${flex('center', 'center')};
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
     padding: 0 24px;
     `,
   )};

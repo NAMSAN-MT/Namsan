@@ -247,6 +247,7 @@ const Download = styled(IconBase)`
     width: 28px;
     height: 28px;
     margin-left: 8px;
+    width: 100%;
     &:hover {
       background: ${`url(${DownloadIcon}) no-repeat center center`};
     }
@@ -254,7 +255,6 @@ const Download = styled(IconBase)`
       'mobile',
       `
       width: 10px;
-      height: 10px;
       margin-left: 7px;
     `,
     )};
@@ -286,6 +286,7 @@ const Direct = styled(IconBase)`
     width: 28px;
     height: 28px;
     margin-left: 8px;
+    width: 100%;
     &:hover {
       background: ${`url(${DirectIcon}) no-repeat center center`};
     }
@@ -293,7 +294,6 @@ const Direct = styled(IconBase)`
       'mobile',
       `
       width: 16px;
-      height: 16px;
       margin-left: 7px;
     `,
     )};

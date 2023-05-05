@@ -41,13 +41,18 @@ const TopWrapper = styled.div`
   ${flex('space-between', 'center')};
 `;
 
-// 52px 40px 40px
 const BottomWrapper = styled.div`
   ${flex()};
   margin-top: 36px;
   gap: 24px;
   .card-box {
     margin: 0;
+    ${mediaQuery(
+      'mobile',
+      `
+      gap: 16px;
+    `,
+    )};
   }
 
   ${mediaQuery(
@@ -97,7 +102,7 @@ const BottomWrapper = styled.div`
       width: 100%;
       max-width: 100%;
       height: 100%;
-      padding: 24px 20px;
+      padding: 23px 20px 22px;
     `,
     )};
 
@@ -113,7 +118,7 @@ const BottomWrapper = styled.div`
       ${mediaQuery(
         'mobile',
         `
-        margin-bottom: 8px;
+        margin-bottom: 1px;
         padding: 0
       `,
       )};
@@ -156,13 +161,13 @@ const BottomWrapper = styled.div`
         'mobile',
         `
         max-width: 220px;
-        margin-bottom: 2px;
+        margin-bottom: 0px;
         height: 100%;
         ${font('mobile16', 'bold')};
         ${lineHeight(16, 26)};
         ${ellipsis()};
         display: inline-block;
-         padding: 0
+        padding: 0
       `,
       )};
     }

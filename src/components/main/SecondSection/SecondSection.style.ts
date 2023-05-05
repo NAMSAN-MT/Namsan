@@ -12,7 +12,7 @@ const SecondWrapper = styled(Wrapper)`
   ${mediaQuery(
     'mobile',
     `
-      min-height: 460px;
+      min-height: 304px;
     `,
   )};
 `;

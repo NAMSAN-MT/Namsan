@@ -13,7 +13,7 @@ const FooterWrapper = styled.div`
   ${mediaQuery(
     'mobile',
     `
-      height: 234px;
+      height: 226px;
       padding: 0 24px;
     `,
   )};
@@ -37,7 +37,7 @@ const LogoWrapper = styled.div`
     'mobile',
     `
       width: 89px;
-      margin-bottom: 28px;
+      margin-bottom: 25px;
     `,
   )};
 `;
