@@ -19,7 +19,7 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
       `
       z-index: 100;
       top: 0;
-      padding: 0 24px;
+      padding: 0 40px;
       background-color: ${theme.color.white};
       width: 100%;
       backdrop-filter: ${!isTransparent ? 'blur(20px)' : 'blur(0px)'};

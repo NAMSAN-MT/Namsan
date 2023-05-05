@@ -12,6 +12,12 @@ const ForthWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   margin-top: 140px;
   ${mediaQuery(
+    'tablet1024',
+    `
+      margin-top: 88px;
+    `,
+  )};
+  ${mediaQuery(
     'mobile',
     `
       margin-top: 61px;
@@ -47,6 +53,7 @@ const BottomWrapper = styled.div`
   ${mediaQuery(
     'tablet1024',
     `
+    margin-top: 34px;
       flex-direction: column;
       width: 100%;
     `,
@@ -78,6 +85,7 @@ const BottomWrapper = styled.div`
       `
       width: 100%;
       max-width: 100%;
+      max-height: 300px;
       padding: 40px 32px;
       height: unset;
     `,
@@ -134,13 +142,14 @@ const BottomWrapper = styled.div`
         'tablet1024',
         `
         max-width: 100%;
+        margin-top: 0;
         margin-bottom: 12px;
         height: unset;
         ${font('title24', 'regular')};
         ${lineHeight(24, 38)};
         ${ellipsis()};
         display: inline-block;
-         padding: 0
+        padding: 0
       `,
       )};
       ${mediaQuery(

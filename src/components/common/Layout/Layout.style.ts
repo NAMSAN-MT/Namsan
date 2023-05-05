@@ -37,7 +37,6 @@ const TopButtonWrapper = styled.div`
     'tablet1024',
     `
      padding-right: 40px;
-     padding-bottom: 40px;
     `,
   )};
   ${mediaQuery(
