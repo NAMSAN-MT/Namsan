@@ -10,9 +10,14 @@ import { WithFixedWrapper } from '../FirstSection/FirstSection.style';
 const ThirdSection = (props: IThirdSectionProps) => {
   const { handleNavigateTo, mainVideo } = useThirdSection(props);
   const suffix = props.isMobile ? '_mobile' : '';
+  const threshold = props.isMobile ? 0.1 : props.isTablet ? 0.2 : 0.2;
 
   return (
-    <AnimationWrapper variantName="transition" initial="hidden" threshold={0.5}>
+    <AnimationWrapper
+      variantName="transition"
+      initial="hidden"
+      threshold={threshold}
+    >
       <S.BackgroundWrapper>
         <WithFixedWrapper>
           <S.ThirdWrapper>
