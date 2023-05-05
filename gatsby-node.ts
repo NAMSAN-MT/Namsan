@@ -135,7 +135,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
         edges {
           node {
             id
-            language
             categoryId
             categoryInfo
             member {
@@ -151,9 +150,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
   actions.createPage({
     path: `/work`,
     component: resolve('./src/templates/work.tsx'),
-    context: {
-      data: works.data.allWork.edges,
-    },
   });
 
   works.data.allWork.edges.forEach(async ({ node }: any) => {

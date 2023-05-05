@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { Grid } from './work.styled';
 
 export interface Props {
-  data: string[][];
+  categoryInfos: string[][];
 }
 
-const Work = ({ data }: Props) => {
-  const [mainCategory] = useState<string[][]>(data);
+const Work = ({ categoryInfos }: Props) => {
+  const [mainCategory] = useState<string[][]>(categoryInfos);
+
   return (
     <Grid>
       {mainCategory?.map((category, index) => {
