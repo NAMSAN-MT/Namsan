@@ -26,7 +26,7 @@ const Main: React.FC<PageProps> = () => {
       </React.Suspense>
       <SecondSection isMobile={isMobile} />
       <React.Suspense fallback={<Loading height="500px" />}>
-        <ThirdSection isMobile={isMobile} />
+        <ThirdSection isMobile={isMobile} isTablet={isTablet} />
       </React.Suspense>
       <React.Suspense fallback={<Loading height="500px" />}>
         <ForthSection isMobile={isMobile} isTablet={isTablet} />

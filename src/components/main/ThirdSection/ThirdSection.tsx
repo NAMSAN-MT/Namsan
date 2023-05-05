@@ -37,14 +37,9 @@ const ThirdSection = (props: IThirdSectionProps) => {
                 </BaseButton>
               </S.LeftWrapper>
               <S.RightWrapper>
-                <video
-                  src={mainVideo}
-                  autoPlay
-                  loop
-                  muted
-                  width="100%"
-                  height="100%"
-                />
+                <video autoPlay loop muted width="100%" height="100%">
+                  <source src={mainVideo} type="video/mp4" />
+                </video>
               </S.RightWrapper>
             </S.InnerWrapper>
           </S.ThirdWrapper>
