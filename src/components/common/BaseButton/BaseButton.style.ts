@@ -89,6 +89,7 @@ const Outline = styled(Base)`
   border: 1.5px solid ${({ theme }) => theme.color.textBlue};
   border-radius: 24px;
   padding: 11px 20px;
+  line-height: 1;
   min-width: 84px;
   font-weight: 700;
   &:hover {
