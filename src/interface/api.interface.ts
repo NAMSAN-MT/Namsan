@@ -36,6 +36,7 @@ export interface News {
   date: Timestamp;
   agency: string;
   originalLink: string;
+  imagePath: string;
   newsType: NewsType;
   dateYearMonth?: string;
   dateYearMonthDate?: string;
