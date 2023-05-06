@@ -28,7 +28,7 @@ const DetailPage = (props: Props & PageContextProps) => {
   const { mainMemberData, subMemberData, workInfo, imagePath, intl } = props;
   const [category, setCategory] = useState<CategoryDescription[]>(workInfo);
   const [isShowMore, setIsShowMore] = useState(false);
-  const subIdPrefix = props.id.replace('C', 'S');
+  const subIdPrefix = props.id?.replace('C', 'S');
 
   const onClickShowMore = () => {
     setIsShowMore(true);

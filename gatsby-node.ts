@@ -153,15 +153,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
   });
 
   works.data.allWork.edges.forEach(async ({ node }: any) => {
-    const workQuery = (work: string) => `
-      query {
-        work (categoryId: { eq: "${work}" }) {
-          categoryInfo,
-          description,
-          imagePath
-        }
-      }
-    `;
     const memberQuery = (member: string) => `
       query {
         members(name: { eq: "${member}" }) {
@@ -176,48 +167,44 @@ exports.createPages = async ({ actions, graphql }: any) => {
         }
       }
     `;
-    const imageQuery = (id: string) => `
-    query {
-      file(parent: {id: {eq: "${id}"}}) {
-        childImageSharp {
-          gatsbyImageData
-        }
-      }
-    }`;
-
-    const bgImageQuery = (path: string) => `
+    const getImage = (id: string, path: string) => `
       query {
-        file(name: {eq: "${path}"}) {
+        image: file(parent: {id: {eq: "${id}"}}) {
           childImageSharp {
             gatsbyImageData
           }
         }
-    }`;
+        bgImage: file(name: {eq: "${path}"}) {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    `;
 
     const getMemberData = (data: string[]) =>
       data.map(
         async (member: string) =>
           await graphql(memberQuery(member))
-            .then((r: any) => r.data.members)
+            .then(({ data }: any) => data.members)
             .then(
               async (memberData: any) =>
                 memberData && {
                   ...memberData,
-                  image: await graphql(imageQuery(memberData.id)).then(
-                    (r: any) => r.data.file.childImageSharp.gatsbyImageData,
-                  ),
-                  bgImage: await graphql(
-                    bgImageQuery(memberData.bgImagePath),
-                  ).then(
-                    (r: any) => r.data.file.childImageSharp.gatsbyImageData,
-                  ),
+                  ...(await graphql(
+                    getImage(memberData.id, memberData.bgImagePath),
+                  ).then(({ data }: any) => {
+                    return {
+                      image: data.image?.childImageSharp.gatsbyImageData,
+                      bgImage: data.bgImage?.childImageSharp.gatsbyImageData,
+                    };
+                  })),
                 },
             ),
       );
 
     const mainMemberData = await Promise.all(getMemberData(node.member.main));
     const subMemberData = await Promise.all(getMemberData(node.member.sub));
-    const workInfo = await graphql(workQuery(node.categoryId));
 
     actions.createPage({
       path: `/work/${node.categoryId}`,
@@ -226,7 +213,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
         id: node.categoryId,
         mainMemberData,
         subMemberData,
-        workInfo: workInfo.data.work,
       },
     });
   });

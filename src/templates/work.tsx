@@ -19,7 +19,7 @@ const Index = (props: PageProps & Props) => {
   return (
     <Layout>
       <Container title={intl.formatMessage({ id: 'work.title' })}>
-        <Work {...{ categoryInfos }} />
+        <Work {...{ categoryInfos, language: intl.locale }} />
       </Container>
     </Layout>
   );

@@ -12,12 +12,17 @@ import { MainCategoryType, SubCategoryType } from './List.type';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
 
 // TODO: 아이콘 추가 필요
-export const MainCategory = ({ id, name, children }: MainCategoryType) => {
+export const MainCategory = ({
+  id,
+  name,
+  children,
+  language,
+}: MainCategoryType) => {
   return (
     <Wrapper>
       <MainWrapper
         onClick={() => {
-          location.href = `/work/${id}`;
+          location.href = `/${language ?? 'ko'}/work/${id}`;
         }}
       >
         <MainAnchor>{name}</MainAnchor>
@@ -27,7 +32,10 @@ export const MainCategory = ({ id, name, children }: MainCategoryType) => {
       <List>
         {children?.map(item => ({
           ...item,
-          props: { ...item.props, sub_id: `/work/${id}#${item.props.sub_id}` },
+          props: {
+            ...item.props,
+            sub_id: `/${language ?? 'ko'}/work/${id}#${item.props.sub_id}`,
+          },
         }))}
       </List>
     </Wrapper>
