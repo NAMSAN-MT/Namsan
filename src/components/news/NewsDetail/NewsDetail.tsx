@@ -1,23 +1,18 @@
-import { getFileFromStorage } from '@Api/index.api';
 import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon';
+import { News } from '@Interface/api.interface';
 import { navigate } from 'gatsby';
-import { injectIntl } from 'gatsby-plugin-intl';
-import React, { useEffect, useState } from 'react';
+import { injectIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
+import React from 'react';
 import { convertDateStr } from './NewsDetail.helper';
-import { Props } from './NewsDetail.interface';
 import * as S from './NewsDetail.style';
 
+interface Props extends News, WrappedComponentProps {}
+
 const NewsDetail = (props: Props) => {
-  const { agency, newsType, originalLink, title, content, date, imagePath } =
-    props;
+  const { agency, newsType, originalLink, title, content, date } = props;
   const dateYearMonthDate = convertDateStr(date);
-  const [image, setImage] = useState<string>();
-
-  useEffect(() => {
-    imagePath && getFileFromStorage(imagePath).then(setImage);
-  }, []);
-
+  
   const onClickOiriginal = () => {
     window.open(originalLink ?? '', '_blank');
   };
@@ -26,7 +21,7 @@ const NewsDetail = (props: Props) => {
   };
   const handleMove = (event: React.MouseEvent<HTMLButtonElement>) => {};
 
-  const isMediaNews = newsType === 'media' && image;
+  const isMediaNews = newsType === 'media';
   const topTxt = isMediaNews ? agency : '최근 업무사례';
 
   return (
@@ -52,11 +47,10 @@ const NewsDetail = (props: Props) => {
         <S.DateARea>{dateYearMonthDate}</S.DateARea>
       </S.HeaderContainer>
       <S.ContentConatiner>
-        {isMediaNews && (
-          <article className="top">
-            <img src={image} alt={title} loading={'lazy'} />
-          </article>
-        )}
+        {/* 사진 */}
+        <article className="top">
+          {isMediaNews && <img src="" alt="" />}
+        </article>
         <S.Content>{content}</S.Content>
         <article className="bottom">
           {/* 프로필 정보 */}
