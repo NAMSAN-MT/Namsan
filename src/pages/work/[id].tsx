@@ -1,6 +1,6 @@
 import Layout from '@Components/common/Layout/Layout';
 import DetailPage from '@Components/work/DetailPage';
-import { graphql } from 'gatsby';
+import { PageProps, graphql } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import React from 'react';
@@ -22,6 +22,7 @@ export interface PageContextProps extends WrappedComponentProps {
     description: string;
   }[];
   imagePath: string;
+  id: string;
 }
 
 type workInfomation = {
@@ -43,10 +44,13 @@ export interface miniMember {
   bgImage: IGatsbyImageData;
 }
 
-const Detail = ({ pageContext, data }: WrappedComponentProps & DetailProps) => {
+const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
+  const { pageContext, data, location } = props;
+  const subId = Number(location.hash?.slice(-2)) ?? -1;
   const infomation = data.work.categoryTitle?.map((title, index) => ({
     categoryTitle: title,
     description: data.work.description[index],
+    isOpen: index === subId,
   }));
 
   return (
@@ -56,6 +60,8 @@ const Detail = ({ pageContext, data }: WrappedComponentProps & DetailProps) => {
           ...pageContext,
           workInfo: infomation,
           imagePath: data.work.imagePath,
+          location,
+          subId,
         }}
       />
     </Layout>

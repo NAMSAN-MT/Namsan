@@ -3,9 +3,10 @@ import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
 import MemberItem from '@Components/members/MemberItem';
 import { PageContextProps } from '@Pages/work/[id]';
 import { injectIntl } from 'gatsby-plugin-intl';
-import React, { MouseEvent, useRef, useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { CategoryDescription } from './work.interface';
 import {
+  Anchor,
   Box,
   ButtonWrapper,
   CategoryBox,
@@ -21,17 +22,13 @@ import {
 
 export interface Props {
   language: 'ko' | 'en';
+  subId: number;
 }
-const DetailPage = ({
-  mainMemberData,
-  subMemberData,
-  workInfo,
-  imagePath,
-  intl,
-}: Props & PageContextProps) => {
+const DetailPage = (props: Props & PageContextProps) => {
+  const { mainMemberData, subMemberData, workInfo, imagePath, intl } = props;
   const [category, setCategory] = useState<CategoryDescription[]>(workInfo);
   const [isShowMore, setIsShowMore] = useState(false);
-  const ip = useRef<string>(imagePath);
+  const subIdPrefix = props.id.replace('C', 'S');
 
   const onClickShowMore = () => {
     setIsShowMore(true);
@@ -59,10 +56,13 @@ const DetailPage = ({
               <>
                 <Title>{item.categoryTitle}</Title>
                 <Contents>{item.description}</Contents>
-                <Image src={ip.current ?? ''}></Image>
+                <Image src={imagePath ?? ''}></Image>
               </>
             ) : (
               <Box>
+                <Anchor
+                  id={`${subIdPrefix}${String(index).padStart(2, '0')}`}
+                ></Anchor>
                 <Head onClick={handleClick} data-index={index}>
                   <SubTitle>{item.categoryTitle}</SubTitle>
                   {/* TODO: SVG color 적용 */}
