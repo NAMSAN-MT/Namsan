@@ -38,6 +38,7 @@ export interface News {
   agency: string;
   originalLink: string;
   newsType: NewsType;
+  imagePath: string;
   dateYearMonth?: string;
   dateYearMonthDate?: string;
 }
