@@ -9,10 +9,9 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
   height: 86px;
   position: fixed;
   z-index: 999;
-  background-color: ${({ theme }) => theme.color.textWhiteHigh};
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid ${({ theme }) => theme.color.grey100};
   backdrop-filter: blur(20px);
-  opacity: 0.9;
   ${({ isTransparent, theme }) =>
     mediaQuery(
       'tablet1024',
