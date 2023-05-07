@@ -28,22 +28,24 @@ const LayoutContent = styled.div<{ isMainPage: boolean }>`
     )};
 `;
 
-const TopButtonWrapper = styled.div`
+const TopButtonWrapper = styled.div<{ isTransparent?: boolean }>`
   width: 100%;
-  ${flex('flex-end', 'center ')};
-  padding-right: 90px;
-  padding-bottom: 60px;
+  ${({ isTransparent }) =>
+    isTransparent ? 'display: none;' : flex('flex-end', 'center ')}};
+  position: fixed;
+  right: 90px;
+  bottom: 60px;
   ${mediaQuery(
     'tablet1024',
     `
-     padding-right: 40px;
+     right: 40px;
     `,
   )};
   ${mediaQuery(
     'mobile',
     `
-     padding-right: 24px;
-     padding-bottom: 24px;
+     right: 24px;
+     bottom: 24px;
     `,
   )};
 `;

@@ -20,7 +20,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       ) : null}
       <S.LayoutContent isMainPage={isMainPage}>
         {children}
-        <S.TopButtonWrapper>
+        <S.TopButtonWrapper isTransparent={props.isTransparent}>
           <BaseButton className="arrow-top" onClick={handleTopEvent} />
         </S.TopButtonWrapper>
         {isFloating && (

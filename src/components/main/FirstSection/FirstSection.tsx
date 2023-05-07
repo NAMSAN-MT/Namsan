@@ -9,8 +9,6 @@ const FirstSection = (props: IFirstSectionProps) => {
   const [ref, inView] = useInView();
 
   useEffect(() => {
-    if (props.isDesktop) return;
-
     if (inView) {
       props.eventBus(true);
     } else {

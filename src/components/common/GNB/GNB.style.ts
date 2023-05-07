@@ -9,22 +9,21 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
   height: 86px;
   position: fixed;
   z-index: 999;
-  background: rgba(255, 255, 255, 0.5);
+  background: ${({ isTransparent, theme }) =>
+    !isTransparent ? 'rgba(255, 255, 255, 0.5)' : theme.color.white};
   border: 1px solid ${({ theme }) => theme.color.grey100};
-  backdrop-filter: blur(20px);
-  ${({ isTransparent, theme }) =>
+  backdrop-filter: ${({ isTransparent }) =>
+    !isTransparent ? 'blur(20px)' : 'blur(0px)'};
+  ${({ theme }) =>
     mediaQuery(
       'tablet1024',
       `
       z-index: 100;
       top: 0;
       padding: 0 40px;
-      background-color: ${theme.color.white};
       width: 100%;
-      backdrop-filter: ${!isTransparent ? 'blur(20px)' : 'blur(0px)'};
-      opacity: ${!isTransparent ? 0.9 : 1};
       &.open{
-        background-color: rgba(255, 255, 255);
+        background-color: ${theme.color.white};
       }`,
     )};
 
@@ -38,13 +37,11 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
       border: ${isTransparent ? 'none' : `1px solid ${theme.color.grey100}`};;
       padding: 0 24px;
       background-color: ${
-        isTransparent ? theme.color.transparent : 'rgba(255, 255, 255, 0.9)'
+        isTransparent ? theme.color.transparent : 'rgba(255, 255, 255, 0.5)'
       };
       width: 100%;
-      backdrop-filter: ${!isTransparent ? 'blur(20px)' : 'blur(0px)'};
-      opacity: ${!isTransparent ? 0.9 : 1};
       &.open{
-        background-color: rgba(255, 255, 255);
+        background-color: ${theme.color.white};
       }`,
     )};
 `;
