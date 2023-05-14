@@ -68,6 +68,12 @@ export const ContentConatiner = styled.div`
   ${flexDirection('column')}
   ${size('auto', '792px')}
 
+  .top {
+    ${size('auto', '792px')}
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
   .bottom {
     padding: 80px 0px;
   }

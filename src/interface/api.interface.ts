@@ -33,12 +33,24 @@ export interface News {
   documentId?: string;
   title: string;
   content: string;
+  summary: string;
   date: Timestamp;
   agency: string;
   originalLink: string;
+  imagePath: string;
   newsType: NewsType;
   dateYearMonth?: string;
   dateYearMonthDate?: string;
+}
+
+export interface NewsMin {
+  documentId?: string;
+  title: string;
+  summary: string;
+  date: Timestamp;
+  agency: string;
+  newsType: NewsType;
+  dateYearMonth: string;
 }
 
 export interface IMemberAttribute {

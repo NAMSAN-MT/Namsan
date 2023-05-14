@@ -1,9 +1,9 @@
-import { News } from '@Interface/api.interface';
+import { News, NewsMin } from '@Interface/api.interface';
 import { NewsType } from '@Type/api.type';
 
 export interface CardProps {
   type: 'main' | 'news';
-  newsList: News[];
+  newsList: NewsMin[];
   urlPage?: string;
   newsType?: NewsType;
   searchValue?: string;

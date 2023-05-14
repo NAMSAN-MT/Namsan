@@ -12,6 +12,12 @@ const ForthWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   margin-top: 140px;
   ${mediaQuery(
+    'tablet1024',
+    `
+      margin-top: 88px;
+    `,
+  )};
+  ${mediaQuery(
     'mobile',
     `
       margin-top: 61px;
@@ -22,7 +28,6 @@ const ForthWrapper = styled(Wrapper)`
 const InnerWrapper = styled.div`
   width: 100%;
   height: 100%;
-  // padding: 0 calc((100% - 1290px) / 2);
   ${mediaQuery(
     'mobile',
     `
@@ -42,14 +47,18 @@ const BottomWrapper = styled.div`
   gap: 24px;
   .card-box {
     margin: 0;
-  }
-  .card-wrapper {
-    width: 100% !important;
+    ${mediaQuery(
+      'mobile',
+      `
+      gap: 16px;
+    `,
+    )};
   }
 
   ${mediaQuery(
     'tablet1024',
     `
+    margin-top: 34px;
       flex-direction: column;
       width: 100%;
     `,
@@ -73,13 +82,15 @@ const BottomWrapper = styled.div`
   )};
 
   .card-wrapper {
-    width: 32%;
+    width: 100%;
+    padding: 0;
 
     ${mediaQuery(
       'tablet1024',
       `
       width: 100%;
       max-width: 100%;
+      max-height: 300px;
       padding: 40px 32px;
       height: unset;
     `,
@@ -91,20 +102,24 @@ const BottomWrapper = styled.div`
       width: 100%;
       max-width: 100%;
       height: 100%;
-      padding: 24px 20px;
+      padding: 23px 20px 22px;
     `,
     )};
+
     .card-label {
+      padding: 52px 40px 0 40px;
       ${mediaQuery(
         'tablet1024',
         `
           margin-bottom: 12px;
+          padding: 0
         `,
       )};
       ${mediaQuery(
         'mobile',
         `
-        margin-bottom: 8px;
+        margin-bottom: 1px;
+        padding: 0
       `,
       )};
       p {
@@ -127,32 +142,37 @@ const BottomWrapper = styled.div`
       }
     }
     .card-title {
+      padding: 0 40px;
       ${mediaQuery(
         'tablet1024',
         `
         max-width: 100%;
+        margin-top: 0;
         margin-bottom: 12px;
         height: unset;
         ${font('title24', 'regular')};
         ${lineHeight(24, 38)};
         ${ellipsis()};
         display: inline-block;
+        padding: 0
       `,
       )};
       ${mediaQuery(
         'mobile',
         `
         max-width: 220px;
-        margin-bottom: 2px;
+        margin-bottom: 0px;
         height: 100%;
         ${font('mobile16', 'bold')};
         ${lineHeight(16, 26)};
         ${ellipsis()};
         display: inline-block;
+        padding: 0
       `,
       )};
     }
     .card-content {
+      padding: 0 40px;
       ${mediaQuery(
         'tablet1024',
         `
@@ -160,6 +180,7 @@ const BottomWrapper = styled.div`
         ${font('title18', 'regular')};
         ${lineHeight(18, 28)};
         color: rgba(6, 11, 17, 0.56);
+         padding: 0
       `,
       )};
       ${mediaQuery(
@@ -170,14 +191,23 @@ const BottomWrapper = styled.div`
         ${font('mobile14', 'regular')};
         ${lineHeight(14, 22)};
         color: rgba(6, 11, 17, 0.56);
+        padding: 0
       `,
       )};
     }
     .card-date {
+      padding: 0 40px;
       ${mediaQuery(
         'tablet1024',
         `
          margin-bottom: 0;
+        padding: 0
+      `,
+      )};
+      ${mediaQuery(
+        'mobile',
+        `
+        padding: 0
       `,
       )};
       p {

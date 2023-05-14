@@ -9,23 +9,21 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
   height: 86px;
   position: fixed;
   z-index: 999;
-  background-color: ${({ theme }) => theme.color.textWhiteHigh};
-  border: 1px solid ${({ theme }) => theme.color.grey100};
-  backdrop-filter: blur(20px);
-  opacity: 0.9;
-  ${({ isTransparent, theme }) =>
+  background: ${({ isTransparent, theme }) =>
+    !isTransparent ? 'rgba(255, 255, 255, 0.5)' : theme.color.white};
+  border-bottom: 1px solid ${({ theme }) => theme.color.grey100};
+  backdrop-filter: ${({ isTransparent }) =>
+    !isTransparent ? 'blur(20px)' : 'blur(0px)'};
+  ${({ theme }) =>
     mediaQuery(
       'tablet1024',
       `
       z-index: 100;
       top: 0;
-      padding: 0 24px;
-      background-color: ${theme.color.white};
+      padding: 0 40px;
       width: 100%;
-      backdrop-filter: ${!isTransparent ? 'blur(20px)' : 'blur(0px)'};
-      opacity: ${!isTransparent ? 0.9 : 1};
       &.open{
-        background-color: rgba(255, 255, 255);
+        background-color: ${theme.color.white};
       }`,
     )};
 
@@ -36,16 +34,16 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
       z-index: 100;
       height: 55px;
       top: 0;
-      border: ${isTransparent ? 'none' : `1px solid ${theme.color.grey100}`};;
+      border-bottom: ${
+        isTransparent ? 'none' : `1px solid ${theme.color.grey100}`
+      };
       padding: 0 24px;
       background-color: ${
-        isTransparent ? theme.color.transparent : 'rgba(255, 255, 255, 0.9)'
+        isTransparent ? theme.color.transparent : 'rgba(255, 255, 255, 0.5)'
       };
       width: 100%;
-      backdrop-filter: ${!isTransparent ? 'blur(20px)' : 'blur(0px)'};
-      opacity: ${!isTransparent ? 0.9 : 1};
       &.open{
-        background-color: rgba(255, 255, 255);
+        background-color: ${theme.color.white};
       }`,
     )};
 `;
@@ -81,11 +79,12 @@ const LinkNameWrapper = styled(motion.div)<{ selected: boolean }>`
   color: ${({ theme, selected }) =>
     selected ? theme.color.blue200 : theme.color.textBlackMedium};
 `;
-const LinkUnderline = styled(motion.div)`
-  width: 100%;
-  height: 2px;
-  background-color: ${({ theme }) => theme.color.blue200};
-  border-radius: 15px;
+
+const LinkNameInner = styled.div`
+  margin-top: 4px;
+  div {
+    line-height: 0;
+  }
 `;
 
 const LanguageWrapper = styled.ul`
@@ -186,6 +185,7 @@ const MobileLanguageLink = styled.li<{ $isActive: boolean }>`
 
 const MobileMenuButton = styled.div`
   display: none;
+  cursor: pointer;
 
   ${mediaQuery('tablet1024', `display: block;`)};
 `;
@@ -195,7 +195,7 @@ export {
   LogoWrapper,
   MainLinkWrapper,
   LinkNameWrapper,
-  LinkUnderline,
+  LinkNameInner,
   LanguageWrapper,
   LanguageLink,
   MobileMenuWrapper,

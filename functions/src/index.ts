@@ -1,9 +1,9 @@
 /* eslint-disable require-jsdoc */
-import * as functions from "firebase-functions";
-import * as admin from "firebase-admin";
-import algoliasearch from "algoliasearch";
-import * as Helper from "./helper";
-import { DocumentData } from "firebase-admin/firestore";
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+import algoliasearch from 'algoliasearch';
+import * as Helper from './helper';
+import { DocumentData } from 'firebase-admin/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.GATSBY_FIREBASE_API_KEY,
@@ -24,8 +24,8 @@ const algoliaClient = algoliasearch(
   functions.config().algolia.apikey,
 );
 
-const INDEX_NAME = "dev_namsan";
-const REGION = "asia-northeast2";
+const INDEX_NAME = 'dev_namsan';
+const REGION = 'asia-northeast2';
 
 const COLLECTION_INDEX = algoliaClient.initIndex(INDEX_NAME);
 
@@ -48,9 +48,9 @@ const myDataConverter = {
 export const helloWorld = functions
   .region(REGION)
   .https.onRequest(async (request, response) => {
-    console.log("## Request ## >>> ");
+    console.log('## Request ## >>> ');
     try {
-      const collectionRef = firestore.collection("news");
+      const collectionRef = firestore.collection('news');
       const list: any[] = [];
       // 해당 컬렉션에 있는 모든 문서들 가져오기
       await new Promise((resolve, reject) => {
@@ -72,7 +72,7 @@ export const helloWorld = functions
             resolve(list);
           })
           .catch(error => {
-            console.log("Error getting documents: ", error);
+            console.log('Error getting documents: ', error);
           });
       });
 
@@ -81,19 +81,19 @@ export const helloWorld = functions
         autoGenerateObjectIDIfNotExist: true,
       })
         .then(() => {
-          response.send("SUCCESS");
+          response.send('SUCCESS');
         })
-        .catch(res => console.log("Error with: ", res));
+        .catch(res => console.log('Error with: ', res));
     } catch (error) {
       console.log(error);
     }
-    console.log("#### end #### ");
+    console.log('#### end #### ');
   });
 
 // define functions:collectionOnCreate
 export const collectionOnCreate = functions
   .region(REGION)
-  .firestore.document("news/{newsId}")
+  .firestore.document('news/{newsId}')
   .onCreate(async (snapshot: any, context: any) => {
     await saveDocumentInAlgolia(snapshot, context);
   });
@@ -113,7 +113,7 @@ const saveDocumentInAlgolia = async (sanpshot: any, context: any) => {
 
       COLLECTION_INDEX.saveObjects(list, {
         autoGenerateObjectIDIfNotExist: true,
-      }).catch(res => console.log("Error with: ", res));
+      }).catch(res => console.log('Error with: ', res));
     }
   }
 };
@@ -126,7 +126,7 @@ const saveDocumentInAlgolia = async (sanpshot: any, context: any) => {
  */
 export const collectionOnUpdate = functions
   .region(REGION)
-  .firestore.document("news/{newsId}")
+  .firestore.document('news/{newsId}')
   .onUpdate(async (change: any, context: any) => {
     await updateDocumentInAlgolia(context.params.newsId, change);
   });
@@ -136,7 +136,7 @@ const updateDocumentInAlgolia = async (objectID: any, change: any) => {
   const before = change.before.data();
   const after = change.after.data();
   if (before && after) {
-    const news: NewObjectType = { objectId: objectID };
+    const news: NewObjectType = { objectId: '' };
     let flag = false;
     if (before.title !== after.title) {
       news.title = after.title;
@@ -151,7 +151,7 @@ const updateDocumentInAlgolia = async (objectID: any, change: any) => {
     if (flag) {
       COLLECTION_INDEX.partialUpdateObjects([news], {
         autoGenerateObjectIDIfNotExist: true,
-      }).catch(res => console.log("Error with: ", res));
+      }).catch(res => console.log('Error with: ', res));
     }
   }
 };
@@ -159,7 +159,7 @@ const updateDocumentInAlgolia = async (objectID: any, change: any) => {
 // define functions:collectionOnDelete
 export const collectionOnDelete = functions
   .region(REGION)
-  .firestore.document("news/{newsId}")
+  .firestore.document('news/{newsId}')
   .onDelete(async (snapshot: any, context: any) => {
     await deleteDocumentInAlgolia(snapshot);
   });
@@ -168,7 +168,7 @@ const deleteDocumentInAlgolia = async (sanpshot: any) => {
   if (sanpshot.exists) {
     const objectId = sanpshot.data();
     COLLECTION_INDEX.deleteObject(objectId).catch(res =>
-      console.log("Error with: ", res),
+      console.log('Error with: ', res),
     );
   }
 };

@@ -223,6 +223,13 @@ exports.createPages = async ({ actions, graphql }: any) => {
         edges {
           node {
             id
+            newsType
+            originalLink
+            imagePath
+            title
+            date
+            content
+            agency
           }
         }
       }
@@ -233,7 +240,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
       path: `/news/${node.id}`,
       component: resolve('./src/pages/news/[id].tsx'),
       context: {
-        id: node.id,
+        news: { ...node },
       },
     });
   });

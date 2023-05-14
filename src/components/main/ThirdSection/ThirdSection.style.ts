@@ -18,7 +18,6 @@ const InnerWrapper = styled.div`
   ${mediaQuery(
     'tablet1024',
     `
-    //  min-height: unset;
     `,
   )};
 
@@ -28,7 +27,7 @@ const InnerWrapper = styled.div`
      min-height: 730px;
      ${flex('start', 'start')};
      flex-direction: column;
-     padding: 60px 0 72px;
+     padding: 60px 0 57px;
     `,
   )};
 `;

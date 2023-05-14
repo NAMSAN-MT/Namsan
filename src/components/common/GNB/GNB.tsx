@@ -5,10 +5,12 @@ import useGNB from './GNB.hook';
 import * as S from './GNB.style';
 import MenuIcon from '@Components/icons/MenuIcon';
 import { IGNBProps, IMobileMenuButtonProps } from './GNB.interface';
-import CloseIcon from '@Components/icons/CloseIcon';
 import AnimationWrapper from '../AnimationWrapper/AnimationWrapper';
 import LogoIcon from '@Components/icons/LogoIcon';
 import { injectIntl } from 'gatsby-plugin-intl';
+import LottieWrapper from '../LottieWrapper/LottieWrapper';
+import ButtonMenu from '../../../assets/lottie/button_menu.json';
+import Focus from '../../../assets/lottie/focus.json';
 
 const MobileMenuButton = ({
   isMobileMenuOpen,
@@ -17,7 +19,16 @@ const MobileMenuButton = ({
 }: IMobileMenuButtonProps) => {
   return (
     <S.MobileMenuButton onClick={onClick}>
-      {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon isMobile={isMobile} />}
+      {isMobileMenuOpen ? (
+        <LottieWrapper
+          animationData={ButtonMenu}
+          width={24}
+          loop={false}
+          autoplay={true}
+        />
+      ) : (
+        <MenuIcon isMobile={isMobile} />
+      )}
     </S.MobileMenuButton>
   );
 };
@@ -50,17 +61,28 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
             to={`/${language}${href}`}
             about={alt}
           >
-            <S.LinkNameWrapper
-              whileHover={{
-                color: '#193F9A',
-                originX: 0,
-              }}
-              className={location === alt ? 'on' : ''}
-              selected={path.pathname === `/${language}${href}`}
-            >
-              {intl.formatMessage({ id: translationId })}
-            </S.LinkNameWrapper>
-            {location === alt && <S.LinkUnderline layoutId="underline" />}
+            {path.pathname === `/${language}${href}` ? (
+              <S.LinkNameInner>
+                {intl.formatMessage({ id: translationId })}
+                <LottieWrapper
+                  animationData={Focus}
+                  width={path.pathname !== `/${language}/members` ? 50 : 40}
+                  loop={false}
+                  autoplay
+                />
+              </S.LinkNameInner>
+            ) : (
+              <S.LinkNameWrapper
+                whileHover={{
+                  color: '#193F9A',
+                  originX: 0,
+                }}
+                className={location === alt ? 'on' : ''}
+                selected={path.pathname === `/${language}${href}`}
+              >
+                {intl.formatMessage({ id: translationId })}
+              </S.LinkNameWrapper>
+            )}
           </Link>
         ))}
       </S.MainLinkWrapper>
