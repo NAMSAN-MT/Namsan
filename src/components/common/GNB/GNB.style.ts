@@ -79,11 +79,12 @@ const LinkNameWrapper = styled(motion.div)<{ selected: boolean }>`
   color: ${({ theme, selected }) =>
     selected ? theme.color.blue200 : theme.color.textBlackMedium};
 `;
-const LinkUnderline = styled(motion.div)`
-  width: 100%;
-  height: 2px;
-  background-color: ${({ theme }) => theme.color.blue200};
-  border-radius: 15px;
+
+const LinkNameInner = styled.div`
+  margin-top: 4px;
+  div {
+    line-height: 0;
+  }
 `;
 
 const LanguageWrapper = styled.ul`
@@ -184,6 +185,7 @@ const MobileLanguageLink = styled.li<{ $isActive: boolean }>`
 
 const MobileMenuButton = styled.div`
   display: none;
+  cursor: pointer;
 
   ${mediaQuery('tablet1024', `display: block;`)};
 `;
@@ -193,7 +195,7 @@ export {
   LogoWrapper,
   MainLinkWrapper,
   LinkNameWrapper,
-  LinkUnderline,
+  LinkNameInner,
   LanguageWrapper,
   LanguageLink,
   MobileMenuWrapper,

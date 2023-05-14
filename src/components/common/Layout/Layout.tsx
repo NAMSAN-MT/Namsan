@@ -6,11 +6,18 @@ import GNB from '../GNB';
 import useLayout from './Layout.hook';
 import { ILayoutProps } from './Layout.interface';
 import * as S from './Layout.style';
-import { motion } from 'framer-motion';
+import LottieWrapper from '../LottieWrapper/LottieWrapper';
+import ButtonTop from '../../../assets/lottie/button_top.json';
 
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { isHeader = true, isFooter = true, children, route } = props;
-  const { toastMessage, handleTopEvent, handleCopyLink } = useLayout();
+  const {
+    toastMessage,
+    handleTopEvent,
+    handleCopyLink,
+    mouseOverFromTopButton,
+    setMouseOverFromTopButton,
+  } = useLayout();
   const isMainPage = ['main', 'workDetail'].includes(route ?? '');
   const isFloating = ['newsDetail'].includes(route ?? '');
 
@@ -22,7 +29,25 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       <S.LayoutContent isMainPage={isMainPage}>
         {children}
         <S.TopButtonWrapper isTransparent={props.isTransparent}>
-          <BaseButton className="arrow-top" onClick={handleTopEvent} />
+          {mouseOverFromTopButton ? (
+            <S.TopButtonInner
+              onClick={handleTopEvent}
+              onMouseLeave={() => setMouseOverFromTopButton(false)}
+            >
+              <LottieWrapper
+                animationData={ButtonTop}
+                width={60}
+                loop={false}
+                autoplay={true}
+              />
+            </S.TopButtonInner>
+          ) : (
+            <BaseButton
+              className="arrow-top"
+              onClick={handleTopEvent}
+              onMouseOver={() => setMouseOverFromTopButton(true)}
+            />
+          )}
         </S.TopButtonWrapper>
         {isFloating && (
           <S.FloatingWrapper>

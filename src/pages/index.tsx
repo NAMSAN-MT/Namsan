@@ -1,10 +1,16 @@
 import Layout from '@Components/common/Layout';
 import Loading from '@Components/common/Loading';
+import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 import FifthSection from '@Components/main/FifthSection';
 import SecondSection from '@Components/main/SecondSection';
+
 import useResize from '@Hooks/useResize';
 import { PageProps } from 'gatsby';
 import * as React from 'react';
+import ButtonLink from '../assets/lottie/button_link.json';
+import FocusMove from '../assets/lottie/focus_move.json';
+import NaviDown from '../assets/lottie/navigation_down.json';
+
 const FirstSection = React.lazy(() => import('@Components/main/FirstSection'));
 const ThirdSection = React.lazy(() => import('@Components/main/ThirdSection'));
 const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));

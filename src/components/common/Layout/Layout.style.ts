@@ -50,6 +50,10 @@ const TopButtonWrapper = styled.div<{ isTransparent?: boolean }>`
   )};
 `;
 
+const TopButtonInner = styled.div`
+  cursor: pointer;
+`;
+
 const FloatingWrapper = styled.div`
   width: 100%;
   ${flex('space-between', 'center ')};
@@ -128,6 +132,7 @@ export {
   LayoutWrapper,
   LayoutContent,
   TopButtonWrapper,
+  TopButtonInner,
   FloatingWrapper,
   ToastWrapper,
   Toast,
