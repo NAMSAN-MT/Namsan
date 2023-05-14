@@ -11,6 +11,7 @@ import { NewsType } from '@Type/api.type';
 import styled from 'styled-components';
 
 export const CardBox = styled.div`
+  max-width: 1200px;
   margin: 0 auto;
   display: grid;
   gap: 24px;
@@ -23,6 +24,7 @@ export const CardBox = styled.div`
 
 export const Card = styled.a`
   ${size('426px', '384px')}
+  min-width: 265px;
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.color.grey200};
   border-radius: 10px;
@@ -72,7 +74,10 @@ export const LabelBox = styled.div<{ type: NewsType }>`
 `;
 
 export const Title = styled.p`
-  ${size('76px', '320px')}
+  height: 76px;
+  max-width: auto;
+  min-width: 185px;
+
   margin-top: 12px;
   margin-bottom: 16px;
 
