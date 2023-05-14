@@ -11,7 +11,7 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
   z-index: 999;
   background: ${({ isTransparent, theme }) =>
     !isTransparent ? 'rgba(255, 255, 255, 0.5)' : theme.color.white};
-  border: 1px solid ${({ theme }) => theme.color.grey100};
+  border-bottom: 1px solid ${({ theme }) => theme.color.grey100};
   backdrop-filter: ${({ isTransparent }) =>
     !isTransparent ? 'blur(20px)' : 'blur(0px)'};
   ${({ theme }) =>
@@ -34,7 +34,9 @@ const GNBWrapper = styled.div<{ isTransparent?: boolean }>`
       z-index: 100;
       height: 55px;
       top: 0;
-      border: ${isTransparent ? 'none' : `1px solid ${theme.color.grey100}`};;
+      border-bottom: ${
+        isTransparent ? 'none' : `1px solid ${theme.color.grey100}`
+      };
       padding: 0 24px;
       background-color: ${
         isTransparent ? theme.color.transparent : 'rgba(255, 255, 255, 0.5)'
