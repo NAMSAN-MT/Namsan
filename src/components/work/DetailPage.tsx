@@ -2,9 +2,11 @@ import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
 import MemberItem from '@Components/members/MemberItem';
 import { PageContextProps } from '@Pages/work/[id]';
-import React, { MouseEvent, useEffect, useRef, useState } from 'react';
+import { injectIntl } from 'gatsby-plugin-intl';
+import React, { MouseEvent, useState } from 'react';
 import { CategoryDescription } from './work.interface';
 import {
+  Anchor,
   Box,
   ButtonWrapper,
   CategoryBox,
@@ -19,32 +21,14 @@ import {
 } from './work.styled';
 
 export interface Props {
-  id: string;
-  lang?: string;
-
   language: 'ko' | 'en';
+  subId: number;
 }
-
-const DetailPage = ({
-  id,
-  lang,
-  mainMemberData,
-  subMemberData,
-  workInfo,
-}: Props & PageContextProps) => {
-  const [category, setCategory] = useState<CategoryDescription[]>([]);
+const DetailPage = (props: Props & PageContextProps) => {
+  const { mainMemberData, subMemberData, workInfo, imagePath, intl } = props;
+  const [category, setCategory] = useState<CategoryDescription[]>(workInfo);
   const [isShowMore, setIsShowMore] = useState(false);
-  const ip = useRef<string>('');
-
-  useEffect(() => {
-    ip.current = workInfo.imagePath;
-    setCategory(
-      workInfo.categoryInfo.map((name, index) => ({
-        name,
-        description: workInfo.description[index],
-      })),
-    );
-  }, []);
+  const subIdPrefix = props.id?.replace('C', 'S');
 
   const onClickShowMore = () => {
     setIsShowMore(true);
@@ -66,18 +50,21 @@ const DetailPage = ({
   return (
     <Layout>
       <CategoryBox>
-        {category.map((item, index) => (
+        {category?.map((item, index) => (
           <div key={index}>
             {index === 0 ? (
               <>
-                <Title>{item.name}</Title>
+                <Title>{item.categoryTitle}</Title>
                 <Contents>{item.description}</Contents>
-                <Image src={ip.current ?? ''}></Image>
+                <Image src={imagePath ?? ''}></Image>
               </>
             ) : (
               <Box>
+                <Anchor
+                  id={`${subIdPrefix}${String(index).padStart(2, '0')}`}
+                ></Anchor>
                 <Head onClick={handleClick} data-index={index}>
-                  <SubTitle>{item.name}</SubTitle>
+                  <SubTitle>{item.categoryTitle}</SubTitle>
                   {/* TODO: SVG color 적용 */}
                   <LineArrowIcon
                     direction={item.isOpen ? 'UP' : 'DOWN'}
@@ -93,7 +80,7 @@ const DetailPage = ({
         ))}
       </CategoryBox>
       <MemberBox>
-        <SubTitle>주요 구성원</SubTitle>
+        <SubTitle>{intl.formatMessage({ id: 'work.main_member' })}</SubTitle>
         <MemberList>
           {mainMemberData?.map(
             member =>
@@ -112,13 +99,13 @@ const DetailPage = ({
       {!isShowMore && (
         <ButtonWrapper>
           <BaseButton className="outline" onClick={onClickShowMore}>
-            구성원 더보기
+            {intl.formatMessage({ id: 'work.show_more' })}
           </BaseButton>
         </ButtonWrapper>
       )}
       {isShowMore && (
         <MemberBox>
-          <SubTitle>관련 구성원</SubTitle>
+          <SubTitle>{intl.formatMessage({ id: 'work.sub_member' })}</SubTitle>
           <MemberList>
             {subMemberData?.map(
               member =>
@@ -138,4 +125,4 @@ const DetailPage = ({
   );
 };
 
-export default DetailPage;
+export default injectIntl(DetailPage);

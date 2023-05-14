@@ -11,7 +11,7 @@ const SecondSection = (props: ISecondSectionProps) => {
   const suffix = props.isMobile ? '_mobile' : '';
 
   return (
-    <AnimationWrapper variantName="transition" initial="hidden" threshold={0.5}>
+    <AnimationWrapper variantName="transition" initial="hidden" threshold={0.4}>
       <S.SecondWrapper>
         <S.Title>
           {props.intl.formatMessage({

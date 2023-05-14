@@ -14,7 +14,7 @@ const ForthSection = (props: IForthSectionProps) => {
   const { handleNavigateTo } = useForthSection();
   const { newsList, onCallMainNewsList } = useMain();
 
-  const threshold = props.isMobile ? 0.2 : props.isTablet ? 0 : 0.5;
+  const threshold = props.isMobile ? 0.2 : props.isTablet ? 0 : 0.2;
   return (
     <AnimationWrapper
       variantName="transition"

@@ -209,3 +209,10 @@ export const ButtonWrapper = styled.div`
   margin-top: 24px;`,
   )}
 `;
+
+export const Anchor = styled.span`
+  display: block;
+  position: relative;
+  top: -150px;
+  visibility: hidden;
+`;

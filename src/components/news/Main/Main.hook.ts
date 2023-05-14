@@ -1,5 +1,5 @@
 import { getMainNewsList, getNewsSearchList } from '@Api/news.api';
-import { News } from '@Interface/api.interface';
+import { News, NewsMin } from '@Interface/api.interface';
 import { useLocation } from '@reach/router';
 import { NewsType } from '@Type/api.type';
 import { navigate } from 'gatsby';
@@ -12,7 +12,7 @@ const useMain = () => {
   const newsType = (params.get('newsType') as NewsType) ?? 'all';
 
   const [tab, setTab] = useState<TTab>('all');
-  const [newsList, setNewsList] = useState<News[]>([]);
+  const [newsList, setNewsList] = useState<NewsMin[]>([]);
   const [pageNationState, setPageNation] = useState<TPagination>();
 
   const onCallNewsList = async (
@@ -26,8 +26,11 @@ const useMain = () => {
         searchValue,
         page: numberUrlPage > 0 ? numberUrlPage - 1 : 0,
       });
+
       if (!algoliaResult) {
         navigate(`/news`);
+        setPageNation({ nbPages: 0, page: 0 });
+        setNewsList(resultList);
         return;
       }
       const { nbPages, page } = algoliaResult;
