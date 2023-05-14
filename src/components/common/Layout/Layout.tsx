@@ -6,6 +6,7 @@ import GNB from '../GNB';
 import useLayout from './Layout.hook';
 import { ILayoutProps } from './Layout.interface';
 import * as S from './Layout.style';
+import { motion } from 'framer-motion';
 
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { isHeader = true, isFooter = true, children, route } = props;

@@ -14,44 +14,44 @@ const useThirdSection = (props: IThirdSectionProps) => {
       if (locale === 'ko') {
         if (props.isMobile) {
           // ko & mobile
-          const mainVideo = await getVideo('main/McardFull.mov');
+          const mainVideo = await getVideo('main/McardFull.mp4');
           setMainVideo(mainVideo);
           return;
         }
 
         if (props.isTablet) {
           // ko & tablet
-          const mainVideo = await getVideo('main/TcardFull.mov');
+          const mainVideo = await getVideo('main/cardFull.mp4');
           setMainVideo(mainVideo);
           return;
         }
 
         // ko & desktop
-        const mainVideo = await getVideo('main/cardFull.mov');
+        const mainVideo = await getVideo('main/cardFull.mp4');
         setMainVideo(mainVideo);
         return;
       }
 
       if (props.isMobile) {
         // en & mobile
-        const mainVideo = await getVideo('main/McardFull_EN.mov');
+        const mainVideo = await getVideo('main/McardFull_EN.mp4');
         setMainVideo(mainVideo);
         return;
       }
 
       if (props.isTablet) {
         // en & tablet
-        const mainVideo = await getVideo('main/TcardFull.mov');
+        const mainVideo = await getVideo('main/cardFull_EN.mp4');
         setMainVideo(mainVideo);
         return;
       }
 
       // en & desktop
-      const mainVideo = await getVideo('main/cardFull_EN.mov');
+      const mainVideo = await getVideo('main/cardFull_EN.mp4');
       setMainVideo(mainVideo);
     };
     init();
-  }, [props.isMobile || props.isTablet]);
+  }, [props.isMobile || props.isTablet || locale || mainVideo]);
 
   const handleNavigateTo = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
