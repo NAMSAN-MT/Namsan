@@ -2,6 +2,7 @@ import { IMember } from '@Interface/api.interface';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import { resolve } from 'path';
 import { getFileFromStorage } from './src/api/index.api';
+import { isEmpty } from 'lodash';
 
 const fs = require('fs');
 exports.onPostBuild = () => {
@@ -19,6 +20,7 @@ exports.onCreateNode = async ({
   createNodeId,
 }: any) => {
   if (node.internal.type === 'members') {
+    if (isEmpty(node.imagePath)) return;
     const fileNode = await createRemoteFileNode({
       url: await getFileFromStorage(node.imagePath),
       parentNodeId: node.id,
@@ -26,6 +28,7 @@ exports.onCreateNode = async ({
       createNodeId,
       getCache,
     });
+
     if (fileNode) {
       createNodeField({
         node,
@@ -75,9 +78,11 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
   const contextMembers = await Promise.all(
     members.data.allMembers.nodes.map(async (node: IMember) => {
+      const imageUniqueId = node.imagePath.split('/')[1].split('.')[0];
+
       const file = await graphql(`
       query {
-        file(parent: {id: {eq: "${node.id}"}}) {
+        file(name: {regex: "/${imageUniqueId}/g"}) {
           childImageSharp {
             gatsbyImageData
           }
@@ -86,7 +91,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
       return {
         ...node,
         image: {
-          ...file.data.file.childImageSharp.gatsbyImageData,
+          ...file.data.file?.childImageSharp.gatsbyImageData,
           backgroundColor: '#F6F8FA',
         },
       };
@@ -115,7 +120,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
       const member = {
         ...node,
-        bgImage: bg.data.file.childImageSharp.gatsbyImageData,
+        bgImage: bg.data.file?.childImageSharp.gatsbyImageData,
       };
 
       actions.createPage({
