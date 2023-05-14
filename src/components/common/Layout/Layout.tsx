@@ -28,27 +28,29 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       ) : null}
       <S.LayoutContent isMainPage={isMainPage}>
         {children}
-        <S.TopButtonWrapper isTransparent={props.isTransparent}>
-          {mouseOverFromTopButton ? (
-            <S.TopButtonInner
-              onClick={handleTopEvent}
-              onMouseLeave={() => setMouseOverFromTopButton(false)}
-            >
-              <LottieWrapper
-                animationData={ButtonTop}
-                width={60}
-                loop={false}
-                autoplay={true}
+        {!isFloating && (
+          <S.TopButtonWrapper isTransparent={props.isTransparent}>
+            {mouseOverFromTopButton ? (
+              <S.TopButtonInner
+                onClick={handleTopEvent}
+                onMouseLeave={() => setMouseOverFromTopButton(false)}
+              >
+                <LottieWrapper
+                  animationData={ButtonTop}
+                  width={60}
+                  loop={false}
+                  autoplay={true}
+                />
+              </S.TopButtonInner>
+            ) : (
+              <BaseButton
+                className="arrow-top"
+                onClick={handleTopEvent}
+                onMouseOver={() => setMouseOverFromTopButton(true)}
               />
-            </S.TopButtonInner>
-          ) : (
-            <BaseButton
-              className="arrow-top"
-              onClick={handleTopEvent}
-              onMouseOver={() => setMouseOverFromTopButton(true)}
-            />
-          )}
-        </S.TopButtonWrapper>
+            )}
+          </S.TopButtonWrapper>
+        )}
         {isFloating && (
           <S.FloatingWrapper>
             <div className="blank" />
