@@ -28,6 +28,7 @@ exports.onCreateNode = async ({
       createNodeId,
       getCache,
     });
+
     if (fileNode) {
       createNodeField({
         node,
@@ -77,22 +78,11 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
   const contextMembers = await Promise.all(
     members.data.allMembers.nodes.map(async (node: IMember) => {
-      let id = node.id;
-      if (node.language === 'en') {
-        const imageParentId = await graphql(`
-        query getKoMember {
-          members(email: {eq: "${node.email}"} imagePath: {regex: ""}) {
-            id
-          }
-        }`).then(({ data }: any) => {
-          return data.members.id;
-        });
-        id = imageParentId;
-      }
+      const imageUniqueId = node.imagePath.split('/')[1].split('.')[0];
 
       const file = await graphql(`
       query {
-        file(parent: {id: {eq: "${id}"}}) {
+        file(name: {regex: "/${imageUniqueId}/g"}) {
           childImageSharp {
             gatsbyImageData
           }
