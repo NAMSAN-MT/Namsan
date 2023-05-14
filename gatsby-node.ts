@@ -85,8 +85,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
             id
           }
         }`).then(({ data }: any) => {
-          console.log(data);
-
           return data.members.id;
         });
         id = imageParentId;
