@@ -2,6 +2,7 @@ import { IMember } from '@Interface/api.interface';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import { resolve } from 'path';
 import { getFileFromStorage } from './src/api/index.api';
+import { isEmpty } from 'lodash';
 
 const fs = require('fs');
 exports.onPostBuild = () => {
@@ -19,6 +20,7 @@ exports.onCreateNode = async ({
   createNodeId,
 }: any) => {
   if (node.internal.type === 'members') {
+    if (isEmpty(node.imagePath)) return;
     const fileNode = await createRemoteFileNode({
       url: await getFileFromStorage(node.imagePath),
       parentNodeId: node.id,
@@ -75,9 +77,24 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
   const contextMembers = await Promise.all(
     members.data.allMembers.nodes.map(async (node: IMember) => {
+      let id = node.id;
+      if (node.language === 'en') {
+        const imageParentId = await graphql(`
+        query getKoMember {
+          members(email: {eq: "${node.email}"} imagePath: {regex: ""}) {
+            id
+          }
+        }`).then(({ data }: any) => {
+          console.log(data);
+
+          return data.members.id;
+        });
+        id = imageParentId;
+      }
+
       const file = await graphql(`
       query {
-        file(parent: {id: {eq: "${node.id}"}}) {
+        file(parent: {id: {eq: "${id}"}}) {
           childImageSharp {
             gatsbyImageData
           }
@@ -86,7 +103,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
       return {
         ...node,
         image: {
-          ...file.data.file.childImageSharp.gatsbyImageData,
+          ...file.data.file?.childImageSharp.gatsbyImageData,
           backgroundColor: '#F6F8FA',
         },
       };
@@ -115,7 +132,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
       const member = {
         ...node,
-        bgImage: bg.data.file.childImageSharp.gatsbyImageData,
+        bgImage: bg.data.file?.childImageSharp.gatsbyImageData,
       };
 
       actions.createPage({
