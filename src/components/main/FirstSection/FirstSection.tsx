@@ -9,8 +9,6 @@ const FirstSection = (props: IFirstSectionProps) => {
   const [ref, inView] = useInView();
 
   useEffect(() => {
-    if (props.isDesktop) return;
-
     if (inView) {
       props.eventBus(true);
     } else {
@@ -20,7 +18,15 @@ const FirstSection = (props: IFirstSectionProps) => {
 
   return (
     <S.FrirstWrapper ref={ref}>
-      <video src={mainVideo} autoPlay loop muted width="100%" height="100%" />
+      <video
+        src={mainVideo}
+        autoPlay
+        loop
+        muted
+        width="100%"
+        height="100%"
+        playsInline
+      />
     </S.FrirstWrapper>
   );
 };

@@ -4,7 +4,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { ILoadingProps } from './Loading.interface';
 import { color } from '@Styles/varialbes.style';
 
-const CustomSkeleton = (props: ILoadingProps) => {
+const CustomLoading = (props: ILoadingProps) => {
   return (
     <S.LoadingWrapper height={props.height}>
       <ClipLoader
@@ -17,4 +17,4 @@ const CustomSkeleton = (props: ILoadingProps) => {
   );
 };
 
-export default CustomSkeleton;
+export default CustomLoading;

@@ -89,6 +89,7 @@ const Outline = styled(Base)`
   border: 1.5px solid ${({ theme }) => theme.color.textBlue};
   border-radius: 24px;
   padding: 11px 20px;
+  line-height: 1;
   min-width: 84px;
   font-weight: 700;
   &:hover {
@@ -246,6 +247,7 @@ const Download = styled(IconBase)`
     width: 28px;
     height: 28px;
     margin-left: 8px;
+    width: 100%;
     &:hover {
       background: ${`url(${DownloadIcon}) no-repeat center center`};
     }
@@ -253,7 +255,6 @@ const Download = styled(IconBase)`
       'mobile',
       `
       width: 10px;
-      height: 10px;
       margin-left: 7px;
     `,
     )};
@@ -285,6 +286,7 @@ const Direct = styled(IconBase)`
     width: 28px;
     height: 28px;
     margin-left: 8px;
+    width: 100%;
     &:hover {
       background: ${`url(${DirectIcon}) no-repeat center center`};
     }
@@ -292,7 +294,6 @@ const Direct = styled(IconBase)`
       'mobile',
       `
       width: 16px;
-      height: 16px;
       margin-left: 7px;
     `,
     )};
