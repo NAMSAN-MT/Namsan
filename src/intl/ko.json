@@ -89,7 +89,10 @@
     "less": "접기"
   },
   "work": {
-    "title": "업무분야"
+    "title": "업무분야",
+    "main_member": "주요 구성원",
+    "sub_member": "관련 구성원",
+    "show_more": "구성원 더보기"
   },
   "news": {
     "search_placeholder": "검색"

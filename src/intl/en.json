@@ -89,6 +89,9 @@
     "less": "접기"
   },
   "work": {
-    "title": "Our Practice"
+    "title": "Our Practice",
+    "main_member": "Leading Attorneys",
+    "sub_member": "Associated Attorney",
+    "show_more": "Learn More"
   }
 }
