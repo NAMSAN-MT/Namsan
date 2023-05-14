@@ -27,7 +27,7 @@ const Card = (props: CardProps) => {
             <p>{item.newsType === 'media' ? item.agency : '최근 업무사례'}</p>
           </S.LabelBox>
           <S.Title className="card-title">{item.title}</S.Title>
-          <S.Content className="card-content">{item.content}</S.Content>
+          <S.Content className="card-content">{item.summary}</S.Content>
           <S.Date className="card-date">
             <p>{item.dateYearMonth}</p>
             <div className="divider" />
