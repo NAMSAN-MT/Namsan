@@ -98,6 +98,18 @@ exports.createPages = async ({ actions, graphql }: any) => {
         }
       }`);
 
+      const categoryIds = await Promise.all(
+        node.businessFields.map(async (field: string) => {
+          const category = await graphql(`
+        query {
+          work(categoryInfo: {in: "${field}"}) {
+            categoryId
+          }
+        }`);
+          return category.data.work?.categoryId || '';
+        }),
+      );
+
       return {
         ...node,
         image: {
@@ -105,6 +117,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
           backgroundColor: '#F6F8FA',
         },
         bgImage: bgImage.data.file?.childImageSharp.gatsbyImageData,
+        categoryIds,
       };
     }),
   );
