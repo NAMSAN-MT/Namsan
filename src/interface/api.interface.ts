@@ -64,7 +64,7 @@ export interface IMember {
   name: string;
   position: string;
   email: string;
-  order: number;
+  order: string;
   businessFields: string[];
   description?: string;
   educations?: IMemberAttribute[];

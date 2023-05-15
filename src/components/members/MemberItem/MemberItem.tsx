@@ -10,9 +10,10 @@ const MemberItem = ({
   businessFields,
   image,
   id,
+  order,
 }: IMemberItemProps) => {
   const _handleClick = async () => {
-    window.location.href = `/member/${id}`;
+    window.location.href = `/member/${order}`;
   };
 
   return (
@@ -20,7 +21,7 @@ const MemberItem = ({
       <S.ImageSection>
         <S.ImageWrapper>
           <div className="dim"></div>
-          <GatsbyImage alt={id} image={image} />
+          <GatsbyImage alt={order} image={image} />
         </S.ImageWrapper>
         <S.TagsWrapper>
           {businessFields.map(businessField => (
