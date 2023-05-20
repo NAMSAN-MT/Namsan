@@ -1,22 +1,32 @@
 import Input from '@Components/common/Input';
-import Loading from '@Components/common/Loading';
-import { isEmpty } from 'lodash';
-import React, { Suspense, useState, lazy } from 'react';
-import * as SearchBar from '../../members/SearchBar/SearchBar.style';
-import Pagination from '../Pagination';
-import { TTab } from './Main.interface';
-import * as S from './Main.style';
-import useMain from './Main.hook';
 import { navigate } from 'gatsby';
 import { injectIntl, useIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
+import { isEmpty } from 'lodash';
+import React, { lazy, useEffect, useState } from 'react';
+import * as SearchBar from '../../members/SearchBar/SearchBar.style';
+import Pagination from '../Pagination';
+import useMain from './Main.hook';
+import { TTab } from './Main.interface';
+import * as S from './Main.style';
 const Card = lazy(() => import('@Components/news/Card'));
 
 interface Props extends WrappedComponentProps {}
 const NewsMain = (props: Props) => {
   const intl = useIntl();
   const [searchValue, setSearchValue] = useState('');
-  const { urlPage, newsType, tab, newsList, pageNationState, onCallNewsList } =
-    useMain();
+  const {
+    isLoading,
+    urlPage,
+    newsType,
+    tab,
+    newsList,
+    pageNationState,
+    onCallNewsList,
+  } = useMain();
+
+  useEffect(() => {
+    onCallNewsList(newsType, searchValue);
+  }, [urlPage, newsType]);
 
   const handleTab = (e: React.MouseEvent<HTMLAnchorElement>, type: TTab) => {
     e.preventDefault();
@@ -58,7 +68,6 @@ const NewsMain = (props: Props) => {
           </S.Tab>
         </S.TabBox>
 
-        {/* TODO: searchBar common 영역으로 옮겨갈때 반영(feat. @ttumzzi) */}
         <SearchBar.ItemWrapper width="384px">
           <Input
             iconSize={{ width: '20px', height: '20px' }}
@@ -71,19 +80,12 @@ const NewsMain = (props: Props) => {
           />
         </SearchBar.ItemWrapper>
       </S.TabSearchBox>
-      <Suspense
-        fallback={
-          <div className="loading_cards">
-            <Loading height="500px" />
-          </div>
-        }
-      >
-        <Card
-          type="news"
-          newsList={newsList}
-          {...{ urlPage, newsType, onCallNewsList, searchValue }}
-        />
-      </Suspense>
+      <Card
+        type="news"
+        isLoading={isLoading}
+        newsList={newsList}
+        {...{ urlPage, newsType, onCallNewsList, searchValue }}
+      />
       {isPagination && (
         <Pagination {...{ newsType, urlPage, pageNationState }} />
       )}
