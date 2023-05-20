@@ -61,12 +61,15 @@ export const TitleArea = styled.div`
     ${mediaQuery(
       'mobile',
       `
-      ${font('title24', 'bold')}
-      ${lineHeight(24, 36)}
-      letter-spacing: -0.4px;
-    `,
+        justify-content: center;
+        ${font('title24', 'bold')}
+        ${lineHeight(24, 36)}
+        letter-spacing: -0.4px;
+      `,
     )};
   }
+
+  ${mediaQuery('tablet1024', `justify-content: center;`)};
 `;
 
 export const DateARea = styled.p`
@@ -78,36 +81,21 @@ export const DateARea = styled.p`
   letter-spacing: -0.2px;
   color: rgba(6, 11, 17, 0.56);
 
-  ${mediaQuery(
-    'tablet1024',
-    `
-        padding: 16px 0px 40px;
-      `,
-  )};
-  ${mediaQuery(
-    'mobile',
-    `
-        padding: 16px 0px 40px;
-      `,
-  )};
+  ${mediaQuery('tablet1024', `padding: 16px 0px 40px;`)};
+  ${mediaQuery('mobile', `padding: 16px 0px 40px;`)};
 `;
 
 export const ContentConatiner = styled.div`
   ${flexDirection('column')}
   ${size('auto', '100%')}
+  max-width: 792px;
 
   .top {
     ${size('auto', '100%')}
     text-align: center;
     margin-bottom: 48px;
 
-    ${mediaQuery(
-      'tablet1024',
-      `
-        ${size('auto', '100%')}
-        margin-bottom: 40px;
-      `,
-    )};
+    ${mediaQuery('tablet1024', `${size('auto', '100%')}margin-bottom: 40px;`)};
   }
 
   .bottom {
@@ -123,8 +111,8 @@ export const Content = styled.pre`
   ${mediaQuery(
     'mobile',
     `
-      ${font('mobile16', 'regular')}
-      ${lineHeight(16, 26)}
+    ${font('mobile16', 'regular')}
+    ${lineHeight(16, 26)}
     `,
   )};
 
@@ -148,18 +136,10 @@ export const BottomConatiner = styled.div`
 
     ${mediaQuery(
       'tablet1024',
-      `
-        ${flexDirection('column')}
-        align-items: start;
+      `${flexDirection('column')} align-items: start;
       `,
     )};
-    ${mediaQuery(
-      'mobile',
-      `
-        ${flexDirection('column')}
-        align-items: start;
-      `,
-    )};
+    ${mediaQuery('mobile', `${flexDirection('column')} align-items: start;`)};
   }
 
   .prev,
@@ -244,18 +224,6 @@ export const FloatingWrapper = styled.div<{
   right: 90;
   bottom: 284;
 
-  ${mediaQuery(
-    'tablet1024',
-    `
-     right: 40px;
-     bottom: 276px;
-    `,
-  )};
-  ${mediaQuery(
-    'mobile',
-    `
-     right: 24px;
-     bottom: 266px;
-    `,
-  )};
+  ${mediaQuery('tablet1024', `right: 40px;bottom: 276px;`)};
+  ${mediaQuery('mobile', `right: 24px;bottom: 266px;`)};
 `;
