@@ -6,8 +6,11 @@ const Info = styled.div`
   flex-direction: column;
   white-space: break-spaces;
   margin-bottom: 60px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
 
-  ${mediaQuery('tablet1024', `margin-bottom: 32px;`)};
+  ${mediaQuery('mobile', `margin-bottom: 28px;`)};
 `;
 
 const Title = styled.div`
@@ -17,7 +20,7 @@ const Title = styled.div`
   margin-bottom: 8px;
 
   ${mediaQuery(
-    'tablet1024',
+    'mobile',
     `
   ${font('mobile14', 'bold')};
   ${lineHeight(14, 24)};
@@ -29,9 +32,10 @@ const Title = styled.div`
 const Content = styled.div`
   ${font('title26', 'bold')}
   line-height: 40px;
+  letter-spacing: -0.4px;
 
   ${mediaQuery(
-    'tablet1024',
+    'mobile',
     `
   ${font('mobile16', 'bold')};
   ${lineHeight(16, 26)};
@@ -42,12 +46,21 @@ const Content = styled.div`
 const InfoWrapper = styled.div`
   ${flex('flex-start', 'flex-start')};
   width: 100%;
+  gap: 180px;
+  margin-bottom: 80px;
 
-  ${mediaQuery('tablet1024', `flex-direction: column;`)};
+  ${mediaQuery(
+    'mobile',
+    `
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 48px;
+  `,
+  )};
 `;
 
 const InfoColumn = styled.div`
-  width: 50%;
+  width: 441px;
 `;
 
 export { Info, Title, Content, InfoWrapper, InfoColumn };
