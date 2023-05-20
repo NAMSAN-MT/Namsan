@@ -111,7 +111,7 @@ export const ContentConatiner = styled.div`
   }
 
   .bottom {
-    padding: 80px 0px;
+    padding: 60px 0px 80px;
   }
 
   img {

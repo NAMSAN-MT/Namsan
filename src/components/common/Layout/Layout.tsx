@@ -8,6 +8,7 @@ import { ILayoutProps } from './Layout.interface';
 import * as S from './Layout.style';
 import LottieWrapper from '../LottieWrapper/LottieWrapper';
 import ButtonTop from '../../../assets/lottie/button_top.json';
+import ButtonLink from '../../../assets/lottie/button_link.json';
 
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { isHeader = true, isFooter = true, children, route } = props;
@@ -18,9 +19,8 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
     mouseOverFromTopButton,
     setMouseOverFromTopButton,
   } = useLayout();
-  const isMainPage = ['main', 'workDetail'].includes(route ?? '');
-  const isFloating = ['newsDetail'].includes(route ?? '');
-
+  const isMainPage = ['main', 'workDetail', 'newsDetail'].includes(route ?? '');
+  const isCopyButton = ['newsDetail'].includes(route ?? '');
   return (
     <S.LayoutWrapper>
       {isHeader ? (
@@ -28,38 +28,40 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       ) : null}
       <S.LayoutContent isMainPage={isMainPage}>
         {children}
-        {!isFloating && (
-          <S.TopButtonWrapper isTransparent={props.isTransparent}>
-            {mouseOverFromTopButton ? (
-              <S.TopButtonInner
-                onClick={handleTopEvent}
-                onMouseLeave={() => setMouseOverFromTopButton(false)}
-              >
+        <S.TopButtonWrapper isTransparent={props.isTransparent}>
+          {isCopyButton &&
+            (toastMessage ? (
+              <S.TopButtonInner>
                 <LottieWrapper
-                  animationData={ButtonTop}
+                  animationData={ButtonLink}
                   width={60}
                   loop={false}
                   autoplay={true}
                 />
               </S.TopButtonInner>
             ) : (
-              <BaseButton
-                className="arrow-top"
-                onClick={handleTopEvent}
-                onMouseOver={() => setMouseOverFromTopButton(true)}
-              />
-            )}
-          </S.TopButtonWrapper>
-        )}
-        {isFloating && (
-          <S.FloatingWrapper>
-            <div className="blank" />
-            <div className="area">
               <BaseButton className="copy" onClick={handleCopyLink} />
-              <BaseButton className="arrow-top" onClick={handleTopEvent} />
-            </div>
-          </S.FloatingWrapper>
-        )}
+            ))}
+          {mouseOverFromTopButton ? (
+            <S.TopButtonInner
+              onClick={handleTopEvent}
+              onMouseLeave={() => setMouseOverFromTopButton(false)}
+            >
+              <LottieWrapper
+                animationData={ButtonTop}
+                width={60}
+                loop={false}
+                autoplay={true}
+              />
+            </S.TopButtonInner>
+          ) : (
+            <BaseButton
+              className="arrow-top"
+              onClick={handleTopEvent}
+              onMouseOver={() => setMouseOverFromTopButton(true)}
+            />
+          )}
+        </S.TopButtonWrapper>
         <S.ToastWrapper isVisible={!isEmpty(toastMessage)}>
           <S.Toast>{toastMessage}</S.Toast>
         </S.ToastWrapper>
