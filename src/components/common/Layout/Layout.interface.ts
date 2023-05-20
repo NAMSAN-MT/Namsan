@@ -9,4 +9,12 @@ interface ILayoutProps {
   isTransparent?: boolean;
 }
 
-export { ILayoutProps };
+interface ITopButtonProps {
+  mouseOverFromTopButton: boolean;
+  setMouseOverFromTopButton: React.Dispatch<React.SetStateAction<boolean>>;
+  handleTopEvent: (
+    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>,
+  ) => void;
+}
+
+export { ILayoutProps, ITopButtonProps };
