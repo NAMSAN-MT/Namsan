@@ -1,4 +1,5 @@
 import {
+  ellipsisMulti,
   flex,
   flexDirection,
   font,
@@ -11,7 +12,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   ${flexDirection('column')}
-  width: 996px;
+  width: 100%;
 `;
 
 export const HeaderContainer = styled.div`
@@ -41,6 +42,9 @@ export const TitleArea = styled.div`
 
   & > div {
     opacity: 0.56;
+
+    ${mediaQuery('tablet1024', ` display:none;`)};
+    ${mediaQuery('mobile', ` display:none;`)};
   }
 
   & > h1 {
@@ -51,6 +55,17 @@ export const TitleArea = styled.div`
     ${lineHeight(32, 48)}
     letter-spacing: -0.4px;
     color: ${({ theme }) => theme.color.black};
+
+    ${ellipsisMulti(2)}
+
+    ${mediaQuery(
+      'mobile',
+      `
+      ${font('title24', 'bold')}
+      ${lineHeight(24, 36)}
+      letter-spacing: -0.4px;
+    `,
+    )};
   }
 `;
 
@@ -62,24 +77,57 @@ export const DateARea = styled.p`
   text-align: center;
   letter-spacing: -0.2px;
   color: rgba(6, 11, 17, 0.56);
+
+  ${mediaQuery(
+    'tablet1024',
+    `
+        padding: 16px 0px 40px;
+      `,
+  )};
+  ${mediaQuery(
+    'mobile',
+    `
+        padding: 16px 0px 40px;
+      `,
+  )};
 `;
 
 export const ContentConatiner = styled.div`
   ${flexDirection('column')}
-  ${size('auto', '792px')}
+  ${size('auto', '100%')}
 
   .top {
-    ${size('auto', '792px')}
+    ${size('auto', '100%')}
     text-align: center;
     margin-bottom: 48px;
+
+    ${mediaQuery(
+      'tablet1024',
+      `
+        ${size('auto', '100%')}
+        margin-bottom: 40px;
+      `,
+    )};
   }
 
   .bottom {
     padding: 80px 0px;
   }
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const Content = styled.pre`
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile16', 'regular')}
+      ${lineHeight(16, 26)}
+    `,
+  )};
+
   ${size('auto', '100%')}
 
   white-space: pre-line;
@@ -90,13 +138,28 @@ export const Content = styled.pre`
 
 export const BottomConatiner = styled.div`
   ${flex('center', 'end')}
-  ${size('117px', '100%')}
+  ${size('119px', '100%')}
   border-top: 1px solid ${({ theme }) => theme.color.dividerGrey200};
 
   .action__area {
     width: 100%;
     ${flexDirection('row')}
     justify-content: space-around;
+
+    ${mediaQuery(
+      'tablet1024',
+      `
+        ${flexDirection('column')}
+        align-items: start;
+      `,
+    )};
+    ${mediaQuery(
+      'mobile',
+      `
+        ${flexDirection('column')}
+        align-items: start;
+      `,
+    )};
   }
 
   .prev,
@@ -110,10 +173,19 @@ export const BottomConatiner = styled.div`
       ${lineHeight(16, 26)}
       letter-spacing: -0.2px;
       color: ${({ theme }) => theme.color.black};
+
+      ${mediaQuery(
+        'mobile',
+        `
+          ${font('body14', 'regular')}
+          ${lineHeight(14, 22)}
+          letter-spacing: -0.1px;
+        `,
+      )};
     }
 
     & > button {
-      ${size('26px', '72px')}
+      ${size('26px', 'auto')}
       ${flexDirection('row')}
       
       & > p {
@@ -121,14 +193,44 @@ export const BottomConatiner = styled.div`
         ${lineHeight(16, 26)}
         letter-spacing: -0.2px;
         color: ${({ theme }) => theme.color.textBlue};
+
+        ${mediaQuery(
+          'mobile',
+          `
+          ${font('body14', 'bold')}
+          ${lineHeight(14, 22)}
+          letter-spacing: -0.1px;
+        `,
+        )};
+      }
+
+      & > div {
+        ${mediaQuery('tablet1024', ` display:none;`)};
+        ${mediaQuery('mobile', ` display:none;`)};
       }
     }
+
+    ${mediaQuery('tablet1024', `gap: 8px;`)};
+    ${mediaQuery('mobile', `gap: 8px;`)};
   }
+
+  .prev {
+    ${mediaQuery('tablet1024', `margin: 0px 0px 16px;`)};
+    ${mediaQuery('mobile', `margin: 0px 0px 16px;`)};
+  }
+
+  .next {
+    ${mediaQuery('tablet1024', `flex-direction: row-reverse;`)};
+    ${mediaQuery('mobile', `flex-direction: row-reverse;`)};
+  }
+
+  ${mediaQuery('tablet1024', `${size('113px', '100%')}`)};
+  ${mediaQuery('mobile', `${size('85px', '100%')}`)};
 `;
 
 export const ListIconWrapper = styled.div`
-  /* width: 100%;
-  ${flex('flex-end', 'center ')}; */
+  ${mediaQuery('tablet1024', `display:none;`)};
+  ${mediaQuery('mobile', `display:none;`)};
 `;
 
 export const FloatingWrapper = styled.div<{
