@@ -4,6 +4,7 @@ import { IInputProps } from './Input.interface';
 import * as S from './Input.style';
 
 const Input = ({
+  iconSize,
   placeholder,
   value,
   handleChange,
@@ -17,7 +18,7 @@ const Input = ({
         onChange={handleChange}
       ></S.Input>
       <S.SearchIconWrapper type="submit">
-        <SearchIcon />
+        <SearchIcon width={iconSize?.width} height={iconSize?.height} />
       </S.SearchIconWrapper>
     </S.InputWrapper>
   );
