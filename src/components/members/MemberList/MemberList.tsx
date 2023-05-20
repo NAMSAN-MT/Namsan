@@ -52,6 +52,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
           businessFields={member.businessFields}
           image={member.image}
           id={member.id}
+          order={member.order}
         />
       ))}
     </S.MemberList>

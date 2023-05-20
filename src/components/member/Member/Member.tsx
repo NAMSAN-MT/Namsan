@@ -5,12 +5,21 @@ import { IntroduceType } from '../IntroduceItem/IntroduceItem.type';
 import { introduceOrder } from './Member.const';
 import { MemberProps } from './Member.interface';
 import * as S from './Member.style';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { isEmpty } from 'lodash';
 
-const Member = (props: MemberProps) => {
+const Member = (props: MemberProps & WrappedComponentProps) => {
   const { member } = props;
   if (!member) return <></>;
+
+  const handleClickTag = (index: number) => {
+    const category = props.member.categoryIds[index];
+
+    if (isEmpty(category)) return;
+
+    window.location.href = `/${props.intl.locale}/work/${category}`;
+  };
 
   return (
     <S.MemberWrapper>
@@ -27,8 +36,10 @@ const Member = (props: MemberProps) => {
         <div className="position">{member.position}</div>
         <div className="email">{member.email}</div>
         <S.TagWrapper>
-          {member.businessFields.map(businessField => (
-            <span className="tag">{businessField}</span>
+          {member.businessFields.map((businessField, index) => (
+            <span className="tag" onClick={handleClickTag.bind(null, index)}>
+              {businessField}
+            </span>
           ))}
         </S.TagWrapper>
         <div className="description">
