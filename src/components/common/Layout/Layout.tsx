@@ -72,24 +72,8 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
           <S.FloatingWrapper>
             <div className="blank" />
             <div className="area">
-              {toastMessage ? (
-                <S.TopButtonInner onClick={handleCopyLink}>
-                  <LottieWrapper
-                    animationData={ButtonLink}
-                    width={60}
-                    loop={false}
-                    autoplay={toastMessage ? true : false}
-                  />
-                </S.TopButtonInner>
-              ) : (
-                <BaseButton className="copy" onClick={handleCopyLink} />
-              )}
-
-              <TopMenuButton
-                mouseOverFromTopButton={mouseOverFromTopButton}
-                handleTopEvent={handleTopEvent}
-                setMouseOverFromTopButton={setMouseOverFromTopButton}
-              />
+              <BaseButton className="copy" onClick={handleCopyLink} />
+              <BaseButton className="arrow-top" onClick={handleTopEvent} />
             </div>
           </S.FloatingWrapper>
         )}
