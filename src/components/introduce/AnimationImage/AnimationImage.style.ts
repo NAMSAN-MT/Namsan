@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 const AnimationImageWrapper = styled.div<{ src: string }>`
   position: relative;
-  ${size('995px')}
+  ${size('880px')}
   background: url(${({ src }) => src});
   background-size: cover;
 
   ${mediaQuery(
     'mobile',
     `
-    ${size('500px')};
+    ${size('520px')};
     background-position-x: -300px;
   `,
   )}
@@ -42,15 +42,17 @@ const TextWrapper = styled.div`
   color: ${({ theme }) => theme.color.textWhiteHigh};
   opacity: 0;
   transform: translateY(100%);
+  height: fit-content;
 
   ${mediaQuery('pc1380', `left: 90px;`)}
-  ${mediaQuery('mobile', `left: 40px;`)}
+  ${mediaQuery('tablet1024', `left: 40px;`)}
   ${mediaQuery('mobile', `top: 149px; bottom: 149px; left: 24px;`)}
 
   &.on {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-50%);
     transition: all 0.5s;
+    top: 50%;
   }
 `;
 
@@ -66,6 +68,7 @@ const MainText = styled.div`
     ${font('mobile24', 'bold')};
     ${lineHeight(24, 36)};
     letter-spacing: -0.4px;
+    margin-bottom: 16px;
   `,
   )};
 `;
