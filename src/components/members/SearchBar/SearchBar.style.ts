@@ -18,6 +18,11 @@ const ItemWrapper = styled.div<{ width: string }>`
     ${size('51px', '100%')};
   `,
   )}
+
+  button {
+    right: 16px;
+    bottom: 3px;
+  }
 `;
 
 export { SearchBarWrapper, ItemWrapper };

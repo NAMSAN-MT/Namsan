@@ -12,30 +12,46 @@ import styled from 'styled-components';
 
 export const CardBox = styled.div`
   max-width: 1200px;
+  width: auto;
   margin: 0 auto;
   display: grid;
   gap: 24px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 40px;
 
   margin-bottom: 80px;
 
-  ${mediaQuery('tablet1024', `grid-template-columns: repeat(1, 1fr);`)};
+  ${mediaQuery(
+    'tablet1024',
+    `grid-template-columns: repeat(1, 1fr); row-gap: 16px;`,
+  )};
+
+  ${mediaQuery(
+    'mobile',
+    `
+      margin: 36px 0px 40px;
+    `,
+  )};
 `;
 
 export const Card = styled.a`
-  ${size('426px', '384px')}
+  height: 426px;
+  max-width: 384px;
   min-width: 265px;
   box-sizing: border-box;
   border: 1px solid ${({ theme }) => theme.color.grey200};
   border-radius: 10px;
-  padding: 52px 40px 40px 40px;
+  padding: 43px 40px 40px 31px;
 
   :hover {
     background: #f1f7fd;
   }
 
-  ${mediaQuery('tablet1024', `${size('300px', '100%')}padding: 40px 32px;`)};
-  ${mediaQuery('mobile', `${size('188px', '100%')}padding: 24px 20px;`)}
+  ${mediaQuery(
+    'tablet1024',
+    `${size('300px', '100%')} padding: 40px 32px; max-width: 100%;`,
+  )};
+  ${mediaQuery('mobile', `${size('188px', '100%')} padding: 24px 20px;`)}
 `;
 
 export const LabelBox = styled.div<{ type: NewsType }>`
@@ -45,7 +61,7 @@ export const LabelBox = styled.div<{ type: NewsType }>`
   p {
     background: ${({ type }) => (type === 'recent' ? '#811B14' : '#1e59b3')};
     border-radius: 4px;
-    padding: 6px 10px 4px 10px;
+    padding: 5px 10px 3px 10px;
 
     ${font('body16', 'bold')}
     ${lineHeight(16, 26)}
@@ -78,7 +94,7 @@ export const Title = styled.p`
   max-width: auto;
   min-width: 185px;
 
-  margin-top: 12px;
+  margin-top: 10px;
   margin-bottom: 16px;
 
   ${ellipsisMulti(2)}
@@ -136,7 +152,7 @@ export const Content = styled.p`
 export const Date = styled.div`
   ${flexDirection('row')}
   gap: 20px;
-  margin: 88px 0px 44px 0px;
+  margin: 86px 0px 40px 0px;
 
   p {
     ${flex('')}
