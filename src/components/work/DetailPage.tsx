@@ -19,6 +19,7 @@ import {
   SubTitle,
   Title,
 } from './work.styled';
+import { BoxDivider } from '@Components/common/List/List.style';
 
 export interface Props {
   language: 'ko' | 'en';
@@ -57,24 +58,28 @@ const DetailPage = (props: Props & PageContextProps) => {
                 <Title>{item.categoryTitle}</Title>
                 <Contents>{item.description}</Contents>
                 <Image src={imagePath ?? ''}></Image>
+                <BoxDivider />
               </>
             ) : (
-              <Box>
-                <Anchor
-                  id={`${subIdPrefix}${String(index).padStart(2, '0')}`}
-                ></Anchor>
-                <Head onClick={handleClick} data-index={index}>
-                  <SubTitle>{item.categoryTitle}</SubTitle>
-                  {/* TODO: SVG color 적용 */}
-                  <LineArrowIcon
-                    direction={item.isOpen ? 'UP' : 'DOWN'}
-                    weight="BOLD"
-                    width="21px"
-                  ></LineArrowIcon>
-                </Head>
+              <>
+                <Box>
+                  <Anchor
+                    id={`${subIdPrefix}${String(index).padStart(2, '0')}`}
+                  ></Anchor>
+                  <Head onClick={handleClick} data-index={index}>
+                    <SubTitle>{item.categoryTitle}</SubTitle>
+                    {/* TODO: SVG color 적용 */}
+                    <LineArrowIcon
+                      direction={item.isOpen ? 'UP' : 'DOWN'}
+                      weight="BOLD"
+                      width="21px"
+                    ></LineArrowIcon>
+                  </Head>
 
-                {item.isOpen && <Contents>{item.description}</Contents>}
-              </Box>
+                  {item.isOpen && <Contents>{item.description}</Contents>}
+                </Box>
+                <BoxDivider />
+              </>
             )}
           </div>
         ))}

@@ -6,7 +6,7 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  grid-row-gap: 80px;
+  grid-row-gap: 76px;
   grid-column-gap: 24px;
 
   ${mediaQuery(
@@ -15,6 +15,14 @@ export const Grid = styled.div`
     grid-template-columns: repeat(2, 1fr);
       `,
   )}
+
+  ${mediaQuery(
+    'tablet1024',
+    `
+    grid-row-gap: 52px;
+    `,
+  )}
+
 
   ${mediaQuery(
     'mobile',
@@ -36,7 +44,7 @@ export const Title = styled.h1`
   ${mediaQuery(
     'mobile',
     `
-    margin-bottom: 16px;
+    margin-bottom: 28px;
     ${font('mobile24', 'bold')}
       `,
   )}
@@ -60,7 +68,7 @@ export const SubTitle = styled.h2`
 
 export const Contents = styled.p`
   color: ${theme => theme.theme.color.textBlackMedium};
-  ${font('title20', 'regular')};
+  ${font('title22', 'regular')};
   margin-bottom: 32px;
   line-height: 36px;
 
@@ -76,8 +84,8 @@ export const Contents = styled.p`
 `;
 
 export const Box = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.color.dividerGrey200};
-  border-bottom: 1px solid ${({ theme }) => theme.color.dividerGrey200};
+  /* border-top: 1px solid ${({ theme }) => theme.color.dividerGrey200}; */
+  /* border-bottom: 1px solid ${({ theme }) => theme.color.dividerGrey200}; */
 
   ${mediaQuery(
     'mobile',
@@ -113,8 +121,8 @@ export const Head = styled.div`
 
 export const Layout = styled.div`
   padding: 0px 90px;
-  margin: 100px auto 80px auto;
-  max-width: 966px;
+  margin: 107px auto 80px auto;
+  max-width: 1200px;
 
   ${mediaQuery(
     'mobile',
@@ -126,7 +134,7 @@ export const Layout = styled.div`
 `;
 
 export const MemberBox = styled.div`
-  margin-top: 60px;
+  margin-top: 86px;
 
   ${mediaQuery(
     'mobile',
