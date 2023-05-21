@@ -8,7 +8,7 @@ const MemberPage: React.FC<PageProps & WrappedComponentProps> = ({
   pageContext: { members, order },
   intl,
 }: any) => {
-  const member = members.find(
+  const member = members?.find(
     (member: any) => member.order === order && member.language === intl.locale,
   );
 
