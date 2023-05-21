@@ -149,7 +149,7 @@ const MobileMenuItem = styled.li`
       content: '';
       display: block;
       width: 44px;
-      height: 8px;
+      height: 4px;
       background-color: ${({ theme }) => theme.color.blue100};
       margin-left: 20px;
     }
