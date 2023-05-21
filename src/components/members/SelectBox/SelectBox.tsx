@@ -1,7 +1,9 @@
-import LineArrowIcon from '@Components/icons/LineArrowIcon';
-import React, { useState } from 'react';
+import React from 'react';
 import { ISelectBoxProps } from './SelectBox.interface';
 import * as S from './SelectBox.style';
+import NavigationUp from '../../../assets/lottie/navigation_up.json';
+import NavigationDown from '../../../assets/lottie/navigation_down.json';
+import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 
 const SelectBox = ({
   options,
@@ -11,7 +13,7 @@ const SelectBox = ({
   isOpen,
   setOpen,
 }: ISelectBoxProps) => {
-  const arrowDirection = isOpen ? 'DOWN' : 'UP';
+  const arrowDirection = isOpen ? NavigationUp : NavigationDown;
 
   const _toggle = () => {
     setOpen(!isOpen);
@@ -36,7 +38,12 @@ const SelectBox = ({
         </S.OptionWrapper>
       )}
       <S.OpenIconWrapper>
-        <LineArrowIcon direction={arrowDirection} weight="BOLD" />
+        <LottieWrapper
+          animationData={arrowDirection}
+          width={24}
+          loop={false}
+          autoplay={true}
+        />
       </S.OpenIconWrapper>
     </S.Select>
   );

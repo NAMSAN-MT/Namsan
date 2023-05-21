@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 const Main: React.FC<PageProps> = () => {
   return (
-    <Layout>
+    <Layout route="news">
       <NewsWrapper
         title="남산소식"
         outerPadding="100px 90px 160px;"
