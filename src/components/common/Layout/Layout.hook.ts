@@ -26,7 +26,9 @@ const useLayout = () => {
     });
   };
 
-  const handleCopyLink = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleCopyLink = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
+  ) => {
     e.preventDefault();
     navigator.clipboard.writeText(location.href);
     isEmpty(toastMessage) && setToastMessage('링크가 복사 되었습니다.');

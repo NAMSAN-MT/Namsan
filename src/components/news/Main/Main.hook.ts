@@ -14,12 +14,14 @@ const useMain = () => {
   const [tab, setTab] = useState<TTab>('all');
   const [newsList, setNewsList] = useState<NewsMin[]>([]);
   const [pageNationState, setPageNation] = useState<TPagination>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onCallNewsList = async (
     newsType: NewsType = 'all',
     searchValue?: string,
   ) => {
     try {
+      setIsLoading(true);
       const numberUrlPage = Number(urlPage);
       const { resultList, algoliaResult } = await getNewsSearchList({
         newsType,
@@ -39,6 +41,8 @@ const useMain = () => {
       setTab(newsType);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -52,6 +56,7 @@ const useMain = () => {
     tab,
     newsList,
     pageNationState,
+    isLoading,
     onCallNewsList,
     onCallMainNewsList,
   };

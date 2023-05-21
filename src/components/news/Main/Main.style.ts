@@ -10,8 +10,8 @@ import styled from 'styled-components';
 
 export const TabSearchBox = styled.div`
   ${flex('space-between', 'center')}
-  ${size('64p', '1200px')}
-  margin: 60px 0px;
+  ${size('64px', 'auto')}
+  margin: 50px 0px 60px;
 
   ${mediaQuery('tablet1024', `${size('64px', 'auto')} margin: 40px 0px;`)};
   ${mediaQuery(

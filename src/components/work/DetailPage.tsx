@@ -18,7 +18,11 @@ import {
   MemberList,
   SubTitle,
   Title,
+  LineArrowIconInner,
 } from './work.styled';
+import NavigationUp from '../../assets/lottie/navigation_up.json';
+import NavigationDown from '../../assets/lottie/navigation_down.json';
+import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 
 export interface Props {
   language: 'ko' | 'en';
@@ -62,17 +66,21 @@ const DetailPage = (props: Props & PageContextProps) => {
               <Box>
                 <Anchor
                   id={`${subIdPrefix}${String(index).padStart(2, '0')}`}
-                ></Anchor>
+                />
                 <Head onClick={handleClick} data-index={index}>
                   <SubTitle>{item.categoryTitle}</SubTitle>
                   {/* TODO: SVG color 적용 */}
-                  <LineArrowIcon
-                    direction={item.isOpen ? 'UP' : 'DOWN'}
-                    weight="BOLD"
-                    width="21px"
-                  ></LineArrowIcon>
+                  <LineArrowIconInner>
+                    <LottieWrapper
+                      animationData={
+                        item.isOpen ? NavigationUp : NavigationDown
+                      }
+                      width={21}
+                      loop={false}
+                      autoplay={true}
+                    />
+                  </LineArrowIconInner>
                 </Head>
-
                 {item.isOpen && <Contents>{item.description}</Contents>}
               </Box>
             )}
