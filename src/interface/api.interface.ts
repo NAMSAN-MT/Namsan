@@ -30,6 +30,7 @@ export interface IParameter {
 }
 
 export interface News {
+  id?: string;
   documentId?: string;
   title: string;
   content: string;
@@ -41,6 +42,8 @@ export interface News {
   newsType: NewsType;
   dateYearMonth?: string;
   dateYearMonthDate?: string;
+  order: number;
+  memberId?: any;
 }
 
 export interface NewsMin {

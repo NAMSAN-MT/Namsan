@@ -4,7 +4,8 @@ import { EndPointType, NewsType, TQuery } from '@Type/api.type';
 import { documentId } from 'firebase/firestore';
 import { getTimestampToDate } from '../utils/date';
 import { index } from './algolia';
-import { GetDataListQuery } from './index.api';
+import { getData, GetDataListQuery, getFileFromStorage } from './index.api';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 export const getMainNewsList = async (limit: number) => {
   const endPoint: EndPointType = 'news';
@@ -106,6 +107,33 @@ export const getNewsData = async (_documentId: string) => {
     return {
       ...data,
       dateYearMonthDate: getTimestampToDate(data.date).fullDate,
+    };
+  });
+};
+
+export const getNewsMember = async (_documentId: string) => {
+  return GetDataListQuery<News>({
+    endPoint: 'news',
+    queries: [
+      {
+        queryType: 'where',
+        fieldPath: documentId(),
+        opStr: '==',
+        value: _documentId,
+      },
+    ],
+  }).then(async result => {
+    const data = result[0];
+    const memberRef = data?.memberId;
+    const memberSnapshot = await memberRef.get();
+    const { imagePath, name, position } = await getData(memberSnapshot);
+    const profileImage = (await getFileFromStorage(
+      imagePath,
+    )) as unknown as IGatsbyImageData;
+    return {
+      profileImage,
+      name,
+      position,
     };
   });
 };

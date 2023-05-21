@@ -78,7 +78,10 @@ export const PostWithId = async <T extends { [x: string]: any }>({
 };
 
 /* utils */
-const getData = <U>(doc: QueryDocumentSnapshot, fieldNames?: string[]) => {
+export const getData = <U>(
+  doc: QueryDocumentSnapshot,
+  fieldNames?: string[],
+) => {
   return {
     documentId: doc?.id,
     ...(fieldNames ? doc.get(new FieldPath(...fieldNames)) : doc.data()),
