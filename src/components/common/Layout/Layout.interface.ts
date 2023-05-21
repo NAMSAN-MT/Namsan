@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react';
 import { TUrl } from '../GNB/GNB.interface';
 
 interface ILayoutProps {
@@ -16,5 +17,10 @@ interface ITopButtonProps {
     e: React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>,
   ) => void;
 }
+interface ICopyButtonProps {
+  isCopyButton: boolean;
+  toastMessage: string;
+  handleCopyLink: MouseEventHandler<HTMLButtonElement>;
+}
 
-export { ILayoutProps, ITopButtonProps };
+export { ILayoutProps, ITopButtonProps, ICopyButtonProps };

@@ -4,7 +4,11 @@ import BaseButton from '../BaseButton';
 import Footer from '../Footer';
 import GNB from '../GNB';
 import useLayout from './Layout.hook';
-import { ILayoutProps, ITopButtonProps } from './Layout.interface';
+import {
+  ICopyButtonProps,
+  ILayoutProps,
+  ITopButtonProps,
+} from './Layout.interface';
 import * as S from './Layout.style';
 import LottieWrapper from '../LottieWrapper/LottieWrapper';
 import ButtonTop from '../../../assets/lottie/button_top.json';
@@ -40,6 +44,26 @@ const TopMenuButton = ({
   );
 };
 
+const CopyButton = ({
+  isCopyButton,
+  toastMessage,
+  handleCopyLink,
+}: ICopyButtonProps) => {
+  if (!isCopyButton) return <></>;
+  return toastMessage ? (
+    <S.TopButtonInner>
+      <LottieWrapper
+        animationData={ButtonLink}
+        width={60}
+        loop={false}
+        autoplay={true}
+      />
+    </S.TopButtonInner>
+  ) : (
+    <BaseButton className="copy" onClick={handleCopyLink} />
+  );
+};
+
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { isHeader = true, isFooter = true, children, route } = props;
   const {
@@ -49,8 +73,9 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
     mouseOverFromTopButton,
     setMouseOverFromTopButton,
   } = useLayout();
-  const isMainPage = ['main', 'workDetail'].includes(route ?? '');
-  const isFloating = ['newsDetail'].includes(route ?? '');
+
+  const isMainPage = ['main', 'workDetail', 'newsDetail'].includes(route ?? '');
+  const isCopyButton = ['newsDetail'].includes(route ?? '');
 
   return (
     <S.LayoutWrapper>
@@ -59,23 +84,19 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       ) : null}
       <S.LayoutContent isMainPage={isMainPage}>
         {children}
-        {!isFloating && (
+        {isMainPage && (
           <S.TopButtonWrapper isTransparent={props.isTransparent}>
+            <CopyButton
+              isCopyButton={isCopyButton}
+              toastMessage={toastMessage}
+              handleCopyLink={handleCopyLink}
+            />
             <TopMenuButton
               mouseOverFromTopButton={mouseOverFromTopButton}
               handleTopEvent={handleTopEvent}
               setMouseOverFromTopButton={setMouseOverFromTopButton}
             />
           </S.TopButtonWrapper>
-        )}
-        {isFloating && (
-          <S.FloatingWrapper>
-            <div className="blank" />
-            <div className="area">
-              <BaseButton className="copy" onClick={handleCopyLink} />
-              <BaseButton className="arrow-top" onClick={handleTopEvent} />
-            </div>
-          </S.FloatingWrapper>
         )}
         <S.ToastWrapper isVisible={!isEmpty(toastMessage)}>
           <S.Toast>{toastMessage}</S.Toast>

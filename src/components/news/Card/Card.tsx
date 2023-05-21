@@ -1,18 +1,20 @@
+import Loading from '@Components/common/Loading';
 import React, { useEffect } from 'react';
 import * as S from '../Card/Card.style';
 import { CardProps } from './Card.interface';
 
 const Card = (props: CardProps) => {
+  if (props.isLoading) {
+    return (
+      <div className="loading_cards">
+        <Loading height="500px" />
+      </div>
+    );
+  }
   if (props.type === 'main') {
     useEffect(() => {
       props.onCallMainNewsList?.(3);
     }, []);
-  }
-
-  if (props.type === 'news') {
-    useEffect(() => {
-      props.onCallNewsList?.(props.newsType, props.searchValue);
-    }, [props.urlPage, props.newsType]);
   }
 
   return (

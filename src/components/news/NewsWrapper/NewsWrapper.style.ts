@@ -10,9 +10,10 @@ export const Outer = styled.section<OuterPadding>`
   .loading_cards {
     ${flex()}
     ${size('500px', '1200px')}
+    min-width: 1025px;
   }
-  ${mediaQuery('tablet1024', `padding: 60px 40px;`)}
-  ${mediaQuery('mobile', ` padding: 0 24px;`)}
+  ${mediaQuery('tablet1024', `padding: 60px 40px 160px;`)}
+  ${mediaQuery('mobile', ` padding: 32px 24px 100px;`)}
 `;
 
 export const Inner = styled.div<InnerWidth>`
@@ -28,5 +29,10 @@ export const Title = styled.h1`
   letter-spacing: -0.6px;
 
   color: ${({ theme }) => theme.color.textBlackHigh};
-  ${mediaQuery('mobile', ` padding-top: 48px;`)}
+  ${mediaQuery(
+    'mobile',
+    ` 
+  // padding-top: 48px;
+  `,
+  )}
 `;
