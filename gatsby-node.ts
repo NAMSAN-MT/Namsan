@@ -235,6 +235,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
             date
             content
             agency
+            order
           }
         }
       }
