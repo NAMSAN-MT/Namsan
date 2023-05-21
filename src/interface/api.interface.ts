@@ -44,6 +44,8 @@ export interface News {
   dateYearMonthDate?: string;
   order: number;
   memberId?: any;
+  prevNews?: { id: string; title: string };
+  nextNews?: { id: string; title: string };
 }
 
 export interface NewsMin {
