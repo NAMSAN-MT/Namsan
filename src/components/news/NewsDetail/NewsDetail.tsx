@@ -42,7 +42,6 @@ const NewsDetail = (props: Props) => {
 
   const isMediaNews = newsType === 'media' && image;
   const topTxt = isMediaNews ? agency : '최근 업무사례';
-  console.log('!!!!', profile);
 
   return (
     <S.Wrapper>

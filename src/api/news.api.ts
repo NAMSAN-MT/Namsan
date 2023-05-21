@@ -127,9 +127,7 @@ export const getNewsMember = async (_documentId: string) => {
     const memberRef = data?.memberId;
     const memberSnapshot = await memberRef.get();
     const { imagePath, name, position } = await getData(memberSnapshot);
-    const profileImage = (await getFileFromStorage(
-      imagePath,
-    )) as unknown as IGatsbyImageData;
+    const profileImage = await getFileFromStorage(imagePath);
     return {
       profileImage,
       name,
