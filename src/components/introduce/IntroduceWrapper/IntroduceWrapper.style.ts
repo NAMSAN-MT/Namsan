@@ -71,7 +71,7 @@ const PressWrapper = styled.div`
   ${mediaQuery(
     'mobile',
     `
-    margin: 70px 0 103px 24px;
+    margin: 70px 0 100px 24px;
     ${size('100%', 'auto')};
     `,
   )}
