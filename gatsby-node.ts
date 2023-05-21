@@ -2,7 +2,7 @@ import { IMember } from '@Interface/api.interface';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import { resolve } from 'path';
 import { getFileFromStorage } from './src/api/index.api';
-import { isEmpty } from 'lodash';
+import { isEmpty, isNumber } from 'lodash';
 
 const fs = require('fs');
 exports.onPostBuild = () => {
@@ -254,12 +254,39 @@ exports.createPages = async ({ actions, graphql }: any) => {
       }
     }
   `);
-  news.data.allNews.edges.forEach(({ node }: any) => {
+
+  const getOrderNews = async (order?: number) => {
+    return isNumber(order)
+      ? await graphql(`
+      query {
+        news(order: { eq: ${order} }) {
+          id
+          title
+        }
+      }
+    `)
+      : undefined;
+  };
+  const len = news.data.allNews.edges.length;
+  news.data.allNews.edges.forEach(async ({ node }: any) => {
+    let prev, next, prevNews, nextNews;
+    if (len > 1) {
+      prev = node.order - 1;
+      if (node.order < len) next = node.order + 1;
+    }
+
+    if (prev) prevNews = await getOrderNews(prev);
+    if (next) nextNews = await getOrderNews(next);
+
     actions.createPage({
       path: `/news/${node.id}`,
       component: resolve('./src/pages/news/[id].tsx'),
       context: {
-        news: { ...node },
+        news: {
+          ...node,
+          prevNews: prevNews?.data?.news,
+          nextNews: nextNews?.data?.news,
+        },
       },
     });
   });

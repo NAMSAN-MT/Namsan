@@ -1,4 +1,5 @@
 import {
+  ellipsis,
   ellipsisMulti,
   flex,
   flexDirection,
@@ -184,9 +185,14 @@ export const Content = styled.pre`
   ${({ theme }) => theme.color.black}
 `;
 
-export const BottomConatiner = styled.div`
+export const BottomConatiner = styled.div<{
+  isPrevContent: boolean;
+  isNextContent: boolean;
+}>`
   ${flex('center', 'end')}
-  ${size('119px', '100%')}
+  ${size('100%', '100%')}
+  padding-top: 75px;
+
   border-top: 1px solid ${({ theme }) => theme.color.dividerGrey200};
 
   .action__area {
@@ -196,16 +202,34 @@ export const BottomConatiner = styled.div`
 
     ${mediaQuery(
       'tablet1024',
-      `${flexDirection('column')} align-items: start;
+      `
+        ${flexDirection('column')} 
+        align-items: start;
+        row-gap:20px;
       `,
     )};
-    ${mediaQuery('mobile', `${flexDirection('column')} align-items: start;`)};
+    ${mediaQuery(
+      'mobile',
+      `
+        ${flexDirection('column')} 
+        align-items: start; 
+        row-gap:16px;
+      `,
+    )};
   }
 
   .prev,
   .next {
     ${flexDirection('row')}
     gap: 12px;
+
+    .btn_title {
+      max-width: 326px;
+      ${mediaQuery('tablet1024', `max-width: 100%;`)};
+
+      ${ellipsisMulti(1)}
+    }
+
     & p {
       padding-top: 3px;
 
@@ -237,9 +261,10 @@ export const BottomConatiner = styled.div`
         ${mediaQuery(
           'mobile',
           `
-          ${font('body14', 'bold')}
-          ${lineHeight(14, 22)}
-          letter-spacing: -0.1px;
+            ${size('22px', '39px')}
+            ${font('body14', 'bold')}
+            ${lineHeight(14, 22)}
+            letter-spacing: -0.1px;
         `,
         )};
       }
@@ -255,8 +280,8 @@ export const BottomConatiner = styled.div`
   }
 
   .prev {
-    ${mediaQuery('tablet1024', `margin: 0px 0px 16px;`)};
-    ${mediaQuery('mobile', `margin: 0px 0px 16px;`)};
+    /* ${mediaQuery('tablet1024', `margin: 0px 0px 16px;`)}
+    ${mediaQuery('mobile', `margin: 0px 0px 16px;`)} */
   }
 
   .next {
@@ -264,8 +289,8 @@ export const BottomConatiner = styled.div`
     ${mediaQuery('mobile', `flex-direction: row-reverse;`)};
   }
 
-  ${mediaQuery('tablet1024', `${size('113px', '100%')}`)};
-  ${mediaQuery('mobile', `${size('85px', '100%')}`)};
+  ${mediaQuery('tablet1024', `${size('100%', '100%')} padding-top: 40px;`)};
+  ${mediaQuery('mobile', `${size('100%', '100%')} padding-top: 24px;`)};
 `;
 
 export const ListIconWrapper = styled.div`

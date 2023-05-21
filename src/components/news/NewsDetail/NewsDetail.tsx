@@ -21,7 +21,10 @@ const NewsDetail = (props: Props) => {
     content,
     date,
     imagePath,
+    prevNews,
+    nextNews,
   } = props;
+
   const dateYearMonthDate = convertDateStr(date);
 
   const [image, setImage] = useState<string>();
@@ -38,10 +41,17 @@ const NewsDetail = (props: Props) => {
   const handleClickList = () => {
     navigate(`/${props.intl.locale}/news`);
   };
-  const handleMove = (event: React.MouseEvent<HTMLButtonElement>) => {};
+  const handleMove = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const _id = event.currentTarget.dataset.id as 'prev' | 'next';
+    navigate(`/${props.intl.locale}/news/${_id}`);
+  };
 
   const isMediaNews = newsType === 'media' && image;
   const topTxt = isMediaNews ? agency : '최근 업무사례';
+
+  const isProfile = !isEmpty(profile);
+  const isPrevContent = !isEmpty(prevNews);
+  const isNextContent = !isEmpty(nextNews);
 
   return (
     <S.Wrapper>
@@ -73,8 +83,7 @@ const NewsDetail = (props: Props) => {
         )}
         <S.Content>{content}</S.Content>
         <article className="bottom">
-          {/* 프로필 정보 */}
-          {!isEmpty(profile) ? (
+          {isProfile ? (
             <S.ProfileArea>
               <img
                 alt={profile.name}
@@ -93,25 +102,33 @@ const NewsDetail = (props: Props) => {
           )}
         </article>
       </S.ContentConatiner>
-      <S.BottomConatiner>
+      <S.BottomConatiner
+        isPrevContent={isPrevContent}
+        isNextContent={isNextContent}
+      >
         <div className="action__area">
-          <div className="prev">
-            <button datatype="prev" onClick={handleMove}>
-              <LineArrowIcon direction={'LEFT'} weight="NORMAL" />
-              <p>이전글</p>
-            </button>
-            <p>양원석 남산 경영담당 변호사, 대표변호사로 취임</p>
-          </div>
+          {isPrevContent && (
+            <div className="prev">
+              <button data-id={prevNews.id} onClick={handleMove}>
+                <LineArrowIcon direction={'LEFT'} weight="NORMAL" />
+                <p>이전글</p>
+              </button>
+              <p className="btn_title">{prevNews?.title}</p>
+            </div>
+          )}
           <S.ListIconWrapper>
             <BaseButton className="hamburger-news" onClick={handleClickList} />
           </S.ListIconWrapper>
-          <div className="next">
-            <p>양원석 남산 경영담당 변호사, 대표변호사로 취임</p>
-            <button datatype="next" onClick={handleMove}>
-              <p>다음글</p>
-              <LineArrowIcon direction={'RIGHT'} weight="NORMAL" />
-            </button>
-          </div>
+
+          {isNextContent && (
+            <div className="next">
+              <p className="btn_title">{nextNews.title}</p>
+              <button data-id={nextNews.id} onClick={handleMove}>
+                <p>다음글</p>
+                <LineArrowIcon direction={'RIGHT'} weight="NORMAL" />
+              </button>
+            </div>
+          )}
         </div>
       </S.BottomConatiner>
     </S.Wrapper>
