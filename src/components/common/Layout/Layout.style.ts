@@ -31,10 +31,15 @@ const LayoutContent = styled.div<{ isMainPage: boolean }>`
 const TopButtonWrapper = styled.div<{ isTransparent?: boolean }>`
   width: 100%;
   ${({ isTransparent }) =>
-    isTransparent ? 'display: none;' : flex('flex-end', 'center ')}};
+    isTransparent ? 'display: none;' : flex('flex-end', 'center ')};
   position: fixed;
   right: 90px;
   bottom: 60px;
+
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 12px;
+
   ${mediaQuery(
     'tablet1024',
     `
@@ -107,7 +112,8 @@ const ToastWrapper = styled.div<{ isVisible: boolean }>`
   ${flex()}
   ${size('48px', '100%')}
   position: fixed;
-  bottom: 284px;
+  bottom: 52px;
+  display: ${({ isVisible }) => (isVisible ? 'center' : 'none')};
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   animation: ${({ isVisible }) => (isVisible ? fadeIn : fadeOut)} 0.45s ease-out;
   transition: visibility 0.45s ease-out;
@@ -115,7 +121,9 @@ const ToastWrapper = styled.div<{ isVisible: boolean }>`
 
 const Toast = styled.span`
   ${flex()}
-  ${size('48px', '320px')}
+  ${size('48px', '100%')}
+  max-width: 327px;
+  margin: 0px 24px;
 
   background: ${({ theme }) => theme.color.black};
   opacity: 0.85;

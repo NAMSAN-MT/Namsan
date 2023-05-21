@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react';
 import { TUrl } from '../GNB/GNB.interface';
 
 interface ILayoutProps {
@@ -9,4 +10,17 @@ interface ILayoutProps {
   isTransparent?: boolean;
 }
 
-export { ILayoutProps };
+interface ITopButtonProps {
+  mouseOverFromTopButton: boolean;
+  setMouseOverFromTopButton: React.Dispatch<React.SetStateAction<boolean>>;
+  handleTopEvent: (
+    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>,
+  ) => void;
+}
+interface ICopyButtonProps {
+  isCopyButton: boolean;
+  toastMessage: string;
+  handleCopyLink: MouseEventHandler<HTMLButtonElement>;
+}
+
+export { ILayoutProps, ITopButtonProps, ICopyButtonProps };

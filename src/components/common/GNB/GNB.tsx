@@ -50,7 +50,11 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
     >
       <S.LogoWrapper>
         <Link className="link" key="home" to={`/${language}/`} about="home">
-          <LogoIcon width="100%" isMobile={isMobile && isTransparent} />
+          <LogoIcon
+            width="100%"
+            isMobile={isMobile}
+            isTransparent={isTransparent}
+          />
         </Link>
       </S.LogoWrapper>
       <S.MainLinkWrapper>

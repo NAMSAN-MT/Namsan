@@ -54,6 +54,7 @@ const LineArrowIcon = (props: PropTypes) => {
       case 'LIGHT':
         src = arrowLeftTh5Icon;
         alt = 'arrow left th5 icon';
+        break;
       case 'NORMAL':
       default:
         src = arrowLeftTh10Icon;
@@ -69,6 +70,7 @@ const LineArrowIcon = (props: PropTypes) => {
       case 'LIGHT':
         src = arrowRightTh5Icon;
         alt = 'arrow right th5 icon';
+        break;
       case 'NORMAL':
       default:
         src = arrowRightTh10Icon;
