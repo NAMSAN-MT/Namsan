@@ -6,9 +6,13 @@ const ContentSectionWrapper = styled.div`
   width: 1200px;
   position: relative;
 
-  ${mediaQuery('pc1380', `width: 944px;`)}
   ${mediaQuery(
-    'tablet1024',
+    'pc1380',
+    `
+    width: 100%;`,
+  )}
+  ${mediaQuery(
+    'mobile',
     `
   width: 100%;
 
@@ -30,9 +34,9 @@ const Map = styled.div`
   }
 
   ${mediaQuery(
-    'tablet1024',
+    'mobile',
     `
-  margin-top: 16px;
+  margin-top: 0px;
   margin-bottom: 40px;
   height: 390px;
   width: 100vw;

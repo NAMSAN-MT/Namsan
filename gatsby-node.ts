@@ -80,7 +80,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
     members.data.allMembers.nodes.map(async (node: IMember) => {
       const imageUniqueId = node.imagePath.split('/')[1].split('.')[0];
 
-      const file = await graphql(`
+      const profileImage = await graphql(`
       query {
         file(name: {regex: "/${imageUniqueId}/g"}) {
           childImageSharp {
@@ -88,16 +88,41 @@ exports.createPages = async ({ actions, graphql }: any) => {
           }
         }
     }`);
+
+      const bgImage = await graphql(`
+      query {
+        file(name: {eq: "${node.bgImagePath}"}) {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }`);
+
+      const categoryIds = await Promise.all(
+        node.businessFields.map(async (field: string) => {
+          const category = await graphql(`
+        query {
+          work(categoryInfo: {in: "${field}"}) {
+            categoryId
+          }
+        }`);
+          return category.data.work?.categoryId || '';
+        }),
+      );
+
       return {
         ...node,
         image: {
-          ...file.data.file?.childImageSharp.gatsbyImageData,
+          ...profileImage.data.file?.childImageSharp.gatsbyImageData,
           backgroundColor: '#F6F8FA',
         },
+        bgImage: bgImage.data.file?.childImageSharp.gatsbyImageData,
+        categoryIds,
       };
     }),
   );
 
+  /* 전체 구성원 페이지 생성 */
   actions.createPage({
     path: '/members',
     component: resolve('./src/templates/members.tsx'),
@@ -107,28 +132,16 @@ exports.createPages = async ({ actions, graphql }: any) => {
     },
   });
 
+  /* 개별 구성원 페이지 생성 */
   await Promise.all(
     contextMembers.map(async (node: any) => {
-      const bg = await graphql(`
-    query {
-      file(name: {eq: "${node.bgImagePath}"}) {
-        childImageSharp {
-          gatsbyImageData
-        }
-      }
-  }`);
-
-      const member = {
-        ...node,
-        bgImage: bg.data.file?.childImageSharp.gatsbyImageData,
-      };
-
       actions.createPage({
-        path: `/member/${node.id}`,
-        component: resolve('./src/pages/member/[id].tsx'),
+        path: `/member/${node.order}`,
+        component: resolve('./src/pages/member/[order].tsx'),
         context: {
           id: node.id,
-          member,
+          members: contextMembers,
+          order: node.order,
         },
       });
     }),
