@@ -1,4 +1,5 @@
-import { flex, font, mediaQuery } from '@Styles/mixin.style';
+import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
+import { ScreenBreakPoints } from '@Styles/varialbes.style';
 import { size } from 'lodash';
 import styled from 'styled-components';
 
@@ -7,14 +8,19 @@ const Base = styled.div`
   ${flex('flex-start', 'center')};
 
   & > span {
-    ${font('title18', 'medium')}
+    ${font('title18', 'medium')};
+    ${lineHeight(18, 28)};
     letter-spacing: -0.4px;
+
+    margin-left: 12px;
 
     ${mediaQuery(
       'mobile',
       `
         ${font('mobile16', 'regular')};
+        ${lineHeight(16, 26)}
         letter-spacing: -0.2px;
+        margin-left: 0;
       `,
     )}
   }
@@ -31,6 +37,11 @@ const Select = styled(Base)<{ isOpen: boolean }>`
   & > span {
     font-weight: 400;
   }
+
+  @media (max-width: ${ScreenBreakPoints.tablet1024}) {
+    border-bottom: 1px solid
+      ${({ isOpen, theme }) => (isOpen ? 'transparent' : theme.color.grey200)};
+  }
 `;
 
 const OptionWrapper = styled.ul`
@@ -46,16 +57,21 @@ const OptionWrapper = styled.ul`
   flex-direction: column;
   padding-top: 12px;
   padding-bottom: 12px;
+
+  @media (max-width: ${ScreenBreakPoints.tablet1024}) {
+    border: ${({ theme }) => `solid 1px ${theme.color.blue100}`};
+  }
 `;
 
 const Option = styled(Base)<{ isSelected: boolean }>`
   width: 100%;
   cursor: pointer;
-  padding: 14px 10px;
 
   & > span {
     color: ${({ isSelected, theme }) =>
       isSelected ? theme.color.blue100 : theme.color.black};
+    margin-top: 14px;
+    margin-bottom: 14px;
   }
 
   &:hover {
@@ -65,7 +81,9 @@ const Option = styled(Base)<{ isSelected: boolean }>`
   ${mediaQuery(
     'mobile',
     `
-      margin: 16px;
+      & > span {
+        margin: 8px 16px;
+      }
     `,
   )}
 `;
@@ -74,8 +92,8 @@ const OpenIconWrapper = styled.div`
   position: absolute;
   ${size({ width: '24px', height: '24px' })};
   top: 50%;
-  transform: translateY(-50%);
-  right: 19px;
+  transform: translateY(calc(-50% - 2px));
+  right: 13px;
 `;
 
 export { Select, OptionWrapper, Option, OpenIconWrapper };

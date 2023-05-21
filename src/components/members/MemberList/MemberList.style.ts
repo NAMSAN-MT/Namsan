@@ -5,7 +5,7 @@ const MemberList = styled.ul`
   ${flex('flex-start')}
   flex-wrap: wrap;
   margin-top: 80px;
-  gap: 60px 24px;
+  gap: 20px 24px;
 
   ${mediaQuery('tablet1024', `margin-top: 72px;`)}
   ${mediaQuery('mobile', `margin-top: 32px;`)}
