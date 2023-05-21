@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { mediaQuery } from '../../../styles/mixin.style';
 const Outer = styled.div`
-  padding: 100px 90px;
+  padding: 100px 90px 160px;
   box-sizing: content-box;
 
   ${mediaQuery('tablet1024', `padding: 60px 40px;`)}
@@ -10,7 +10,7 @@ const Outer = styled.div`
     'mobile',
     `
   padding: 0px auto;
-  padding: 32px 24px;
+  padding: 32px 24px 100px;
   `,
   )}
 `;

@@ -8,7 +8,12 @@ const SearchBarWrapper = styled.div`
   gap: 24px;
 
   ${mediaQuery('pc1278', `flex-wrap: wrap;`)}
-  ${mediaQuery('mobile', `flex-direction: column;`)}
+  ${mediaQuery(
+    'mobile',
+    `
+  flex-direction: column;
+  gap: 9px`,
+  )}
 `;
 
 const ItemWrapper = styled.div<{ width: string }>`

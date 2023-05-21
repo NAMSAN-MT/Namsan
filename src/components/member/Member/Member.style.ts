@@ -106,6 +106,7 @@ const TagWrapper = styled.div`
   ${mediaQuery('mobile', `gap: 6px;`)};
 
   .tag {
+    cursor: pointer;
     padding: 4px 8px;
     border-radius: 2px;
     display: inline-block;
