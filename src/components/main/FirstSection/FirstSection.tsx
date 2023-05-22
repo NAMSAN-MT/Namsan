@@ -19,13 +19,14 @@ const FirstSection = (props: IFirstSectionProps) => {
   return (
     <S.FrirstWrapper ref={ref}>
       <video
-        src={mainVideo}
-        autoPlay
-        loop
         muted
+        loop
+        playsInline
+        autoPlay
+        preload="auto"
+        src={mainVideo}
         width="100%"
         height="100%"
-        playsInline
       />
     </S.FrirstWrapper>
   );
