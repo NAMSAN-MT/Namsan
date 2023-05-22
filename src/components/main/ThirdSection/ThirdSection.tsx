@@ -43,10 +43,12 @@ const ThirdSection = (props: IThirdSectionProps) => {
               </S.LeftWrapper>
               <S.RightWrapper>
                 <video
-                  src={mainVideo}
-                  autoPlay
-                  loop
                   muted
+                  loop
+                  playsInline
+                  autoPlay
+                  preload="auto"
+                  src={mainVideo}
                   width="100%"
                   height="100%"
                 ></video>
