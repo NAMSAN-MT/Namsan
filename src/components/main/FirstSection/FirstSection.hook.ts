@@ -1,5 +1,5 @@
 import { getVideo } from '@Api/main.api';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IFirstSectionProps } from './FirstSection.interface';
 import { useIntl } from 'gatsby-plugin-intl';
 
@@ -34,8 +34,13 @@ const useFirstSection = (props: IFirstSectionProps) => {
       const mainVideo = await getVideo('main/mainFull_EN.mp4');
       setMainVideo(mainVideo);
     };
-    init();
-  }, [props.isMobile]);
+
+    try {
+      init();
+    } catch (error) {
+      console.error(error);
+    }
+  }, [props.isMobile || locale || mainVideo]);
 
   return {
     mainVideo,
