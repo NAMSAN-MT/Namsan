@@ -48,7 +48,7 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
           <MemberDescription member={member} />
         </div>
         {introduceOrder.map(key => {
-          const values = member[key as IntroduceType];
+          const values = member[key as IntroduceType]!;
           const isValid = !isEmpty(values);
           return (
             isValid && (
