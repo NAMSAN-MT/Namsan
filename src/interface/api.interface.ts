@@ -68,6 +68,7 @@ export interface IMember {
   businessFields: string[];
   categoryIds: string[];
   description?: string;
+  descriptionPreview?: string;
   educations?: IMemberAttribute[];
   careers: IMemberAttribute[];
   papers?: IMemberAttribute[];
