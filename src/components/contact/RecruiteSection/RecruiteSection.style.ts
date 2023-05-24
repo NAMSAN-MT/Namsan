@@ -4,10 +4,10 @@ import styled from 'styled-components';
 const RecruiteSectionWrapper = styled.div`
   width: 1200px;
   margin: 0 auto;
-  margin-top: 78px;
+  margin-top: 80px;
 
   ${mediaQuery('pc1380', `width: 100%;`)}
-  ${mediaQuery('tablet1024', `margin-top: 49px;`)};
+  ${mediaQuery('mobile', `margin-top: 47.5px;`)};
 `;
 
 const Description = styled.div`
@@ -17,7 +17,7 @@ const Description = styled.div`
   margin: 20px 0 60px;
 
   ${mediaQuery(
-    'tablet1024',
+    'mobile',
     `
     ${font('mobile14', 'regular')};
     ${lineHeight(14, 24)};

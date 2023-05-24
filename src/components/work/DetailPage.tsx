@@ -1,9 +1,12 @@
 import BaseButton from '@Components/common/BaseButton';
-import LineArrowIcon from '@Components/icons/LineArrowIcon/LineArrowIcon';
+import { BoxDivider } from '@Components/common/List/List.style';
+import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 import MemberItem from '@Components/members/MemberItem';
 import { PageContextProps } from '@Pages/work/[id]';
 import { injectIntl } from 'gatsby-plugin-intl';
 import React, { MouseEvent, useState } from 'react';
+import NavigationDown from '../../assets/lottie/navigation_down.json';
+import NavigationUp from '../../assets/lottie/navigation_up.json';
 import { CategoryDescription } from './work.interface';
 import {
   Anchor,
@@ -14,12 +17,12 @@ import {
   Head,
   Image,
   Layout,
+  LineArrowIconInner,
   MemberBox,
   MemberList,
   SubTitle,
   Title,
 } from './work.styled';
-import { BoxDivider } from '@Components/common/List/List.style';
 
 export interface Props {
   language: 'ko' | 'en';
@@ -65,17 +68,21 @@ const DetailPage = (props: Props & PageContextProps) => {
                 <Box>
                   <Anchor
                     id={`${subIdPrefix}${String(index).padStart(2, '0')}`}
-                  ></Anchor>
+                  />
                   <Head onClick={handleClick} data-index={index}>
                     <SubTitle>{item.categoryTitle}</SubTitle>
                     {/* TODO: SVG color 적용 */}
-                    <LineArrowIcon
-                      direction={item.isOpen ? 'UP' : 'DOWN'}
-                      weight="BOLD"
-                      width="21px"
-                    ></LineArrowIcon>
+                    <LineArrowIconInner>
+                      <LottieWrapper
+                        animationData={
+                          item.isOpen ? NavigationUp : NavigationDown
+                        }
+                        width={21}
+                        loop={false}
+                        autoplay={true}
+                      />
+                    </LineArrowIconInner>
                   </Head>
-
                   {item.isOpen && <Contents>{item.description}</Contents>}
                 </Box>
                 <BoxDivider />
@@ -95,6 +102,7 @@ const DetailPage = (props: Props & PageContextProps) => {
                   careers={[]}
                   key={member.id}
                   {...member}
+                  order={`${member.order}`}
                 />
               ),
           )}
@@ -120,6 +128,7 @@ const DetailPage = (props: Props & PageContextProps) => {
                     careers={[]}
                     key={member.id}
                     {...member}
+                    order={`${member.order}`}
                   />
                 ),
             )}

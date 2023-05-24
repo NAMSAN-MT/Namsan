@@ -3,6 +3,7 @@ import { NewsType } from '@Type/api.type';
 
 export interface CardProps {
   type: 'main' | 'news';
+  isLoading: boolean;
   newsList: NewsMin[];
   urlPage?: string;
   newsType?: NewsType;

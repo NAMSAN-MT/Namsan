@@ -50,6 +50,10 @@ export const Title = styled.h1`
   )}
 `;
 
+export const LineArrowIconInner = styled.div`
+  cursor: pointer;
+`;
+
 export const SubTitle = styled.h2`
   ${font('title26', 'bold')}
 

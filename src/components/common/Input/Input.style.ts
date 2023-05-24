@@ -1,4 +1,5 @@
 import { font, mediaQuery, size } from '@Styles/mixin.style';
+import { ScreenBreakPoints } from '@Styles/varialbes.style';
 import styled from 'styled-components';
 
 const InputWrapper = styled.form`
@@ -28,12 +29,20 @@ const Input = styled.input`
       ${font('mobile16', 'regular')};
     `,
   )}
+
+  @media (max-width: ${ScreenBreakPoints.tablet1024}) {
+    border-bottom: 1px solid ${({ theme }) => theme.color.grey200};
+
+    &:focus {
+      border-bottom: 1px solid ${({ theme }) => theme.color.blue100};
+    }
+  }
 `;
 
 const SearchIconWrapper = styled.button`
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% - 2px));
   right: 20px;
 `;
 

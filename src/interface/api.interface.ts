@@ -64,9 +64,11 @@ export interface IMember {
   name: string;
   position: string;
   email: string;
-  order: number;
+  order: string;
   businessFields: string[];
+  categoryIds: string[];
   description?: string;
+  descriptionPreview?: string;
   educations?: IMemberAttribute[];
   careers: IMemberAttribute[];
   papers?: IMemberAttribute[];

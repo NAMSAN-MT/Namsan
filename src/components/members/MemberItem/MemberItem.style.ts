@@ -90,7 +90,7 @@ const Name = styled.div`
     'mobile',
     `
       ${font('mobile16', 'bold')};
-      margin-top: 12px;
+      margin-top: 10px;
     `,
   )}
 `;

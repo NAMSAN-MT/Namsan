@@ -3,6 +3,9 @@ import { font, lineHeight, mediaQuery, size } from '@Styles/mixin.style';
 
 const MemberWrapper = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ImageWrapper = styled.div`
@@ -12,10 +15,19 @@ const ImageWrapper = styled.div`
 
   margin: 0 auto;
 
+  ${mediaQuery(
+    'tablet1024',
+    `margin: 0 auto;
+  height: 423.6px;`,
+  )}
   ${mediaQuery('mobile', `${size('360px')};`)};
 
   .bg {
     ${size('100%', '100%')};
+
+    & > div {
+      height: 100%;
+    }
   }
 
   .profile {
@@ -23,18 +35,31 @@ const ImageWrapper = styled.div`
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0;
+    top: 0;
 
-    ${mediaQuery('mobile', `${size(undefined, '215px')}`)}
+    ${mediaQuery('tablet1024', `${size(undefined, '325px')}`)}
+    ${mediaQuery(
+      'mobile',
+      `${size('100%', '268px')};
+    display: flex;`,
+    )}
   }
 `;
 
 const TextWrapper = styled.div`
   background-color: ${props => props.theme.color.white};
-  padding: 68px 102px;
+  padding: 68px 102px calc(160px - 85px);
   margin: 0 auto;
   max-width: 996px;
   transform: translateY(-85px);
+
+  ${mediaQuery(
+    'tablet1024',
+    `
+    padding: 68px 40px calc(160px - 85px);
+    margin: 0 40px;
+  `,
+  )}
 
   ${mediaQuery(
     'mobile',
@@ -46,7 +71,7 @@ const TextWrapper = styled.div`
 
   .name {
     ${font('display36', 'bold')};
-    ${lineHeight(36, 60)};
+    ${lineHeight(36, 54)};
     letter-spacing: -0.4px;
 
     ${mediaQuery(
@@ -62,7 +87,10 @@ const TextWrapper = styled.div`
 
     ${mediaQuery(
       'mobile',
-      `${font('mobile16', 'bold')};${lineHeight(16, 26)};letter-spacing:0;}`,
+      `${font('mobile16', 'bold')};${lineHeight(
+        16,
+        26,
+      )};letter-spacing:0;margin-bottom: 0;}`,
     )};
 
     .email {
@@ -77,14 +105,14 @@ const TextWrapper = styled.div`
         `${font('mobile14', 'regular')};
         ${lineHeight(14, 22)};
         letter-spacing:0;
-        margin-bottom: 20px;`,
+        margin-bottom: 12px;`,
       )};
     }
 
     .description {
       ${font('title20', 'regular')};
       ${lineHeight(20, 34)};
-      margin: 32px 0;
+      margin: 32px 0 40px;
       white-space: pre-wrap;
 
       ${mediaQuery(
@@ -92,7 +120,7 @@ const TextWrapper = styled.div`
         `${font('mobile16', 'regular')};
         ${lineHeight(16, 26)};
         letter-spacing:0;
-        margin: 24px 0;`,
+        margin: 24px 0 32px;`,
       )};
     }
   }
@@ -106,6 +134,7 @@ const TagWrapper = styled.div`
   ${mediaQuery('mobile', `gap: 6px;`)};
 
   .tag {
+    cursor: pointer;
     padding: 4px 8px;
     border-radius: 2px;
     display: inline-block;
@@ -120,7 +149,8 @@ const TagWrapper = styled.div`
       'mobile',
       `
     ${font('mobile12', 'bold')};
-    ${lineHeight(12, 18)};
+    // ${lineHeight(12, 18)};
+    line-height: 1.78;
     letter-spacing: -0.1px;`,
     )};
   }
