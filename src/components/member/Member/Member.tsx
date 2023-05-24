@@ -1,5 +1,5 @@
 import Divider from '@Components/common/Divider';
-import React from 'react';
+import React, { useState } from 'react';
 import IntroduceItem from '../IntroduceItem';
 import { IntroduceType } from '../IntroduceItem/IntroduceItem.type';
 import { introduceOrder } from './Member.const';
@@ -8,9 +8,11 @@ import * as S from './Member.style';
 import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { isEmpty } from 'lodash';
+import MemberDescription from '../MemberDescription/MemberDescription';
 
 const Member = (props: MemberProps & WrappedComponentProps) => {
   const { member } = props;
+
   if (!member) return <></>;
 
   const handleClickTag = (index: number) => {
@@ -43,12 +45,13 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
           ))}
         </S.TagWrapper>
         <div className="description">
-          {member.description && <div>{member.description}</div>}
+          <MemberDescription member={member} />
         </div>
         {introduceOrder.map(key => {
           const values = member[key as IntroduceType];
+          const isValid = !isEmpty(values);
           return (
-            values && (
+            isValid && (
               <>
                 <Divider />
                 <IntroduceItem

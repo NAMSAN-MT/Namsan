@@ -53,6 +53,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
           order
           businessFields
           description
+          descriptionPreview
           educations {
             time
             value
@@ -62,7 +63,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
             value
           }
           papers {
-            time
             value
           }
           awards {
