@@ -1,5 +1,6 @@
 import { font, mediaQuery, size } from '@Styles/mixin.style';
 import styled from 'styled-components';
+import * as S from '@Components/members/MemberItem/MemberItem.style';
 
 export const Grid = styled.div`
   width: 100%;
@@ -44,7 +45,7 @@ export const Title = styled.h1`
   ${mediaQuery(
     'mobile',
     `
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     ${font('mobile24', 'bold')}
       `,
   )}
@@ -132,7 +133,8 @@ export const Layout = styled.div`
     'mobile',
     `
       padding: 0px 24px;
-      margin-bottom: 32px;
+      margin-top: 99px;
+      margin-bottom: 100px;
   `,
   )}
 `;
@@ -142,7 +144,7 @@ export const MemberBox = styled.div`
 
   ${mediaQuery(
     'mobile',
-    `margin-top:32px;
+    `margin-top:40px;
       `,
   )}
 `;
@@ -177,8 +179,31 @@ export const MemberList = styled.div`
     width: auto;
     height: auto;
     margin-bottom: 0px;
+
+    & > ${S.ImageSection}:hover {
+      ${S.TagsWrapper} {
+        display: none;
+      }
+      .dim {
+        display: none;
+      }
+    }
+
     & > div {
       height: auto;
+      & > ${S.Name} {
+        margin-top: 16px;
+        ${font('title20', 'bold')}
+
+        ${mediaQuery(
+          'mobile',
+          `margin-top: 10px;
+      `,
+        )}
+      }
+      & > ${S.Position} {
+        ${font('title18', 'regular')}
+      }
     }
 
     ${mediaQuery(
@@ -206,12 +231,12 @@ export const Image = styled.img`
     ${size('160px', '100%')}
     overflow:hidden;
     margin-top: 8px;
-    margin-bottom: 32px;`,
+    margin-bottom: 28px;`,
   )}
 `;
 
 export const ButtonWrapper = styled.div`
-  margin-top: 60px;
+  margin-top: 48px;
   display: flex;
   justify-content: space-around;
 
