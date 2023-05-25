@@ -1,12 +1,13 @@
 {
   "common": {
-    "introduce": "ABOUT",
+    "introduce": "About",
     "work": "Expertise",
     "members": "Professionals",
     "news": "News",
     "contact": "Contact"
   },
   "main": {
+    "title1": "Namsan has been stranding along with clients over the generations.",
     "title2": "Teamwork based on 40 years of Experience",
     "description2": "Lim, Chung & Suh provides<br/> client-specific professional services <br/> based on its expertise and sincerity.",
     "description2_mobile": "Lim, Chung & Suh provides<br/> client-specific professional services <br/> based on its expertise and sincerity.",
