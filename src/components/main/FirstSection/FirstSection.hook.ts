@@ -16,7 +16,7 @@ import IntroMobile4 from '@Images/introMobile04.png';
 
 const useFirstSection = (props: IFirstSectionProps) => {
   const { locale } = useIntl();
-  const [zero, setZero] = useState(true);
+  const [zero, setZero] = useState(false);
   const [first, setFirst] = useState(false);
   const [second, setSecond] = useState(false);
   const [third, setThird] = useState(false);
@@ -63,6 +63,7 @@ const useFirstSection = (props: IFirstSectionProps) => {
 
   const onLoadIntro0 = () => {
     _init();
+    setZero(true);
     setTimeout(() => {
       setStartSlide(true);
       setFirst(true);
@@ -71,40 +72,24 @@ const useFirstSection = (props: IFirstSectionProps) => {
   };
 
   useEffect(() => {
-    const init = async () => {
-      if (props.isMobile) {
-        // mobile
-        setIntro0(IntroMobile0);
-        setIntro1(IntroMobile1);
-        setIntro2(IntroMobile2);
-        setIntro3(IntroMobile3);
-        setIntro4(IntroMobile4);
-        return;
-      }
-
-      // desktop
-      setIntro0(Intro0);
-      setIntro1(Intro1);
-      setIntro2(Intro2);
-      setIntro3(Intro3);
-      setIntro4(Intro4);
+    if (props.isMobile) {
+      // mobile
+      setIntro0(IntroMobile0);
+      setIntro1(IntroMobile1);
+      setIntro2(IntroMobile2);
+      setIntro3(IntroMobile3);
+      setIntro4(IntroMobile4);
       return;
-    };
-
-    try {
-      init();
-    } catch (error) {
-      console.error(error);
     }
-  }, [
-    props.isMobile,
-    locale,
-    setIntro0,
-    setIntro1,
-    setIntro2,
-    setIntro3,
-    setIntro4,
-  ]);
+
+    // desktop
+    setIntro0(Intro0);
+    setIntro1(Intro1);
+    setIntro2(Intro2);
+    setIntro3(Intro3);
+    setIntro4(Intro4);
+    return;
+  }, [props.isMobile]);
 
   return {
     zero,
