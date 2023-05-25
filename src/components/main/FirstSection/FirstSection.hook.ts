@@ -53,22 +53,21 @@ const useFirstSection = (props: IFirstSectionProps) => {
     }
   }, [startSlide, first, second, third, forth]);
 
-  const _init = () => {
-    setZero(false);
-    setFirst(false);
-    setSecond(false);
-    setThird(false);
-    setForth(false);
-  };
-
-  const onLoadIntro0 = () => {
-    _init();
+  useEffect(() => {
     setZero(true);
     setTimeout(() => {
       setStartSlide(true);
       setFirst(true);
       setZero(false);
     }, 4600);
+  }, []);
+
+  const _init = () => {
+    setZero(false);
+    setFirst(false);
+    setSecond(false);
+    setThird(false);
+    setForth(false);
   };
 
   useEffect(() => {
@@ -97,7 +96,6 @@ const useFirstSection = (props: IFirstSectionProps) => {
     second,
     third,
     forth,
-    onLoadIntro0,
     seconds,
     intro0,
     intro1,
