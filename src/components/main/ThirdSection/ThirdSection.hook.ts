@@ -13,15 +13,19 @@ const useThirdSection = (props: IThirdSectionProps) => {
   const { handleNavigate } = useNavigate();
   const [mainVideo, setMainVideo] = useState<string>();
   const [mainPoster, setMainPoster] = useState<string>(cardKO);
+  const [isKakaoBrower, setKakaoBrower] = useState(false);
 
   useEffect(() => {
     const init = async () => {
+      const isKakao = navigator.userAgent.match('KAKAOTALK');
+      setKakaoBrower(Boolean(isKakao));
       if (locale === 'ko') {
         if (props.isMobile) {
           // ko & mobile
           const mainVideo = await getVideo('main/McardFull.mp4');
           setMainVideo(mainVideo);
           setMainPoster(cardMobileKO);
+
           return;
         }
 
@@ -73,6 +77,7 @@ const useThirdSection = (props: IThirdSectionProps) => {
     handleNavigateTo,
     mainVideo,
     mainPoster,
+    isKakaoBrower,
   };
 };
 
