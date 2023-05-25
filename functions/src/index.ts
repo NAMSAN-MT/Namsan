@@ -67,6 +67,7 @@ export const helloWorld = functions
                 title: document.title,
                 content,
                 newsType: document.newsType,
+                order: doc.data().order ?? 0,
               });
             });
             resolve(list);
@@ -109,6 +110,7 @@ const saveDocumentInAlgolia = async (sanpshot: any, context: any) => {
         title: data.title,
         content,
         newsType: data.newsType,
+        order: data.order,
       });
 
       COLLECTION_INDEX.saveObjects(list, {
@@ -131,7 +133,12 @@ export const collectionOnUpdate = functions
     await updateDocumentInAlgolia(context.params.newsId, change);
   });
 
-type NewObjectType = { objectId: any; title?: string; content?: string };
+type NewObjectType = {
+  objectId: any;
+  title?: string;
+  content?: string;
+  order?: boolean;
+};
 const updateDocumentInAlgolia = async (objectID: any, change: any) => {
   const before = change.before.data();
   const after = change.after.data();
@@ -145,6 +152,11 @@ const updateDocumentInAlgolia = async (objectID: any, change: any) => {
 
     if (before.content !== after.content) {
       news.content = after.content;
+      flag = true;
+    }
+
+    if (before.order !== after.order) {
+      news.order = after.order;
       flag = true;
     }
 

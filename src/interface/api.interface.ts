@@ -30,6 +30,7 @@ export interface IParameter {
 }
 
 export interface News {
+  id: any;
   documentId?: string;
   title: string;
   content: string;
@@ -38,12 +39,18 @@ export interface News {
   agency: string;
   originalLink: string;
   imagePath: string;
+  newsImageData?: IGatsbyImageData;
   newsType: NewsType;
   dateYearMonth?: string;
   dateYearMonthDate?: string;
+  order: number;
+  memberId?: any;
+  prevNews?: { id: string; title: string };
+  nextNews?: { id: string; title: string };
 }
 
 export interface NewsMin {
+  order: number;
   documentId?: string;
   title: string;
   summary: string;
