@@ -1,7 +1,5 @@
-import { getVideo } from '@Api/main.api';
 import { useEffect, useState } from 'react';
 import { IFirstSectionProps } from './FirstSection.interface';
-import { useIntl } from 'gatsby-plugin-intl';
 import Intro0 from '@Images/intro.gif';
 import Intro1 from '@Images/intro01.png';
 import Intro2 from '@Images/intro02.png';
@@ -15,7 +13,6 @@ import IntroMobile3 from '@Images/introMobile03.png';
 import IntroMobile4 from '@Images/introMobile04.png';
 
 const useFirstSection = (props: IFirstSectionProps) => {
-  const { locale } = useIntl();
   const [zero, setZero] = useState(false);
   const [first, setFirst] = useState(false);
   const [second, setSecond] = useState(false);
