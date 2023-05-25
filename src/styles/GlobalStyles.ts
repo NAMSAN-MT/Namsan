@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     line-height: 1.5;
+    scroll-x : hidden;
     /* min-width: 1024px; */
     font: -webkit-control;
 

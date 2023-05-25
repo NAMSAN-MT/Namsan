@@ -41,6 +41,7 @@ const ForthSection = (props: IForthSectionProps) => {
             <S.BottomWrapper>
               <React.Suspense fallback={<Loading height="500px" />}>
                 <Card
+                  isLoading={false}
                   type="main"
                   newsList={newsList.slice(0, 3)}
                   onCallMainNewsList={onCallMainNewsList}
