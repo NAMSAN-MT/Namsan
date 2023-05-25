@@ -1,12 +1,13 @@
 import { getData, getFileFromStorage } from '@Api/index.api';
 import { getNewsMember } from '@Api/news.api';
 import BaseButton from '@Components/common/BaseButton';
+import Loading from '@Components/common/Loading';
 import LineArrowIcon from '@Components/icons/LineArrowIcon';
 import { navigate } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { injectIntl } from 'gatsby-plugin-intl';
 import { isEmpty } from 'lodash';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { convertDateStr } from './NewsDetail.helper';
 import { NewsProfile, Props } from './NewsDetail.interface';
 import * as S from './NewsDetail.style';
@@ -24,6 +25,7 @@ const NewsDetail = (props: Props) => {
     prevNews,
     nextNews,
   } = props;
+  console.log(imagePath);
 
   const dateYearMonthDate = convertDateStr(date);
 
@@ -77,9 +79,11 @@ const NewsDetail = (props: Props) => {
       </S.HeaderContainer>
       <S.ContentConatiner isProfile={!isEmpty(profile)}>
         {isMediaNews && (
-          <article className="top">
-            <img src={image} alt={title} loading={'lazy'} />
-          </article>
+          <Suspense fallback={<Loading height="500px" />}>
+            <article className="top">
+              <img src={image} alt={title} loading={'lazy'} />
+            </article>
+          </Suspense>
         )}
         <S.Content>{content}</S.Content>
         <article className="bottom">

@@ -38,6 +38,26 @@ exports.onCreateNode = async ({
       });
     }
   }
+
+  if (node.internal.type === 'news') {
+    if (isEmpty(node.imagePath)) return;
+    const fileNode = await createRemoteFileNode({
+      url: await getFileFromStorage(node.imagePath),
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      getCache,
+    });
+
+    if (fileNode) {
+      createNodeField({
+        node,
+        id: node.id,
+        name: 'localFile',
+        value: fileNode.id,
+      });
+    }
+  }
 };
 
 exports.createPages = async ({ actions, graphql }: any) => {
@@ -255,6 +275,19 @@ exports.createPages = async ({ actions, graphql }: any) => {
     }
   `);
 
+  const getNewsImage = async (path?: string) => {
+    return !isEmpty(path)
+      ? await graphql(`
+        query {
+          imagePath: file(name: {eq: "${path}"}) {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+      `)
+      : undefined;
+  };
+
   const getOrderNews = async (order?: number) => {
     return isNumber(order)
       ? await graphql(`
@@ -278,6 +311,8 @@ exports.createPages = async ({ actions, graphql }: any) => {
     if (prev) prevNews = await getOrderNews(prev);
     if (next) nextNews = await getOrderNews(next);
 
+    let newsImage = node.imagePath ? getNewsImage(node.imagePath) : '';
+
     actions.createPage({
       path: `/news/${node.id}`,
       component: resolve('./src/pages/news/[id].tsx'),
@@ -286,6 +321,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
           ...node,
           prevNews: prevNews?.data?.news,
           nextNews: nextNews?.data?.news,
+          newsImage,
         },
       },
     });
