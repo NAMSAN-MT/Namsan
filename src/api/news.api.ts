@@ -126,10 +126,13 @@ export const getNewsMember = async (_documentId: string) => {
     const data = result[0];
     const memberRef = data?.memberId;
     const memberSnapshot = await memberRef.get();
-    const { imagePath, name, position } = await getData(memberSnapshot);
-    const profileImage = await getFileFromStorage(imagePath);
+    const dd = await getData(memberSnapshot);
+    const { imagePath, name, position } = dd;
+    console.log('!!!', dd);
+
+    // const profileImage = await getFileFromStorage(imagePath);
     return {
-      profileImage,
+      // profileImage,
       name,
       position,
     };

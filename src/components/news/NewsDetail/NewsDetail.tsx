@@ -1,4 +1,3 @@
-import { getData, getFileFromStorage } from '@Api/index.api';
 import { getNewsMember } from '@Api/news.api';
 import BaseButton from '@Components/common/BaseButton';
 import Loading from '@Components/common/Loading';
@@ -14,18 +13,18 @@ import * as S from './NewsDetail.style';
 
 const NewsDetail = (props: Props) => {
   const {
-    id: DocumentId,
+    id,
     agency,
     newsType,
     originalLink,
     title,
     content,
     date,
-    imagePath,
+    newsImageData,
     prevNews,
     nextNews,
   } = props;
-  console.log(imagePath);
+  console.log(props);
 
   const dateYearMonthDate = convertDateStr(date);
 
@@ -33,8 +32,8 @@ const NewsDetail = (props: Props) => {
   const [profile, setProfile] = useState<NewsProfile>();
 
   useEffect(() => {
-    imagePath && getFileFromStorage(imagePath).then(setImage);
-    DocumentId && getNewsMember(DocumentId).then(setProfile);
+    // imagePath && getFileFromStorage(imagePath).then(setImage);
+    // getNewsMember(id).then(setProfile);
   }, []);
 
   const onClickOiriginal = () => {
@@ -78,12 +77,10 @@ const NewsDetail = (props: Props) => {
         <S.DateARea>{dateYearMonthDate}</S.DateARea>
       </S.HeaderContainer>
       <S.ContentConatiner isProfile={!isEmpty(profile)}>
-        {isMediaNews && (
-          <Suspense fallback={<Loading height="500px" />}>
-            <article className="top">
-              <img src={image} alt={title} loading={'lazy'} />
-            </article>
-          </Suspense>
+        {newsImageData && (
+          <article className="top">
+            <GatsbyImage image={newsImageData} alt={''} loading="lazy" />
+          </article>
         )}
         <S.Content>{content}</S.Content>
         <article className="bottom">

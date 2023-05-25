@@ -30,7 +30,7 @@ export interface IParameter {
 }
 
 export interface News {
-  id?: string;
+  id: string;
   documentId?: string;
   title: string;
   content: string;
@@ -39,6 +39,7 @@ export interface News {
   agency: string;
   originalLink: string;
   imagePath: string;
+  newsImageData?: IGatsbyImageData;
   newsType: NewsType;
   dateYearMonth?: string;
   dateYearMonthDate?: string;
