@@ -1,4 +1,5 @@
 import {
+  ellipsis,
   ellipsisMulti,
   flex,
   flexDirection,
@@ -7,6 +8,7 @@ import {
   mediaQuery,
   size,
 } from '@Styles/mixin.style';
+import { ScreenBreakPoints } from '@Styles/varialbes.style';
 import { NewsType } from '@Type/api.type';
 import styled from 'styled-components';
 
@@ -85,7 +87,7 @@ export const DateARea = styled.p`
   ${mediaQuery('mobile', `padding: 16px 0px 40px;`)};
 `;
 
-export const ContentConatiner = styled.div`
+export const ContentConatiner = styled.div<{ isProfile: boolean }>`
   ${flexDirection('column')}
   ${size('auto', '100%')}
   max-width: 792px;
@@ -99,12 +101,71 @@ export const ContentConatiner = styled.div`
   }
 
   .bottom {
-    padding: 60px 0px 80px;
+    padding: ${({ isProfile }) => (isProfile ? '80px' : '60px')} 0px 80px;
+    @media (max-width: ${ScreenBreakPoints['mobile']}) {
+      padding: ${({ isProfile }) => (isProfile ? '52px' : '40px')} 0px 64px;
+    }
   }
 
   img {
     width: 100%;
   }
+`;
+
+export const ProfileArea = styled.div`
+  ${flex()}
+  ${flexDirection()}
+  ${size('200px', '132px')}
+
+  img {
+    ${size('132px', '132px')}
+    object-fit: scale-down;
+    border-radius: 100%;
+
+    ${mediaQuery('mobile', `${size('100px', '88px')}`)}
+  }
+
+  ${mediaQuery('mobile', `${size('152px', '100px')}`)}
+`;
+
+export const TextSection = styled.div`
+  ${flex()}
+  ${flexDirection()}
+`;
+
+export const Name = styled.div`
+  ${font('title20', 'bold')}
+  ${lineHeight(20, 34)}
+  color: ${props => props.theme.color.textBlackHigh};
+  letter-spacing: -0.4px;
+  margin-top: 8px;
+
+  ${mediaQuery(
+    'mobile',
+    `
+      margin-top: 12px;
+      ${font('mobile14', 'bold')};
+      ${lineHeight(14, 22)}
+      letter-spacing: -0.1px;
+    `,
+  )}
+`;
+
+export const Position = styled.div`
+  ${font('body16', 'regular')};
+  ${lineHeight(16, 26)};
+  letter-spacing: -0.2px;
+
+  color: ${props => props.theme.color.textBlackMedium};
+
+  ${mediaQuery(
+    'mobile',
+    `
+      ${font('mobile12', 'regular')};
+      ${lineHeight(12, 18)}
+      letter-spacing: -0.1px;
+    `,
+  )}
 `;
 
 export const Content = styled.pre`
@@ -124,9 +185,14 @@ export const Content = styled.pre`
   ${({ theme }) => theme.color.black}
 `;
 
-export const BottomConatiner = styled.div`
+export const BottomConatiner = styled.div<{
+  isPrevContent: boolean;
+  isNextContent: boolean;
+}>`
   ${flex('center', 'end')}
-  ${size('119px', '100%')}
+  ${size('100%', '100%')}
+  padding-top: 75px;
+
   border-top: 1px solid ${({ theme }) => theme.color.dividerGrey200};
 
   .action__area {
@@ -136,16 +202,35 @@ export const BottomConatiner = styled.div`
 
     ${mediaQuery(
       'tablet1024',
-      `${flexDirection('column')} align-items: start;
+      `
+        ${flexDirection('column')} 
+        align-items: start;
+        row-gap:20px;
       `,
     )};
-    ${mediaQuery('mobile', `${flexDirection('column')} align-items: start;`)};
+    ${mediaQuery(
+      'mobile',
+      `
+        ${flexDirection('column')} 
+        align-items: start; 
+        row-gap:16px;
+      `,
+    )};
   }
 
   .prev,
   .next {
+    width: 100%;
     ${flexDirection('row')}
     gap: 12px;
+
+    .btn_title {
+      max-width: 326px;
+      ${mediaQuery('tablet1024', `max-width: 100%;`)};
+
+      ${ellipsisMulti(1)}
+    }
+
     & p {
       padding-top: 3px;
 
@@ -177,9 +262,10 @@ export const BottomConatiner = styled.div`
         ${mediaQuery(
           'mobile',
           `
-          ${font('body14', 'bold')}
-          ${lineHeight(14, 22)}
-          letter-spacing: -0.1px;
+            ${size('22px', '39px')}
+            ${font('body14', 'bold')}
+            ${lineHeight(14, 22)}
+            letter-spacing: -0.1px;
         `,
         )};
       }
@@ -195,17 +281,20 @@ export const BottomConatiner = styled.div`
   }
 
   .prev {
-    ${mediaQuery('tablet1024', `margin: 0px 0px 16px;`)};
-    ${mediaQuery('mobile', `margin: 0px 0px 16px;`)};
+    justify-content: flex-start;
+    /* ${mediaQuery('tablet1024', `margin: 0px 0px 16px;`)}
+    ${mediaQuery('mobile', `margin: 0px 0px 16px;`)} */
   }
 
   .next {
+    justify-content: flex-end;
+
     ${mediaQuery('tablet1024', `flex-direction: row-reverse;`)};
     ${mediaQuery('mobile', `flex-direction: row-reverse;`)};
   }
 
-  ${mediaQuery('tablet1024', `${size('113px', '100%')}`)};
-  ${mediaQuery('mobile', `${size('85px', '100%')}`)};
+  ${mediaQuery('tablet1024', `${size('100%', '100%')} padding-top: 40px;`)};
+  ${mediaQuery('mobile', `${size('100%', '100%')} padding-top: 24px;`)};
 `;
 
 export const ListIconWrapper = styled.div`
@@ -218,7 +307,7 @@ export const FloatingWrapper = styled.div<{
   tablet?: { bottomHeight?: '276px' | '356px' };
 }>`
   width: 100%;
-  ${flex('flex-end', 'center ')};
+  ${flex('flex-end', 'center')}
   flex-direction: 'column;';
   position: fixed;
   right: 90;

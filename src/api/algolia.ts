@@ -6,4 +6,4 @@ export const algoliaClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_SEARCH_KEY!,
 );
 
-export const index = algoliaClient.initIndex(INDEX_NAME);
+export const index = algoliaClient.initIndex(`${INDEX_NAME}_order_desc`);

@@ -1,22 +1,34 @@
-import { getFileFromStorage } from '@Api/index.api';
+import { getNewsMember } from '@Api/news.api';
 import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon';
 import { navigate } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { injectIntl } from 'gatsby-plugin-intl';
+import { isEmpty } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { convertDateStr } from './NewsDetail.helper';
-import { Props } from './NewsDetail.interface';
+import { NewsProfile, Props } from './NewsDetail.interface';
 import * as S from './NewsDetail.style';
 
 const NewsDetail = (props: Props) => {
-  const { agency, newsType, originalLink, title, content, date, imagePath } =
-    props;
-  const dateYearMonthDate = convertDateStr(date);
+  const {
+    id,
+    agency,
+    newsType,
+    originalLink,
+    title,
+    content,
+    date,
+    newsImageData,
+    prevNews,
+    nextNews,
+  } = props;
 
-  const [image, setImage] = useState<string>();
+  const dateYearMonthDate = convertDateStr(date);
+  const [profile, setProfile] = useState<NewsProfile>();
 
   useEffect(() => {
-    imagePath && getFileFromStorage(imagePath).then(setImage);
+    getNewsMember(id).then(setProfile);
   }, []);
 
   const onClickOiriginal = () => {
@@ -25,10 +37,18 @@ const NewsDetail = (props: Props) => {
   const handleClickList = () => {
     navigate(`/${props.intl.locale}/news`);
   };
-  const handleMove = (event: React.MouseEvent<HTMLButtonElement>) => {};
+  const handleMove = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const _id = event.currentTarget.dataset.id as 'prev' | 'next';
+    navigate(`/${props.intl.locale}/news/${_id}`);
+  };
 
-  const isMediaNews = newsType === 'media' && image;
+  const isMediaNews = newsType === 'media';
   const topTxt = isMediaNews ? agency : '최근 업무사례';
+
+  const isNewsImageData = !isEmpty(newsImageData);
+  const isProfile = !isEmpty(profile) && profile.profileImage;
+  const isPrevContent = !isEmpty(prevNews);
+  const isNextContent = !isEmpty(nextNews);
 
   return (
     <S.Wrapper>
@@ -52,39 +72,63 @@ const NewsDetail = (props: Props) => {
         <S.HeaderDivder />
         <S.DateARea>{dateYearMonthDate}</S.DateARea>
       </S.HeaderContainer>
-      <S.ContentConatiner>
-        {isMediaNews && (
+      <S.ContentConatiner isProfile={!isEmpty(profile)}>
+        {isNewsImageData && (
           <article className="top">
-            <img src={image} alt={title} loading={'lazy'} />
+            <GatsbyImage image={newsImageData} alt={''} />
           </article>
         )}
         <S.Content>{content}</S.Content>
         <article className="bottom">
-          {/* 프로필 정보 */}
-          {!isMediaNews && <img src="" alt="" />}
-          <BaseButton className={'support'} onClick={onClickOiriginal}>
-            기사 원문보기
-          </BaseButton>
+          {isProfile ? (
+            <S.ProfileArea>
+              <img
+                alt={profile.name}
+                src={profile.profileImage}
+                loading={'lazy'}
+              />
+              <S.TextSection>
+                <S.Name>{profile.name}</S.Name>
+                <S.Position>{profile.position}</S.Position>
+              </S.TextSection>
+            </S.ProfileArea>
+          ) : (
+            <BaseButton className={'support'} onClick={onClickOiriginal}>
+              기사 원문보기
+            </BaseButton>
+          )}
         </article>
       </S.ContentConatiner>
-      <S.BottomConatiner>
+      <S.BottomConatiner
+        isPrevContent={isPrevContent}
+        isNextContent={isNextContent}
+      >
         <div className="action__area">
           <div className="prev">
-            <button datatype="prev" onClick={handleMove}>
-              <LineArrowIcon direction={'LEFT'} weight="NORMAL" />
-              <p>이전글</p>
-            </button>
-            <p>양원석 남산 경영담당 변호사, 대표변호사로 취임</p>
+            {isPrevContent && (
+              <>
+                <button data-id={prevNews.id} onClick={handleMove}>
+                  <LineArrowIcon direction={'LEFT'} weight="NORMAL" />
+                  <p>이전글</p>
+                </button>
+                <p className="btn_title">{prevNews?.title}</p>
+              </>
+            )}
           </div>
           <S.ListIconWrapper>
             <BaseButton className="hamburger-news" onClick={handleClickList} />
           </S.ListIconWrapper>
+
           <div className="next">
-            <p>양원석 남산 경영담당 변호사, 대표변호사로 취임</p>
-            <button datatype="next" onClick={handleMove}>
-              <p>다음글</p>
-              <LineArrowIcon direction={'RIGHT'} weight="NORMAL" />
-            </button>
+            {isNextContent && (
+              <>
+                <p className="btn_title">{nextNews.title}</p>
+                <button data-id={nextNews.id} onClick={handleMove}>
+                  <p>다음글</p>
+                  <LineArrowIcon direction={'RIGHT'} weight="NORMAL" />
+                </button>
+              </>
+            )}
           </div>
         </div>
       </S.BottomConatiner>

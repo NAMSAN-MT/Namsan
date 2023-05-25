@@ -4,7 +4,8 @@ import { EndPointType, NewsType, TQuery } from '@Type/api.type';
 import { documentId } from 'firebase/firestore';
 import { getTimestampToDate } from '../utils/date';
 import { index } from './algolia';
-import { GetDataListQuery } from './index.api';
+import { getData, GetDataListQuery, getFileFromStorage } from './index.api';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 export const getMainNewsList = async (limit: number) => {
   const endPoint: EndPointType = 'news';
@@ -54,17 +55,20 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
         (hit: any) => hit.documentId as string,
       );
       const newDataList = await getNewsIdDataList(ids.reverse());
-      const resultList: NewsMin[] = newDataList.map(
-        (news, index) =>
-          ({
-            title: news.title,
-            summary: news.summary,
-            agency: news.agency,
-            newsType: news.newsType,
-            documentId: ids[index],
-            dateYearMonth: getTimestampToDate(news.date).yearMoth,
-          } as NewsMin),
-      );
+      const resultList: NewsMin[] = newDataList
+        .map(
+          (news, index) =>
+            ({
+              title: news.title,
+              summary: news.summary,
+              agency: news.agency,
+              newsType: news.newsType,
+              documentId: ids[index],
+              dateYearMonth: getTimestampToDate(news.date).yearMoth,
+              order: news.order,
+            } as NewsMin),
+        )
+        .reverse();
       return { resultList, algoliaResult };
     })
     .catch(err => {
@@ -107,5 +111,36 @@ export const getNewsData = async (_documentId: string) => {
       ...data,
       dateYearMonthDate: getTimestampToDate(data.date).fullDate,
     };
+  });
+};
+
+export const getNewsMember = async (_documentId: string) => {
+  return GetDataListQuery<News>({
+    endPoint: 'news',
+    queries: [
+      {
+        queryType: 'where',
+        fieldPath: documentId(),
+        opStr: '==',
+        value: _documentId,
+      },
+    ],
+  }).then(async result => {
+    const data = result[0];
+    const memberRef = data?.memberId;
+    try {
+      const memberSnapshot = await memberRef.get();
+      const { imagePath, name, position } = await getData(memberSnapshot);
+
+      if (isEmpty(imagePath)) return;
+      const profileImage = await getFileFromStorage(imagePath);
+      return {
+        profileImage,
+        name,
+        position,
+      };
+    } catch (error) {
+      return;
+    }
   });
 };
