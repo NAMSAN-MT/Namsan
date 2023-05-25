@@ -1,7 +1,5 @@
-import { getVideo } from '@Api/main.api';
 import { useEffect, useState } from 'react';
 import { IFirstSectionProps } from './FirstSection.interface';
-import { useIntl } from 'gatsby-plugin-intl';
 import Intro0 from '@Images/intro.gif';
 import Intro1 from '@Images/intro01.png';
 import Intro2 from '@Images/intro02.png';
@@ -15,7 +13,6 @@ import IntroMobile3 from '@Images/introMobile03.png';
 import IntroMobile4 from '@Images/introMobile04.png';
 
 const useFirstSection = (props: IFirstSectionProps) => {
-  const { locale } = useIntl();
   const [zero, setZero] = useState(false);
   const [first, setFirst] = useState(false);
   const [second, setSecond] = useState(false);
@@ -53,22 +50,21 @@ const useFirstSection = (props: IFirstSectionProps) => {
     }
   }, [startSlide, first, second, third, forth]);
 
-  const _init = () => {
-    setZero(false);
-    setFirst(false);
-    setSecond(false);
-    setThird(false);
-    setForth(false);
-  };
-
-  const onLoadIntro0 = () => {
-    _init();
+  useEffect(() => {
     setZero(true);
     setTimeout(() => {
       setStartSlide(true);
       setFirst(true);
       setZero(false);
     }, 4600);
+  }, []);
+
+  const _init = () => {
+    setZero(false);
+    setFirst(false);
+    setSecond(false);
+    setThird(false);
+    setForth(false);
   };
 
   useEffect(() => {
@@ -97,7 +93,6 @@ const useFirstSection = (props: IFirstSectionProps) => {
     second,
     third,
     forth,
-    onLoadIntro0,
     seconds,
     intro0,
     intro1,
