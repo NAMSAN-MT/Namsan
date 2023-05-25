@@ -3,11 +3,16 @@ import useNavigate from '@Hooks/useNavigate';
 import { getVideo } from '@Api/main.api';
 import { IThirdSectionProps } from './ThirdSection.interface';
 import { useIntl } from 'gatsby-plugin-intl';
+import cardEN from '@Images/card_EN.png';
+import cardKO from '@Images/card_KR.png';
+import cardMobileEN from '@Images/card_mobile_EN.png';
+import cardMobileKO from '@Images/card_mobile_KR.png';
 
 const useThirdSection = (props: IThirdSectionProps) => {
   const { locale } = useIntl();
   const { handleNavigate } = useNavigate();
   const [mainVideo, setMainVideo] = useState<string>();
+  const [mainPoster, setMainPoster] = useState<string>(cardKO);
 
   useEffect(() => {
     const init = async () => {
@@ -16,6 +21,7 @@ const useThirdSection = (props: IThirdSectionProps) => {
           // ko & mobile
           const mainVideo = await getVideo('main/McardFull.mp4');
           setMainVideo(mainVideo);
+          setMainPoster(cardMobileKO);
           return;
         }
 
@@ -23,12 +29,14 @@ const useThirdSection = (props: IThirdSectionProps) => {
           // ko & tablet
           const mainVideo = await getVideo('main/cardFull.mp4');
           setMainVideo(mainVideo);
+          setMainPoster(cardKO);
           return;
         }
 
         // ko & desktop
         const mainVideo = await getVideo('main/cardFull.mp4');
         setMainVideo(mainVideo);
+        setMainPoster(cardKO);
         return;
       }
 
@@ -36,6 +44,7 @@ const useThirdSection = (props: IThirdSectionProps) => {
         // en & mobile
         const mainVideo = await getVideo('main/McardFull_EN.mp4');
         setMainVideo(mainVideo);
+        setMainPoster(cardMobileEN);
         return;
       }
 
@@ -43,15 +52,17 @@ const useThirdSection = (props: IThirdSectionProps) => {
         // en & tablet
         const mainVideo = await getVideo('main/cardFull_EN.mp4');
         setMainVideo(mainVideo);
+        setMainPoster(cardEN);
         return;
       }
 
       // en & desktop
       const mainVideo = await getVideo('main/cardFull_EN.mp4');
       setMainVideo(mainVideo);
+      setMainPoster(cardEN);
     };
     init();
-  }, [props.isMobile || props.isTablet || locale || mainVideo]);
+  }, [props.isMobile, props.isTablet, locale, mainVideo]);
 
   const handleNavigateTo = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -61,6 +72,7 @@ const useThirdSection = (props: IThirdSectionProps) => {
   return {
     handleNavigateTo,
     mainVideo,
+    mainPoster,
   };
 };
 
