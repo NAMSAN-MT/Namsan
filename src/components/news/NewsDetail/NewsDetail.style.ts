@@ -220,6 +220,7 @@ export const BottomConatiner = styled.div<{
 
   .prev,
   .next {
+    width: 100%;
     ${flexDirection('row')}
     gap: 12px;
 
@@ -280,11 +281,14 @@ export const BottomConatiner = styled.div<{
   }
 
   .prev {
+    justify-content: flex-start;
     /* ${mediaQuery('tablet1024', `margin: 0px 0px 16px;`)}
     ${mediaQuery('mobile', `margin: 0px 0px 16px;`)} */
   }
 
   .next {
+    justify-content: flex-end;
+
     ${mediaQuery('tablet1024', `flex-direction: row-reverse;`)};
     ${mediaQuery('mobile', `flex-direction: row-reverse;`)};
   }
