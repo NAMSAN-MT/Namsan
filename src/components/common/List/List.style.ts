@@ -9,21 +9,38 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   list-style-type: none;
   margin-bottom: 2px;
+  & > a {
+    line-height: 34px;
+  }
+
+  ${mediaQuery(
+    'mobile',
+    `
+      margin-bottom: 6px;
+  `,
+  )}
 `;
 
 export const HR = styled.hr`
   border: 0;
   height: 2px;
   background: ${({ theme }) => theme.color.dividerBlack};
-  margin-bottom: 15px;
+  margin-top: 8.667px;
+  margin-bottom: 22px;
 
   ${mediaQuery(
     'mobile',
     `
     height: 1px;
-    margin-bottom: 13px;
+    margin-bottom: 17px;
   `,
   )}
+`;
+
+export const BoxDivider = styled.hr`
+  height: 1px;
+  background: ${({ theme }) => theme.color.grey200};
+  border: 0px;
 `;
 
 export const MainWrapper = styled.div`
@@ -42,7 +59,7 @@ export const Anchor = styled.a`
   text-decoration: none;
   color: ${({ theme }) => theme.color.textBlackHigh};
   height: auto;
-  padding: 13px 12px;
+  padding: 11px 12px;
 
   font-size: 20px;
 
