@@ -16,8 +16,7 @@ import IntroMobile4 from '@Images/introMobile04.png';
 
 const useFirstSection = (props: IFirstSectionProps) => {
   const { locale } = useIntl();
-  const [mainVideo, setMainVideo] = useState<string>();
-  const [zero, setZero] = useState(false);
+  const [zero, setZero] = useState(true);
   const [first, setFirst] = useState(false);
   const [second, setSecond] = useState(false);
   const [third, setThird] = useState(false);
@@ -64,7 +63,6 @@ const useFirstSection = (props: IFirstSectionProps) => {
 
   const onLoadIntro0 = () => {
     _init();
-    setZero(true);
     setTimeout(() => {
       setStartSlide(true);
       setFirst(true);
@@ -98,10 +96,17 @@ const useFirstSection = (props: IFirstSectionProps) => {
     } catch (error) {
       console.error(error);
     }
-  }, [props.isMobile, locale, mainVideo]);
+  }, [
+    props.isMobile,
+    locale,
+    setIntro0,
+    setIntro1,
+    setIntro2,
+    setIntro3,
+    setIntro4,
+  ]);
 
   return {
-    mainVideo,
     zero,
     first,
     second,
