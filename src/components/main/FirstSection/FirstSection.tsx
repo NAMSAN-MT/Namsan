@@ -10,7 +10,6 @@ import { injectIntl } from 'gatsby-plugin-intl';
 
 const FirstSection = (props: IFirstSectionProps) => {
   const {
-    onLoadIntro0,
     zero,
     first,
     second,
@@ -46,13 +45,7 @@ const FirstSection = (props: IFirstSectionProps) => {
               animate={{ opacity: 1, transition: { duration: 1.5 } }}
             >
               <S.FrirstWrapper>
-                <img
-                  src={intro0}
-                  alt="intro0"
-                  onLoad={() => {
-                    onLoadIntro0();
-                  }}
-                />
+                <img src={intro0} alt="intro0" />
               </S.FrirstWrapper>
             </motion.div>
           )}
