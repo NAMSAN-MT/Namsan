@@ -30,7 +30,7 @@ export interface IParameter {
 }
 
 export interface News {
-  id: string;
+  id: any;
   documentId?: string;
   title: string;
   content: string;
@@ -50,6 +50,7 @@ export interface News {
 }
 
 export interface NewsMin {
+  order: number;
   documentId?: string;
   title: string;
   summary: string;

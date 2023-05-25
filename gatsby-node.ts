@@ -305,8 +305,16 @@ exports.createPages = async ({ actions, graphql }: any) => {
   news.data.allNews.edges.forEach(async ({ node }: any) => {
     let prev, next, prevNews, nextNews;
     if (len > 1) {
-      prev = node.order - 1;
-      if (node.order < len) next = node.order + 1;
+      if (node.order === 1) {
+        prev = node.order + 1;
+        next = undefined;
+      } else if (len === node.order) {
+        prev = undefined;
+        next = node.order - 1;
+      } else {
+        prev = node.order + 1;
+        next = node.order - 1;
+      }
     }
 
     if (prev) prevNews = await getOrderNews(prev);

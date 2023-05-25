@@ -55,17 +55,20 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
         (hit: any) => hit.documentId as string,
       );
       const newDataList = await getNewsIdDataList(ids.reverse());
-      const resultList: NewsMin[] = newDataList.map(
-        (news, index) =>
-          ({
-            title: news.title,
-            summary: news.summary,
-            agency: news.agency,
-            newsType: news.newsType,
-            documentId: ids[index],
-            dateYearMonth: getTimestampToDate(news.date).yearMoth,
-          } as NewsMin),
-      );
+      const resultList: NewsMin[] = newDataList
+        .map(
+          (news, index) =>
+            ({
+              title: news.title,
+              summary: news.summary,
+              agency: news.agency,
+              newsType: news.newsType,
+              documentId: ids[index],
+              dateYearMonth: getTimestampToDate(news.date).yearMoth,
+              order: news.order,
+            } as NewsMin),
+        )
+        .reverse();
       return { resultList, algoliaResult };
     })
     .catch(err => {
@@ -125,16 +128,19 @@ export const getNewsMember = async (_documentId: string) => {
   }).then(async result => {
     const data = result[0];
     const memberRef = data?.memberId;
-    const memberSnapshot = await memberRef.get();
-    const dd = await getData(memberSnapshot);
-    const { imagePath, name, position } = dd;
-    console.log('!!!', dd);
+    try {
+      const memberSnapshot = await memberRef.get();
+      const { imagePath, name, position } = await getData(memberSnapshot);
 
-    // const profileImage = await getFileFromStorage(imagePath);
-    return {
-      // profileImage,
-      name,
-      position,
-    };
+      if (isEmpty(imagePath)) return;
+      const profileImage = await getFileFromStorage(imagePath);
+      return {
+        profileImage,
+        name,
+        position,
+      };
+    } catch (error) {
+      return;
+    }
   });
 };
