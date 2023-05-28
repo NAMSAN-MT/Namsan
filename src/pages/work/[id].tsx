@@ -5,11 +5,19 @@ import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import React from 'react';
 
+export interface SimpleMemberInfo {
+  id: string;
+  name: string;
+  email: string;
+  position: string;
+}
 export interface DetailProps {
   id: string;
   pageContext: PageContextProps;
   data: {
     work: workInfomation;
+    mainMembers: { edges: SimpleMemberInfo[] };
+    subMembers: { edges: SimpleMemberInfo[] };
   };
 }
 
@@ -35,6 +43,7 @@ export interface miniMember {
   bgImagePath: string;
   businessFields: string[];
   id: string;
+  email: string;
   imagePath: string;
   language: 'ko' | 'en';
   name: string;
@@ -46,6 +55,15 @@ export interface miniMember {
 
 const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
   const { pageContext, data, location } = props;
+  const newMainMembers = data.mainMembers.edges.map(({ node }: any) => ({
+    ...pageContext.mainMemberData.find(b => b.email === node.email),
+    ...node,
+  }));
+  const newSubMembers = data.subMembers.edges.map(({ node }: any) => ({
+    ...pageContext.subMemberData.find(b => b.email === node.email),
+    ...node,
+  }));
+
   const subId = Number(location.hash?.slice(-2)) ?? -1;
   const infomation = data.work.categoryTitle?.map((title, index) => ({
     categoryTitle: title,
@@ -69,11 +87,41 @@ const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
 };
 
 export const query = graphql`
-  query ($id: String, $language: String) {
+  query getWorkInformation(
+    $id: String
+    $language: String
+    $mainMemberEmails: [String!]
+    $subMemberEmails: [String!]
+  ) {
     work(categoryId: { eq: $id }, language: { eq: $language }) {
       categoryTitle: categoryInfo
       description
       imagePath
+    }
+    mainMembers: allMembers(
+      filter: { email: { in: $mainMemberEmails }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          id
+          name
+          email
+          position
+        }
+      }
+    }
+
+    subMembers: allMembers(
+      filter: { email: { in: $subMemberEmails }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          id
+          name
+          email
+          position
+        }
+      }
     }
   }
 `;
