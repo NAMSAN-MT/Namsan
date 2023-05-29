@@ -4,7 +4,7 @@ import { Wrapper } from '../FirstSection/FirstSection.style';
 
 const FifthWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
-  margin-top: 150px;
+  margin-top: 120px;
   margin-bottom: 40px;
   ${mediaQuery(
     'tablet1024',

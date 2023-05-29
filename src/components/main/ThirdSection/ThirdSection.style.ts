@@ -13,7 +13,7 @@ const InnerWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   padding: 0 calc((100% - 1290px) / 2);
-  min-height: 620px;
+  max-height: 620px;
 
   ${mediaQuery(
     'tablet1024',
