@@ -8,7 +8,8 @@ import { injectIntl } from 'gatsby-plugin-intl';
 import { WithFixedWrapper } from '../FirstSection/FirstSection.style';
 
 const ThirdSection = (props: IThirdSectionProps) => {
-  const { handleNavigateTo, mainVideo } = useThirdSection(props);
+  const { handleNavigateTo, mainVideo, mainPoster, isKakaoBrower } =
+    useThirdSection(props);
   const suffix = props.isMobile ? '_mobile' : '';
   const threshold = props.isMobile ? 0.1 : props.isTablet ? 0.2 : 0.2;
 
@@ -48,9 +49,10 @@ const ThirdSection = (props: IThirdSectionProps) => {
                   playsInline
                   autoPlay
                   preload="auto"
-                  src={mainVideo}
+                  src={!isKakaoBrower ? mainVideo : undefined}
                   width="100%"
                   height="100%"
+                  poster={mainPoster}
                 ></video>
               </S.RightWrapper>
             </S.InnerWrapper>

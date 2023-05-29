@@ -67,6 +67,7 @@ export const theme: DefaultTheme = {
 };
 
 export const TextStyles = {
+  display100: ['100px', 'medium', 'demilight'],
   display70: ['70px', 'medium', 'bold'],
   display64: ['64px', 'medium', 'bold'],
   display56: ['56px', 'medium', 'bold'],
@@ -75,6 +76,7 @@ export const TextStyles = {
   display40: ['40px', 'medium', 'bold'],
   display36: ['36px', 'medium', 'bold'],
   title32: ['32px', 'medium', 'bold'],
+  title30: ['30px', 'medium', 'regular'],
   title26: ['26px', 'medium', 'bold'],
   title24: ['24px', 'medium', 'bold'],
   title22: ['22px', 'medium', 'bold'],

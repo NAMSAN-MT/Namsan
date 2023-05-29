@@ -21,11 +21,14 @@ const useResize = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     window.addEventListener('resize', checkMobile);
-    checkMobile();
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
+
+  useEffect(() => {
+    checkMobile();
+  }, [isMobile, isTablet, isDesktop]);
 
   return {
     isMobile,

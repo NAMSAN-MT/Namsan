@@ -4,6 +4,7 @@ import reset from 'styled-reset';
 import FHAlphaTestLight from '@Fonts/FHAlphaTest-Light.otf';
 import FHAlphaTestLightItalic from '@Fonts/FHAlphaTest-LightItalic.otf';
 import { mediaQuery } from './mixin.style';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}  
@@ -27,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     line-height: 1.5;
+    scroll-x : hidden;
     /* min-width: 1024px; */
     font: -webkit-control;
 

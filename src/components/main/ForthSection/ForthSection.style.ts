@@ -14,7 +14,7 @@ const ForthWrapper = styled(Wrapper)`
   ${mediaQuery(
     'tablet1024',
     `
-      margin-top: 88px;
+      margin-top: 102px;
     `,
   )};
   ${mediaQuery(

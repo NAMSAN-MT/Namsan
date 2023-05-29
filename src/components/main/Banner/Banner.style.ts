@@ -66,7 +66,7 @@ const Title = styled.div`
 
   ${font('title22', 'bold')}
   ${lineHeight(22, 36)};
-  max-width: 90%;
+  max-width: 320px;
 
   ${mediaQuery(
     'tablet1024',
