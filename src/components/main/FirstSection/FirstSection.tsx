@@ -10,7 +10,7 @@ import { injectIntl } from 'gatsby-plugin-intl';
 import { Carousel } from 'react-responsive-carousel';
 
 const FirstSection = (props: IFirstSectionProps) => {
-  const { startSlide, intro, pictures, startIntro } = useFirstSection(props);
+  const { startSlide, intro, pictures } = useFirstSection(props);
   const [ref, inView] = useInView();
 
   useEffect(() => {

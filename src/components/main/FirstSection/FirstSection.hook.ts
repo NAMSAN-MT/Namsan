@@ -14,19 +14,13 @@ import IntroMobile4 from '@Images/introMobile04.png';
 
 const useFirstSection = (props: IFirstSectionProps) => {
   const [startSlide, setStartSlide] = useState(false);
-  const [startIntro, setStartIntro] = useState(false);
   const [pictures, setPictures] = useState<string[]>([]);
   const [intro, setIntro] = useState('');
 
   useEffect(() => {
-    setStartIntro(true);
     setTimeout(() => {
       setStartSlide(true);
     }, 4600);
-
-    setTimeout(() => {
-      setStartIntro(false);
-    }, 4700);
   }, []);
 
   useEffect(() => {
@@ -46,7 +40,6 @@ const useFirstSection = (props: IFirstSectionProps) => {
     pictures,
     startSlide,
     intro,
-    startIntro,
   };
 };
 
