@@ -56,11 +56,11 @@ export interface miniMember {
 const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
   const { pageContext, data, location } = props;
   const newMainMembers = data.mainMembers.edges.map(({ node }: any) => ({
-    ...pageContext.mainMemberData.find(b => b.email === node.email),
+    ...pageContext.mainMemberData?.find(b => b.email === node.email),
     ...node,
   }));
   const newSubMembers = data.subMembers.edges.map(({ node }: any) => ({
-    ...pageContext.subMemberData.find(b => b.email === node.email),
+    ...pageContext.subMemberData?.find(b => b.email === node.email),
     ...node,
   }));
 
@@ -76,6 +76,8 @@ const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
       <DetailPage
         {...{
           ...pageContext,
+          mainMemberData: newMainMembers,
+          subMemberData: newSubMembers,
           workInfo: infomation,
           imagePath: data.work.imagePath,
           location,
@@ -100,6 +102,7 @@ export const query = graphql`
     }
     mainMembers: allMembers(
       filter: { email: { in: $mainMemberEmails }, language: { eq: $language } }
+      sort: { order: ASC }
     ) {
       edges {
         node {
@@ -113,6 +116,7 @@ export const query = graphql`
 
     subMembers: allMembers(
       filter: { email: { in: $subMemberEmails }, language: { eq: $language } }
+      sort: { order: ASC }
     ) {
       edges {
         node {
