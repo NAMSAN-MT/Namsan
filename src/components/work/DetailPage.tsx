@@ -98,8 +98,6 @@ const DetailPage = (props: Props & PageContextProps) => {
             member =>
               member && (
                 <MemberItem
-                  email={''}
-                  careers={[]}
                   key={member.id}
                   {...member}
                   order={`${member.order}`}
@@ -124,8 +122,6 @@ const DetailPage = (props: Props & PageContextProps) => {
               member =>
                 member && (
                   <MemberItem
-                    email={''}
-                    careers={[]}
                     key={member.id}
                     {...member}
                     order={`${member.order}`}

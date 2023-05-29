@@ -189,13 +189,12 @@ exports.createPages = async ({ actions, graphql }: any) => {
     path: `/work`,
     component: resolve('./src/templates/work.tsx'),
   });
-
-  works.data.allWork.edges.forEach(async ({ node }: any) => {
-    const memberQuery = (member: string) => `
+  const memberQuery = (email: string) => `
       query {
-        members(name: { eq: "${member}" }) {
+        members(email: { eq: "${email}" }) {
           id
           language
+          email
           name
           position
           order
@@ -205,7 +204,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
         }
       }
     `;
-    const getImage = (id: string, path: string) => `
+  const getImage = (id: string, path: string) => `
       query {
         image: file(parent: {id: {eq: "${id}"}}) {
           childImageSharp {
@@ -220,6 +219,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
       }
     `;
 
+  works.data.allWork.edges.forEach(async ({ node }: any) => {
     const getMemberData = (data: string[]) =>
       data.map(
         async (member: string) =>
@@ -251,6 +251,8 @@ exports.createPages = async ({ actions, graphql }: any) => {
         id: node.categoryId,
         mainMemberData,
         subMemberData,
+        mainMemberEmails: node.member.main,
+        subMemberEmails: node.member.sub,
       },
     });
   });
