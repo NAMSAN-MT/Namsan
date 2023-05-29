@@ -102,6 +102,7 @@ export const query = graphql`
     }
     mainMembers: allMembers(
       filter: { email: { in: $mainMemberEmails }, language: { eq: $language } }
+      sort: { order: ASC }
     ) {
       edges {
         node {
@@ -115,6 +116,7 @@ export const query = graphql`
 
     subMembers: allMembers(
       filter: { email: { in: $subMemberEmails }, language: { eq: $language } }
+      sort: { order: ASC }
     ) {
       edges {
         node {
