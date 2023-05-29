@@ -100,6 +100,7 @@ const DetailPage = (props: Props & PageContextProps) => {
                 <MemberItem
                   key={member.id}
                   {...member}
+                  businessFields={[]}
                   order={`${member.order}`}
                 />
               ),
@@ -124,6 +125,7 @@ const DetailPage = (props: Props & PageContextProps) => {
                   <MemberItem
                     key={member.id}
                     {...member}
+                    businessFields={[]}
                     order={`${member.order}`}
                   />
                 ),
