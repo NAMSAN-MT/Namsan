@@ -90,5 +90,8 @@
     "main_member": "Leading Attorneys",
     "sub_member": "Associated Attorney",
     "show_more": "Learn More"
+  },
+  "news": {
+    "search_placeholder": "Name Search"
   }
 }
