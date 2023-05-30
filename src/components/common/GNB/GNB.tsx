@@ -23,6 +23,7 @@ const MobileMenuButton = ({
         <LottieWrapper
           animationData={ButtonMenu}
           width={24}
+          height={12}
           loop={false}
           autoplay={true}
         />
@@ -54,6 +55,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
             width="100%"
             isMobile={isMobile}
             isTransparent={isTransparent}
+            isMobileMenuOpen={isMobileMenuOpen}
           />
         </Link>
       </S.LogoWrapper>
