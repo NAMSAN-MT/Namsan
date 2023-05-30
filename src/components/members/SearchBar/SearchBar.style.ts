@@ -36,7 +36,7 @@ const ItemWrapper = styled.div<{ width: string }>`
     `
       ${size('50px', '100%')};
       input {
-        padding: 12px 0px 13px;
+        padding: 18px 0px 13px;
         ${lineHeight(16, 26)}
       }
       button {

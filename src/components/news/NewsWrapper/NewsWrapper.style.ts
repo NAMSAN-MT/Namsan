@@ -32,7 +32,9 @@ export const Title = styled.h1`
   ${mediaQuery(
     'mobile',
     ` 
-  // padding-top: 48px;
+    ${font('mobile24', 'bold')}
+    ${lineHeight(24, 36)}
+    // padding-top: 48px;
   `,
   )}
 `;

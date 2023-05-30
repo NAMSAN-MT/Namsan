@@ -33,8 +33,7 @@ export const Arrow = styled.img`
 
 export const ArrowNavigation = styled.button`
   ${size('24px', '24px')}
-  flex: none;
-  flex-grow: 0;
+  ${flex()}
 
   img {
     ${size('14px', '8px')}

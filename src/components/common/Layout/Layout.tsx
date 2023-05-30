@@ -75,6 +75,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   } = useLayout();
 
   const isMainPage = ['main', 'workDetail', 'newsDetail'].includes(route ?? '');
+  const isNewsDetailPage = ['newsDetail'].includes(route ?? '');
   const isCopyButton = ['newsDetail'].includes(route ?? '');
 
   return (
@@ -82,7 +83,10 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       {isHeader ? (
         <GNB isMobile={props.isMobile} isTransparent={props.isTransparent} />
       ) : null}
-      <S.LayoutContent isMainPage={isMainPage}>
+      <S.LayoutContent
+        isMainPage={isMainPage}
+        isNewsDetailPage={isNewsDetailPage}
+      >
         {children}
         {isMainPage && (
           <S.TopButtonWrapper isTransparent={props.isTransparent}>
