@@ -94,7 +94,7 @@ export const Title = styled.p`
   max-width: auto;
   min-width: 185px;
 
-  margin-top: 10px;
+  margin-top: 14px;
   margin-bottom: 16px;
 
   ${ellipsisMulti(2)}
@@ -152,7 +152,7 @@ export const Content = styled.p`
 export const Date = styled.div`
   ${flexDirection('row')}
   gap: 20px;
-  margin: 86px 0px 40px 0px;
+  margin: 82px 0px 34px 0px;
 
   p {
     ${flex('')}
