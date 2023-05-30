@@ -12,6 +12,8 @@ const Input = styled.input`
   ${font('title18', 'regular')}
   border: none;
   border-bottom: 2px solid ${({ theme }) => theme.color.grey200};
+  border-radius: 0;
+
   color: ${({ theme }) => theme.color.black};
   padding: 17px 12px;
 

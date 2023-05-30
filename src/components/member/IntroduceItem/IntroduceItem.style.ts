@@ -45,7 +45,7 @@ const IntroduceItemWrapper = styled.div`
         'mobile',
         `
       flex-direction: column;
-      margin-bottom: 12px`,
+      margin-bottom: 8px`,
       )};
 
       .time {

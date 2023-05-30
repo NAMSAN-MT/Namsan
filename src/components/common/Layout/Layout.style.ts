@@ -12,7 +12,10 @@ const LayoutWrapper = styled.div`
   height: 100%;
 `;
 
-const LayoutContent = styled.div<{ isMainPage: boolean }>`
+const LayoutContent = styled.div<{
+  isMainPage: boolean;
+  isNewsDetailPage: boolean;
+}>`
   min-height: calc(100% - 84px - 224px);
   padding-top: 86px;
   ${mediaQuery(
@@ -21,10 +24,14 @@ const LayoutContent = styled.div<{ isMainPage: boolean }>`
      padding-top: 86px;
     `,
   )};
-  ${({ isMainPage }) =>
+  ${({ isMainPage, isNewsDetailPage }) =>
     mediaQuery(
       'mobile',
-      `${isMainPage ? 'padding-top: 0;' : 'padding-top: 56px;'}`,
+      `${
+        isMainPage && !isNewsDetailPage
+          ? 'padding-top: 0;'
+          : 'padding-top: 56px;'
+      }`,
     )};
 `;
 
