@@ -55,6 +55,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
             width="100%"
             isMobile={isMobile}
             isTransparent={isTransparent}
+            isMobileMenuOpen={isMobileMenuOpen}
           />
         </Link>
       </S.LogoWrapper>

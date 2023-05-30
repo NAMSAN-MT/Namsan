@@ -146,6 +146,13 @@ const MobileMenuItem = styled.li`
   `,
   )};
 
+  ${mediaQuery(
+    'mobile',
+    `
+     margin-left: 24px;
+  `,
+  )};
+
   & a {
     color: ${({ theme }) => theme.color.textBlackHigh};
     ${flex()}
@@ -169,6 +176,20 @@ const MobileLanguageWrapper = styled.ul`
   ${lineHeight(16, 26)};
   margin-top: 62px;
   margin-left: 24px;
+
+  ${mediaQuery(
+    'tablet1024',
+    `
+     margin-left: 40px;
+  `,
+  )};
+
+  ${mediaQuery(
+    'mobile',
+    `
+     margin-left: 24px;
+  `,
+  )};
 
   li {
     cursor: pointer;
