@@ -69,11 +69,11 @@ const Title = styled(Basic)`
   ${mediaQuery(
     'mobile',
     `
-  ${font('title30', 'bold')};
-  ${lineHeight(30, 44)};
-  width: 237px;
-  letter-spacing: -0.2px;
-  word-break: keep-all;
+    ${font('title30', 'bold')};
+    ${lineHeight(30, 42)};
+    width: 243px;
+    letter-spacing: 0;
+    word-break: keep-all;
   `,
   )}
 `;
@@ -82,14 +82,18 @@ const SubTitle = styled(Basic)`
   ${font('title30', 'regular')}
   ${lineHeight(30, 36)};
 
-  ${mediaQuery(
-    'mobile',
-    `
-  ${font('mobile18', 'demilight')};
-  ${lineHeight(18, 21.48)};
-  margin-top: 24px;
+  ${({ theme }) =>
+    mediaQuery(
+      'mobile',
+      `
+    ${font('mobile16', 'medium')};
+    ${lineHeight(16, 19.09)};
+    letter-spacing: -0.5px;
+    margin-top: 18px;
+    color: ${theme.color.textWhiteDisable};
+    
   `,
-  )}
+    )}
 `;
 
 const Description = styled(Basic)`
