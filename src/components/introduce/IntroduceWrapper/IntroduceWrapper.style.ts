@@ -5,6 +5,12 @@ const IntroduceWrapper = styled.div`
   min-width: 1038px;
 
   ${mediaQuery(
+    'tablet1024',
+    `
+  min-width: 0;`,
+  )}
+
+  ${mediaQuery(
     'mobile',
     `min-width: 0;
     `,
@@ -37,7 +43,7 @@ const TextWrapper = styled.div`
   margin: 150px auto;
 
   ${mediaQuery('pc1380', `margin: 150px 0 150px 90px;`)}
-  ${mediaQuery('tablet1024', `margin: 150px 0 150px 40px;`)}
+  ${mediaQuery('tablet1024', `margin: 150px 0 150px 40px; width: max-content;`)}
   ${mediaQuery(
     'mobile',
     `
@@ -64,7 +70,7 @@ const PressWrapper = styled.div`
   ${size('100%', '1200px')};
 
   ${mediaQuery('pc1380', `margin: 120px 0 200px 90px;`)}
-  ${mediaQuery('tablet1024', `margin: 120px 0 200px 40px;`)}
+  ${mediaQuery('tablet1024', `margin: 120px 0 200px 40px; width: auto;`)}
   ${mediaQuery(
     'mobile',
     `margin: 120px 0 200px 40px;
@@ -85,7 +91,7 @@ const PressContentList = styled.ul`
   white-space: pre-wrap;
   gap: 70px 100px;
 
-  ${mediaQuery('tablet1024', `gap: 70px 88px;`)}
+  ${mediaQuery('tablet1024', `gap: 70px 80px;`)}
 
   ${mediaQuery(
     'mobile',
@@ -99,6 +105,12 @@ const PressContentList = styled.ul`
 
 const PressContent = styled.li`
   width: 384px;
+
+  ${mediaQuery(
+    'tablet1024',
+    `
+  width: 320px;`,
+  )}
 
   ${mediaQuery(
     'mobile',

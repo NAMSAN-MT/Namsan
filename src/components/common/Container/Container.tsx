@@ -24,7 +24,8 @@ export const ContainerWrapper = styled.div`
     'tablet1024',
     `
     padding: 0px 40px;
-    margin-top: 36px;
+    margin-top: 66px;
+    margin-bottom: 160px;
     `,
   )}
 
@@ -32,7 +33,7 @@ export const ContainerWrapper = styled.div`
     'mobile',
     `
     padding: 0px 24px;
-    margin-top: 38px;
+    margin-top: 30px;
     margin-bottom: 100px;
       `,
   )}
@@ -40,13 +41,13 @@ export const ContainerWrapper = styled.div`
 const Title = styled.h1`
   color: ${({ theme }) => theme.color.textBlackHigh};
   ${font('display40', 'bold')}
-  margin-bottom: 73px;
+  margin-bottom: 53px;
 
   ${mediaQuery(
     'mobile',
     `
     ${font('mobile24', 'bold')}
-    margin-bottom: 28px;
+    margin-bottom: 16px;
   `,
   )}
 `;

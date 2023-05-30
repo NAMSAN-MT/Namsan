@@ -62,6 +62,8 @@ const InfoWrapper = styled.div`
 
 const InfoColumn = styled.div`
   width: 441px;
+
+  ${mediaQuery('mobile', `width: 100%;`)}
 `;
 
 export { Info, Title, Content, InfoWrapper, InfoColumn };
