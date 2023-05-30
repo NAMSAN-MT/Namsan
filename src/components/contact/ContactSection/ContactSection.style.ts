@@ -45,6 +45,7 @@ const Map = styled.div`
     position: absolute;
     top: 0;
     left: -24px;
+    width: 100vw;
   }
   `,
   )}

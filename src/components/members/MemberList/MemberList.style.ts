@@ -8,7 +8,7 @@ const MemberList = styled.ul`
   gap: 60px 24px;
 
   ${mediaQuery('tablet1024', `margin-top: 72px;`)}
-  ${mediaQuery('mobile', `margin-top: 32px;`)}
+  ${mediaQuery('mobile', `margin-top: 32px; gap: 20px 24px;`)}
 `;
 
 const EmptyMember = styled.div`
