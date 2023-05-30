@@ -1,3 +1,4 @@
+import { theme } from './../../../styles/varialbes.style';
 import {
   ellipsis,
   ellipsisMulti,
@@ -123,6 +124,7 @@ export const ProfileArea = styled.div`
   ${size('200px', '132px')}
 
   img {
+    background: ${props => props.theme.color.grey50};
     ${size('132px', '132px')}
     object-fit: scale-down;
     border-radius: 100%;
@@ -136,6 +138,7 @@ export const ProfileArea = styled.div`
 export const TextSection = styled.div`
   ${flex()}
   ${flexDirection()}
+  white-space : nowrap;
 `;
 
 export const Name = styled.div`
