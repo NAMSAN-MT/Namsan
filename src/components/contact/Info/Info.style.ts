@@ -25,6 +25,7 @@ const Title = styled.div`
   ${font('mobile14', 'bold')};
   ${lineHeight(14, 24)};
   letter-spacing: -0.1px;
+  margin-bottom: 5px;
   `,
   )};
 `;
@@ -46,7 +47,7 @@ const Content = styled.div`
 const InfoWrapper = styled.div`
   ${flex('flex-start', 'flex-start')};
   width: 100%;
-  gap: 180px;
+  gap: 130px;
   margin-bottom: 80px;
 
   ${mediaQuery(
