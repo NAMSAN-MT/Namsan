@@ -14,6 +14,14 @@ const SearchBarWrapper = styled.div`
   flex-direction: column;
   gap: 9px`,
   )}
+
+  button[type="submit"] {
+    ${mediaQuery(
+      'mobile',
+      `
+    right: 13px;`,
+    )}
+  }
 `;
 
 const ItemWrapper = styled.div<{ width: string }>`
