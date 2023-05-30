@@ -39,7 +39,7 @@ const Map = styled.div`
   margin-top: 0px;
   margin-bottom: 40px;
   height: 390px;
-  width: 100vw;
+  width: calc(100vw - 40px);
 
   & > .map{
     position: absolute;
