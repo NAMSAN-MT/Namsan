@@ -139,6 +139,13 @@ const MobileMenuItem = styled.li`
   letter-spacing: -0.4px;
   margin-left: 24px;
 
+  ${mediaQuery(
+    'tablet1024',
+    `
+     margin-left: 40px;
+  `,
+  )};
+
   & a {
     color: ${({ theme }) => theme.color.textBlackHigh};
     ${flex()}
