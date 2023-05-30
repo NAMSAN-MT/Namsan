@@ -35,7 +35,7 @@ const IntroduceItemWrapper = styled.div`
       'mobile',
       `
     ${font('mobile_list14', 'regular')};
-    ${lineHeight(14, 32)};
+    ${lineHeight(14, 22)};
     letter-spacing: 0;`,
     )}
 
@@ -45,7 +45,7 @@ const IntroduceItemWrapper = styled.div`
         'mobile',
         `
       flex-direction: column;
-      margin-bottom: 8px`,
+      margin-bottom: 12px`,
       )};
 
       .time {

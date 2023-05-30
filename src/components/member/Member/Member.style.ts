@@ -20,7 +20,7 @@ const ImageWrapper = styled.div`
     `margin: 0 auto;
   height: 423.6px;`,
   )}
-  ${mediaQuery('mobile', `${size('360px')};`)};
+  ${mediaQuery('mobile', `${size('304px')};`)};
 
   .bg {
     ${size('100%', '100%')};
