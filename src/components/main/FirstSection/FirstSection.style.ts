@@ -64,20 +64,41 @@ const Title = styled(Basic)`
   text-transform: uppercase;
   font-family: 'FHAlphaTestLight';
   ${font('display100', 'demilight')}
-  ${lineHeight(100, 140)}};
+  ${lineHeight(100, 140)};
+
+  ${mediaQuery(
+    'mobile',
+    `
+  ${font('title30', 'bold')};
+  ${lineHeight(30, 44)};
+  width: 237px;
+  letter-spacing: -0.2px;
+  word-break: keep-all;
+  `,
+  )}
 `;
 
 const SubTitle = styled(Basic)`
   ${font('title30', 'regular')}
-  ${lineHeight(30, 36)}};
+  ${lineHeight(30, 36)};
+
+  ${mediaQuery(
+    'mobile',
+    `
+  ${font('mobile18', 'demilight')};
+  ${lineHeight(18, 21.48)};
+  margin-top: 24px;
+  `,
+  )}
 `;
+
 const Description = styled(Basic)`
   letter-spacing: -0.4px;
   color: ${({ theme }) => theme.color.textWhiteDisable};
   margin-top: 20px;
   opacity: 0.6;
   ${font('title26', 'medium')}
-  ${lineHeight(26, 40)}};
+  ${lineHeight(26, 40)};
 `;
 
 export {

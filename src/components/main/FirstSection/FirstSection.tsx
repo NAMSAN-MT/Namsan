@@ -85,13 +85,26 @@ const FirstSection = (props: IFirstSectionProps) => {
                 },
               }}
             >
-              <S.Title>Namsan</S.Title>
-              <S.SubTitle>Lim, Chung & Suh</S.SubTitle>
-              <S.Description>
-                {props.intl.formatMessage({
-                  id: `main.title1`,
-                })}
-              </S.Description>
+              {props.isMobile ? (
+                <>
+                  <S.Title>
+                    {props.intl.formatMessage({
+                      id: `main.title1`,
+                    })}
+                  </S.Title>
+                  <S.SubTitle>Lim, Chung & Suh</S.SubTitle>
+                </>
+              ) : (
+                <>
+                  <S.Title>Namsan</S.Title>
+                  <S.SubTitle>Lim, Chung & Suh</S.SubTitle>
+                  <S.Description>
+                    {props.intl.formatMessage({
+                      id: `main.title1`,
+                    })}
+                  </S.Description>
+                </>
+              )}
             </S.TextWrapper>
           </>
         )}
