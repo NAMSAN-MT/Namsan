@@ -5,19 +5,18 @@ import { Wrapper } from '../FirstSection/FirstSection.style';
 const FifthWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
   margin-top: 120px;
-  margin-bottom: 40px;
+  margin-bottom: 160px;
   ${mediaQuery(
     'tablet1024',
     `
      margin-top: 100px;
-     margin-bottom: 20px;
     `,
   )};
   ${mediaQuery(
     'mobile',
     `
      margin-top: 60px;
-     margin-bottom: 18px;
+     margin-bottom: 100px;
     `,
   )};
 `;
