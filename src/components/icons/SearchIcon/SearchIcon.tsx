@@ -13,7 +13,9 @@ interface PropTypes {
 
 const SearchIcon = (props: PropTypes) => {
   const path = useLocation();
-  const isSearchIconMobile = path.pathname.indexOf('/news') > -1;
+  const isSearchIconMobile =
+    path.pathname.indexOf('/news') > -1 ||
+    path.pathname.indexOf('/members') > -1;
 
   return (
     <IconWrapper width={props.width || '24px'} height={props.height || '24px'}>

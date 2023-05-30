@@ -55,82 +55,78 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
           {props.intl.formatMessage({ id: 'introduce.media_title' })}
         </div>
         <S.PressContentList>
-          <S.Column>
-            <S.PressContent>
-              <S.PressContentTitle>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content1_title',
-                })}
-              </S.PressContentTitle>
-              <S.PressContentPressName>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content1_press',
-                })}
-              </S.PressContentPressName>
-            </S.PressContent>
-            <S.PressContent>
-              <S.PressContentTitle>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content2_title',
-                })}
-              </S.PressContentTitle>
-              <S.PressContentPressName>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content2_press',
-                })}
-              </S.PressContentPressName>
-            </S.PressContent>
-            <S.PressContent>
-              <S.PressContentTitle>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content3_title',
-                })}
-              </S.PressContentTitle>
-              <S.PressContentPressName>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content3_press',
-                })}
-              </S.PressContentPressName>
-            </S.PressContent>
-          </S.Column>
-          <S.Column>
-            <S.PressContent>
-              <S.PressContentTitle>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content4_title',
-                })}
-              </S.PressContentTitle>
-              <S.PressContentPressName>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content4_press',
-                })}
-              </S.PressContentPressName>
-            </S.PressContent>
-            <S.PressContent>
-              <S.PressContentTitle>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content5_title',
-                })}
-              </S.PressContentTitle>
-              <S.PressContentPressName>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content5_press',
-                })}
-              </S.PressContentPressName>
-            </S.PressContent>
-            <S.PressContent>
-              <S.PressContentTitle>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content6_title',
-                })}
-              </S.PressContentTitle>
-              <S.PressContentPressName>
-                {props.intl.formatMessage({
-                  id: 'introduce.media_content6_press',
-                })}
-              </S.PressContentPressName>
-            </S.PressContent>
-          </S.Column>
+          <S.PressContent>
+            <S.PressContentTitle>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content1_title',
+              })}
+            </S.PressContentTitle>
+            <S.PressContentPressName>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content1_press',
+              })}
+            </S.PressContentPressName>
+          </S.PressContent>
+          <S.PressContent>
+            <S.PressContentTitle>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content2_title',
+              })}
+            </S.PressContentTitle>
+            <S.PressContentPressName>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content2_press',
+              })}
+            </S.PressContentPressName>
+          </S.PressContent>
+          <S.PressContent>
+            <S.PressContentTitle>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content3_title',
+              })}
+            </S.PressContentTitle>
+            <S.PressContentPressName>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content3_press',
+              })}
+            </S.PressContentPressName>
+          </S.PressContent>
+          <S.PressContent>
+            <S.PressContentTitle>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content4_title',
+              })}
+            </S.PressContentTitle>
+            <S.PressContentPressName>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content4_press',
+              })}
+            </S.PressContentPressName>
+          </S.PressContent>
+          <S.PressContent>
+            <S.PressContentTitle>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content5_title',
+              })}
+            </S.PressContentTitle>
+            <S.PressContentPressName>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content5_press',
+              })}
+            </S.PressContentPressName>
+          </S.PressContent>
+          <S.PressContent>
+            <S.PressContentTitle>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content6_title',
+              })}
+            </S.PressContentTitle>
+            <S.PressContentPressName>
+              {props.intl.formatMessage({
+                id: 'introduce.media_content6_press',
+              })}
+            </S.PressContentPressName>
+          </S.PressContent>
         </S.PressContentList>
       </S.PressWrapper>
     </S.IntroduceWrapper>

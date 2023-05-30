@@ -1,4 +1,4 @@
-import { font, lineHeight, mediaQuery, size } from '@Styles/mixin.style';
+import { flex, font, lineHeight, mediaQuery, size } from '@Styles/mixin.style';
 import styled from 'styled-components';
 
 const AnimationImageWrapper = styled.div<{ src: string }>`
@@ -6,6 +6,7 @@ const AnimationImageWrapper = styled.div<{ src: string }>`
   ${size('880px')}
   background: url(${({ src }) => src});
   background-size: cover;
+  ${flex('center')}
 
   ${mediaQuery(
     'mobile',
@@ -34,10 +35,12 @@ const Dim = styled.div`
 `;
 
 const TextWrapper = styled.div`
+  width: 1200px;
   position: absolute;
   top: 364px;
   bottom: 363px;
-  left: 360px;
+  margin: 0 auto;
+  /* left: 360px; */
   white-space: pre-wrap;
   color: ${({ theme }) => theme.color.textWhiteHigh};
   opacity: 0;
@@ -46,7 +49,7 @@ const TextWrapper = styled.div`
 
   ${mediaQuery('pc1380', `left: 90px;`)}
   ${mediaQuery('tablet1024', `left: 40px;`)}
-  ${mediaQuery('mobile', `top: 149px; bottom: 149px; left: 24px;`)}
+  ${mediaQuery('mobile', `width: 327px;top: 149px; bottom: 149px; left: 24px;`)}
 
   &.on {
     opacity: 1;

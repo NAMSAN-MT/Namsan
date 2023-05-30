@@ -14,11 +14,12 @@ const IntroduceWrapper = styled.div`
     ${font('display42', 'bold')};
     ${lineHeight(42, 60)};
     letter-spacing: -0.6px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 
     ${mediaQuery(
       'mobile',
       `
+      margin-bottom: 32px;
     ${font('mobile24', 'bold')};
     ${lineHeight(24, 36)};
     letter-spacing: -0.4px;
@@ -28,11 +29,12 @@ const IntroduceWrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
+  width: 1200px;
   white-space: pre-wrap;
   ${font('display42', 'bold')};
   ${lineHeight(42, 60)};
   letter-spacing: -0.6px;
-  margin: 150px 0 150px 368px;
+  margin: 150px auto;
 
   ${mediaQuery('pc1380', `margin: 150px 0 150px 90px;`)}
   ${mediaQuery('tablet1024', `margin: 150px 0 150px 40px;`)}
@@ -58,8 +60,8 @@ const TextWrapper = styled.div`
 `;
 
 const PressWrapper = styled.div`
-  margin: 140px 0 200px 368px;
-  ${size('100%', '896px')};
+  margin: 120px auto 160px auto;
+  ${size('100%', '1200px')};
 
   ${mediaQuery('pc1380', `margin: 120px 0 200px 90px;`)}
   ${mediaQuery('tablet1024', `margin: 120px 0 200px 40px;`)}
@@ -81,31 +83,26 @@ const PressContentList = styled.ul`
   ${flex('flex-start', 'flex-start')};
   flex-wrap: wrap;
   white-space: pre-wrap;
-  gap: 70px 128px;
+  gap: 70px 100px;
 
-  ${mediaQuery('tablet1024', `gap: 70px 76px;`)}
+  ${mediaQuery('tablet1024', `gap: 70px 88px;`)}
 
   ${mediaQuery(
     'mobile',
     `
-    gap: 32px;
+    flex-direction: column;
+    gap: 36px;
     ${flex('flex-start', 'flex-start')};
-    flex-wrap: nowrap;
-    flex-direction: column;`,
+    flex-wrap: nowrap;`,
   )}
 `;
 
-const Column = styled.div`
-  width: 380px;
-`;
-
 const PressContent = styled.li`
-  margin-bottom: 70px;
+  width: 384px;
 
   ${mediaQuery(
     'mobile',
     `
-  margin-bottom: 32px;
   &:last-child {
     margin-bottom: 0;
   }`,
@@ -138,7 +135,7 @@ const PressContentPressName = styled.div`
   ${mediaQuery(
     'mobile',
     `
-    ${font('mobile14', 'bold')};
+    ${font('mobile14', 'medium')};
     ${lineHeight(24, 22)};
   `,
   )}
@@ -149,7 +146,6 @@ export {
   TextWrapper,
   PressWrapper,
   PressContentList,
-  Column,
   PressContent,
   PressContentTitle,
   PressContentPressName,
