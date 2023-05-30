@@ -13,6 +13,7 @@ exports.onPostBuild = () => {
   });
 };
 
+// 이미지 노드 생성
 exports.onCreateNode = async ({
   node,
   actions: { createNode, createNodeField },
@@ -60,6 +61,7 @@ exports.onCreateNode = async ({
   }
 };
 
+/* 페이지 생성 */
 exports.createPages = async ({ actions, graphql }: any) => {
   const members = await graphql(`
     query {
@@ -189,60 +191,19 @@ exports.createPages = async ({ actions, graphql }: any) => {
     path: `/work`,
     component: resolve('./src/templates/work.tsx'),
   });
-  const memberQuery = (email: string) => `
-      query {
-        members(email: { eq: "${email}" }) {
-          id
-          language
-          email
-          name
-          position
-          order
-          businessFields
-          imagePath
-          bgImagePath
-        }
-      }
-    `;
-  const getImage = (id: string, path: string) => `
-      query {
-        image: file(parent: {id: {eq: "${id}"}}) {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        bgImage: file(name: {eq: "${path}"}) {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-      }
-    `;
 
   works.data.allWork.edges.forEach(async ({ node }: any) => {
-    const getMemberData = (data: string[]) =>
-      data.map(
-        async (member: string) =>
-          await graphql(memberQuery(member))
-            .then(({ data }: any) => data.members)
-            .then(
-              async (memberData: any) =>
-                memberData && {
-                  ...memberData,
-                  ...(await graphql(
-                    getImage(memberData.id, memberData.bgImagePath),
-                  ).then(({ data }: any) => {
-                    return {
-                      image: data.image?.childImageSharp.gatsbyImageData,
-                      bgImage: data.bgImage?.childImageSharp.gatsbyImageData,
-                    };
-                  })),
-                },
-            ),
-      );
+    const getContextMemberData = (data: any) => {
+      return data.map((memberEmail: string) => {
+        const [member] = contextMembers.filter(
+          member => member.email === memberEmail,
+        );
+        return member;
+      });
+    };
 
-    const mainMemberData = await Promise.all(getMemberData(node.member.main));
-    const subMemberData = await Promise.all(getMemberData(node.member.sub));
+    const mainMemberData = await getContextMemberData(node.member.main);
+    const subMemberData = await getContextMemberData(node.member.sub);
 
     actions.createPage({
       path: `/work/${node.categoryId}`,
