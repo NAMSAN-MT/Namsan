@@ -9,14 +9,17 @@ interface PropTypes {
   height?: string;
   isMobile?: boolean;
   isTransparent?: boolean;
+  isMobileMenuOpen?: boolean;
 }
 
 const LogoIcon = (props: PropTypes) => {
   let logoSrc = LogoGnbIcon;
   if (props.isMobile) {
-    logoSrc = LogoMobileGnbIcon;
     if (props.isTransparent) {
       logoSrc = LogoMobileGnbWhiteIcon;
+      if (props.isMobileMenuOpen) {
+        logoSrc = LogoMobileGnbIcon;
+      }
     }
   }
 

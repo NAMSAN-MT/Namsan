@@ -27,7 +27,7 @@ const InnerWrapper = styled.div`
      min-height: 730px;
      ${flex('start', 'start')};
      flex-direction: column;
-     padding: 60px 0 57px;
+     padding: 60px 0 45px;
     `,
   )};
 `;

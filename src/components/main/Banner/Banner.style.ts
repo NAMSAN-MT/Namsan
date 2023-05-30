@@ -8,12 +8,10 @@ const BannerWrapper = styled.div<{ even: boolean }>`
   border-radius: 20px;
   padding: 28px 36px 26px;
   margin-right: ${({ even }) => (even ? '20px' : '0')};
-  ${mediaQuery(
-    'tablet1024',
-    `
-     padding: 28px 32px;
-    `,
-  )};
+  @media (max-width: 1212px) {
+    padding: 28px 32px;
+  }
+
   ${mediaQuery(
     'mobile',
     `
@@ -27,13 +25,10 @@ const ContentsWrapper = styled.div`
   width: 100%;
   height: 100%;
   ${flex('space-between', 'center')};
-  ${mediaQuery(
-    'tablet1024',
-    `
-     ${flex('start', 'start')};
-     flex-direction: column;
-    `,
-  )};
+  @media (max-width: 1212px) {
+    ${flex('start', 'start')};
+    flex-direction: column;
+  }
   ${mediaQuery(
     'mobile',
     `
@@ -68,13 +63,11 @@ const Title = styled.div`
   ${lineHeight(22, 36)};
   max-width: 320px;
 
-  ${mediaQuery(
-    'tablet1024',
-    `
+  @media (max-width: 1212px) {
+    ${flex('start', 'start')};
     max-width: 100%;
     margin-bottom: 20px;
-  `,
-  )}
+  }
 
   ${mediaQuery(
     'mobile',

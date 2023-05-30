@@ -4,6 +4,7 @@ import {
   font,
   lineHeight,
   mediaQuery,
+  size,
 } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { Wrapper } from '../FirstSection/FirstSection.style';
@@ -102,7 +103,8 @@ const BottomWrapper = styled.div`
       width: 100%;
       max-width: 100%;
       height: 100%;
-      padding: 23px 20px 22px;
+      padding: 24px 20px;
+      ${size('188px', '100%')}
     `,
     )};
 
@@ -114,13 +116,6 @@ const BottomWrapper = styled.div`
           margin-bottom: 12px;
           padding: 0
         `,
-      )};
-      ${mediaQuery(
-        'mobile',
-        `
-        margin-bottom: 1px;
-        padding: 0
-      `,
       )};
       p {
         ${mediaQuery(
@@ -134,9 +129,11 @@ const BottomWrapper = styled.div`
         ${mediaQuery(
           'mobile',
           `
-          ${font('caption12', 'bold')};
+          ${font('mobile12', 'bold')};
           ${lineHeight(12, 20)};
           ${ellipsis()};
+          letter-spacing: -0.1px;
+          padding: 2px 8px;
         `,
         )};
       }
@@ -160,7 +157,6 @@ const BottomWrapper = styled.div`
       ${mediaQuery(
         'mobile',
         `
-        max-width: 220px;
         margin-bottom: 0px;
         height: 100%;
         ${font('mobile16', 'bold')};
@@ -252,7 +248,7 @@ const ButtonWrapper = styled.div`
   ${mediaQuery(
     'mobile',
     `
-        margin-top: 36px;
+        margin-top: 22px;
       `,
   )};
 `;
