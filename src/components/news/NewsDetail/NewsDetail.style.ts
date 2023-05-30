@@ -45,8 +45,13 @@ export const TitleArea = styled.div`
   & > div {
     opacity: 0.56;
 
-    ${mediaQuery('tablet1024', ` display:none;`)};
-    ${mediaQuery('mobile', ` display:none;`)};
+    ${mediaQuery('tablet1024', `display:none;`)};
+    ${mediaQuery('mobile', `display:none;`)};
+  }
+
+  & > button {
+    ${mediaQuery('tablet1024', `display:none;`)};
+    ${mediaQuery('mobile', `display:none;`)};
   }
 
   & > h1 {
@@ -315,4 +320,8 @@ export const FloatingWrapper = styled.div<{
 
   ${mediaQuery('tablet1024', `right: 40px;bottom: 276px;`)};
   ${mediaQuery('mobile', `right: 24px;bottom: 266px;`)};
+`;
+
+export const EmptyArrow = styled.div`
+  ${size('60px', '60px')}
 `;
