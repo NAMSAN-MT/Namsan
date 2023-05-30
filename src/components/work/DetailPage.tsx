@@ -34,6 +34,9 @@ const DetailPage = (props: Props & PageContextProps) => {
   const [isShowMore, setIsShowMore] = useState(false);
   const subIdPrefix = props.id?.replace('C', 'S');
 
+  // const mySVG = document.querySelectorAll('svg');
+  // mySVG.forEach(a => a.setAttribute('viewBox', '5 5 14 14'));
+
   const onClickShowMore = () => {
     setIsShowMore(true);
   };
@@ -101,6 +104,7 @@ const DetailPage = (props: Props & PageContextProps) => {
                   key={member.id}
                   {...member}
                   businessFields={[]}
+                  name={member.name.toUpperCase()}
                   order={`${member.order}`}
                 />
               ),
