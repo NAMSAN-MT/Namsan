@@ -29,7 +29,7 @@ export const Grid = styled.div`
     'mobile',
     `
     grid-template-columns: repeat(1, 1fr);
-    row-gap: 28px;
+    row-gap: 16px;
       `,
   )}
 `;
@@ -53,6 +53,15 @@ export const Title = styled.h1`
 
 export const LineArrowIconInner = styled.div`
   cursor: pointer;
+  scale: 1.5;
+
+  ${mediaQuery(
+    'mobile',
+    `
+
+  scale: 1.1;
+      `,
+  )}
 `;
 
 export const SubTitle = styled.h2`
@@ -125,39 +134,61 @@ export const Head = styled.div`
 `;
 
 export const Layout = styled.div`
-  padding: 0px 90px;
-  margin: 107px auto 80px auto;
+  padding: 0px 102px;
+  margin: 107px auto 160px auto;
   max-width: 1200px;
+
+  ${mediaQuery(
+    'tablet1024',
+    `
+    margin-top: 60px;
+    padding: 0px 40px;
+  `,
+  )}
 
   ${mediaQuery(
     'mobile',
     `
-      padding: 0px 24px;
-      margin-top: 99px;
-      margin-bottom: 100px;
+    padding: 0px 24px;
+    margin-top: 99px;
+    margin-bottom: 100px;
   `,
   )}
 `;
 
 export const MemberBox = styled.div`
-  margin-top: 86px;
+  margin-top: 68px;
+
+  ${mediaQuery(
+    'tablet1024',
+    `
+    margin-top: 62px;
+  `,
+  )}
 
   ${mediaQuery(
     'mobile',
-    `margin-top:40px;
-      `,
+    `margin-top:40px;  
+  `,
   )}
 `;
 
 export const CategoryBox = styled.div`
-  margin-bottom: 20px;
+  padding-bottom: 18px;
+
+  ${mediaQuery(
+    'tablet1024',
+    `
+    padding-bottom: 24px;
+  `,
+  )}
 `;
 
 export const MemberList = styled.div`
   grid-template-columns: repeat(4, 1fr);
   display: grid;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: start;
   margin-top: 32px;
   grid-column-gap: 24px;
   column-gap: 24px;
@@ -166,6 +197,7 @@ export const MemberList = styled.div`
   ${mediaQuery(
     'tablet1024',
     `grid-template-columns: repeat(3, 1fr);
+    row-gap: 36px;
       `,
   )}
   ${mediaQuery(
@@ -223,15 +255,20 @@ export const MemberList = styled.div`
 export const Image = styled.img`
   ${size('auto', '100%')}
   margin-top: 8px;
-  margin-bottom: 80px;
+  margin-bottom: 74px;
 
+  ${mediaQuery(
+    'tablet1024',
+    `
+    `,
+  )}
   ${mediaQuery(
     'mobile',
     `
     ${size('160px', '100%')}
     overflow:hidden;
     margin-top: 8px;
-    margin-bottom: 28px;`,
+    margin-bottom: 20px;`,
   )}
 `;
 
