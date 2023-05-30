@@ -55,19 +55,31 @@ const NewsDetail = (props: Props) => {
       <S.HeaderContainer>
         <S.TopText newsType={newsType}>{topTxt}</S.TopText>
         <S.TitleArea>
-          <LineArrowIcon
-            direction="LEFT"
-            weight="LIGHT"
-            width="60px"
-            height="60px"
-          />
+          {isPrevContent ? (
+            <button data-id={prevNews.id} onClick={handleMove}>
+              <LineArrowIcon
+                direction="LEFT"
+                weight="LIGHT"
+                width="60px"
+                height="60px"
+              />
+            </button>
+          ) : (
+            <S.EmptyArrow />
+          )}
           <h1>{title}</h1>
-          <LineArrowIcon
-            direction="RIGHT"
-            weight="LIGHT"
-            width="60px"
-            height="60px"
-          />
+          {isNextContent ? (
+            <button data-id={nextNews.id} onClick={handleMove}>
+              <LineArrowIcon
+                direction="RIGHT"
+                weight="LIGHT"
+                width="60px"
+                height="60px"
+              />
+            </button>
+          ) : (
+            <S.EmptyArrow />
+          )}
         </S.TitleArea>
         <S.HeaderDivder />
         <S.DateARea>{dateYearMonthDate}</S.DateARea>
