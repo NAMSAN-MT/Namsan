@@ -51,7 +51,7 @@ const TextWrapper = styled.div`
   padding: 68px 102px calc(160px - 85px);
   margin: 0 auto;
   max-width: 996px;
-  transform: translateY(-85px);
+  transform: translateY(-51px);
 
   ${mediaQuery(
     'tablet1024',
@@ -66,6 +66,7 @@ const TextWrapper = styled.div`
     `
   padding: 28px 24px;
   transform: none;
+  margin: 0;
   `,
   )}
 

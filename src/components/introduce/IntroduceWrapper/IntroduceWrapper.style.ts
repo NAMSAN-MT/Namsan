@@ -14,7 +14,7 @@ const IntroduceWrapper = styled.div`
     ${font('display42', 'bold')};
     ${lineHeight(42, 60)};
     letter-spacing: -0.6px;
-    margin-bottom: 32px;
+    margin-bottom: 60px;
 
     ${mediaQuery(
       'mobile',
