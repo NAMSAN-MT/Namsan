@@ -208,10 +208,8 @@ export const MemberList = styled.div`
 
   & > li {
     max-width: 282px;
-    width: auto;
-    height: auto;
+    width: 100%;
     margin-bottom: 0px;
-
     & > ${S.ImageSection}:hover {
       ${S.TagsWrapper} {
         display: none;
@@ -221,20 +219,27 @@ export const MemberList = styled.div`
       }
     }
 
-    & > div {
-      height: auto;
-      & > ${S.Name} {
-        margin-top: 16px;
-        ${font('title20', 'bold')}
+    & > ${S.ImageSection} {
+      height: 100%;
+      & > ${S.ImageWrapper} {
+        img {
+          width: 100%;
+          height: auto;
+        }
 
-        ${mediaQuery(
-          'mobile',
-          `margin-top: 10px;
+        & > ${S.Name} {
+          margin-top: 16px;
+          ${font('title20', 'bold')}
+
+          ${mediaQuery(
+            'mobile',
+            `margin-top: 10px;
       `,
-        )}
-      }
-      & > ${S.Position} {
-        ${font('title18', 'regular')}
+          )}
+        }
+        & > ${S.Position} {
+          ${font('title18', 'regular')}
+        }
       }
     }
 

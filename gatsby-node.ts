@@ -106,7 +106,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
       query {
         file(name: {regex: "/${imageUniqueId}/g"}) {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(layout: CONSTRAINED)
           }
         }
     }`);
