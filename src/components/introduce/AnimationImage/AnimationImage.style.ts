@@ -48,7 +48,7 @@ const TextWrapper = styled.div`
   height: fit-content;
 
   ${mediaQuery('pc1380', `left: 90px;`)}
-  ${mediaQuery('tablet1024', `left: 40px;`)}
+  ${mediaQuery('tablet1024', `left: 40px; width: auto;`)}
   ${mediaQuery('mobile', `width: 327px;top: 149px; bottom: 149px; left: 24px;`)}
 
   &.on {
