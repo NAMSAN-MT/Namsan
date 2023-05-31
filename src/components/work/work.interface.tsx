@@ -11,6 +11,7 @@ export interface CategoryDescription {
   categoryTitle: string;
   description: string;
   isOpen?: boolean;
+  isFirstTime?: boolean;
 }
 
 export interface CategoryPageProps {
