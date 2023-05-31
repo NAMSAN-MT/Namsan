@@ -47,6 +47,12 @@ const TopButtonWrapper = styled.div<{ isTransparent?: boolean }>`
   align-items: flex-end;
   row-gap: 12px;
 
+  position: sticky;
+  height: 0px;
+
+  padding-bottom: 60px;
+  margin-top: -60px;
+
   ${mediaQuery(
     'tablet1024',
     `
@@ -57,13 +63,49 @@ const TopButtonWrapper = styled.div<{ isTransparent?: boolean }>`
     'mobile',
     `
      right: 24px;
-     bottom: 24px;
+     bottom: 22px;
+
+
+    padding-bottom: 22px;
+    margin-top: -22px;
     `,
   )};
 `;
 
 const TopButtonInner = styled.div`
   cursor: pointer;
+  position: absolute;
+  margin-top: -60px;
+  margin-right: 90px;
+
+  :nth-child(1):nth-last-child(2) {
+    margin-bottom: 72px;
+  }
+
+  :only-child {
+    margin-top: -60px;
+  }
+
+  & > div,
+  button {
+    height: 60px;
+  }
+
+  ${mediaQuery(
+    'mobile',
+    `
+     margin-right: 14px;
+
+      :nth-child(1):nth-last-child(2) {
+        margin-bottom: 52px;
+      }
+
+
+      & > div,button {
+        scale: 0.6666;
+      }
+    `,
+  )};
 `;
 
 const FloatingWrapper = styled.div`

@@ -42,7 +42,7 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.color.textBlackHigh};
   ${font('display40', 'bold')}
   margin-bottom: 53px;
-
+  line-height: 1.5;
   ${mediaQuery(
     'mobile',
     `
