@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from 'react';
 const useLayout = () => {
   const location = useLocation();
   const [toastMessage, setToastMessage] = useState('');
-  const [mouseOverFromTopButton, setMouseOverFromTopButton] = useState(false);
+  const [clickTopButton, setClickTopButton] = useState(false);
   const interval = useRef<NodeJS.Timeout>();
   useEffect(() => {
     if (toastMessage) {
@@ -20,6 +20,7 @@ const useLayout = () => {
     e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
   ) => {
     e.preventDefault();
+    setClickTopButton(true);
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -38,8 +39,8 @@ const useLayout = () => {
     toastMessage,
     handleTopEvent,
     handleCopyLink,
-    setMouseOverFromTopButton,
-    mouseOverFromTopButton,
+    clickTopButton,
+    setClickTopButton,
   };
 };
 

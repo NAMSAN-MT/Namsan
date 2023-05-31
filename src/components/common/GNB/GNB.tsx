@@ -78,16 +78,16 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                   selected={path.pathname === `/${language}${href}`}
                 >
                   {intl.formatMessage({ id: translationId })}
+                  <S.LinkNameInner>
+                    <LottieWrapper
+                      height={4}
+                      animationData={Focus}
+                      width={path.pathname !== `/${language}/members` ? 58 : 43}
+                      loop={false}
+                      autoplay
+                    />
+                  </S.LinkNameInner>
                 </S.LinkNameWrapper>
-                <S.LinkNameInner>
-                  <LottieWrapper
-                    height={4}
-                    animationData={Focus}
-                    width={path.pathname !== `/${language}/members` ? 58 : 43}
-                    loop={false}
-                    autoplay
-                  />
-                </S.LinkNameInner>
               </>
             ) : (
               <S.LinkNameWrapper

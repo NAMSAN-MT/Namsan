@@ -210,6 +210,7 @@ export const MemberList = styled.div`
     max-width: 282px;
     width: 100%;
     margin-bottom: 0px;
+    height: auto;
     & > ${S.ImageSection}:hover {
       ${S.TagsWrapper} {
         display: none;

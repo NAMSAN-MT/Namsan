@@ -7,15 +7,15 @@ export type ContainerType = {
 };
 
 export const ContainerWrapper = styled.div`
-  margin: 104px auto 160px;
+  margin: 0px auto 160px;
   max-width: 1200px;
-  padding: 0px 90px;
+  padding: 100px 0px 0px 0px;
 
   ${mediaQuery(
     'pc1278',
     `
     padding: 0px 24px;
-    margin-top: 70px;
+    padding-top: 70px;
     margin-bottom: 100px;
       `,
   )};
@@ -24,7 +24,7 @@ export const ContainerWrapper = styled.div`
     'tablet1024',
     `
     padding: 0px 40px;
-    margin-top: 66px;
+    padding-top: 60px;
     margin-bottom: 160px;
     `,
   )}
@@ -33,7 +33,7 @@ export const ContainerWrapper = styled.div`
     'mobile',
     `
     padding: 0px 24px;
-    margin-top: 30px;
+    padding-top: 32px;
     margin-bottom: 100px;
       `,
   )}
