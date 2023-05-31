@@ -24,13 +24,25 @@ const TopMenuButton = ({
       onClick={handleTopEvent}
       onMouseDown={() => setClickTopButton(false)}
     >
-      <LottieWrapper
-        animationData={ButtonTop}
-        width={60}
-        loop={clickTopButton}
-        autoplay={clickTopButton}
-        stop={!clickTopButton}
-      />
+      {clickTopButton ? (
+        <LottieWrapper
+          animationData={ButtonTop}
+          width={60}
+          height={60}
+          loop={false}
+          autoplay={true}
+          eventListeners={[
+            {
+              eventName: 'complete',
+              callback() {
+                setClickTopButton(false);
+              },
+            },
+          ]}
+        />
+      ) : (
+        <BaseButton className="arrow-top" onClick={handleTopEvent} />
+      )}
     </S.TopButtonInner>
   );
 };

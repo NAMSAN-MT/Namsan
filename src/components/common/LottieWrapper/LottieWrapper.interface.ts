@@ -1,3 +1,5 @@
+import { EventListener } from 'react-lottie';
+
 interface ILottieWrapperProps {
   animationData: any;
   width?: number;
@@ -6,6 +8,7 @@ interface ILottieWrapperProps {
   autoplay?: boolean;
   stop?: boolean;
   isPaused?: boolean;
+  eventListeners?: ReadonlyArray<EventListener>;
 }
 
 export { ILottieWrapperProps };

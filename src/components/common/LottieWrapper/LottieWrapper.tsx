@@ -14,6 +14,7 @@ const LottieWrapper = (props: ILottieWrapperProps) => {
 
   return (
     <Lottie
+      eventListeners={props.eventListeners}
       options={animationLoopOptions}
       width={props.width}
       height={props.height}
