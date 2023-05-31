@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const FrirstWrapper = styled.div`
+const FrirstWrapper = styled.div<{ startSlide?: boolean }>`
   ${flex()};
   flex-direction: column;
   width: 100%;
@@ -47,6 +47,9 @@ const boxScale = keyframes`
 `;
 
 const ScaleWrapper = styled(FrirstWrapper)`
+  img {
+    object-fit: cover;
+  }
   // animation: ${boxScale} 1s ease-in-out alternate;
 `;
 
@@ -69,6 +72,7 @@ const Title = styled(Basic)`
   ${mediaQuery(
     'mobile',
     `
+    font-family: 'Noto Sans KR';
     ${font('title30', 'bold')};
     ${lineHeight(30, 42)};
     width: 243px;
@@ -90,7 +94,7 @@ const SubTitle = styled(Basic)`
     ${lineHeight(16, 19.09)};
     letter-spacing: -0.5px;
     margin-top: 18px;
-    color: ${theme.color.textWhiteDisable};
+    color: rgba(255, 255, 255, 0.6);
     
   `,
     )}
@@ -98,9 +102,8 @@ const SubTitle = styled(Basic)`
 
 const Description = styled(Basic)`
   letter-spacing: -0.4px;
-  color: ${({ theme }) => theme.color.textWhiteDisable};
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 20px;
-  opacity: 0.6;
   ${font('title26', 'medium')}
   ${lineHeight(26, 40)};
 `;
