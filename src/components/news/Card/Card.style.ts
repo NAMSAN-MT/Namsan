@@ -29,6 +29,7 @@ export const CardBox = styled.div`
   ${mediaQuery(
     'mobile',
     `
+      gap: 16px;
       margin: 36px 0px 40px;
     `,
   )};
