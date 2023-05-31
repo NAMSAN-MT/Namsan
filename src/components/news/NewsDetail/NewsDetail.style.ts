@@ -30,11 +30,14 @@ export const TopText = styled.p<{ newsType: NewsType }>`
   letter-spacing: -0.2px;
   color: ${({ newsType, theme }) =>
     newsType === 'media' ? theme.color.blue200 : theme.color.red500};
+
+  ${mediaQuery('mobile', `${font('mobile14', 'bold')} ${lineHeight(14, 22)}`)};
 `;
 
 export const HeaderDivder = styled.div`
   ${size('1px', '80px')}
   background: ${({ theme }) => theme.color.dividerGrey200};
+  ${mediaQuery('mobile', `${size('1px', '60px')}`)};
 `;
 
 export const TitleArea = styled.div`
@@ -57,6 +60,7 @@ export const TitleArea = styled.div`
 
   & > h1 {
     ${flex()}
+    text-align: center;
     font-family: 'Noto Sans';
     font-style: normal;
     ${font('title32', 'bold')}
@@ -90,7 +94,14 @@ export const DateARea = styled.p`
   color: rgba(6, 11, 17, 0.56);
 
   ${mediaQuery('tablet1024', `padding: 16px 0px 40px;`)};
-  ${mediaQuery('mobile', `padding: 16px 0px 40px;`)};
+  ${mediaQuery(
+    'mobile',
+    `
+      padding: 16px 0px 40px;
+      ${font('mobile14', 'regular')}
+      ${lineHeight(14, 22)}
+    `,
+  )};
 `;
 
 export const ContentConatiner = styled.div<{ isProfile: boolean }>`
