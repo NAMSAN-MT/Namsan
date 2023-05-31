@@ -51,7 +51,9 @@ const CopyButton = ({
       />
     </S.TopButtonInner>
   ) : (
-    <BaseButton className="copy" onClick={handleCopyLink} />
+    <S.TopButtonInner>
+      <BaseButton className="copy" onClick={handleCopyLink} />
+    </S.TopButtonInner>
   );
 };
 
@@ -80,7 +82,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
         isNewsDetailPage={isNewsDetailPage}
       >
         {children}
-        {isMainPage && (
+        {
           <S.TopButtonWrapper isTransparent={props.isTransparent}>
             <CopyButton
               isCopyButton={isCopyButton}
@@ -93,7 +95,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
               setClickTopButton={setClickTopButton}
             />
           </S.TopButtonWrapper>
-        )}
+        }
         <S.ToastWrapper isVisible={!isEmpty(toastMessage)}>
           <S.Toast>{toastMessage}</S.Toast>
         </S.ToastWrapper>
