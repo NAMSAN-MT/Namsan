@@ -70,7 +70,7 @@ const MainLinkWrapper = styled.div`
     ${mediaQuery(
       'tablet1024',
       `
-    display: none;`,
+      display: none;`,
     )};
   }
 `;
@@ -81,7 +81,8 @@ const LinkNameWrapper = styled(motion.div)<{ selected: boolean }>`
 `;
 
 const LinkNameInner = styled.div`
-  margin-top: 4px;
+  margin-top: -3px;
+  width: 100%;
   div {
     line-height: 0;
   }

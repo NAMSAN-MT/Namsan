@@ -20,7 +20,7 @@ const useFirstSection = (props: IFirstSectionProps) => {
   useEffect(() => {
     setTimeout(() => {
       setStartSlide(true);
-    }, 4600);
+    }, 5100);
   }, []);
 
   useEffect(() => {
