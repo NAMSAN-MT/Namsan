@@ -133,7 +133,7 @@ const ArrowTop = styled(IconBase)`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.backgroundGrey50};
   &:hover {
-    background-color: ${({ theme }) => theme.color.textBlackDisable};
+    background-color: ${({ theme }) => theme.color.grey200};
   }
   .icon {
     background: ${`url(${ArrowUpIcon}) no-repeat center center`};
@@ -146,7 +146,7 @@ const Copy = styled(IconBase)`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.color.backgroundGrey50};
   &:hover {
-    background-color: ${({ theme }) => theme.color.textBlackDisable};
+    background-color: ${({ theme }) => theme.color.grey200};
   }
   .icon {
     background: ${`url(${CopyIcon}) no-repeat center center`};

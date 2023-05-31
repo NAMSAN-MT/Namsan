@@ -92,17 +92,24 @@ const TopButtonInner = styled.div`
   }
 
   ${mediaQuery(
+    'tablet1024',
+    `
+    margin-right: 40px;
+    `,
+  )};
+
+  ${mediaQuery(
     'mobile',
     `
-     margin-right: 14px;
+     margin-right: 18px;
 
       :nth-child(1):nth-last-child(2) {
-        margin-bottom: 52px;
+        margin-bottom: 60px;
       }
 
 
       & > div,button {
-        scale: 0.6666;
+        scale: 0.8;
       }
     `,
   )};

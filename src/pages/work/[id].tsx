@@ -69,6 +69,7 @@ const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
     categoryTitle: title,
     description: data.work.description[index],
     isOpen: index === subId,
+    isFirstTime: true,
   }));
 
   return (
