@@ -34,9 +34,6 @@ const DetailPage = (props: Props & PageContextProps) => {
   const [isShowMore, setIsShowMore] = useState(false);
   const subIdPrefix = props.id?.replace('C', 'S');
 
-  // const mySVG = document.querySelectorAll('svg');
-  // mySVG.forEach(a => a.setAttribute('viewBox', '5 5 14 14'));
-
   const onClickShowMore = () => {
     setIsShowMore(true);
   };
@@ -47,7 +44,7 @@ const DetailPage = (props: Props & PageContextProps) => {
     setCategory(curr => {
       return curr.map((c, i) => {
         if (i === Number(index)) {
-          return { ...c, isOpen: !c.isOpen ?? true };
+          return { ...c, isOpen: !c.isOpen ?? true, isFirstTime: false };
         }
         return c;
       });
@@ -74,15 +71,19 @@ const DetailPage = (props: Props & PageContextProps) => {
                   />
                   <Head onClick={handleClick} data-index={index}>
                     <SubTitle>{item.categoryTitle}</SubTitle>
-                    {/* TODO: SVG color 적용 */}
                     <LineArrowIconInner>
                       <LottieWrapper
                         animationData={
-                          item.isOpen ? NavigationUp : NavigationDown
+                          item.isOpen
+                            ? item.isFirstTime
+                              ? { ...NavigationDown, fr: 0, op: 1 }
+                              : NavigationUp
+                            : item.isFirstTime
+                            ? { ...NavigationUp, fr: 0, op: 1 }
+                            : NavigationDown
                         }
                         width={21}
                         loop={false}
-                        autoplay={true}
                       />
                     </LineArrowIconInner>
                   </Head>

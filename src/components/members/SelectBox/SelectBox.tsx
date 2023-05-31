@@ -1,9 +1,9 @@
-import React from 'react';
+import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
+import React, { useState } from 'react';
+import NavigationDown from '../../../assets/lottie/navigation_down.json';
+import NavigationUp from '../../../assets/lottie/navigation_up.json';
 import { ISelectBoxProps } from './SelectBox.interface';
 import * as S from './SelectBox.style';
-import NavigationUp from '../../../assets/lottie/navigation_up.json';
-import NavigationDown from '../../../assets/lottie/navigation_down.json';
-import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 
 const SelectBox = ({
   options,
@@ -13,10 +13,18 @@ const SelectBox = ({
   isOpen,
   setOpen,
 }: ISelectBoxProps) => {
-  const arrowDirection = isOpen ? NavigationUp : NavigationDown;
+  const [isFirstRender, setIsFirstRender] = useState(true);
+  const arrowDirection = isOpen
+    ? isFirstRender
+      ? { ...NavigationDown, fr: 0, op: 1 }
+      : NavigationUp
+    : isFirstRender
+    ? { ...NavigationUp, fr: 0, op: 1 }
+    : NavigationDown;
 
   const _toggle = () => {
     setOpen(!isOpen);
+    setIsFirstRender(false);
   };
 
   return (

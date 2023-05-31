@@ -5,6 +5,7 @@ interface ILottieWrapperProps {
   loop?: boolean;
   autoplay?: boolean;
   stop?: boolean;
+  isPaused?: boolean;
 }
 
 export { ILottieWrapperProps };

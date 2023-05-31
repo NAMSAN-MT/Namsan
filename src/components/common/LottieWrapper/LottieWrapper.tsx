@@ -18,6 +18,8 @@ const LottieWrapper = (props: ILottieWrapperProps) => {
       width={props.width}
       height={props.height}
       isStopped={props.stop}
+      isPaused={props.isPaused}
+      isClickToPauseDisabled={true}
     />
   );
 };
