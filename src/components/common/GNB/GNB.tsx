@@ -23,7 +23,6 @@ const MobileMenuButton = ({
         <LottieWrapper
           animationData={ButtonMenu}
           width={24}
-          height={12}
           loop={false}
           autoplay={true}
         />
