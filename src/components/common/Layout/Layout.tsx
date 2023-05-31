@@ -15,32 +15,23 @@ import ButtonTop from '../../../assets/lottie/button_top.json';
 import ButtonLink from '../../../assets/lottie/button_link.json';
 
 const TopMenuButton = ({
-  mouseOverFromTopButton,
+  clickTopButton,
   handleTopEvent,
-  setMouseOverFromTopButton,
+  setClickTopButton,
 }: ITopButtonProps) => {
   return (
-    <>
-      {mouseOverFromTopButton ? (
-        <S.TopButtonInner
-          onClick={handleTopEvent}
-          onMouseLeave={() => setMouseOverFromTopButton(false)}
-        >
-          <LottieWrapper
-            animationData={ButtonTop}
-            width={60}
-            loop={false}
-            autoplay={true}
-          />
-        </S.TopButtonInner>
-      ) : (
-        <BaseButton
-          className="arrow-top"
-          onClick={handleTopEvent}
-          onMouseOver={() => setMouseOverFromTopButton(true)}
-        />
-      )}
-    </>
+    <S.TopButtonInner
+      onClick={handleTopEvent}
+      onMouseDown={() => setClickTopButton(false)}
+    >
+      <LottieWrapper
+        animationData={ButtonTop}
+        width={60}
+        loop={clickTopButton}
+        autoplay={clickTopButton}
+        stop={!clickTopButton}
+      />
+    </S.TopButtonInner>
   );
 };
 
@@ -66,12 +57,13 @@ const CopyButton = ({
 
 const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { isHeader = true, isFooter = true, children, route } = props;
+
   const {
     toastMessage,
     handleTopEvent,
     handleCopyLink,
-    mouseOverFromTopButton,
-    setMouseOverFromTopButton,
+    clickTopButton,
+    setClickTopButton,
   } = useLayout();
 
   const isMainPage = ['main', 'workDetail', 'newsDetail'].includes(route ?? '');
@@ -96,9 +88,9 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
               handleCopyLink={handleCopyLink}
             />
             <TopMenuButton
-              mouseOverFromTopButton={mouseOverFromTopButton}
+              clickTopButton={clickTopButton}
               handleTopEvent={handleTopEvent}
-              setMouseOverFromTopButton={setMouseOverFromTopButton}
+              setClickTopButton={setClickTopButton}
             />
           </S.TopButtonWrapper>
         )}

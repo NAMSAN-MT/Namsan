@@ -4,6 +4,7 @@ interface ILottieWrapperProps {
   height?: number;
   loop?: boolean;
   autoplay?: boolean;
+  stop?: boolean;
 }
 
 export { ILottieWrapperProps };
