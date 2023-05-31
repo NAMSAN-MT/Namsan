@@ -5,6 +5,8 @@ export const defaultColors = {
   blue100: '#103EAC',
   blue200: '#193F9A',
   blue300: '#142f71',
+  navy: '#08205A',
+  navy300: '#08205A30',
   white: '#FFFFFF',
   red500: '#652D25',
   grey50: '#F8F9FA',

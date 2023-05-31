@@ -35,17 +35,21 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
       const map = new naver.maps.Map(mapRef.current!, mapOptions);
       const marker = new naver.maps.Marker({ position: location, map });
 
-      const contentString = `<h3 style='padding: 10px;'>법무법인 남산</h3>`;
+      const contentString = `<h3 style='padding: 10px;
+      color:white;
+      font-size: 14px;
+      line-height: 0.7;
+      letter-spacing: -0.6px;
+      font-weight: 700;'>법무법인 남산</h3>`;
 
       const infowindow = new naver.maps.InfoWindow({
         content: contentString,
         maxWidth: 140,
-        backgroundColor: theme.color.white,
-        borderWidth: 2,
+        backgroundColor: theme.color.navy,
+        borderWidth: 1,
         borderColor: theme.color.grey300,
-        anchorSize: new naver.maps.Size(10, 1),
-        anchorColor: theme.color.white,
-        // pixelOffset: new naver.maps.Point(20, -20),
+        anchorSize: new naver.maps.Size(10, 5),
+        anchorColor: theme.color.navy,
       });
 
       infowindow.open(map, marker);
@@ -69,7 +73,7 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
         <Info.Column>
           <Info
             title={intl.formatMessage({ id: 'contact.title_email' })}
-            content="namsan@namsanlaw.com"
+            content="recruit@namsanlaw.com"
           />
           <Info
             title={intl.formatMessage({ id: 'contact.title_tel' })}

@@ -31,6 +31,10 @@ const Map = styled.div`
   & > .map {
     width: 100%;
     height: 100%;
+
+    & div {
+      border-radius: 6px;
+    }
   }
 
   ${mediaQuery(
@@ -46,6 +50,9 @@ const Map = styled.div`
     top: 0;
     left: -24px;
     width: 100vw;
+    border-radius: 6px;
+
+
   }
   `,
   )}
