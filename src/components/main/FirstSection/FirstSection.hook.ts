@@ -21,6 +21,9 @@ const useFirstSection = (props: IFirstSectionProps) => {
     setTimeout(() => {
       setStartSlide(true);
     }, 5100);
+    return () => {
+      setStartSlide(false);
+    };
   }, []);
 
   useEffect(() => {

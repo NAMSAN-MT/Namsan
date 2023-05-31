@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import useFirstSection from './FirstSection.hook';
 import * as S from './FirstSection.style';
 import { IFirstSectionProps } from './FirstSection.interface';
 import { useInView } from 'react-intersection-observer';
 
-import { AnimatePresence, motion } from 'framer-motion';
 import _ from 'lodash';
 import { injectIntl } from 'gatsby-plugin-intl';
 import { Carousel } from 'react-responsive-carousel';
