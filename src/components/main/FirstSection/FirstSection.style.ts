@@ -72,7 +72,8 @@ const Title = styled(Basic)`
   ${mediaQuery(
     'mobile',
     `
-    font-family: Noto Sans KR;
+    font-family: 'Noto Sans';
+    font-style: normal;
     ${font('title30', 'bold')};
     ${lineHeight(30, 42)};
     width: 243px;

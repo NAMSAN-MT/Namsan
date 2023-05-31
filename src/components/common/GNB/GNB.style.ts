@@ -1,3 +1,4 @@
+import { position } from './../../../styles/mixin.style';
 import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -78,10 +79,13 @@ const MainLinkWrapper = styled.div`
 const LinkNameWrapper = styled(motion.div)<{ selected: boolean }>`
   color: ${({ theme, selected }) =>
     selected ? theme.color.blue200 : theme.color.textBlackMedium};
+  position: relative;
 `;
 
 const LinkNameInner = styled.div`
-  margin-top: -3px;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
   width: 100%;
   div {
     line-height: 0;

@@ -11,8 +11,8 @@ interface ILayoutProps {
 }
 
 interface ITopButtonProps {
-  mouseOverFromTopButton: boolean;
-  setMouseOverFromTopButton: React.Dispatch<React.SetStateAction<boolean>>;
+  clickTopButton: boolean;
+  setClickTopButton: React.Dispatch<React.SetStateAction<boolean>>;
   handleTopEvent: (
     e: React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>,
   ) => void;
