@@ -17,6 +17,7 @@ const LottieWrapper = (props: ILottieWrapperProps) => {
       options={animationLoopOptions}
       width={props.width}
       height={props.height}
+      isStopped={props.stop}
     />
   );
 };

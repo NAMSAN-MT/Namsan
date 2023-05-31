@@ -65,14 +65,15 @@ const Basic = styled.div`
 const Title = styled(Basic)`
   letter-spacing: 5px;
   text-transform: uppercase;
-  font-family: 'FHAlphaTestLight';
+  font-family: FHAlphaTestLight;
   ${font('display100', 'demilight')}
   ${lineHeight(100, 140)};
 
   ${mediaQuery(
     'mobile',
     `
-    font-family: 'Noto Sans KR';
+    font-family: 'Noto Sans';
+    font-style: normal;
     ${font('title30', 'bold')};
     ${lineHeight(30, 42)};
     width: 243px;
