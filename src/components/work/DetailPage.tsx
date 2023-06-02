@@ -60,7 +60,9 @@ const DetailPage = (props: Props & PageContextProps) => {
               <>
                 <Title>{item.categoryTitle}</Title>
                 <Contents>{item.description}</Contents>
-                <Image src={imagePath ?? ''}></Image>
+                <div>
+                  <Image src={imagePath ?? ''}></Image>
+                </div>
                 <BoxDivider />
               </>
             ) : (
