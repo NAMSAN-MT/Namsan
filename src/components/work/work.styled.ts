@@ -75,7 +75,11 @@ export const SubTitle = styled.h2`
     'mobile',
     `
     line-height: 26px;
-    ${font('mobile18', 'bold')}
+    ${font('mobile18', 'bold')};
+    overflow: unset;
+    white-space: unset;
+    text-overflow: unset;
+    padding-right: 12px;
       `,
   )}
 `;
@@ -203,6 +207,7 @@ export const MemberList = styled.div`
   ${mediaQuery(
     'mobile',
     `grid-template-columns: repeat(2, 1fr);
+    row-gap: 24px;
       `,
   )}
 

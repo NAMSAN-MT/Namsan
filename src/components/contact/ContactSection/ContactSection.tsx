@@ -6,10 +6,9 @@ import { IContactSectionProps } from './ContactSection.interface';
 import * as S from './ContactSection.style';
 import { theme } from '@Styles/varialbes.style';
 
-let isMapSet = false;
-
 const ContactSection = ({ intl }: IContactSectionProps) => {
-  const mapRef = useRef<HTMLElement>(null);
+  let isMapSet = false;
+  const mapRef = useRef<HTMLDivElement>(null);
   const interval = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
@@ -73,7 +72,7 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
         <Info.Column>
           <Info
             title={intl.formatMessage({ id: 'contact.title_email' })}
-            content="recruit@namsanlaw.com"
+            content="namsan@namsanlaw.com"
           />
           <Info
             title={intl.formatMessage({ id: 'contact.title_tel' })}
