@@ -113,30 +113,36 @@ const DetailPage = (props: Props & PageContextProps) => {
         </MemberList>
       </MemberBox>
 
-      {!isShowMore && (
-        <ButtonWrapper>
-          <BaseButton className="outline" onClick={onClickShowMore}>
-            {intl.formatMessage({ id: 'work.show_more' })}
-          </BaseButton>
-        </ButtonWrapper>
-      )}
-      {isShowMore && (
-        <MemberBox>
-          <SubTitle>{intl.formatMessage({ id: 'work.sub_member' })}</SubTitle>
-          <MemberList>
-            {subMemberData?.map(
-              member =>
-                member && (
-                  <MemberItem
-                    key={member.id}
-                    {...member}
-                    businessFields={[]}
-                    order={`${member.order}`}
-                  />
-                ),
-            )}
-          </MemberList>
-        </MemberBox>
+      {subMemberData?.length < 1 ? null : (
+        <>
+          {!isShowMore && (
+            <ButtonWrapper>
+              <BaseButton className="outline" onClick={onClickShowMore}>
+                {intl.formatMessage({ id: 'work.show_more' })}
+              </BaseButton>
+            </ButtonWrapper>
+          )}
+          {isShowMore && (
+            <MemberBox>
+              <SubTitle>
+                {intl.formatMessage({ id: 'work.sub_member' })}
+              </SubTitle>
+              <MemberList>
+                {subMemberData?.map(
+                  member =>
+                    member && (
+                      <MemberItem
+                        key={member.id}
+                        {...member}
+                        businessFields={[]}
+                        order={`${member.order}`}
+                      />
+                    ),
+                )}
+              </MemberList>
+            </MemberBox>
+          )}
+        </>
       )}
     </Layout>
   );
