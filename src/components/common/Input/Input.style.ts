@@ -18,7 +18,7 @@ const Input = styled.input`
   padding: 17px 12px;
 
   &::placeholder {
-    color: ${({ theme }) => theme.color.grey200};
+    color: ${({ theme }) => theme.color.textBlackDisable};
   }
 
   &:focus {
