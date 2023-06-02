@@ -92,7 +92,7 @@ const SecondSection = styled.div`
     ${mediaQuery(
       'mobile',
       `
-      ${font('caption12', 'demilight')};
+      ${font('caption12', 'regular')};
       ${lineHeight(12, 20)};
        display: block;
       `,

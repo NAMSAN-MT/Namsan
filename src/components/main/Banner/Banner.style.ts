@@ -24,6 +24,7 @@ const BannerWrapper = styled.div<{ even: boolean }>`
 const ContentsWrapper = styled.div`
   width: 100%;
   height: 100%;
+
   ${flex('space-between', 'center')};
   @media (max-width: 1212px) {
     ${flex('start', 'start')};
@@ -36,6 +37,10 @@ const ContentsWrapper = styled.div`
      flex-direction: column;
     `,
   )};
+
+  .second {
+    max-width: 320px;
+  }
 `;
 
 const Tag = styled.span`
