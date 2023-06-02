@@ -13,7 +13,7 @@ const Banner = (props: IBannerProps) => {
         })}
       </S.Tag>
       <S.ContentsWrapper>
-        <S.Title>
+        <S.Title className="second">
           {props.intl.formatMessage({
             id: `main.title5_${props.index}`,
           })}

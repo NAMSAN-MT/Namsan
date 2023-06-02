@@ -50,7 +50,7 @@ const Footer = (props: IFooterProps) => {
           </span>
         </div>
         <div>
-          <span>© Copyright 2015 Lim, Chung & Suh All rights reserved</span>
+          <span>© Copyright 2023 Lim, Chung & Suh all rights reserved</span>
         </div>
       </S.SecondSection>
     </S.FooterWrapper>
