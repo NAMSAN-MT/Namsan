@@ -14,6 +14,7 @@ const useGNB = () => {
     e.preventDefault();
     const { locale } = intl;
     const { lang } = (e.target as HTMLElement).dataset as { lang: 'ko' | 'en' };
+    if (lang === 'en') return;
 
     if (!lang) return;
     if (lang === locale) return;
