@@ -8,7 +8,13 @@ import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
 import { navigate } from 'gatsby';
 import { IMember } from '../../../interface/api.interface';
 
-const SearchBar = ({ members }: { members: IMember[] }) => {
+const SearchBar = ({
+  members,
+  workMap,
+}: {
+  members: IMember[];
+  workMap: { [x: string]: string };
+}) => {
   const {
     name: initName,
     position: initPosition,
@@ -27,11 +33,17 @@ const SearchBar = ({ members }: { members: IMember[] }) => {
   const INIT_BUSINESS_FIELD_OPTION = intl.formatMessage({
     id: 'members.total_business_field',
   });
-  
-  const positionList = members?.map(member => member.position) || [];
+
+  const positionList =
+    members?.map(member => member.position.split('/')[0]) || [];
   const uniquePositionList = [...new Set(positionList)];
   const businessFieldList =
-    members?.map(member => member.businessFields)?.flat() || [];
+    members
+      ?.map(member => member.businessFields)
+      ?.flat()
+      .sort((a: string, b: string) => {
+        return workMap[a] > workMap[b] ? 1 : -1;
+      }) || [];
   const uniqueBusinessFieldList = [...new Set(businessFieldList)];
 
   const {
@@ -71,7 +83,11 @@ const SearchBar = ({ members }: { members: IMember[] }) => {
         ? ''
         : currentBusinessField;
 
-    const newUrl = `?position=${position}&businessField=${businessField}&name=${name}`;
+    const newUrl = `?position=${encodeURIComponent(
+      position,
+    )}&businessField=${encodeURIComponent(
+      businessField,
+    )}&name=${encodeURIComponent(name)}`;
     navigate(newUrl, { replace: false });
   };
 

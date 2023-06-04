@@ -24,7 +24,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
       const newMembers = members.filter(member => {
         return (
           (!params.name || member.name.includes(params.name)) &&
-          (!params.position || member.position === params.position) &&
+          (!params.position || member.position.startsWith(params.position)) &&
           (!params.businessField ||
             member.businessFields.includes(params.businessField)) &&
           (!params.language || member.language === intl.locale)
