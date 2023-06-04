@@ -18,7 +18,6 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
     window.addEventListener('resize', _setSize);
     _setSize();
   });
-  console.log(suffix);
 
   return (
     <S.IntroduceWrapper>

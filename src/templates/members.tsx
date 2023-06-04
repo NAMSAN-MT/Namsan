@@ -7,20 +7,20 @@ import MemberList from '@Components/members/MemberList';
 import Layout from '@Components/common/Layout';
 import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
 import { IMember } from '@Interface/api.interface';
-import { PostWithId } from '@Api/index.api';
 
 const Members: React.FC<PageProps & WrappedComponentProps> = ({
-  pageContext: { members },
+  pageContext: { members, workMap },
   intl,
 }: any) => {
   const filteredMembersWithLanguage = members.filter(
     (member: IMember) => member.language === intl.locale,
   );
+
   return (
     <Layout>
       <MembersWrapper>
         <MembersTitle />
-        <SearchBar members={filteredMembersWithLanguage} />
+        <SearchBar members={filteredMembersWithLanguage} workMap={workMap} />
         <MemberList members={filteredMembersWithLanguage} />
       </MembersWrapper>
     </Layout>
