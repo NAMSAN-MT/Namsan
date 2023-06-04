@@ -9,12 +9,16 @@ import image2 from '@Images/introduce_bg2.png';
 const IntroduceWrapper = (props: IntroduceWrapperProps) => {
   const [suffix, setSuffix] = useState<string>('');
 
+  const _setSize = () => {
+    const isMobile = window.innerWidth <= 768;
+    setSuffix(isMobile ? '_mobile' : '');
+  };
+
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      const isMobile = window.innerWidth < 768;
-      setSuffix(isMobile ? '_mobile' : '');
-    });
+    window.addEventListener('resize', _setSize);
+    _setSize();
   });
+  console.log(suffix);
 
   return (
     <S.IntroduceWrapper>
