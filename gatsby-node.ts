@@ -132,6 +132,10 @@ exports.createPages = async ({ actions, graphql }: any) => {
         }),
       );
 
+      const businessFields = node.businessFields.map(field =>
+        field.replaceAll('∙', '·'),
+      );
+
       return {
         ...node,
         image: {
@@ -140,9 +144,29 @@ exports.createPages = async ({ actions, graphql }: any) => {
         },
         bgImage: bgImage.data.file?.childImageSharp.gatsbyImageData,
         categoryIds,
+        businessFields,
       };
     }),
   );
+
+  const work = await graphql(`
+    query {
+      allWork(sort: { categoryId: ASC }) {
+        edges {
+          node {
+            categoryId
+            categoryInfo
+          }
+        }
+      }
+    }
+  `);
+
+  const workMap =
+    work.data.allWork.edges?.reduce((acc: any, { node }: any) => {
+      acc[node.categoryInfo[0]] = node.categoryId;
+      return acc;
+    }, {}) || {};
 
   /* 전체 구성원 페이지 생성 */
   actions.createPage({
@@ -151,6 +175,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
     context: {
       id: 'members',
       members: contextMembers,
+      workMap,
     },
   });
 

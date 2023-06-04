@@ -35,6 +35,7 @@ const SelectBox = ({
           {options.map(option => {
             return (
               <S.Option
+                key={option}
                 isSelected={currentOption === option}
                 data-option={option}
                 onClick={handleClick}
