@@ -47,6 +47,7 @@ export const Title = styled.h1`
     `
     margin-bottom: 16px;
     ${font('mobile24', 'bold')}
+    margin-bottom: 16px;
       `,
   )}
 `;
@@ -207,8 +208,8 @@ export const MemberList = styled.div`
   ${mediaQuery(
     'mobile',
     `grid-template-columns: repeat(2, 1fr);
-     margin-top: 24px;
-    row-gap: 20px;
+    gap: 24px 20px;
+    margin-top: 24px;
       `,
   )}
 
@@ -264,10 +265,55 @@ export const MemberList = styled.div`
   }
 `;
 
+export const ImageWrapper = styled.div`
+  margin: 0 auto;
+`;
+export const ImageContainer = styled.div`
+  overflow: hidden;
+  & > div {
+    ${size('300px', '100%')}
+    margin-top: 8px;
+    margin-bottom: 74px;
+
+    object-fit: cover;
+    vertical-align: middle;
+
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+
+    ${mediaQuery(
+      'tablet1024',
+      `
+    `,
+    )}
+    ${mediaQuery(
+      'mobile',
+      `
+    ${size('160px', '100%')}
+    margin-top: 8px;
+    margin-bottom: 20px;`,
+    )}
+  }
+`;
+
 export const Image = styled.img`
-  ${size('auto', '100%')}
+  ${size('300px', '100%')}
   margin-top: 8px;
   margin-bottom: 74px;
+
+  object-fit: cover;
+  vertical-align: middle;
+
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
 
   ${mediaQuery(
     'tablet1024',
@@ -278,7 +324,6 @@ export const Image = styled.img`
     'mobile',
     `
     ${size('160px', '100%')}
-    overflow:hidden;
     margin-top: 8px;
     margin-bottom: 20px;`,
   )}

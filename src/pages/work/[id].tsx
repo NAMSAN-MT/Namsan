@@ -29,7 +29,15 @@ export interface PageContextProps extends WrappedComponentProps {
     categoryTitle: string;
     description: string;
   }[];
-  imagePath: string;
+  backgroundImage: {
+    data: {
+      file: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        };
+      };
+    };
+  };
   id: string;
 }
 
@@ -55,6 +63,8 @@ export interface miniMember {
 
 const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
   const { pageContext, data, location } = props;
+  console.log(props);
+
   const newMainMembers = data.mainMembers.edges.map(({ node }: any) => ({
     ...pageContext.mainMemberData?.find(b => b.email === node.email),
     ...node,
@@ -80,8 +90,9 @@ const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
           mainMemberData: newMainMembers,
           subMemberData: newSubMembers,
           workInfo: infomation,
-          imagePath: data.work.imagePath,
-          location,
+          backgroundImage:
+            pageContext.backgroundImage.data.file.childImageSharp
+              .gatsbyImageData,
           subId,
         }}
       />

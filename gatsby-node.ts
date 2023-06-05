@@ -40,6 +40,25 @@ exports.onCreateNode = async ({
     }
   }
 
+  if (node.internal.type === 'work') {
+    const fileNode = await createRemoteFileNode({
+      url: await getFileFromStorage(node.imagePath),
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      getCache,
+    });
+
+    if (fileNode) {
+      createNodeField({
+        node,
+        id: node.id,
+        name: 'localFile',
+        value: fileNode.id,
+      });
+    }
+  }
+
   if (node.internal.type === 'news') {
     if (isEmpty(node.imagePath)) return;
     const fileNode = await createRemoteFileNode({
@@ -229,6 +248,14 @@ exports.createPages = async ({ actions, graphql }: any) => {
 
     const mainMemberData = await getContextMemberData(node.member.main);
     const subMemberData = await getContextMemberData(node.member.sub);
+    const backgroundImage = await graphql(`
+    query {
+      file(parent: {id: {eq: "${node.id}"}}) {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+    }`);
 
     actions.createPage({
       path: `/work/${node.categoryId}`,
@@ -239,6 +266,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
         subMemberData,
         mainMemberEmails: node.member.main,
         subMemberEmails: node.member.sub,
+        backgroundImage,
       },
     });
   });
