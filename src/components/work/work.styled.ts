@@ -45,7 +45,7 @@ export const Title = styled.h1`
   ${mediaQuery(
     'mobile',
     `
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     ${font('mobile24', 'bold')}
     margin-bottom: 16px;
       `,
