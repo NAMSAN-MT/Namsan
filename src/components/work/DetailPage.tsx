@@ -3,6 +3,7 @@ import { BoxDivider } from '@Components/common/List/List.style';
 import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 import MemberItem from '@Components/members/MemberItem';
 import { PageContextProps } from '@Pages/work/[id]';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { injectIntl } from 'gatsby-plugin-intl';
 import React, { MouseEvent, useState } from 'react';
 import NavigationDown from '../../assets/lottie/navigation_down.json';
@@ -15,7 +16,8 @@ import {
   CategoryBox,
   Contents,
   Head,
-  Image,
+  ImageContainer,
+  ImageWrapper,
   Layout,
   LineArrowIconInner,
   MemberBox,
@@ -27,9 +29,13 @@ import {
 export interface Props {
   language: 'ko' | 'en';
   subId: number;
+  backgroundImage: IGatsbyImageData;
 }
-const DetailPage = (props: Props & PageContextProps) => {
-  const { mainMemberData, subMemberData, workInfo, imagePath, intl } = props;
+const DetailPage = (
+  props: Omit<PageContextProps, 'backgroundImage'> & Props,
+) => {
+  const { mainMemberData, subMemberData, workInfo, backgroundImage, intl } =
+    props;
   const [category, setCategory] = useState<CategoryDescription[]>(workInfo);
   const [isShowMore, setIsShowMore] = useState(false);
   const subIdPrefix = props.id?.replace('C', 'S');
@@ -60,9 +66,13 @@ const DetailPage = (props: Props & PageContextProps) => {
               <>
                 <Title>{item.categoryTitle}</Title>
                 <Contents>{item.description}</Contents>
-                <div>
-                  <Image src={imagePath ?? ''}></Image>
-                </div>
+                <ImageWrapper>
+                  <ImageContainer>
+                    {backgroundImage && (
+                      <GatsbyImage image={backgroundImage} alt="page-image" />
+                    )}
+                  </ImageContainer>
+                </ImageWrapper>
                 <BoxDivider />
               </>
             ) : (
