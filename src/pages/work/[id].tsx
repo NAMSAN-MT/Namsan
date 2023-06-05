@@ -63,8 +63,6 @@ export interface miniMember {
 
 const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
   const { pageContext, data, location } = props;
-  console.log(props);
-
   const newMainMembers = data.mainMembers.edges.map(({ node }: any) => ({
     ...pageContext.mainMemberData?.find(b => b.email === node.email),
     ...node,
@@ -91,7 +89,7 @@ const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
           subMemberData: newSubMembers,
           workInfo: infomation,
           backgroundImage:
-            pageContext.backgroundImage.data.file.childImageSharp
+            pageContext.backgroundImage?.data.file.childImageSharp
               .gatsbyImageData,
           subId,
         }}
