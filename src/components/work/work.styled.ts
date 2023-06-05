@@ -45,7 +45,7 @@ export const Title = styled.h1`
   ${mediaQuery(
     'mobile',
     `
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     ${font('mobile24', 'bold')}
       `,
   )}
@@ -207,7 +207,8 @@ export const MemberList = styled.div`
   ${mediaQuery(
     'mobile',
     `grid-template-columns: repeat(2, 1fr);
-    row-gap: 24px;
+     margin-top: 24px;
+    row-gap: 20px;
       `,
   )}
 
