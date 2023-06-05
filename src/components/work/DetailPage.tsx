@@ -29,7 +29,7 @@ import {
 export interface Props {
   language: 'ko' | 'en';
   subId: number;
-  backgroundImage: IGatsbyImageData;
+  backgroundImage?: IGatsbyImageData;
 }
 const DetailPage = (
   props: Omit<PageContextProps, 'backgroundImage'> & Props,
