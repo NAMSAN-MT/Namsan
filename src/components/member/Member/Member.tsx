@@ -23,8 +23,6 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
     window.location.href = `/${props.intl.locale}/work/${category}`;
   };
 
-  console.log(member);
-
   return (
     <S.MemberWrapper>
       <S.ImageWrapper>
