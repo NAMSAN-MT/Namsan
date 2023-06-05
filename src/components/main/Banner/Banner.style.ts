@@ -39,7 +39,7 @@ const ContentsWrapper = styled.div`
   )};
 
   .second {
-    max-width: 320px;
+    max-width: 312px;
   }
 `;
 
