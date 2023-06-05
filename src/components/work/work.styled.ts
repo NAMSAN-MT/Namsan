@@ -47,6 +47,7 @@ export const Title = styled.h1`
     `
     margin-bottom: 32px;
     ${font('mobile24', 'bold')}
+    margin-bottom: 16px;
       `,
   )}
 `;
@@ -207,7 +208,8 @@ export const MemberList = styled.div`
   ${mediaQuery(
     'mobile',
     `grid-template-columns: repeat(2, 1fr);
-    row-gap: 24px;
+    gap: 24px 20px;
+    margin-top: 24px;
       `,
   )}
 
@@ -264,7 +266,7 @@ export const MemberList = styled.div`
 `;
 
 export const Image = styled.img`
-  ${size('auto', '100%')}
+  ${size('300px', '100%')}
   margin-top: 8px;
   margin-bottom: 74px;
 
