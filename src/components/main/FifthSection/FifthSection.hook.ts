@@ -6,7 +6,7 @@ const useFifthSection = () => {
 
   const _download = async () => {
     const link = document.createElement('a');
-    link.href = await getDownload('main/Namsan.pdf');
+    link.href = await getDownload('main/Namsans.pdf');
     link.style.display = 'none';
 
     document.body.appendChild(link);
