@@ -139,8 +139,12 @@ exports.createPages = async ({ actions, graphql }: any) => {
         }
       }`);
 
+      const businessFields = node.businessFields.map(field =>
+        field.replaceAll('∙', '·'),
+      );
+
       const categoryIds = await Promise.all(
-        node.businessFields.map(async (field: string) => {
+        businessFields.map(async (field: string) => {
           const category = await graphql(`
         query {
           work(categoryInfo: {in: "${field}"}) {
@@ -149,10 +153,6 @@ exports.createPages = async ({ actions, graphql }: any) => {
         }`);
           return category.data.work?.categoryId || '';
         }),
-      );
-
-      const businessFields = node.businessFields.map(field =>
-        field.replaceAll('∙', '·'),
       );
 
       return {
