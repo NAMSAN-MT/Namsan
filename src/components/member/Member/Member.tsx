@@ -18,7 +18,9 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
   const handleClickTag = (index: number) => {
     const category = props.member.categoryIds[index];
 
-    if (isEmpty(category)) return;
+    if (isEmpty(category)) {
+      return;
+    }
 
     window.location.href = `/${props.intl.locale}/work/${category}`;
   };
@@ -39,7 +41,11 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
         <div className="email">{member.email}</div>
         <S.TagWrapper>
           {member.businessFields.map((businessField, index) => (
-            <span className="tag" onClick={handleClickTag.bind(null, index)}>
+            <span
+              className="tag"
+              key={index}
+              onClick={handleClickTag.bind(null, index)}
+            >
               {businessField}
             </span>
           ))}
