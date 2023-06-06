@@ -22,7 +22,7 @@ export const MainCategory = ({
     <Wrapper>
       <MainWrapper
         onClick={() => {
-          location.href = `/${language ?? 'ko'}/work/${id}`;
+          location.href = `/${language ?? 'ko'}/work/${id}#S00`;
         }}
       >
         <MainAnchor>{name}</MainAnchor>
