@@ -40,6 +40,12 @@ const ContentsWrapper = styled.div`
 
   .second {
     max-width: 312px;
+    ${mediaQuery(
+      'mobile',
+      `
+      max-width: 256px;
+    `,
+    )};
   }
 `;
 
