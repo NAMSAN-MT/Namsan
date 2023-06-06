@@ -59,6 +59,8 @@ export const TitleArea = styled.div`
   }
 
   & > h1 {
+    max-width: 792px;
+
     ${flex()}
     text-align: center;
     font-family: 'Noto Sans';
