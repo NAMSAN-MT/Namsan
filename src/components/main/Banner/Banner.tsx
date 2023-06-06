@@ -20,6 +20,7 @@ const Banner = (props: IBannerProps) => {
         </S.Title>
         {props.isMobile ? (
           <BaseButton
+            data-id={props.index === 1 ? 'download' : 'direct'}
             className={props.index === 1 ? 'download' : 'direct'}
             onClick={props.onClick}
           >
