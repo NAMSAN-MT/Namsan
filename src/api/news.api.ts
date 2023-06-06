@@ -1,11 +1,10 @@
-import { isEmpty } from 'lodash';
 import { News, NewsMin } from '@Interface/api.interface';
 import { EndPointType, NewsType, TQuery } from '@Type/api.type';
 import { documentId } from 'firebase/firestore';
+import { isEmpty } from 'lodash';
 import { getTimestampToDate } from '../utils/date';
 import { index } from './algolia';
 import { getData, GetDataListQuery, getFileFromStorage } from './index.api';
-import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 export const getMainNewsList = async (limit: number) => {
   const endPoint: EndPointType = 'news';
@@ -54,8 +53,9 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
       const ids = algoliaResult.hits.map(
         (hit: any) => hit.documentId as string,
       );
-      const newDataList = await getNewsIdDataList(ids.reverse());
+      const newDataList = await getNewsIdDataList(ids);
       const resultList: NewsMin[] = newDataList
+        .sort((a, b) => b.order - a.order)
         .map(
           (news, index) =>
             ({
@@ -67,8 +67,8 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
               dateYearMonth: getTimestampToDate(news.date).yearMoth,
               order: news.order,
             } as NewsMin),
-        )
-        .reverse();
+        );
+
       return { resultList, algoliaResult };
     })
     .catch(err => {

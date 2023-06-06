@@ -29,16 +29,14 @@ const useMain = () => {
         page: numberUrlPage > 0 ? numberUrlPage - 1 : 0,
       });
 
-      if (!algoliaResult) {
-        navigate(`/news`);
-        setPageNation({ nbPages: 0, page: 0 });
-        setNewsList(resultList);
-        return;
-      }
-      const { nbPages, page } = algoliaResult;
-      setPageNation({ nbPages, page: page + 1 });
       setNewsList(resultList);
       setTab(newsType);
+      if (!algoliaResult) {
+        setPageNation({ nbPages: 0, page: 0 });
+      } else {
+        const { nbPages, page } = algoliaResult;
+        setPageNation({ nbPages, page: page + 1 });
+      }
     } catch (error) {
       console.error(error);
     } finally {
