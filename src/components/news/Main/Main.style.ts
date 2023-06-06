@@ -20,19 +20,33 @@ export const TabSearchBox = styled.div`
       ${flexDirection('column')}
       ${flex('', 'flex-start')}
       height: 100%;
-      margin: 24px 0px 36px 0px;
+      margin: 24px 0px 40px 0px;
     `,
   )}
 `;
 
 export const TabBox = styled.ul`
   list-style-type: none;
+  min-width: 350px;
+  ${mediaQuery('mobile', `min-width: auto; margin-bottom: 24px; }`)}
   ${flex()}
+  li:nth-child(1) {
+    min-width: 81px;
+    ${mediaQuery('mobile', `min-width: auto; }`)}
+  }
+  li:nth-child(2) {
+    min-width: 120px;
+    ${mediaQuery('mobile', `min-width: auto; }`)}
+  }
+  li:nth-child(3) {
+    min-width: 165px;
+    ${mediaQuery('mobile', `min-width: auto; }`)}
+  }
 `;
 
 export const Tab = styled.li<{ isActive?: boolean }>`
   ${flex()}
-  min-width: 81px;
+
   padding: 6px 20px;
   letter-spacing: -0.4px;
 
