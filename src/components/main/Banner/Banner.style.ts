@@ -43,7 +43,7 @@ const ContentsWrapper = styled.div`
     ${mediaQuery(
       'mobile',
       `
-      max-width: 256px;
+      max-width: 250px;
     `,
     )};
   }
