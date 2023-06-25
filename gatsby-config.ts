@@ -35,7 +35,12 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-image',
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-manifest',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/assets/imgs/logo-gnb.svg',
+      },
+    },
     'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
