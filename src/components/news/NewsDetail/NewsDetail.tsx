@@ -24,7 +24,7 @@ const NewsDetail = (props: Props) => {
     nextNews,
   } = props;
 
-  const dateYearMonthDate = convertDateStr(date);
+  const dateYearMonthDate = convertDateStr(date).fullDate;
   const [profile, setProfile] = useState<NewsProfile>();
 
   useEffect(() => {

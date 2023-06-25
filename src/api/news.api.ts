@@ -21,11 +21,7 @@ export const getMainNewsList = async (limit: number) => {
 
   return result.map(news => ({
     ...news,
-    dateYearMonth: `${news.date.toDate().getFullYear()}.${
-      news.date.toDate().getMonth() < 9
-        ? `0${news.date.toDate().getMonth()}`
-        : news.date.toDate().getMonth()
-    }`,
+    dateYearMonth: getTimestampToDate(news.date).fullDate,
   }));
 };
 
@@ -64,7 +60,7 @@ export const getNewsSearchList = (param: INewSearchListRequest) => {
               agency: news.agency,
               newsType: news.newsType,
               documentId: ids[index],
-              dateYearMonth: getTimestampToDate(news.date).yearMoth,
+              dateYearMonth: getTimestampToDate(news.date).fullDate,
               order: news.order,
             } as NewsMin),
         );
