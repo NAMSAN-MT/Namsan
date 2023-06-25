@@ -174,8 +174,11 @@ export const Layout = styled.div`
 `;
 
 export const MemberBox = styled.div`
-  margin-top: 68px;
+  margin-top: 80px;
 
+  &:last-of-type {
+    margin-top: 60px;
+  }
   ${mediaQuery(
     'tablet1024',
     `
@@ -185,7 +188,12 @@ export const MemberBox = styled.div`
 
   ${mediaQuery(
     'mobile',
-    `margin-top:12px;  
+    `margin-top: 20px;  
+
+
+    &:last-of-type {
+      margin-top: 44px;
+    }
   `,
   )}
 `;
