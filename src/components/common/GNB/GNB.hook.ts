@@ -30,6 +30,29 @@ const useGNB = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const makeWidthByLanguage = (pathName: string) => {
+    const { locale } = intl;
+    if (locale === 'ko') {
+      return pathName !== `/${locale}/members` ? 54 : 41;
+    }
+
+    const lang = 'en';
+    switch (pathName) {
+      case `/${lang}/introduce`:
+        return 45;
+      case `/${lang}/work`:
+        return 69;
+      case `/${lang}/members`:
+        return 102;
+      case `/${lang}/news`:
+        return 40;
+      case `/${lang}/contact`:
+        return 58;
+      default:
+        return 41;
+    }
+  };
+
   useEffect(() => {
     if (isMobileMenuOpen) {
       window.document.body.style.overflow = 'hidden';
@@ -46,6 +69,7 @@ const useGNB = () => {
     isMobileMenuOpen,
     location,
     path,
+    makeWidthByLanguage,
   };
 };
 

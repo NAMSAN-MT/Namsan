@@ -41,6 +41,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
     handleMenuButtonClick,
     location,
     path,
+    makeWidthByLanguage,
   } = useGNB();
 
   return (
@@ -81,7 +82,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                     <LottieWrapper
                       height={4}
                       animationData={Focus}
-                      width={path.pathname !== `/${language}/members` ? 58 : 43}
+                      width={makeWidthByLanguage(path.pathname)}
                       loop={false}
                       autoplay
                     />
