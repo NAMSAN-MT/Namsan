@@ -1,10 +1,11 @@
 {
   "common": {
+    "company": "Lim, Chung & Suh",
     "introduce": "About",
     "work": "Expertise",
     "members": "Professionals",
     "news": "News",
-    "contact": "Our Presence"
+    "contact": "Contact"
   },
   "main": {
     "title1": "Namsan has been stranding along with clients over the generations.",
@@ -68,6 +69,7 @@
     "media_content6_press": "Law Firm in Korea"
   },
   "contact": {
+    "title": "Our Presence",
     "address": "17th Fl., 97, Toegye-ro\nJung-gu, Seoul, Korea 04535",
     "recruite": "Career Opportunities",
     "recruite_description": "Our door is open to the newly admitted and experienced attorneys who intend to accomplish the goal of providing timely and outstanding professional legal services to the clients.",
