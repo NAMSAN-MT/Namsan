@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSiteMetadata } from '@Hooks/useSiteMetadata';
 import { ISeoProps } from './Seo.interface';
-import ogImgae from '@Images/op_kakao.png';
 
 const SEO = (props: ISeoProps) => {
   const {
@@ -13,6 +12,7 @@ const SEO = (props: ISeoProps) => {
     keywords: defaultKeywords,
     favicon,
     siteUrl,
+    ogImage,
   } = useSiteMetadata();
 
   const seo = {
@@ -22,8 +22,8 @@ const SEO = (props: ISeoProps) => {
     ogDescription: props.ogDescription || defaultOgDescription,
     ogUrl,
     keywords: props.keywords || defaultKeywords,
-    favicon: `${siteUrl}/icon${favicon}`,
-    ogImage: `${siteUrl}/op_kakao.png`,
+    favicon: `${siteUrl}${favicon}`,
+    ogImage: `${siteUrl}${ogImage}`,
     siteUrl: props.siteUrl || siteUrl,
   };
 
