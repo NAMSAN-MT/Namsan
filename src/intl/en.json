@@ -92,6 +92,9 @@
     "show_more": "Learn More"
   },
   "news": {
-    "search_placeholder": "Name Search"
+    "search_placeholder": "Name Search",
+    "total": "View All",
+    "pressRelease": "In the News",
+    "RecentBusinessCases": "Recent Cases"
   }
 }

@@ -96,6 +96,9 @@
     "show_more": "구성원 더보기"
   },
   "news": {
-    "search_placeholder": "검색"
+    "search_placeholder": "검색",
+    "total": "전체",
+    "pressRelease": "언론보도",
+    "RecentBusinessCases": "최근 업무사례"
   }
 }
