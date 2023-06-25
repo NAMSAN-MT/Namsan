@@ -7,7 +7,7 @@ const RecruiteSectionWrapper = styled.div`
   margin-top: 80px;
 
   ${mediaQuery('pc1380', `width: 100%;`)}
-  ${mediaQuery('mobile', `margin-top: 47.5px;`)};
+  ${mediaQuery('mobile', `margin-top: 47.5px;width: 320px;margin-left: 0;`)};
 `;
 
 const Description = styled.div`

@@ -15,7 +15,6 @@ const useGNB = () => {
     e.preventDefault();
     const { locale } = intl;
     const { lang } = (e.target as HTMLElement).dataset as { lang: 'ko' | 'en' };
-    if (lang === 'en') return;
 
     if (!lang) return;
     if (lang === locale) return;
@@ -29,6 +28,29 @@ const useGNB = () => {
 
   const handleMenuButtonClick = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const makeWidthByLanguage = (pathName: string) => {
+    const { locale } = intl;
+    if (locale === 'ko') {
+      return pathName !== `/${locale}/members` ? 54 : 41;
+    }
+
+    const lang = 'en';
+    switch (pathName) {
+      case `/${lang}/introduce`:
+        return 45;
+      case `/${lang}/work`:
+        return 69;
+      case `/${lang}/members`:
+        return 102;
+      case `/${lang}/news`:
+        return 40;
+      case `/${lang}/contact`:
+        return 58;
+      default:
+        return 41;
+    }
   };
 
   useEffect(() => {
@@ -48,6 +70,7 @@ const useGNB = () => {
     location,
     path,
     getIsIncludes,
+    makeWidthByLanguage,
   };
 };
 
