@@ -147,6 +147,7 @@ const DetailPage = (
                         key={member.id}
                         {...member}
                         businessFields={[]}
+                        name={member.name.toUpperCase()}
                         order={`${member.order}`}
                       />
                     ),
