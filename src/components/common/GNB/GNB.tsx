@@ -108,6 +108,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
         {LanguageLink.map(link => (
           <S.LanguageLink
             $isActive={language === link.lang}
+            isEn={link.lang === 'en'}
             key={link.alt}
             data-lang={link.lang}
           >

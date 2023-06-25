@@ -98,7 +98,7 @@ const LanguageWrapper = styled.ul`
   ${mediaQuery('tablet1024', `display: none;`)};
 `;
 
-const LanguageLink = styled.li<{ $isActive: boolean }>`
+const LanguageLink = styled.li<{ $isActive: boolean; isEn: boolean }>`
   cursor: pointer;
   text-align: center;
   letter-spacing: -0.1px;
@@ -112,7 +112,7 @@ const LanguageLink = styled.li<{ $isActive: boolean }>`
   &::after {
     content: '|';
     color: ${({ theme }) => theme.color.textBlackDisable};
-    margin: 0 20px;
+    margin: ${({ isEn }) => (isEn ? '0' : '0 20px')};
   }
 
   &:last-child::after {
