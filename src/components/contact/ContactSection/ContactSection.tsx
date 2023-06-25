@@ -76,11 +76,11 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
           />
           <Info
             title={intl.formatMessage({ id: 'contact.title_tel' })}
-            content="02-777-0550"
+            content="82-2-777-0550"
           />
           <Info
             title={intl.formatMessage({ id: 'contact.title_fax' })}
-            content="02-754-0077"
+            content="82-2-754-0077"
           />
         </Info.Column>
       </Info.Wrapper>
