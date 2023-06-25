@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 const IntroduceWrapper = styled.div`
   min-width: 1038px;
+  & * {
+    white-space: break-spaces;
+  }
 
   ${mediaQuery(
     'tablet1024',
@@ -21,6 +24,7 @@ const IntroduceWrapper = styled.div`
     ${lineHeight(42, 60)};
     letter-spacing: -0.6px;
     margin-bottom: 50px;
+    white-space: break-spaces;
 
     ${mediaQuery(
       'mobile',
