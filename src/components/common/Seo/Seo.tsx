@@ -23,7 +23,7 @@ const SEO = (props: ISeoProps) => {
     ogUrl,
     keywords: props.keywords || defaultKeywords,
     favicon: `${siteUrl}/icon${favicon}`,
-    ogImage: `${siteUrl}${ogImgae}`,
+    ogImage: `${siteUrl}/op_kakao.png`,
     siteUrl: props.siteUrl || siteUrl,
   };
 
