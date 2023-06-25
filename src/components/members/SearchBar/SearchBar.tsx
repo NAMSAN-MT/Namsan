@@ -37,13 +37,23 @@ const SearchBar = ({
   const positionList =
     members?.map(member => member.position.split('/')[0]) || [];
   const uniquePositionList = [...new Set(positionList)];
+
+  const tmp: string[] = [];
   const businessFieldList =
     members
       ?.map(member => member.businessFields)
       ?.flat()
       .sort((a: string, b: string) => {
-        return workMap[a] > workMap[b] ? 1 : -1;
+        if (!workMap[a]) {
+          tmp.push(a);
+        }
+
+        const numberA = Number(workMap[a]?.slice(1));
+        const numberB = Number(workMap[b]?.slice(1));
+
+        return numberA > numberB ? 1 : -1;
       }) || [];
+
   const uniqueBusinessFieldList = [...new Set(businessFieldList)];
 
   const {

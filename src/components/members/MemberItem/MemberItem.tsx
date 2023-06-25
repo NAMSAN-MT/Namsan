@@ -24,7 +24,7 @@ const MemberItem = ({
           <div className="dim"></div>
           <GatsbyImage alt={order!} image={image!} />
         </S.ImageWrapper>
-        <S.TagsWrapper>
+        <S.TagsWrapper isScrollable={intl.locale !== 'ko'}>
           {businessFields!.map(businessField => (
             <S.Tag key={businessField}>{businessField}</S.Tag>
           ))}

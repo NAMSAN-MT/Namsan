@@ -39,15 +39,26 @@ const IntroduceWrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  width: 1200px;
+  width: 90%;
   white-space: pre-wrap;
   ${font('display42', 'bold')};
   ${lineHeight(42, 60)};
   letter-spacing: -0.6px;
   margin: 150px auto;
 
-  ${mediaQuery('pc1380', `margin: 150px 0 150px 90px;`)}
-  ${mediaQuery('tablet1024', `margin: 150px 0 150px 40px; width: max-content;`)}
+  ${mediaQuery(
+    'pc1380',
+    `
+  margin: 150px 0 150px 90px;
+  width: 90%;
+  `,
+  )}
+  ${mediaQuery(
+    'tablet1024',
+    `
+  margin: 150px 0 150px 40px;
+  `,
+  )}
   ${mediaQuery(
     'mobile',
     `
@@ -73,7 +84,7 @@ const PressWrapper = styled.div`
   margin: 120px auto 160px auto;
   ${size('100%', '1200px')};
 
-  ${mediaQuery('pc1380', `margin: 120px 0 200px 90px;`)}
+  ${mediaQuery('pc1380', `margin: 120px 0 200px 90px;width:fit-content;`)}
   ${mediaQuery('tablet1024', `margin: 120px 0 200px 40px; width: auto;`)}
   ${mediaQuery(
     'mobile',
@@ -95,7 +106,7 @@ const PressContentList = styled.ul`
   white-space: pre-wrap;
   gap: 70px 100px;
 
-  ${mediaQuery('tablet1024', `gap: 70px 80px;`)}
+  ${mediaQuery('tablet1024', `gap: 70px 50px;`)}
 
   ${mediaQuery(
     'mobile',
@@ -113,7 +124,7 @@ const PressContent = styled.li`
   ${mediaQuery(
     'tablet1024',
     `
-  width: 320px;`,
+  width: 360px;`,
   )}
 
   ${mediaQuery(

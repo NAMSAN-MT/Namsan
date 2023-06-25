@@ -41,10 +41,11 @@
     "phrase2_main_mobile": "Lim, Chung & Suh shares\nmore than 40 years of\nhistory with its clients.",
     "phrase2_sub": "Since its establishment in 1980,\nLim, Chung & Suh has been providing client-specific services\nto its corporate and individual clients over the generations.",
     "phrase2_sub_mobile": "Since its establishment in 1980,\nLim, Chung & Suh has been providing\nclient-specific services\nto its corporate and individual clients over\nthe generations.",
-    "phrase3_main": "<span class='highlight'>NAMSAN (Lim, Chung & Suh),</span>\nequipped with in-depth ability and devotion,\nprovides optimized legal services to its clients",
-    "phrase3_main_mobile": "<span class='highlight'>NAMSAN</span>\n<span class='highlight'>(Lim, Chung & Suh),</span>\nequipped with in-depth\nability and devotion,\nprovides optimized legal\nservices to its clients",
+    "phrase3_main": "<div class='highlight'>NAMSAN (Lim, Chung & Suh),</div><div>equipped with in-depth ability</div><div>and devotion, provides optimized legal</div>services to its clients",
+    "phrase3_main_mobile": "<div class='highlight'>NAMSAN</div><div class='highlight'>(Lim, Chung & Suh),</div>equipped with in-depth\nability and devotion,\nprovides optimized legal\nservices to its clients",
     "phrase4_main": "NAMSAN (Lim, Chung & Suh) is the\nlaw firm which you can seek\nimmediate legal advice and services.",
     "phrase4_main_mobile": "NAMSAN (Lim, Chung &\nSuh) is the law firm which\nyou can seek immediate\nlegal advice and services.",
+    "phrase4_sub": "NAMSAN (Lim, Chung & Suh) has been recognized as\nhigh ranked “Best Law Firms in Korea” selected by\nlegal departments and teams of top 200 Korean corporations.",
     "phrase4_sub_mobile": "NAMSAN (Lim, Chung & Suh) has been\nrecognized as high ranked “Best Law Firms\nin Korea” selected by legal departments\nand teams of top 200 Korean corporations.",
     "media_title": "Lim, Chung & Suh\nFeatured in Media",
     "media_content1_title": "The Law Firm I want to\nImmediately Engage",
@@ -83,12 +84,12 @@
     "empty_result": "No results found"
   },
   "member": {
-    "educations": "학력",
-    "careers": "자격 및 경력",
-    "awards": "수상/연구실적",
-    "papers": "논문/저서",
-    "more": "더보기",
-    "less": "접기"
+    "educations": "Education",
+    "careers": "Experience",
+    "awards": "Recognition",
+    "papers": "Publication/Insights",
+    "more": "Learn More",
+    "less": "Close"
   },
   "work": {
     "title": "Our Practice",
