@@ -22,8 +22,11 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
       };
 
       const newMembers = members.filter(member => {
+        const paramName = params.name?.toUpperCase();
+        const memberName = member.name.toUpperCase();
+
         return (
-          (!params.name || member.name.includes(params.name)) &&
+          (!paramName || memberName.includes(paramName)) &&
           (!params.position || member.position.startsWith(params.position)) &&
           (!params.businessField ||
             member.businessFields.includes(params.businessField)) &&
@@ -47,7 +50,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
       {memberList.map(member => (
         <MemberItem
           key={member.id}
-          name={member.name}
+          name={member.name.toUpperCase()}
           position={member.position}
           businessFields={member.businessFields}
           image={member.image}

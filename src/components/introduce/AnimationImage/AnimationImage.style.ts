@@ -35,7 +35,7 @@ const Dim = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  width: 1200px;
+  width: 90%;
   position: absolute;
   top: 364px;
   bottom: 363px;

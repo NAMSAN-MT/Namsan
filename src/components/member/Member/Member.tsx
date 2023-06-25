@@ -36,7 +36,7 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
         </div>
       </S.ImageWrapper>
       <S.TextWrapper>
-        <div className="name">{member.name}</div>
+        <div className="name">{member.name.toUpperCase()}</div>
         <div className="position">{member.position}</div>
         <div className="email">{member.email}</div>
         <S.TagWrapper>

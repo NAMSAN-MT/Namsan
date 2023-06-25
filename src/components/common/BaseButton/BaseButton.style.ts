@@ -254,7 +254,8 @@ const Download = styled(IconBase)`
     ${mediaQuery(
       'mobile',
       `
-      width: 10px;
+      width: 11px;
+      height: 22px;
       margin-left: 7px;
     `,
     )};

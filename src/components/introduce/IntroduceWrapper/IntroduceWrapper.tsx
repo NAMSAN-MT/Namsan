@@ -61,7 +61,7 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
           <S.PressContent>
             <S.PressContentTitle>
               {props.intl.formatMessage({
-                id: 'introduce.media_content1_title',
+                id: `introduce.media_content1_title${suffix}`,
               })}
             </S.PressContentTitle>
             <S.PressContentPressName>
@@ -73,7 +73,7 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
           <S.PressContent>
             <S.PressContentTitle>
               {props.intl.formatMessage({
-                id: 'introduce.media_content2_title',
+                id: `introduce.media_content2_title${suffix}`,
               })}
             </S.PressContentTitle>
             <S.PressContentPressName>
@@ -85,7 +85,7 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
           <S.PressContent>
             <S.PressContentTitle>
               {props.intl.formatMessage({
-                id: 'introduce.media_content3_title',
+                id: `introduce.media_content3_title${suffix}`,
               })}
             </S.PressContentTitle>
             <S.PressContentPressName>
@@ -97,7 +97,7 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
           <S.PressContent>
             <S.PressContentTitle>
               {props.intl.formatMessage({
-                id: 'introduce.media_content4_title',
+                id: `introduce.media_content4_title${suffix}`,
               })}
             </S.PressContentTitle>
             <S.PressContentPressName>
@@ -109,7 +109,7 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
           <S.PressContent>
             <S.PressContentTitle>
               {props.intl.formatMessage({
-                id: 'introduce.media_content5_title',
+                id: `introduce.media_content5_title${suffix}`,
               })}
             </S.PressContentTitle>
             <S.PressContentPressName>
@@ -121,7 +121,7 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
           <S.PressContent>
             <S.PressContentTitle>
               {props.intl.formatMessage({
-                id: 'introduce.media_content6_title',
+                id: `introduce.media_content6_title${suffix}`,
               })}
             </S.PressContentTitle>
             <S.PressContentPressName>
