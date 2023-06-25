@@ -1,4 +1,5 @@
 import Layout from '@Components/common/Layout';
+import SEO from '@Components/common/Seo/Seo';
 import NewsMain from '@Components/news/Main';
 import NewsWrapper from '@Components/news/NewsWrapper';
 import { NewsType } from '@Type/api.type';
@@ -21,3 +22,5 @@ const Main: React.FC<PageProps> = () => {
 };
 
 export default Main;
+
+export const Head = () => <SEO siteUrl="https://www.namsanlaw.com/ko/news" />;

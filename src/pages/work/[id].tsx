@@ -1,4 +1,5 @@
 import Layout from '@Components/common/Layout/Layout';
+import SEO from '@Components/common/Seo/Seo';
 import DetailPage from '@Components/work/DetailPage';
 import { PageProps, graphql } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
@@ -141,3 +142,5 @@ export const query = graphql`
 `;
 
 export default injectIntl(Detail);
+
+export const Head = () => <SEO siteUrl="https://www.namsanlaw.com/ko/work" />;
