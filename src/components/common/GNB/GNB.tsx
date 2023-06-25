@@ -40,6 +40,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
     handleMenuButtonClick,
     location,
     path,
+    makeWidthByLanguage,
   } = useGNB();
 
   return (
@@ -100,6 +101,15 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                   selected={path.pathname === `/${intl.locale}${href}`}
                 >
                   {intl.formatMessage({ id: translationId })}
+                  <S.LinkNameInner>
+                    <LottieWrapper
+                      height={4}
+                      animationData={Focus}
+                      width={makeWidthByLanguage(path.pathname)}
+                      loop={false}
+                      autoplay
+                    />
+                  </S.LinkNameInner>
                 </S.LinkNameWrapper>
               )}
             </Link>
@@ -110,6 +120,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
         {LanguageLink.map(link => (
           <S.LanguageLink
             $isActive={intl.locale === link.lang}
+            isEn={link.lang === 'en'}
             key={link.alt}
             data-lang={link.lang}
           >

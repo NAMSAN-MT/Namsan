@@ -53,17 +53,23 @@ const NewsMain = (props: Props) => {
         <S.TabBox>
           <S.Tab isActive={tab === 'all'}>
             <a href="#" onClick={e => handleTab(e, 'all')}>
-              전체
+              {props.intl.formatMessage({
+                id: 'news.total',
+              })}
             </a>
           </S.Tab>
           <S.Tab isActive={tab === 'media'}>
             <a href="#" onClick={e => handleTab(e, 'media')}>
-              언론보도
+              {props.intl.formatMessage({
+                id: 'news.pressRelease',
+              })}
             </a>
           </S.Tab>
           <S.Tab isActive={tab === 'recent'}>
             <a href="#" onClick={e => handleTab(e, 'recent')}>
-              최근 업무사례
+              {props.intl.formatMessage({
+                id: 'news.RecentBusinessCases',
+              })}
             </a>
           </S.Tab>
         </S.TabBox>
