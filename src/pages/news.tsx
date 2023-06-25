@@ -1,4 +1,5 @@
 import Layout from '@Components/common/Layout';
+import SEO from '@Components/common/Seo/Seo';
 import NewsMain from '@Components/news/Main';
 import NewsWrapper from '@Components/news/NewsWrapper';
 import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
@@ -20,4 +21,6 @@ const Main = (props: WrappedComponentProps) => {
   );
 };
 
-export default injectIntl(Main);
+export default Main;
+
+export const Head = () => <SEO siteUrl="https://www.namsanlaw.com/ko/news" />;

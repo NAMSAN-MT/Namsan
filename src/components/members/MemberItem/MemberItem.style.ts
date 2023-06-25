@@ -12,7 +12,7 @@ const MemberItemWrapper = styled.li`
   ${mediaQuery('mobile', `${size('auto', 'calc((100% - 24px) / 2)')};`)}
 `;
 
-const TagsWrapper = styled.div`
+const TagsWrapper = styled.div<{ isScrollable: boolean }>`
   display: none;
   position: absolute;
   ${size('auto', '100%')}
@@ -22,6 +22,8 @@ const TagsWrapper = styled.div`
   bottom: 0;
   flex-wrap: wrap;
   gap: 6px;
+  max-height: ${props => (props.isScrollable ? '130px !important;' : 'auto')};
+  overflow: auto;
 `;
 
 const Tag = styled.div`
@@ -33,6 +35,9 @@ const Tag = styled.div`
   padding: 4px 8px;
   border-radius: 2px;
   height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const ImageSection = styled.div`

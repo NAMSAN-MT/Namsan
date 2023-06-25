@@ -3,6 +3,7 @@ import { PageProps } from 'gatsby';
 import Member from '@Components/member/Member';
 import Layout from '@Components/common/Layout';
 import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
+import SEO from '@Components/common/Seo/Seo';
 
 const MemberPage: React.FC<PageProps & WrappedComponentProps> = ({
   pageContext: { members, order },
@@ -20,3 +21,7 @@ const MemberPage: React.FC<PageProps & WrappedComponentProps> = ({
 };
 
 export default injectIntl(MemberPage);
+
+export const Head = () => (
+  <SEO siteUrl="https://www.namsanlaw.com/ko/members" />
+);
