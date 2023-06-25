@@ -36,7 +36,6 @@ const MobileMenuButton = ({
 const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
   const {
     handleChangeLanguage,
-    language,
     isMobileMenuOpen,
     handleMenuButtonClick,
     location,
@@ -49,7 +48,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
       isTransparent={isTransparent}
     >
       <S.LogoWrapper>
-        <Link className="link" key="home" to={`/${language}/`} about="home">
+        <Link className="link" key="home" to={`/${intl.locale}/`} about="home">
           <LogoIcon
             width="100%"
             isMobile={isMobile}
@@ -59,54 +58,58 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
         </Link>
       </S.LogoWrapper>
       <S.MainLinkWrapper>
-        {GNBLink.map(({ href, alt, translationId }) => (
-          <Link
-            key={alt}
-            className="link"
-            to={`/${language}${href}`}
-            about={alt}
-          >
-            {path.pathname === `/${language}${href}` ? (
-              <>
+        {GNBLink.map(({ href, alt, translationId }) => {
+          return (
+            <Link
+              key={alt}
+              className="link"
+              to={`/${intl.locale}${href}`}
+              about={alt}
+            >
+              {path.pathname === `/${intl.locale}${href}` ? (
+                <>
+                  <S.LinkNameWrapper
+                    whileHover={{
+                      color: '#193F9A',
+                      originX: 0,
+                    }}
+                    className={location === alt ? 'on' : ''}
+                    selected={path.pathname === `/${intl.locale}${href}`}
+                  >
+                    {intl.formatMessage({ id: translationId })}
+                    <S.LinkNameInner>
+                      <LottieWrapper
+                        height={4}
+                        animationData={Focus}
+                        width={
+                          path.pathname !== `/${intl.locale}/members` ? 58 : 43
+                        }
+                        loop={false}
+                        autoplay
+                      />
+                    </S.LinkNameInner>
+                  </S.LinkNameWrapper>
+                </>
+              ) : (
                 <S.LinkNameWrapper
                   whileHover={{
                     color: '#193F9A',
                     originX: 0,
                   }}
                   className={location === alt ? 'on' : ''}
-                  selected={path.pathname === `/${language}${href}`}
+                  selected={path.pathname === `/${intl.locale}${href}`}
                 >
                   {intl.formatMessage({ id: translationId })}
-                  <S.LinkNameInner>
-                    <LottieWrapper
-                      height={4}
-                      animationData={Focus}
-                      width={path.pathname !== `/${language}/members` ? 58 : 43}
-                      loop={false}
-                      autoplay
-                    />
-                  </S.LinkNameInner>
                 </S.LinkNameWrapper>
-              </>
-            ) : (
-              <S.LinkNameWrapper
-                whileHover={{
-                  color: '#193F9A',
-                  originX: 0,
-                }}
-                className={location === alt ? 'on' : ''}
-                selected={path.pathname === `/${language}${href}`}
-              >
-                {intl.formatMessage({ id: translationId })}
-              </S.LinkNameWrapper>
-            )}
-          </Link>
-        ))}
+              )}
+            </Link>
+          );
+        })}
       </S.MainLinkWrapper>
       <S.LanguageWrapper onClick={handleChangeLanguage}>
         {LanguageLink.map(link => (
           <S.LanguageLink
-            $isActive={language === link.lang}
+            $isActive={intl.locale === link.lang}
             key={link.alt}
             data-lang={link.lang}
           >
@@ -125,10 +128,12 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
               {GNBLink.map(({ href, translationId, alt }) => (
                 <S.MobileMenuItem>
                   <Link
-                    to={href}
+                    to={`/${intl.locale}${href}`}
                     about={alt}
                     key={alt}
-                    className={alt === location ? 'on' : ''}
+                    className={
+                      `/${intl.locale}${href}` === path.pathname ? 'on' : ''
+                    }
                   >
                     {intl.formatMessage({ id: translationId })}
                   </Link>
@@ -138,7 +143,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
             <S.MobileLanguageWrapper onClick={handleChangeLanguage}>
               {LanguageLink.map(link => (
                 <S.MobileLanguageLink
-                  $isActive={language === link.lang}
+                  $isActive={intl.locale === link.lang}
                   data-lang={link.lang}
                 >
                   {link.name}
