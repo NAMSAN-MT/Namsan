@@ -39,7 +39,9 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
       font-size: 14px;
       line-height: 0.7;
       letter-spacing: -0.6px;
-      font-weight: 700;'>법무법인 남산</h3>`;
+      font-weight: 700;'>${intl.formatMessage({
+        id: 'common.company',
+      })}</h3>`;
 
       const infowindow = new naver.maps.InfoWindow({
         content: contentString,
@@ -57,7 +59,7 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
   return (
     <S.ContentSectionWrapper>
       <div className="title">
-        <Title title={intl.formatMessage({ id: 'common.contact' })} />
+        <Title title={intl.formatMessage({ id: 'contact.title' })} />
       </div>
       <S.Map>
         <div className="map" ref={mapRef}></div>
