@@ -9,6 +9,7 @@ const useGNB = () => {
   const intl = useIntl();
   const location = useMemo(() => getCurrentMenu(), []);
   const path = useLocation();
+  const getIsIncludes = (alt: string) => path.pathname.split('/').includes(alt);
 
   const handleChangeLanguage = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -46,6 +47,7 @@ const useGNB = () => {
     isMobileMenuOpen,
     location,
     path,
+    getIsIncludes,
   };
 };
 

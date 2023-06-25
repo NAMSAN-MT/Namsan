@@ -41,6 +41,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
     handleMenuButtonClick,
     location,
     path,
+    getIsIncludes,
   } = useGNB();
 
   return (
@@ -73,7 +74,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                     color: '#193F9A',
                     originX: 0,
                   }}
-                  className={location === alt ? 'on' : ''}
+                  className={getIsIncludes(alt) ? 'on' : ''}
                   selected={path.pathname === `/${language}${href}`}
                 >
                   {intl.formatMessage({ id: translationId })}
@@ -94,7 +95,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                   color: '#193F9A',
                   originX: 0,
                 }}
-                className={location === alt ? 'on' : ''}
+                className={getIsIncludes(alt) ? 'on' : ''}
                 selected={path.pathname === `/${language}${href}`}
               >
                 {intl.formatMessage({ id: translationId })}
@@ -128,7 +129,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                     to={href}
                     about={alt}
                     key={alt}
-                    className={alt === location ? 'on' : ''}
+                    className={getIsIncludes(alt) ? 'on' : ''}
                   >
                     {intl.formatMessage({ id: translationId })}
                   </Link>
