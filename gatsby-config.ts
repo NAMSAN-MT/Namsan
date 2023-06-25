@@ -17,8 +17,8 @@ const config: GatsbyConfig = {
     ogUrl: 'https://www.namsanlaw.com/',
     keywords:
       '남산,법무법인남산,법률사무소,변호사,로펌,승소,소송,법률자문,기업자문,재판,금융,건설,부동산,조세,관세,형사,식품,인사,노무,상속,보험,명동,법무법인',
-    favicon: `/logo-gnb.svg`,
-    ogImage: `/img_kakao.png`,
+    favicon: `/favicon.ico`,
+    ogImage: `/op_kakao.png`,
     siteUrl: `https://www.namsanlaw.com`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -35,16 +35,17 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-image',
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        icon: 'src/assets/imgs/logo-gnb.svg',
-        name: `법무법인 남산 | Lim, Chung & Suh`,
-        short_name: `법무법인 남산 | Lim, Chung & Suh`,
-        start_url: `/`,
-        display: `standalone`,
-      },
-    },
+    'gatsby-plugin-robots-txt',
+    // {
+    //   resolve: 'gatsby-plugin-manifest',
+    //   options: {
+    //     icon: 'src/assets/imgs/logo-gnb.svg',
+    //     name: `법무법인 남산 | Lim, Chung & Suh`,
+    //     short_name: `법무법인 남산 | Lim, Chung & Suh`,
+    //     start_url: `/`,
+    //     display: `standalone`,
+    //   },
+    // },
     'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
