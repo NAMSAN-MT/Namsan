@@ -47,7 +47,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
       {memberList.map(member => (
         <MemberItem
           key={member.id}
-          name={member.name}
+          name={member.name.toUpperCase()}
           position={member.position}
           businessFields={member.businessFields}
           image={member.image}

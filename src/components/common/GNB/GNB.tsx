@@ -1,16 +1,16 @@
-import { Link } from 'gatsby';
-import React from 'react';
-import { GNBLink, LanguageLink } from './GNB.const';
-import useGNB from './GNB.hook';
-import * as S from './GNB.style';
-import MenuIcon from '@Components/icons/MenuIcon';
-import { IGNBProps, IMobileMenuButtonProps } from './GNB.interface';
-import AnimationWrapper from '../AnimationWrapper/AnimationWrapper';
 import LogoIcon from '@Components/icons/LogoIcon';
+import MenuIcon from '@Components/icons/MenuIcon';
+import { Link } from 'gatsby';
 import { injectIntl } from 'gatsby-plugin-intl';
-import LottieWrapper from '../LottieWrapper/LottieWrapper';
+import React from 'react';
 import ButtonMenu from '../../../assets/lottie/button_menu.json';
 import Focus from '../../../assets/lottie/focus.json';
+import AnimationWrapper from '../AnimationWrapper/AnimationWrapper';
+import LottieWrapper from '../LottieWrapper/LottieWrapper';
+import { GNBLink, LanguageLink } from './GNB.const';
+import useGNB from './GNB.hook';
+import { IGNBProps, IMobileMenuButtonProps } from './GNB.interface';
+import * as S from './GNB.style';
 
 const MobileMenuButton = ({
   isMobileMenuOpen,
@@ -40,6 +40,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
     handleMenuButtonClick,
     location,
     path,
+    getIsIncludes,
     makeWidthByLanguage,
   } = useGNB();
 
@@ -97,7 +98,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                     color: '#193F9A',
                     originX: 0,
                   }}
-                  className={location === alt ? 'on' : ''}
+                  className={getIsIncludes(alt) ? 'on' : ''}
                   selected={path.pathname === `/${intl.locale}${href}`}
                 >
                   {intl.formatMessage({ id: translationId })}
@@ -142,9 +143,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                     to={`/${intl.locale}${href}`}
                     about={alt}
                     key={alt}
-                    className={
-                      `/${intl.locale}${href}` === path.pathname ? 'on' : ''
-                    }
+                    className={getIsIncludes(alt) ? 'on' : ''}
                   >
                     {intl.formatMessage({ id: translationId })}
                   </Link>

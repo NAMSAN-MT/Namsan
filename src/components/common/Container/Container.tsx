@@ -8,17 +8,8 @@ export type ContainerType = {
 
 export const ContainerWrapper = styled.div`
   margin: 0px auto 160px;
-  max-width: 1200px;
-  padding: 100px 0px 0px 0px;
-
-  ${mediaQuery(
-    'pc1278',
-    `
-    padding: 0px 24px;
-    padding-top: 70px;
-    margin-bottom: 100px;
-      `,
-  )};
+  max-width: 1380px;
+  padding: 100px 90px 0px 90px;
 
   ${mediaQuery(
     'tablet1024',
