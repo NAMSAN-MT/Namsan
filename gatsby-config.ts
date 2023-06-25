@@ -132,7 +132,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-favicons',
       options: {
-        logo: 'src/assets/imgs/favicon.ico',
+        logo: './src/assets/imgs/favicon.ico',
         appName: '법무법인 남산 l Lim, Chung & Suh',
         icons: {
           android: true,
