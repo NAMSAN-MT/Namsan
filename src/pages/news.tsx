@@ -21,6 +21,6 @@ const Main = (props: WrappedComponentProps) => {
   );
 };
 
-export default Main;
+export default injectIntl(Main);
 
 export const Head = () => <SEO siteUrl="https://www.namsanlaw.com/ko/news" />;
