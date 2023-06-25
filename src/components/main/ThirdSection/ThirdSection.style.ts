@@ -24,7 +24,7 @@ const InnerWrapper = styled.div`
   ${mediaQuery(
     'mobile',
     `
-     min-height: 730px;
+     min-height: 700px;
      ${flex('start', 'start')};
      flex-direction: column;
      padding: 60px 0 45px;
