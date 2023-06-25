@@ -1,5 +1,6 @@
 import { font, mediaQuery } from '@Styles/mixin.style';
 import styled from 'styled-components';
+import * as IconWrapperStyles from '@Components/icons/IconWrapper/IconWrapper.style';
 
 export const List = styled.ul`
   margin: 0px;
@@ -53,6 +54,18 @@ export const MainWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  & > ${IconWrapperStyles.Wrapper} > img {
+    width: auto;
+    height: 100%;
+    scale: 1.3;
+
+    ${mediaQuery(
+      'mobile',
+      `
+      scale: 1.0;
+    `,
+    )}
+  }
 
   &:hover > a {
     color: ${({ theme }) => theme.color.blue100};
@@ -64,7 +77,7 @@ export const Anchor = styled.a`
   color: ${({ theme }) => theme.color.textBlackHigh};
   height: auto;
   padding: 11px 12px;
-  width: fit-content;
+  width: auto;
 
   font-size: 20px;
 
@@ -92,6 +105,7 @@ export const MainAnchor = styled(Anchor)`
   ${mediaQuery(
     'mobile',
     `
+    line-height: 26px;
     padding-bottom: 4px;
     padding-left: 0px;
     ${font('mobile18', 'bold')}

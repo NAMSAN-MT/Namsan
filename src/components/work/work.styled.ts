@@ -11,14 +11,14 @@ export const Grid = styled.div`
   grid-column-gap: 24px;
 
   ${mediaQuery(
-    'pc1278',
+    'pc1380',
     `
     grid-template-columns: repeat(2, 1fr);
       `,
   )}
 
   ${mediaQuery(
-    'tablet1024',
+    'pc1380',
     `
     grid-row-gap: 52px;
     `,
@@ -38,7 +38,9 @@ export const Title = styled.h1`
   color: ${theme => theme.theme.color.textBlackHigh};
   margin-bottom: 24px;
   ${font('title32', 'bold')};
-  &:hover {
+
+  letter-spacing: -0.4px;
+  &:not():first-child:hover {
     color: ${theme => theme.theme.color.textBlue};
   }
 
@@ -48,6 +50,8 @@ export const Title = styled.h1`
     margin-bottom: 16px;
     ${font('mobile24', 'bold')}
     margin-bottom: 16px;
+
+    letter-spacing: -0.2px;
       `,
   )}
 `;
@@ -68,10 +72,6 @@ export const LineArrowIconInner = styled.div`
 export const SubTitle = styled.h2`
   ${font('title26', 'bold')}
 
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
   ${mediaQuery(
     'mobile',
     `
@@ -81,6 +81,7 @@ export const SubTitle = styled.h2`
     white-space: unset;
     text-overflow: unset;
     padding-right: 12px;
+    letter-spacing: -0.2px;
       `,
   )}
 `;
@@ -90,13 +91,14 @@ export const Contents = styled.p`
   ${font('title22', 'regular')};
   margin-bottom: 32px;
   line-height: 36px;
+  letter-spacing: -0.4px;
 
   ${mediaQuery(
     'mobile',
     `
     line-height: 26px;
     ${font('mobile16', 'regular')};
-
+    letter-spacing: -0.2px;
     margin-bottom: 24px;
       `,
   )}
@@ -124,16 +126,26 @@ export const Head = styled.div`
   flex-direction: row;
   color: ${theme => theme.theme.color.textBlackHigh};
   cursor: pointer;
-  height: 104px;
+  /* height: 104px; */
 
   &:hover {
     color: ${theme => theme.theme.color.textBlue};
   }
 
+  & > ${SubTitle} {
+    padding: 32px 0px;
+    ${mediaQuery(
+      'mobile',
+      `
+      padding: 24px 0px;
+    `,
+    )}
+  }
+
   ${mediaQuery(
     'mobile',
     `
-    height: 74px;
+    // height: 74px;
   `,
   )}
 `;
@@ -173,13 +185,13 @@ export const MemberBox = styled.div`
 
   ${mediaQuery(
     'mobile',
-    `margin-top:40px;  
+    `margin-top:12px;  
   `,
   )}
 `;
 
 export const CategoryBox = styled.div`
-  padding-bottom: 18px;
+  padding-bottom: 12px;
 
   ${mediaQuery(
     'tablet1024',
@@ -214,7 +226,6 @@ export const MemberList = styled.div`
   )}
 
   & > li {
-    max-width: 282px;
     width: 100%;
     margin-bottom: 0px;
     height: auto;
@@ -234,20 +245,32 @@ export const MemberList = styled.div`
           width: 100%;
           height: auto;
         }
+      }
+    }
 
-        & > ${S.Name} {
-          margin-top: 16px;
-          ${font('title20', 'bold')}
+    & > ${S.TextSection} {
+      & > ${S.Name} {
+        margin-top: 16px;
+        ${font('title20', 'bold')}
 
-          ${mediaQuery(
-            'mobile',
-            `margin-top: 10px;
+        ${mediaQuery(
+          'mobile',
+          `margin-top: 10px;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 26px;
       `,
-          )}
-        }
-        & > ${S.Position} {
-          ${font('title18', 'regular')}
-        }
+        )}
+      }
+      & > ${S.Position} {
+        ${font('title18', 'regular')}
+        letter-spacing: -0.2px;
+
+        ${mediaQuery(
+          'mobile',
+          `font-size: 14px;
+          line-height: 22px;`,
+        )}
       }
     }
 
@@ -295,7 +318,7 @@ export const ImageContainer = styled.div`
       `
     ${size('160px', '100%')}
     margin-top: 8px;
-    margin-bottom: 20px;`,
+    margin-bottom: 32px;`,
     )}
   }
 `;
