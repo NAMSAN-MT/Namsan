@@ -22,8 +22,11 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
       };
 
       const newMembers = members.filter(member => {
+        const paramName = params.name?.toUpperCase();
+        const memberName = member.name.toUpperCase();
+
         return (
-          (!params.name || member.name.includes(params.name)) &&
+          (!paramName || memberName.includes(paramName)) &&
           (!params.position || member.position.startsWith(params.position)) &&
           (!params.businessField ||
             member.businessFields.includes(params.businessField)) &&
