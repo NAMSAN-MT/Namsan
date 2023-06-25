@@ -1,5 +1,6 @@
 import Layout from '@Components/common/Layout';
 import Loading from '@Components/common/Loading';
+import SEO from '@Components/common/Seo/Seo';
 import FifthSection from '@Components/main/FifthSection';
 import SecondSection from '@Components/main/SecondSection';
 
@@ -39,3 +40,5 @@ const Main: React.FC<PageProps> = () => {
 };
 
 export default Main;
+
+export const Head = () => <SEO />;
