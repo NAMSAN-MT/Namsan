@@ -83,9 +83,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                       <LottieWrapper
                         height={4}
                         animationData={Focus}
-                        width={
-                          path.pathname !== `/${intl.locale}/members` ? 58 : 43
-                        }
+                        width={makeWidthByLanguage(path.pathname)}
                         loop={false}
                         autoplay
                       />
@@ -102,15 +100,6 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
                   selected={path.pathname === `/${intl.locale}${href}`}
                 >
                   {intl.formatMessage({ id: translationId })}
-                  <S.LinkNameInner>
-                    <LottieWrapper
-                      height={4}
-                      animationData={Focus}
-                      width={makeWidthByLanguage(path.pathname)}
-                      loop={false}
-                      autoplay
-                    />
-                  </S.LinkNameInner>
                 </S.LinkNameWrapper>
               )}
             </Link>
