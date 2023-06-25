@@ -22,7 +22,7 @@ const TagsWrapper = styled.div<{ isScrollable: boolean }>`
   bottom: 0;
   flex-wrap: wrap;
   gap: 6px;
-  max-height: ${props => (props.isScrollable ? '130px !important;' : 'auto')};
+  max-height: ${props => (props.isScrollable ? '134px !important;' : 'auto')};
   overflow: auto;
 `;
 
