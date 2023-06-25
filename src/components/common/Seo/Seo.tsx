@@ -39,10 +39,10 @@ const SEO = (props: ISeoProps) => {
         name="naver-site-verification"
         content="b19b8002ed5eed2d099c93752e8c4e37f86ce279"
       />
-      {/* <meta
+      <meta
         name="google-site-verification"
-        content="t60xDeNWFa32ZTJP6cEJx-7zU0KNjgNYyq2qFOOdesY"
-      /> */}
+        content="BLdo5upLx_lN5AHKrVjLK6WI7Kbxq0T-QA3ocpRqIhM"
+      />
       <meta name="title" content={seo.title} />
       <meta name="description" content={seo.description} />
       <meta property="og:type" content="website" />
