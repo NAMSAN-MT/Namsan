@@ -72,11 +72,12 @@ const Title = styled(Basic)`
   ${mediaQuery(
     'mobile',
     `
+    text-transform: none;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     ${font('title30', 'bold')};
     ${lineHeight(30, 42)};
-    width: 270px;
+    width: 280px;
     letter-spacing: 0;
     word-break: keep-all;
   `,
