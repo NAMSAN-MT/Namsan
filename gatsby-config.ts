@@ -35,6 +35,7 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-image',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-robots-txt',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
