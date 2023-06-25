@@ -35,7 +35,7 @@ const Dim = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  width: 90%;
+  width: 1200px;
   position: absolute;
   top: 364px;
   bottom: 363px;
@@ -47,7 +47,7 @@ const TextWrapper = styled.div`
   transform: translateY(100%);
   height: fit-content;
 
-  ${mediaQuery('pc1380', `left: 90px;`)}
+  ${mediaQuery('pc1380', `left: 90px; width: 90%;`)}
   ${mediaQuery('tablet1024', `left: 40px; width: auto;`)}
   ${mediaQuery('mobile', `width: 327px;top: 149px; bottom: 149px; left: 24px;`)}
 

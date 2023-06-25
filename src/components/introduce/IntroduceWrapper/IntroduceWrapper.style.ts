@@ -39,7 +39,7 @@ const IntroduceWrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  width: 90%;
+  width: 1200px;
   white-space: pre-wrap;
   ${font('display42', 'bold')};
   ${lineHeight(42, 60)};
