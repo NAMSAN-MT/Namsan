@@ -73,7 +73,7 @@ const Title = styled(Basic)`
     'mobile',
     `
     text-transform: none;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'noto-sans-cjk-kr', sans-serif;
     font-style: normal;
     ${font('title30', 'bold')};
     ${lineHeight(30, 42)};
