@@ -77,7 +77,7 @@ const Title = styled(Basic)`
     font-style: normal;
     ${font('title30', 'bold')};
     ${lineHeight(30, 42)};
-    width: 280px;
+    width: 275px;
     letter-spacing: 0;
     word-break: keep-all;
   `,
