@@ -32,11 +32,7 @@ const FirstSection = (props: IFirstSectionProps) => {
         }}
       >
         <S.FrirstWrapper>
-          <img
-            width={props.isMobile ? '100%' : 'auto'}
-            src={intro}
-            alt="intro0"
-          />
+          <img width={props.isMobile ? '100%' : 'auto'} src={intro} />
         </S.FrirstWrapper>
       </div>
       <div
