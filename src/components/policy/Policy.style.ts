@@ -149,6 +149,7 @@ export const PolicyStyleBox = styled.div`
           ${font('body16', 'bold')}
           background: ${({ theme }) => theme.color.grey50};
           border: inherit;
+          width: 130px;
         }
 
         td,

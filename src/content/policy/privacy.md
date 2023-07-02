@@ -14,7 +14,7 @@ title: '개인정보 처리방침'
 
 <table class="pc">
   <tr>
-    <th colspan="2" style="min-width: 204px">
+    <th colspan="2">
       정보주체
     </th>
     <td colspan="2">
@@ -84,7 +84,7 @@ title: '개인정보 처리방침'
 
 <table class="pc">
   <tr>
-    <th colspan="2" style="min-width: 204px">
+    <th colspan="2">
       정보주체
     </th>
     <td colspan="2">
@@ -154,7 +154,7 @@ title: '개인정보 처리방침'
 
 <table class="pc">
   <tr>
-    <th colspan="2" style="min-width: 251px">
+    <th colspan="2">
       정보주체
     </th>
     <td colspan="2">
