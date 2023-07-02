@@ -26,7 +26,7 @@ export function Head() {
     <SEO siteUrl="https://www.namsanlaw.com/ko/contact">
       <script
         type="text/javascript"
-        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=r3n2d43r6e"
+        src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=r3n2d43r6e"
       />
     </SEO>
   );
