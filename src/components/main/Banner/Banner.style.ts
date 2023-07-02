@@ -70,8 +70,8 @@ const Title = styled.div`
   letter-spacing: -0.4px;
   margin-top: 8px;
 
-  ${font('title22', 'bold')}
-  ${lineHeight(22, 36)};
+  ${font('title20', 'bold')}
+  ${lineHeight(20, 36)};
   max-width: 320px;
 
   @media (max-width: 1212px) {
