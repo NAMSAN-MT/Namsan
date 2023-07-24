@@ -80,7 +80,9 @@
     "title_address": "주소",
     "title_email": "이메일",
     "title_tel": "전화번호",
-    "title_fax": "팩스번호"
+    "title_fax": "팩스번호",
+    "title_tel_number": "02-777-0550",
+    "title_fax_number": "02-754-0077"
   },
   "members": {
     "introduce_members": "구성원 소개",
