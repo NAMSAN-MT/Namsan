@@ -76,7 +76,9 @@
     "title_address": "Address",
     "title_email": "Contact us (Email)",
     "title_tel": "Tel",
-    "title_fax": "Fax"
+    "title_fax": "Fax",
+    "title_tel_number": "82-2-777-0550",
+    "title_fax_number": "82-2-754-0077"
   },
   "members": {
     "introduce_members": "Our People",
