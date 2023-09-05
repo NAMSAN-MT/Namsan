@@ -131,10 +131,18 @@ export const ContentConatiner = styled.div<{ isProfile: boolean }>`
   }
 `;
 
-export const ProfileArea = styled.div`
+export const ProfileAreaWrapper = styled.div`
+  ${flex()}
+`;
+
+export const ProfileArea = styled.div<{ last: boolean }>`
   ${flex()}
   ${flexDirection()}
   ${size('200px', '132px')}
+  margin-right: ${({ last }) => (last ? '0px' : '50px')};
+  @media (max-width: ${ScreenBreakPoints['mobile']}) {
+    margin-right: ${({ last }) => (last ? '0px' : '15px')};
+  }
 
   img {
     background: ${props => props.theme.color.grey50};

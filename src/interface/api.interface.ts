@@ -44,7 +44,7 @@ export interface News {
   dateYearMonth?: string;
   dateYearMonthDate?: string;
   order: number;
-  memberId?: any;
+  memberId?: any[];
   prevNews?: { id: string; title: string };
   nextNews?: { id: string; title: string };
 }

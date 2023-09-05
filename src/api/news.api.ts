@@ -123,18 +123,23 @@ export const getNewsMember = async (_documentId: string) => {
     ],
   }).then(async result => {
     const data = result[0];
-    const memberRef = data?.memberId;
-    try {
-      const memberSnapshot = await memberRef.get();
-      const { imagePath, name, position } = await getData(memberSnapshot);
+    if (!data.memberId) return;
+    if (data.memberId?.length === 0) return;
 
-      if (isEmpty(imagePath)) return;
-      const profileImage = await getFileFromStorage(imagePath);
-      return {
-        profileImage,
-        name,
-        position,
-      };
+    try {
+      const results = await Promise.all(
+        data.memberId.map(async memberId => {
+          const memberSnapshot = await memberId.get();
+          const { imagePath, name, position } = await getData(memberSnapshot);
+          const profileImage = await getFileFromStorage(imagePath);
+          return {
+            profileImage,
+            name,
+            position,
+          };
+        }),
+      );
+      return results ?? [];
     } catch (error) {
       return;
     }
