@@ -4,7 +4,7 @@ import LineArrowIcon from '@Components/icons/LineArrowIcon';
 import { navigate } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { injectIntl } from 'gatsby-plugin-intl';
-import { isEmpty } from 'lodash';
+import _, { isEmpty } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { convertDateStr } from './NewsDetail.helper';
 import { NewsProfile, Props } from './NewsDetail.interface';
@@ -25,10 +25,12 @@ const NewsDetail = (props: Props) => {
   } = props;
 
   const dateYearMonthDate = convertDateStr(date).fullDate;
-  const [profile, setProfile] = useState<NewsProfile>();
+  const [profile, setProfile] = useState<NewsProfile[] | []>([]);
 
   useEffect(() => {
-    getNewsMember(id).then(setProfile);
+    getNewsMember(id).then(res => {
+      setProfile(res ?? []);
+    });
   }, []);
 
   const onClickOiriginal = () => {
@@ -46,7 +48,7 @@ const NewsDetail = (props: Props) => {
   const topTxt = isMediaNews ? agency : '최근 업무사례';
 
   const isNewsImageData = !isEmpty(newsImageData);
-  const isProfile = !isEmpty(profile) && profile.profileImage;
+  const isProfile = !isEmpty(profile) && profile.length > 0;
   const isPrevContent = !isEmpty(prevNews);
   const isNextContent = !isEmpty(nextNews);
 
@@ -93,17 +95,26 @@ const NewsDetail = (props: Props) => {
         <S.Content>{content}</S.Content>
         <article className="bottom">
           {isProfile ? (
-            <S.ProfileArea>
-              <img
-                alt={profile.name}
-                src={profile.profileImage}
-                loading={'lazy'}
-              />
-              <S.TextSection>
-                <S.Name>{profile.name}</S.Name>
-                <S.Position>{profile.position}</S.Position>
-              </S.TextSection>
-            </S.ProfileArea>
+            <S.ProfileAreaWrapper>
+              {profile.map((item, index) => {
+                return (
+                  <S.ProfileArea
+                    key={index}
+                    last={index === profile.length - 1}
+                  >
+                    <img
+                      alt={item.name}
+                      src={item.profileImage}
+                      loading={'lazy'}
+                    />
+                    <S.TextSection>
+                      <S.Name>{item.name}</S.Name>
+                      <S.Position>{item.position}</S.Position>
+                    </S.TextSection>
+                  </S.ProfileArea>
+                );
+              })}
+            </S.ProfileAreaWrapper>
           ) : (
             <BaseButton className={'support'} onClick={onClickOiriginal}>
               기사 원문보기
