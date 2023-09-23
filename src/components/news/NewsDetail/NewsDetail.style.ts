@@ -150,7 +150,7 @@ export const ProfileArea = styled.div<{ last: boolean }>`
     object-fit: scale-down;
     border-radius: 100%;
 
-    ${mediaQuery('mobile', `${size('100px', '88px')}`)}
+    ${mediaQuery('mobile', `${size('100px', '100px')}`)}
   }
 
   ${mediaQuery('mobile', `${size('152px', '100px')}`)}
