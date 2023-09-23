@@ -82,6 +82,7 @@ const SecondSection = styled.div`
        padding-top: 12px;
     `,
   )};
+  .address,
   span {
     letter-spacing: -0.1px;
     color: ${({ theme }) => theme.color.grey500};
