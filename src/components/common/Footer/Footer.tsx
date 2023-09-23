@@ -48,6 +48,11 @@ const Footer = (props: IFooterProps) => {
               id: 'footer.email',
             })}
           </span>
+          <div className="address">
+            {props.intl.formatMessage({
+              id: 'footer.address',
+            })}
+          </div>
         </div>
         <div>
           <span>© Copyright 2023 Lim, Chung & Suh all rights reserved</span>
