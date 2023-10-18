@@ -78,6 +78,7 @@ const BottomWrapper = styled.div`
 
       .card-content {
         height: unset !important;
+        min-height: 44px;
       }
     `,
   )};
