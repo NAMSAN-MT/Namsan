@@ -8,7 +8,6 @@ import {
 } from '@Styles/mixin.style';
 import styled from 'styled-components';
 import { Wrapper } from '../FirstSection/FirstSection.style';
-
 //
 const ForthWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.color.textWhiteHigh};
@@ -79,6 +78,7 @@ const BottomWrapper = styled.div`
 
       .card-content {
         height: unset !important;
+        min-height: 44px;
       }
     `,
   )};

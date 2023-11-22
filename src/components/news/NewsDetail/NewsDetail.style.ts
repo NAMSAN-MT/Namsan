@@ -131,10 +131,18 @@ export const ContentConatiner = styled.div<{ isProfile: boolean }>`
   }
 `;
 
-export const ProfileArea = styled.div`
+export const ProfileAreaWrapper = styled.div`
+  ${flex()}
+`;
+
+export const ProfileArea = styled.div<{ last: boolean }>`
   ${flex()}
   ${flexDirection()}
   ${size('200px', '132px')}
+  margin-right: ${({ last }) => (last ? '0px' : '50px')};
+  @media (max-width: ${ScreenBreakPoints['mobile']}) {
+    margin-right: ${({ last }) => (last ? '0px' : '15px')};
+  }
 
   img {
     background: ${props => props.theme.color.grey50};
@@ -142,7 +150,7 @@ export const ProfileArea = styled.div`
     object-fit: scale-down;
     border-radius: 100%;
 
-    ${mediaQuery('mobile', `${size('100px', '88px')}`)}
+    ${mediaQuery('mobile', `${size('100px', '100px')}`)}
   }
 
   ${mediaQuery('mobile', `${size('152px', '100px')}`)}
