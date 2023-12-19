@@ -198,7 +198,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
     },
   });
 
-  /* 개별 구성원 페이지 생성 */
+  /* 개별 구성원 페이지 생성  */
   await Promise.all(
     contextMembers.map(async (node: any) => {
       actions.createPage({
