@@ -141,6 +141,7 @@ export const collectionOnUpdate = functions
 
 type NewObjectType = {
   documentId: any;
+  objectID:string;
   title?: string;
   content?: string;
   order?: boolean;
@@ -149,7 +150,7 @@ const updateDocumentInAlgolia = async (documentId: any = "", change: any) => {
   const before = change.before.data();
   const after = change.after.data();
   if (before && after) {
-    const news: NewObjectType = { documentId };
+    const news: NewObjectType = { documentId, objectID: before.objectID };
     let flag = false;
     if (before.title !== after.title) {
       news.title = after.title;
