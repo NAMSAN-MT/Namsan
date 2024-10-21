@@ -1,10 +1,9 @@
 import { getMainNewsList, getNewsSearchList } from '@Api/news.api';
-import { News, NewsMin } from '@Interface/api.interface';
+import { NewsMin } from '@Interface/api.interface';
 import { useLocation } from '@reach/router';
 import { NewsType } from '@Type/api.type';
-import { navigate } from 'gatsby';
 import { useState } from 'react';
-import { TPagination, TTab } from './Main.interface';
+import { TPagination, TTab } from './main.interface';
 
 const useMain = () => {
   const params = new URLSearchParams(useLocation().search);

@@ -6,8 +6,8 @@ import React, { lazy, useEffect, useState } from 'react';
 import * as SearchBar from '../../members/SearchBar/SearchBar.style';
 import Pagination from '../Pagination';
 import useMain from './Main.hook';
-import { TTab } from './Main.interface';
 import * as S from './Main.style';
+import { TTab } from './main.interface';
 const Card = lazy(() => import('@Components/news/Card'));
 
 interface Props extends WrappedComponentProps {}
