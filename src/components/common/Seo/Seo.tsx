@@ -1,5 +1,5 @@
-import React from 'react';
 import { useSiteMetadata } from '@Hooks/useSiteMetadata';
+import React from 'react';
 import { ISeoProps } from './Seo.interface';
 
 const SEO = (props: ISeoProps) => {
@@ -20,7 +20,7 @@ const SEO = (props: ISeoProps) => {
     description: props.description || defaultDescription,
     ogTitle: props.ogTitle || defaultOgTitle,
     ogDescription: props.ogDescription || defaultOgDescription,
-    ogUrl,
+    ogUrl: props.ogUrl || ogUrl,
     keywords: props.keywords || defaultKeywords,
     favicon: `${siteUrl}${favicon}`,
     ogImage: `${siteUrl}${ogImage}`,

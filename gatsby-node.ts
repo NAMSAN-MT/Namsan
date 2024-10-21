@@ -1,8 +1,8 @@
 import { IMember } from '@Interface/api.interface';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
+import { isEmpty, isNumber } from 'lodash';
 import { resolve } from 'path';
 import { getFileFromStorage } from './src/api/index.api';
-import { isEmpty, isNumber } from 'lodash';
 
 const fs = require('fs');
 exports.onPostBuild = () => {
@@ -285,6 +285,7 @@ exports.createPages = async ({ actions, graphql }: any) => {
             content
             agency
             order
+            summary
           }
         }
       }
