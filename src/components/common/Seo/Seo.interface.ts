@@ -5,6 +5,7 @@ interface ISeoProps {
   ogDescription?: string;
   keywords?: string;
   siteUrl?: string;
+  ogUrl?: string;
   children?: React.ReactNode;
 }
 

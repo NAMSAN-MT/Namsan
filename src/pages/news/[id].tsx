@@ -1,9 +1,9 @@
 import Layout from '@Components/common/Layout';
 import Loading from '@Components/common/Loading';
+import SEO from '@Components/common/Seo';
 import NewsWrapper from '@Components/news/NewsWrapper';
 import { News } from '@Interface/api.interface';
 import { PageProps } from 'gatsby';
-import { injectIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
 import React, { lazy, Suspense } from 'react';
 const NewsDetail = lazy(() => import('@Components/news/NewsDetail/NewsDetail'));
 
@@ -24,3 +24,16 @@ const NewsDatil: React.FC<_PageProps> = ({ pageContext: { news } }) => {
 };
 
 export default NewsDatil;
+
+export const Head: React.FC<_PageProps> = ({ pageContext: { news } }) => {
+  return (
+    <SEO
+      siteUrl={news.originalLink}
+      title={news.title}
+      ogTitle={news.title}
+      description={news.summary}
+      ogDescription={news.summary}
+      ogUrl={news.originalLink}
+    />
+  );
+};
