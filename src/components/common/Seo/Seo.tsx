@@ -16,15 +16,15 @@ const SEO = (props: ISeoProps) => {
   } = useSiteMetadata();
 
   const seo = {
-    title: props.title || defaultTitle,
-    description: props.description || defaultDescription,
-    ogTitle: props.ogTitle || defaultOgTitle,
-    ogDescription: props.ogDescription || defaultOgDescription,
-    ogUrl: props.ogUrl || ogUrl,
-    keywords: props.keywords || defaultKeywords,
+    title: props.title ?? defaultTitle,
+    description: props.description ?? defaultDescription,
+    ogTitle: props.ogTitle ?? defaultOgTitle,
+    ogDescription: props.ogDescription ?? defaultOgDescription,
+    ogUrl: props.ogUrl ?? ogUrl,
+    keywords: props.keywords ?? defaultKeywords,
     favicon: `${siteUrl}${favicon}`,
     ogImage: `${siteUrl}${ogImage}`,
-    siteUrl: props.siteUrl || siteUrl,
+    siteUrl: props.siteUrl ?? siteUrl,
   };
 
   return (
