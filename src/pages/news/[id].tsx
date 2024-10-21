@@ -28,12 +28,12 @@ export default NewsDatil;
 export const Head: React.FC<_PageProps> = ({ pageContext: { news } }) => {
   return (
     <SEO
-      siteUrl={news.originalLink}
-      title={news.title}
-      ogTitle={news.title}
-      description={news.summary}
-      ogDescription={news.summary}
-      ogUrl={news.originalLink}
+      siteUrl={news?.originalLink ?? undefined}
+      title={news?.title ?? undefined}
+      ogTitle={news?.title ?? undefined}
+      description={news?.summary ?? undefined}
+      ogDescription={news?.summary ?? undefined}
+      ogUrl={news?.originalLink ?? undefined}
     />
   );
 };
