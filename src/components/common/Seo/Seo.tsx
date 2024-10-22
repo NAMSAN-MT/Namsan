@@ -41,7 +41,7 @@ const SEO = (props: ISeoProps) => {
       />
       <meta
         name="google-site-verification"
-        content="BLdo5upLx_lN5AHKrVjLK6WI7Kbxq0T-QA3ocpRqIhM"
+        content="8dGPS1J7S4mD2LzyCAPI6GWkO9jtTu1baEseazM1n5E"
       />
       <meta name="title" content={seo.title} />
       <meta name="description" content={seo.description} />
