@@ -34,13 +34,7 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-image',
-    {
-      resolve: 'gatsby-plugin-sitemap',
-      options: {
-        output: '/sitemap.xml',
-        exclude: ['/404'],
-      },
-    },
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
     // {
     //   resolve: 'gatsby-plugin-manifest',
