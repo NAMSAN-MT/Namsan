@@ -1,6 +1,6 @@
-import type { GatsbyConfig } from 'gatsby';
-import { resolve, join } from 'path';
 import dotenv from 'dotenv';
+import type { GatsbyConfig } from 'gatsby';
+import { join, resolve } from 'path';
 dotenv.config();
 
 require('dotenv').config({
@@ -34,7 +34,13 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-image',
-    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        output: '/sitemap.xml',
+        exclude: ['/404'],
+      },
+    },
     'gatsby-plugin-robots-txt',
     // {
     //   resolve: 'gatsby-plugin-manifest',
