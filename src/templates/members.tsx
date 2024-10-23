@@ -1,12 +1,12 @@
-import { PageProps } from 'gatsby';
-import React, { useEffect } from 'react';
-import MembersWrapper from '@Components/members/MembersWrapper';
-import MembersTitle from '@Components/members/MembersTitle';
-import SearchBar from '@Components/members/SearchBar';
-import MemberList from '@Components/members/MemberList';
 import Layout from '@Components/common/Layout';
-import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
+import MemberList from '@Components/members/MemberList';
+import MembersTitle from '@Components/members/MembersTitle';
+import MembersWrapper from '@Components/members/MembersWrapper';
+import SearchBar from '@Components/members/SearchBar';
 import { IMember } from '@Interface/api.interface';
+import { PageProps } from 'gatsby';
+import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
+import React from 'react';
 
 const Members: React.FC<PageProps & WrappedComponentProps> = ({
   pageContext: { members, workMap },

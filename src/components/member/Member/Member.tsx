@@ -1,14 +1,14 @@
 import Divider from '@Components/common/Divider';
-import React, { useState } from 'react';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
+import { isEmpty } from 'lodash';
+import React from 'react';
 import IntroduceItem from '../IntroduceItem';
 import { IntroduceType } from '../IntroduceItem/IntroduceItem.type';
+import MemberDescription from '../MemberDescription/MemberDescription';
 import { introduceOrder } from './Member.const';
 import { MemberProps } from './Member.interface';
 import * as S from './Member.style';
-import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { isEmpty } from 'lodash';
-import MemberDescription from '../MemberDescription/MemberDescription';
 
 const Member = (props: MemberProps & WrappedComponentProps) => {
   const { member } = props;
