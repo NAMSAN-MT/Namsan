@@ -16,7 +16,7 @@ export interface DetailProps {
   id: string;
   pageContext: PageContextProps;
   data: {
-    work: workInfomation;
+    work: workInformation;
     mainMembers: { edges: SimpleMemberInfo[] };
     subMembers: { edges: SimpleMemberInfo[] };
   };
@@ -42,7 +42,7 @@ export interface PageContextProps extends WrappedComponentProps {
   id: string;
 }
 
-type workInfomation = {
+type workInformation = {
   categoryTitle: string[];
   description: string[];
   imagePath: string;
@@ -74,7 +74,7 @@ const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
   }));
 
   const subId = Number(location.hash?.slice(-2)) ?? -1;
-  const infomation = data.work.categoryTitle?.map((title, index) => ({
+  const information = data.work.categoryTitle?.map((title, index) => ({
     categoryTitle: title,
     description: data.work.description[index],
     isOpen: index === subId,
@@ -88,7 +88,7 @@ const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
           ...pageContext,
           mainMemberData: newMainMembers,
           subMemberData: newSubMembers,
-          workInfo: infomation,
+          workInfo: information,
           backgroundImage:
             pageContext.backgroundImage?.data.file.childImageSharp
               .gatsbyImageData,
@@ -143,4 +143,29 @@ export const query = graphql`
 
 export default injectIntl(Detail);
 
-export const Head = () => <SEO siteUrl="https://www.namsanlaw.com/ko/work" />;
+export const Head = (
+  props: WrappedComponentProps & DetailProps & PageProps,
+) => {
+  const { data, location } = props;
+  const subId = Number(location.hash?.slice(-2)) ?? -1;
+  const information = data.work.categoryTitle?.map((title, index) => ({
+    categoryTitle: title,
+    description: data.work.description[index],
+    isOpen: index === subId,
+    isFirstTime: true,
+  }));
+
+  const description = information.map(i => i.categoryTitle).join(', ');
+  const title = information.map(i => i.categoryTitle);
+
+  return (
+    <SEO
+      siteUrl="https://www.namsanlaw.com/ko/work"
+      title={title[0] ?? undefined}
+      ogTitle={title[0] ?? undefined}
+      description={description ?? undefined}
+      ogDescription={description ?? undefined}
+      ogUrl="https://www.namsanlaw.com/ko/members"
+    />
+  );
+};
