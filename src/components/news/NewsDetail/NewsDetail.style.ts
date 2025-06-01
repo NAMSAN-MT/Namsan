@@ -1,6 +1,4 @@
-import { theme } from './../../../styles/varialbes.style';
 import {
-  ellipsis,
   ellipsisMulti,
   flex,
   flexDirection,
@@ -197,7 +195,7 @@ export const Position = styled.div`
   )}
 `;
 
-export const Content = styled.pre`
+export const Content = styled.div`
   ${mediaQuery(
     'mobile',
     `
@@ -208,10 +206,148 @@ export const Content = styled.pre`
 
   ${size('auto', '100%')}
 
-  white-space: pre-line;
   ${font('title20', 'regular')}
   ${lineHeight(20, 34)}
-  ${({ theme }) => theme.color.black}
+  color: ${({ theme }) => theme.color.black};
+
+  /* Markdown 스타일 복원 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+    margin: 24px 0 16px 0;
+    line-height: 1.25;
+  }
+
+  h1 {
+    ${font('title32', 'bold')}
+    ${lineHeight(32, 48)}
+  }
+
+  h2 {
+    ${font('title26', 'bold')}
+    ${lineHeight(26, 39)}
+  }
+
+  h3 {
+    ${font('title24', 'bold')}
+    ${lineHeight(24, 36)}
+  }
+
+  h4 {
+    ${font('title20', 'bold')}
+    ${lineHeight(20, 30)}
+  }
+
+  p {
+    margin: 16px 0;
+    ${font('title20', 'regular')}
+    ${lineHeight(20, 34)}
+    
+    ${mediaQuery(
+      'mobile',
+      `
+      ${font('mobile16', 'regular')}
+      ${lineHeight(16, 26)}
+      `,
+    )};
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    margin: 16px 0;
+    padding-left: 32px;
+  }
+
+  ul li {
+    list-style-type: disc;
+    margin: 8px 0;
+  }
+
+  ol li {
+    list-style-type: decimal;
+    margin: 8px 0;
+  }
+
+  blockquote {
+    margin: 16px 0;
+    padding: 16px;
+    border-left: 4px solid ${({ theme }) => theme.color.blue200};
+    background-color: ${({ theme }) => theme.color.grey50};
+    font-style: italic;
+  }
+
+  code {
+    background-color: ${({ theme }) => theme.color.grey50};
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+
+  pre {
+    background-color: ${({ theme }) => theme.color.grey50};
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  a {
+    color: ${({ theme }) => theme.color.blue200};
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background-color: ${({ theme }) => theme.color.dividerGrey200};
+    margin: 32px 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 16px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+
+  th,
+  td {
+    border: 1px solid ${({ theme }) => theme.color.dividerGrey200};
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  th {
+    background-color: ${({ theme }) => theme.color.grey50};
+    font-weight: bold;
+  }
 `;
 
 export const BottomConatiner = styled.div<{
