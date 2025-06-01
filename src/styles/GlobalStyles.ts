@@ -1,10 +1,10 @@
-import { createGlobalStyle } from 'styled-components';
-import '@fontsource/noto-sans-kr';
-import reset from 'styled-reset';
 import FHAlphaTestLight from '@Fonts/FHAlphaTest-Light.otf';
 import FHAlphaTestLightItalic from '@Fonts/FHAlphaTest-LightItalic.otf';
-import { mediaQuery } from './mixin.style';
+import '@fontsource/noto-sans-kr';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import { mediaQuery } from './mixin.style';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}  

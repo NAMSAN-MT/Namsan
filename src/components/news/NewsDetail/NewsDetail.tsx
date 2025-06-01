@@ -4,8 +4,10 @@ import LineArrowIcon from '@Components/icons/LineArrowIcon';
 import { navigate } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { injectIntl } from 'gatsby-plugin-intl';
-import _, { isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
 import { convertDateStr } from './NewsDetail.helper';
 import { NewsProfile, Props } from './NewsDetail.interface';
 import * as S from './NewsDetail.style';
@@ -92,7 +94,11 @@ const NewsDetail = (props: Props) => {
             <GatsbyImage image={newsImageData} alt={''} />
           </article>
         )}
-        <S.Content>{content}</S.Content>
+        <S.Content>
+          <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+            {content}
+          </ReactMarkdown>
+        </S.Content>
         <article className="bottom">
           {isProfile ? (
             <S.ProfileAreaWrapper>
