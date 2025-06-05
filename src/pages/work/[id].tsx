@@ -68,8 +68,10 @@ const Detail = (props: WrappedComponentProps & DetailProps & PageProps) => {
     ...pageContext.mainMemberData?.find(b => b.email === node.email),
     ...node,
   }));
+
+  
   const newSubMembers = data.subMembers.edges.map(({ node }: any) => ({
-    ...pageContext.subMemberData?.find(b => b.email === node.email),
+    ...pageContext.subMemberData?.find(b => b?.email === node?.email),
     ...node,
   }));
 
