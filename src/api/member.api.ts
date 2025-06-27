@@ -20,8 +20,8 @@ const getMember = async (memberId: string) => {
 
   const memberWithImage = {
     ...member,
-    imagePath: await getFileFromStorage(member.image),
-    bgImagePath: await getFileFromStorage(member.bgImage),
+    imagePath: await getFileFromStorage(member.image as any),
+    bgImagePath: await getFileFromStorage(member.bgImage as any),
   };
 
   return memberWithImage;
