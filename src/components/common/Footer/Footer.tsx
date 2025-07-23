@@ -1,9 +1,9 @@
-import React from 'react';
-import { TermAndConditionLink } from './Footer.const';
-import * as S from './Footer.style';
 import LogoFooter from '@Images/logo-footer.svg';
 import { injectIntl } from 'gatsby-plugin-intl';
+import React from 'react';
+import { TermAndConditionLink } from './Footer.const';
 import { IFooterProps } from './Footer.interface';
+import * as S from './Footer.style';
 
 const Footer = (props: IFooterProps) => {
   return (
@@ -46,6 +46,11 @@ const Footer = (props: IFooterProps) => {
           <span>
             {props.intl.formatMessage({
               id: 'footer.email',
+            })}
+          </span>
+          <span>
+            {props.intl.formatMessage({
+              id: 'footer.ad_report',
             })}
           </span>
           <div className="address">
