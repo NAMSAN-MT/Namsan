@@ -9,3 +9,5 @@ src/gatsby-types.d.ts
 firebase-key.json
 
 .firebase
+
+mise.toml
