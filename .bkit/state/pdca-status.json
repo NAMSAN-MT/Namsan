@@ -1,0 +1,105 @@
+{
+  "version": "3.0",
+  "lastUpdated": "2026-04-20T14:44:01.706Z",
+  "activeFeatures": [
+    "functions"
+  ],
+  "primaryFeature": "functions",
+  "features": {
+    "functions": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-04-20T14:31:10.644Z",
+        "lastUpdated": "2026-04-20T14:44:01.706Z"
+      },
+      "lastFile": "/Users/kimsangcho/dev/Namsan/functions/src/index.ts"
+    }
+  },
+  "pipeline": {
+    "currentPhase": 1,
+    "level": "Dynamic",
+    "phaseHistory": []
+  },
+  "session": {
+    "startedAt": "2026-03-21T10:03:55.702Z",
+    "onboardingCompleted": false,
+    "lastActivity": "2026-04-20T14:44:01.706Z"
+  },
+  "history": [
+    {
+      "timestamp": "2026-04-20T14:31:10.644Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-04-20T14:38:32.646Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-04-20T14:38:58.109Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-04-20T14:42:24.206Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-04-20T14:42:50.370Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-04-20T14:43:40.684Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-04-20T14:43:45.253Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-04-20T14:43:56.159Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-04-20T14:44:01.706Z",
+      "feature": "functions",
+      "phase": "do",
+      "action": "updated"
+    }
+  ],
+  "stateMachine": {
+    "defaultWorkflow": "default",
+    "activeWorkflows": {},
+    "totalTransitions": 0
+  },
+  "automation": {
+    "globalLevel": 2,
+    "trustScore": 40,
+    "pendingApprovals": 0,
+    "lastGateResult": null
+  },
+  "team": {
+    "enabled": true,
+    "stateFile": ".bkit/runtime/agent-state.json",
+    "eventsFile": ".bkit/runtime/agent-events.jsonl"
+  }
+}

@@ -63,6 +63,7 @@ export const helloWorld = functions
               const content = Helper.minifyBytes(document.content);
 
               list.push({
+                objectID: doc.data().id,
                 documentId: doc.data().id,
                 title: document.title,
                 content,
@@ -78,9 +79,7 @@ export const helloWorld = functions
       });
 
       // After all records are created, save them to Algolia
-      await COLLECTION_INDEX.saveObjects(list, {
-        autoGenerateObjectIDIfNotExist: true,
-      })
+      await COLLECTION_INDEX.saveObjects(list)
         .then(() => {
           response.send("SUCCESS");
         })
@@ -106,6 +105,7 @@ const saveDocumentInAlgolia = async (sanpshot: any, context: any) => {
       const content = Helper.minifyBytes(data.content);
       const list = [];
       list.push({
+        objectID: context.params.newsId,
         documentId: context.params.newsId,
         title: data.title,
         content,
@@ -113,15 +113,8 @@ const saveDocumentInAlgolia = async (sanpshot: any, context: any) => {
         order: data.order,
       });
 
-      COLLECTION_INDEX.saveObjects(list, {
-        autoGenerateObjectIDIfNotExist: true,
-      }).then(({objectIDs}) => {
-        const collectionRef = firestore.collection("news");
-        const documentId = context.params.newsId
-        const objectID = objectIDs?.[0] ?? 0
-        collectionRef.doc(documentId).set({objectID}, { merge: true });
-        console.log(`Set Algolia objectID:${objectID} and DoucmentId:${documentId}`)
-      }).catch(res => console.log("Error with: ", res));
+      await COLLECTION_INDEX.saveObjects(list);
+      console.log(`Saved to Algolia with objectID:${context.params.newsId}`);
     }
   }
 };
@@ -140,6 +133,7 @@ export const collectionOnUpdate = functions
   });
 
 type NewObjectType = {
+  objectID: any;
   documentId: any;
   title?: string;
   content?: string;
@@ -149,7 +143,7 @@ const updateDocumentInAlgolia = async (documentId: any = "", change: any) => {
   const before = change.before.data();
   const after = change.after.data();
   if (before && after) {
-    const news: NewObjectType = { documentId };
+    const news: NewObjectType = { objectID: documentId, documentId };
     let flag = false;
     if (before.title !== after.title) {
       news.title = after.title;
@@ -157,7 +151,7 @@ const updateDocumentInAlgolia = async (documentId: any = "", change: any) => {
     }
 
     if (before.content !== after.content) {
-      news.content = after.content;
+      news.content = Helper.minifyBytes(after.content);
       flag = true;
     }
 
@@ -167,9 +161,9 @@ const updateDocumentInAlgolia = async (documentId: any = "", change: any) => {
     }
 
     if (flag) {
-      COLLECTION_INDEX.partialUpdateObjects([news], {
+      await COLLECTION_INDEX.partialUpdateObjects([news], {
         createIfNotExists: true,
-      }).catch(res => console.log("Error with: ", res));
+      });
     }
   }
 };
@@ -179,14 +173,9 @@ export const collectionOnDelete = functions
   .region(REGION)
   .firestore.document("news/{newsId}")
   .onDelete(async (snapshot: any, context: any) => {
-    await deleteDocumentInAlgolia(snapshot, context);
+    await deleteDocumentInAlgolia(context.params.newsId);
   });
 
-const deleteDocumentInAlgolia = async (sanpshot: any, context: any) => {
-  if (sanpshot.exists) {
-    const objectId = sanpshot.data();
-    COLLECTION_INDEX.deleteObject(objectId).catch(res =>
-      console.log("Error with: ", res),
-    );
-  }
+const deleteDocumentInAlgolia = async (newsId: string) => {
+  await COLLECTION_INDEX.deleteObject(newsId);
 };
