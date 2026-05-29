@@ -3,6 +3,10 @@ import { ILottieWrapperProps } from './LottieWrapper.interface';
 import Lottie, { Options } from 'react-lottie';
 
 const LottieWrapper = (props: ILottieWrapperProps) => {
+  if (typeof window === 'undefined' || typeof Lottie !== 'function') {
+    return <div style={{ width: props.width, height: props.height }} />;
+  }
+
   const animationLoopOptions: Options = {
     loop: props.loop,
     autoplay: props.autoplay,
