@@ -5,6 +5,22 @@ import { resolve } from 'path';
 import { getFileFromStorage } from './src/api/index.api';
 
 const fs = require('fs');
+
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }: any) => {
+  if (stage === 'build-html' || stage === 'develop-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /react-lottie|lottie-web/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    });
+  }
+};
+
 exports.onPostBuild = () => {
   fs.copyFile(`./firebase.json`, `./public/firebase.json`, (err: unknown) => {
     if (err) {
