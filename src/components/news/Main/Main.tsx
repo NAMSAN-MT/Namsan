@@ -1,7 +1,7 @@
 import Input from '@Components/common/Input';
-import { navigate } from 'gatsby';
-import { injectIntl, useIntl, WrappedComponentProps } from 'gatsby-plugin-intl';
+import { withTranslations, WithIntlProps } from '@Hocs/withTranslations';
 import { isEmpty } from 'lodash';
+import { useRouter } from 'next/router';
 import React, { lazy, useEffect, useState } from 'react';
 import * as SearchBar from '../../members/SearchBar/SearchBar.style';
 import Pagination from '../Pagination';
@@ -10,9 +10,10 @@ import * as S from './Main.style';
 import { TTab } from './main.interface';
 const Card = lazy(() => import('@Components/news/Card'));
 
-interface Props extends WrappedComponentProps {}
+interface Props extends WithIntlProps {}
 const NewsMain = (props: Props) => {
-  const intl = useIntl();
+  const intl = props.intl;
+  const router = useRouter();
   const [searchValue, setSearchValue] = useState('');
   const {
     isLoading,
@@ -31,7 +32,7 @@ const NewsMain = (props: Props) => {
   const handleTab = (e: React.MouseEvent<HTMLAnchorElement>, type: TTab) => {
     e.preventDefault();
     setSearchValue('');
-    navigate(
+    router.push(
       `/${props.intl.locale}/news${type === 'all' ? '' : `?newsType=${type}`}`,
     );
   };
@@ -92,11 +93,11 @@ const NewsMain = (props: Props) => {
         newsList={newsList}
         {...{ urlPage, newsType, onCallNewsList, searchValue }}
       />
-      {isPagination && (
+      {isPagination && pageNationState && (
         <Pagination {...{ newsType, urlPage, pageNationState }} />
       )}
     </>
   );
 };
 
-export default injectIntl(NewsMain);
+export default withTranslations(NewsMain);

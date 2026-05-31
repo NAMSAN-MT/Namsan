@@ -1,10 +1,10 @@
 import { getNewsMember } from '@Api/news.api';
+import AppImage from '@Components/common/AppImage';
 import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon';
-import { navigate } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import { isEmpty } from 'lodash';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
@@ -26,6 +26,7 @@ const NewsDetail = (props: Props) => {
     nextNews,
   } = props;
 
+  const router = useRouter();
   const dateYearMonthDate = convertDateStr(date).fullDate;
   const [profile, setProfile] = useState<NewsProfile[] | []>([]);
 
@@ -39,11 +40,11 @@ const NewsDetail = (props: Props) => {
     window.open(originalLink ?? '', '_blank');
   };
   const handleClickList = () => {
-    navigate(`/${props.intl.locale}/news`);
+    router.push(`/${props.intl.locale}/news`);
   };
   const handleMove = (event: React.MouseEvent<HTMLButtonElement>) => {
     const _id = event.currentTarget.dataset.id as 'prev' | 'next';
-    navigate(`/${props.intl.locale}/news/${_id}`);
+    router.push(`/${props.intl.locale}/news/${_id}`);
   };
 
   const isMediaNews = newsType === 'media';
@@ -60,7 +61,7 @@ const NewsDetail = (props: Props) => {
         <S.TopText newsType={newsType}>{topTxt}</S.TopText>
         <S.TitleArea>
           {isPrevContent ? (
-            <button data-id={prevNews.id} onClick={handleMove}>
+            <button data-id={prevNews?.id} onClick={handleMove}>
               <LineArrowIcon
                 direction="LEFT"
                 weight="LIGHT"
@@ -73,7 +74,7 @@ const NewsDetail = (props: Props) => {
           )}
           <h1>{title}</h1>
           {isNextContent ? (
-            <button data-id={nextNews.id} onClick={handleMove}>
+            <button data-id={nextNews?.id} onClick={handleMove}>
               <LineArrowIcon
                 direction="RIGHT"
                 weight="LIGHT"
@@ -91,7 +92,12 @@ const NewsDetail = (props: Props) => {
       <S.ContentConatiner isProfile={!isEmpty(profile)}>
         {isNewsImageData && (
           <article className="top">
-            <GatsbyImage image={newsImageData} alt={''} />
+            <AppImage
+              src={newsImageData!.src}
+              width={newsImageData!.width}
+              height={newsImageData!.height}
+              alt=""
+            />
           </article>
         )}
         <S.Content>
@@ -136,7 +142,7 @@ const NewsDetail = (props: Props) => {
           <div className="prev">
             {isPrevContent && (
               <>
-                <button data-id={prevNews.id} onClick={handleMove}>
+                <button data-id={prevNews?.id} onClick={handleMove}>
                   <LineArrowIcon direction={'LEFT'} weight="NORMAL" />
                   <p>이전글</p>
                 </button>
@@ -151,8 +157,8 @@ const NewsDetail = (props: Props) => {
           <div className="next">
             {isNextContent && (
               <>
-                <p className="btn_title">{nextNews.title}</p>
-                <button data-id={nextNews.id} onClick={handleMove}>
+                <p className="btn_title">{nextNews?.title}</p>
+                <button data-id={nextNews?.id} onClick={handleMove}>
                   <p>다음글</p>
                   <LineArrowIcon direction={'RIGHT'} weight="NORMAL" />
                 </button>
@@ -165,4 +171,4 @@ const NewsDetail = (props: Props) => {
   );
 };
 
-export default injectIntl(NewsDetail);
+export default withTranslations(NewsDetail);

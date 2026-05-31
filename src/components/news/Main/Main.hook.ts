@@ -1,12 +1,13 @@
 import { getMainNewsList, getNewsSearchList } from '@Api/news.api';
 import { NewsMin } from '@Interface/api.interface';
-import { useLocation } from '@reach/router';
 import { NewsType } from '@Type/api.type';
 import { useState } from 'react';
 import { TPagination, TTab } from './main.interface';
 
 const useMain = () => {
-  const params = new URLSearchParams(useLocation().search);
+  const search =
+    typeof window !== 'undefined' ? window.location.search : '';
+  const params = new URLSearchParams(search);
   const urlPage = params.get('page') ?? '';
   const newsType = (params.get('newsType') as NewsType) ?? 'all';
 

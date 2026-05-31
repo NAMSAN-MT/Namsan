@@ -24,7 +24,9 @@ const SEO = (props: ISeoProps) => {
     ogUrl: props.ogUrl ?? ogUrl,
     keywords: props.keywords ?? defaultKeywords,
     favicon: `${siteUrl}${favicon}`,
-    ogImage: `${siteUrl}${ogImage}`,
+    // Per-page ogImage (e.g. a news article's Storage URL) is an absolute URL
+    // used as-is; the siteMetadata default is a relative path under siteUrl.
+    ogImage: props.ogImage ?? `${siteUrl}${ogImage}`,
     siteUrl: props.siteUrl ?? siteUrl,
   };
 
