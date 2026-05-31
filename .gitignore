@@ -17,3 +17,8 @@ mise.toml
 .next/
 out/
 next-env.d.ts
+
+# next-image-export-optimizer (build artifacts: generated WebP + download cache)
+public/nextImageExportOptimizer/
+public/images/next-image-export-optimizer-hashes.json
+remoteImagesForOptimization/
