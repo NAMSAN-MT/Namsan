@@ -1,7 +1,7 @@
 import LogoIcon from '@Components/icons/LogoIcon';
 import MenuIcon from '@Components/icons/MenuIcon';
-import { Link } from 'gatsby';
-import { injectIntl } from 'gatsby-plugin-intl';
+import Link from 'next/link';
+import { withTranslations } from '@Hocs/withTranslations';
 import React from 'react';
 import ButtonMenu from '../../../assets/lottie/button_menu.json';
 import Focus from '../../../assets/lottie/focus.json';
@@ -50,7 +50,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
       isTransparent={isTransparent}
     >
       <S.LogoWrapper>
-        <Link className="link" key="home" to={`/${intl.locale}/`} about="home">
+        <Link className="link" key="home" href={`/${intl.locale}/`} about="home">
           <LogoIcon
             width="100%"
             isMobile={isMobile}
@@ -65,7 +65,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
             <Link
               key={alt}
               className="link"
-              to={`/${intl.locale}${href}`}
+              href={`/${intl.locale}${href}`}
               about={alt}
             >
               {path.pathname === `/${intl.locale}${href}` ? (
@@ -129,7 +129,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
               {GNBLink.map(({ href, translationId, alt }) => (
                 <S.MobileMenuItem>
                   <Link
-                    to={`/${intl.locale}${href}`}
+                    href={`/${intl.locale}${href}`}
                     about={alt}
                     key={alt}
                     className={getIsIncludes(alt) ? 'on' : ''}
@@ -161,4 +161,4 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
   );
 };
 
-export default injectIntl(GNB);
+export default withTranslations(GNB);
