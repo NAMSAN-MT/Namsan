@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const locale = params!.locale as string;
   const id = params!.id as string;
 
-  const { getAllNews, imageUrl } = await import('@Server/buildData');
+  const { getAllNews, resolveImage } = await import('@Server/buildData');
   const { serialize } = await import('@Server/serialize');
   const { getMessages } = await import('@I18n/getMessages');
 
@@ -91,9 +91,13 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   };
 
   // gatsby onCreateNode guarded `isEmpty(node.imagePath)`; build the image only
-  // when a path exists. imageUrl swallows storage/object-not-found -> ''.
-  const src = node.imagePath ? await imageUrl(node.imagePath) : '';
-  const newsImageData = src ? { src, width: 1200, height: 800 } : undefined;
+  // when a path exists. resolveImage gives REAL intrinsic dims (news photos vary
+  // in aspect — a fixed nominal would squish non-3:2 uploads) and returns src:''
+  // for a missing Storage object, which we map to undefined.
+  const resolved = node.imagePath
+    ? await resolveImage(node.imagePath)
+    : undefined;
+  const newsImageData = resolved?.src ? resolved : undefined;
 
   // `News.date` is typed Timestamp (the client SDK shape NewsDetail's
   // convertDateStr/news.api consume at runtime). A Timestamp is not

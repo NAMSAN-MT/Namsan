@@ -14,12 +14,13 @@
 //
 // gatsby's profile `image` carried `backgroundColor:'#F6F8FA'` (a gatsby-sharp
 // placeholder concern) — dropped here; Member.style applies the bg and Phase 5
-// `blurDataURL` covers placeholders. Width/height are nominal intrinsics for
-// next/image (`unoptimized`); CSS constrains the real box.
+// `blurDataURL` covers placeholders. image/bgImage carry REAL intrinsic
+// width/height (resolveImage probes them) so next/image preserves aspect — the
+// member layouts derive one axis from the other by the image's ratio.
 //
 // Import ONLY from getStaticPaths / getStaticProps.
 import { IMember } from '@Interface/api.interface';
-import { getAllMembers, getAllWork, imageUrl } from '@Server/buildData';
+import { getAllMembers, getAllWork, resolveImage } from '@Server/buildData';
 
 let _contextMembers: Promise<IMember[]> | null = null;
 
@@ -48,17 +49,18 @@ export const buildContextMembers = (): Promise<IMember[]> =>
           field => fieldToCategoryId[field] ?? '',
         );
 
-        const [imageSrc, bgImageSrc] = await Promise.all([
-          imageUrl(node.imagePath),
-          imageUrl(node.bgImagePath),
+        // Real intrinsic dimensions (gatsby used sharp); see resolveImage.
+        const [image, bgImage] = await Promise.all([
+          resolveImage(node.imagePath),
+          resolveImage(node.bgImagePath),
         ]);
 
         return {
           ...node,
           businessFields,
           categoryIds,
-          image: { src: imageSrc, width: 600, height: 600 },
-          bgImage: { src: bgImageSrc, width: 1920, height: 1080 },
+          image,
+          bgImage,
         } as IMember;
       }),
     );

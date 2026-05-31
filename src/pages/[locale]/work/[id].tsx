@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const locale = params!.locale as string;
   const id = params!.id as string;
 
-  const { getAllWork, imageUrl } = await import('@Server/buildData');
+  const { getAllWork, resolveImage } = await import('@Server/buildData');
   const { buildContextMembers } = await import('@Server/buildMembers');
   const { serialize } = await import('@Server/serialize');
   const { getMessages } = await import('@I18n/getMessages');
@@ -110,6 +110,10 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
         businessFields: m.businessFields,
       }));
 
+  // Real intrinsic dims (resolveImage) — keeps the banner's aspect. src:'' (a
+  // missing Storage object) → null so DetailPage's guard skips it.
+  const bgImage = work?.imagePath ? await resolveImage(work.imagePath) : null;
+
   return {
     props: serialize({
       id,
@@ -118,12 +122,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       description: work?.description ?? [],
       mainMemberData: resolve(work?.member?.main ?? []),
       subMemberData: resolve(work?.member?.sub ?? []),
-      // gatsby backgroundImage came from the work's imagePath via sharp; now a
-      // flat RemoteImage resolved from the same path (imageUrl swallows
-      // storage/object-not-found -> '').
-      backgroundImage: work?.imagePath
-        ? { src: await imageUrl(work.imagePath), width: 1920, height: 1080 }
-        : null,
+      backgroundImage: bgImage?.src ? bgImage : null,
       messages: getMessages(locale as 'ko' | 'en'),
     }),
   };

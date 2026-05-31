@@ -16,7 +16,9 @@
 // components (it pulls the Firestore client into the server build only).
 import { GetDataListQuery, getFileFromStorage } from '@Api/index.api';
 import { IMemberAttribute } from '@Interface/api.interface';
+import { RemoteImage } from '@Interface/image.interface';
 import { Timestamp } from 'firebase/firestore';
+import probe from 'probe-image-size';
 
 /** Raw `members` collection document (Firestore fields only, no enrichment). */
 export interface MemberDoc {
@@ -114,5 +116,27 @@ export const imageUrl = async (path: string): Promise<string> => {
   } catch (e: any) {
     if (e?.code === 'storage/object-not-found') return '';
     throw e;
+  }
+};
+
+/**
+ * Resolve a Storage path to a `RemoteImage` carrying the image's REAL intrinsic
+ * width/height. gatsby embedded real dimensions via sharp (gatsbyImageData);
+ * next/image needs them too, because the member layouts derive one axis from the
+ * other by the image's aspect ratio (e.g. Member `.profile` is a fixed width with
+ * `height: auto`). Feeding a fixed square (the old nominal 600×600) squished
+ * portrait cutouts into a 1:1 box. We probe the dimensions over a ranged HTTP
+ * request (no full download). Missing source → empty `RemoteImage` (components
+ * guard empty `src`); probe failure → neutral square fallback so the build never
+ * crashes on one bad image.
+ */
+export const resolveImage = async (path: string): Promise<RemoteImage> => {
+  const src = await imageUrl(path);
+  if (!src) return { src: '', width: 0, height: 0 };
+  try {
+    const { width, height } = await probe(src);
+    return { src, width, height };
+  } catch {
+    return { src, width: 600, height: 600 };
   }
 };
