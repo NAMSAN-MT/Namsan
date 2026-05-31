@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import SelectBox from '../SelectBox';
 import useSearchBar from './SearchBar.hook';
 import Input from '../../common/Input';
-import { useIntl } from 'gatsby-plugin-intl';
+import { useTranslations } from 'next-intl';
 import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
-import { navigate } from 'gatsby';
+import { useRouter } from 'next/router';
 import { IMember } from '../../../interface/api.interface';
 
 const SearchBar = ({
@@ -25,14 +25,11 @@ const SearchBar = ({
   const [name, setName] = useState<string>(initName || '');
 
   // Hooks
-  const intl = useIntl();
+  const t = useTranslations();
+  const router = useRouter();
 
-  const INIT_POSITION_OPTION = intl.formatMessage({
-    id: 'members.total_position',
-  });
-  const INIT_BUSINESS_FIELD_OPTION = intl.formatMessage({
-    id: 'members.total_business_field',
-  });
+  const INIT_POSITION_OPTION = t('members.total_position');
+  const INIT_BUSINESS_FIELD_OPTION = t('members.total_business_field');
 
   const positionList =
     members?.map(member => member.position.split('/')[0]) || [];
@@ -93,12 +90,13 @@ const SearchBar = ({
         ? ''
         : currentBusinessField;
 
-    const newUrl = `?position=${encodeURIComponent(
+    const search = `?position=${encodeURIComponent(
       position,
     )}&businessField=${encodeURIComponent(
       businessField,
     )}&name=${encodeURIComponent(name)}`;
-    navigate(newUrl, { replace: false });
+    const pathname = router.asPath.split('?')[0];
+    router.push(`${pathname}${search}`);
   };
 
   const _handleBlur = useCallback(() => {
@@ -169,9 +167,7 @@ const SearchBar = ({
         <S.ItemWrapper width="486px">
           <Input
             handleSubmit={_handleSubmit}
-            placeholder={intl.formatMessage({
-              id: 'members.search_placeholder',
-            })}
+            placeholder={t('members.search_placeholder')}
             value={name}
             handleChange={_handleNameChange}
           />

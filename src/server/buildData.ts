@@ -100,8 +100,19 @@ export const getAllNews = (): Promise<NewsDoc[]> =>
 /**
  * Resolve a Storage path to a download URL string for `RemoteImage.src`.
  * Reuses the client `getFileFromStorage` (getDownloadURL). Empty path → ''.
+ *
+ * gatsby-node resolved images via an optional-chained GraphQL `file(...)` query
+ * (`bgImage.data.file?.childImageSharp...`), so a missing source resolved to
+ * `undefined` rather than throwing. Some member `bgImagePath` values (e.g. `bg2`,
+ * `bg3`) have no Storage object; we mirror gatsby by swallowing not-found and
+ * returning '' (components already guard empty/undefined images).
  */
 export const imageUrl = async (path: string): Promise<string> => {
   if (!path) return '';
-  return getFileFromStorage(path);
+  try {
+    return await getFileFromStorage(path);
+  } catch (e: any) {
+    if (e?.code === 'storage/object-not-found') return '';
+    throw e;
+  }
 };

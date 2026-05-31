@@ -1,8 +1,9 @@
-import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
+import AppImage from '@Components/common/AppImage';
+import { withTranslations } from '@Hocs/withTranslations';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { IMemberItemProps } from './MemberItem.interface';
 import * as S from './MemberItem.style';
-import { GatsbyImage } from 'gatsby-plugin-image';
 
 const MemberItem = ({
   name,
@@ -12,9 +13,11 @@ const MemberItem = ({
   id,
   order,
   intl,
-}: IMemberItemProps & WrappedComponentProps) => {
+}: IMemberItemProps) => {
+  const router = useRouter();
+
   const _handleClick = async () => {
-    window.location.href = `/${intl.locale}/member/${order}`;
+    router.push(`/${intl.locale}/member/${order}`);
   };
 
   return (
@@ -22,7 +25,14 @@ const MemberItem = ({
       <S.ImageSection>
         <S.ImageWrapper>
           <div className="dim"></div>
-          <GatsbyImage alt={order!} image={image!} />
+          {image?.src && (
+            <AppImage
+              src={image.src}
+              width={image.width}
+              height={image.height}
+              alt={order ?? ''}
+            />
+          )}
         </S.ImageWrapper>
         <S.TagsWrapper isScrollable={intl.locale !== 'ko'}>
           {businessFields!.map(businessField => (
@@ -38,4 +48,4 @@ const MemberItem = ({
   );
 };
 
-export default injectIntl(MemberItem);
+export default withTranslations(MemberItem);

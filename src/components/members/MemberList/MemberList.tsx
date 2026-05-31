@@ -1,5 +1,5 @@
 import { IMember } from '@Interface/api.interface';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import React, { useEffect, useState } from 'react';
 import { TLanguage } from '../../../type/intl.type';
 import MemberItem from '../MemberItem';
@@ -62,4 +62,4 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
   );
 };
 
-export default injectIntl(MemberList);
+export default withTranslations(MemberList);

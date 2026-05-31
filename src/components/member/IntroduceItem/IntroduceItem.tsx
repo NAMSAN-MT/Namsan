@@ -1,4 +1,4 @@
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import React, { useState } from 'react';
 import { MAXIMUM_OPEN_DATA_COUNT } from '../Member/Member.const';
 import { IntroduceItemProps } from './IntroduceItem.interface';
@@ -53,4 +53,4 @@ const IntroduceItem = (props: IntroduceItemProps) => {
   );
 };
 
-export default injectIntl(IntroduceItem);
+export default withTranslations(IntroduceItem);
