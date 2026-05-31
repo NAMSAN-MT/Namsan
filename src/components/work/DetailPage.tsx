@@ -5,7 +5,7 @@ import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 import MemberItem from '@Components/members/MemberItem';
 import { withTranslations, WithIntlProps } from '@Hocs/withTranslations';
 import { RemoteImage } from '@Interface/image.interface';
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import NavigationDown from '../../assets/lottie/navigation_down.json';
 import NavigationUp from '../../assets/lottie/navigation_up.json';
 import { CategoryDescription } from './work.interface';
@@ -52,6 +52,18 @@ const DetailPage = (props: Props) => {
   const [category, setCategory] = useState<CategoryDescription[]>(workInfo);
   const [isShowMore, setIsShowMore] = useState(false);
   const subIdPrefix = props.id?.replace('C', 'S');
+
+  // Deep-link: open the hash-anchored sub-section (e.g. #S0201 -> index 1) AFTER
+  // mount. Doing it client-only keeps the initial render (all closed) identical
+  // to the server's, avoiding the hydration mismatch that reading the hash during
+  // render caused.
+  useEffect(() => {
+    const idx = Number(window.location.hash.slice(-2));
+    if (Number.isNaN(idx) || idx <= 0) return;
+    setCategory(curr =>
+      curr.map((c, i) => (i === idx ? { ...c, isOpen: true } : c)),
+    );
+  }, []);
 
   const onClickShowMore = () => {
     setIsShowMore(true);

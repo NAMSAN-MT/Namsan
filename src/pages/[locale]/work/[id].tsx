@@ -18,14 +18,14 @@ interface Props {
 }
 
 const WorkDetail: React.FC<Props> = props => {
-  // gatsby computed subId from location.hash (last 2 chars), client-only.
-  const hash = typeof window !== 'undefined' ? window.location.hash : '';
-  const subId = hash ? Number(hash.slice(-2)) : -1;
-
+  // All sections start closed so the server HTML and the client's first paint
+  // match (no hydration mismatch). The hash-anchored section (#S0201) is opened
+  // AFTER mount inside DetailPage's effect — reading window.location.hash here
+  // (server '' vs client '#S0201') was the mismatch.
   const information = (props.categoryTitle ?? []).map((title, index) => ({
     categoryTitle: title,
     description: props.description[index],
-    isOpen: index === subId,
+    isOpen: false,
     isFirstTime: true,
   }));
 
@@ -49,7 +49,7 @@ const WorkDetail: React.FC<Props> = props => {
         subMemberData={props.subMemberData}
         workInfo={information}
         backgroundImage={props.backgroundImage ?? undefined}
-        subId={subId}
+        subId={-1}
       />
     </Layout>
   );
