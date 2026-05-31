@@ -20,7 +20,6 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "ignorePatterns": ["dist/", "node_modules/"],
-  "ban-types": [true, ["Object", "Use {} instead."], ["String"]],
+  "ignorePatterns": ["dist/", "node_modules/", ".next/", "out/"],
   "rules": {}
 }

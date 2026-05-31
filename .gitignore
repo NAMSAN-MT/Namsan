@@ -17,6 +17,7 @@ mise.toml
 .next/
 out/
 next-env.d.ts
+tsconfig.tsbuildinfo
 
 # next-image-export-optimizer (build artifacts: generated WebP + download cache)
 public/nextImageExportOptimizer/

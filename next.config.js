@@ -2,6 +2,9 @@
 module.exports = {
   output: 'export',
   trailingSlash: true,
+  // Lint is a dev/CI concern, not a build gate — the project's ESLint config is
+  // not wired for Next's build-time linting. Run `yarn lint` separately.
+  eslint: { ignoreDuringBuilds: true },
   images: {
     // 'unoptimized' REMOVED. Do NOT set loaderFile — next-image-export-optimizer
     // ships its own custom loader internally; setting loaderFile would break it.
