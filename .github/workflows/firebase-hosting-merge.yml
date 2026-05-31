@@ -10,12 +10,23 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
+      - name: Cache Next.js build + optimized images
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+            public/nextImageExportOptimizer
+            public/images/next-image-export-optimizer-hashes.json
+            remoteImagesForOptimization
+          key: ${{ runner.os }}-namsan-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-namsan-build-
       - name: Generate Environment Variables File for Production
         run: |
           echo "NEXT_PUBLIC_FIREBASE_API_KEY=$GATSBY_FIREBASE_API_KEY" >> .env
