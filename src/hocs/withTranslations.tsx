@@ -3,7 +3,10 @@ import { useTranslations, useLocale } from 'next-intl';
 
 export interface InjectedIntl {
   locale: string;
-  formatMessage: (descriptor: { id: string }) => string;
+  formatMessage: (
+    descriptor: { id: string },
+    values?: Record<string, any>,
+  ) => string;
 }
 
 export interface WithIntlProps {
@@ -23,7 +26,7 @@ export function withTranslations<P extends WithIntlProps>(
     const locale = useLocale();
     const intl: InjectedIntl = {
       locale,
-      formatMessage: ({ id }) => t(id),
+      formatMessage: ({ id }, values) => t(id, values),
     };
     return <Component {...(props as P)} intl={intl} />;
   };

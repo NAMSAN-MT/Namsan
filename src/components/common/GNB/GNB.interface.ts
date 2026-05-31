@@ -22,4 +22,4 @@ interface IMobileMenuButtonProps {
   isMobile?: boolean;
 }
 
-export { TUrl, IGNBProps, IMobileMenuButtonProps };
+export type { TUrl, IGNBProps, IMobileMenuButtonProps };
