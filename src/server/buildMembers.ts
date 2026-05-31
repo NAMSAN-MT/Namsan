@@ -19,8 +19,34 @@
 // member layouts derive one axis from the other by the image's ratio.
 //
 // Import ONLY from getStaticPaths / getStaticProps.
+import bg0 from '@Images/members/bg0.png';
+import bg1 from '@Images/members/bg1.png';
+import bg2 from '@Images/members/bg2.png';
+import bg3 from '@Images/members/bg3.png';
 import { IMember } from '@Interface/api.interface';
+import { RemoteImage } from '@Interface/image.interface';
 import { getAllMembers, getAllWork, resolveImage } from '@Server/buildData';
+import type { StaticImageData } from 'next/image';
+
+// gatsby resolved member bgImage from a LOCAL image asset matched by name
+// (`file(name: {eq: bgImagePath})`), NOT Firebase Storage. `bgImagePath` holds a
+// bare name (`bg0`..`bg3`) → src/assets/imgs/members/bgN.png. The Phase 5 remote
+// path (resolveImage → getFileFromStorage) returned '' for these (no Storage
+// object), so backgrounds silently vanished. Resolve them as static imports;
+// next-image-export-optimizer optimizes static media (.next/static/media) too.
+const BG_IMAGES: Record<string, StaticImageData> = { bg0, bg1, bg2, bg3 };
+const EMPTY_IMAGE: RemoteImage = { src: '', width: 0, height: 0 };
+
+const resolveBgImage = (name: string): RemoteImage => {
+  const img = BG_IMAGES[name];
+  if (!img) return EMPTY_IMAGE;
+  return {
+    src: img.src,
+    width: img.width,
+    height: img.height,
+    blurDataURL: img.blurDataURL,
+  };
+};
 
 let _contextMembers: Promise<IMember[]> | null = null;
 
@@ -49,11 +75,10 @@ export const buildContextMembers = (): Promise<IMember[]> =>
           field => fieldToCategoryId[field] ?? '',
         );
 
-        // Real intrinsic dimensions (gatsby used sharp); see resolveImage.
-        const [image, bgImage] = await Promise.all([
-          resolveImage(node.imagePath),
-          resolveImage(node.bgImagePath),
-        ]);
+        // Profile image: real intrinsic dimensions (gatsby used sharp); see
+        // resolveImage. bgImage: local static asset (see resolveBgImage).
+        const image = await resolveImage(node.imagePath);
+        const bgImage = resolveBgImage(node.bgImagePath);
 
         return {
           ...node,

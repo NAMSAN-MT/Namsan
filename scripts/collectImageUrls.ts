@@ -10,13 +10,14 @@
 // which both resolve through getFileFromStorage -> getDownloadURL). Storage
 // download tokens are stable per object, so the URLs match.
 //
-// Rendered image sources collected (mirrors each page's getStaticProps):
+// Rendered REMOTE image sources collected (mirrors each page's getStaticProps):
 //   - member.image     <- member.imagePath   (buildMembers.ts)
-//   - member.bgImage   <- member.bgImagePath  (buildMembers.ts)
 //   - work backgroundImage <- work.imagePath  (work/[id].tsx)
 //   - news newsImageData   <- news.imagePath  (news/[id].tsx)
-// Empty strings ('' for paths with no Storage object, e.g. bg2/bg3) are dropped
-// — components guard those and no <ExportedImage> is rendered for them.
+// member.bgImage is NOT here: it resolves to a LOCAL static asset
+// (src/assets/imgs/members/bgN.png), which the optimizer picks up from
+// .next/static/media automatically — not a remote URL. Empty strings (paths
+// with no Storage object) are dropped; components guard those.
 import { getAllMembers, getAllNews, getAllWork, imageUrl } from '@Server/buildData';
 
 export async function collectImageUrls(): Promise<string[]> {
@@ -28,7 +29,6 @@ export async function collectImageUrls(): Promise<string[]> {
 
   const urls = await Promise.all([
     ...members.map(m => imageUrl(m.imagePath)),
-    ...members.map(m => imageUrl(m.bgImagePath)),
     ...work.map(w => imageUrl(w.imagePath ?? '')),
     ...news.map(n => imageUrl(n.imagePath ?? '')),
   ]);

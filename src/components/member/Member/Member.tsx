@@ -74,13 +74,13 @@ const Member = (props: MemberProps & WithIntlProps) => {
           const isValid = !isEmpty(values);
           return (
             isValid && (
-              <>
+              <React.Fragment key={key}>
                 <Divider />
                 <IntroduceItem
                   titleKey={key as IntroduceType}
                   values={values}
                 />
-              </>
+              </React.Fragment>
             )
           );
         })}
