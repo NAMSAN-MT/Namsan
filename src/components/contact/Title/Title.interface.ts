@@ -2,4 +2,4 @@ interface ITitleProps {
   title: string;
 }
 
-export { ITitleProps };
+export type { ITitleProps };

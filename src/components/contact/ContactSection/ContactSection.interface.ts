@@ -1,5 +1,5 @@
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-interface IContactSectionProps extends WrappedComponentProps {}
+interface IContactSectionProps extends WithIntlProps {}
 
-export { IContactSectionProps };
+export type { IContactSectionProps };

@@ -1,4 +1,4 @@
-import { injectIntl } from 'gatsby-plugin-intl';
+import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 import AnimationImage from '../AnimationImage';
 import { IntroduceWrapperProps } from './IntroduceWrapper.interface';
@@ -7,6 +7,7 @@ import image1 from '@Images/introduce_bg1.png';
 import image2 from '@Images/introduce_bg2.png';
 
 const IntroduceWrapper = (props: IntroduceWrapperProps) => {
+  const t = useTranslations();
   const [suffix, setSuffix] = useState<string>('');
 
   const _setSize = () => {
@@ -23,111 +24,73 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
     <S.IntroduceWrapper>
       <S.TextWrapper
         dangerouslySetInnerHTML={{
-          __html: props.intl.formatMessage({
-            id: `introduce.phrase1${suffix}`,
-          }),
+          __html: t.raw(`introduce.phrase1${suffix}`),
         }}
       ></S.TextWrapper>
       <AnimationImage
-        mainText={props.intl.formatMessage({
-          id: `introduce.phrase2_main${suffix}`,
-        })}
-        subText={props.intl.formatMessage({
-          id: `introduce.phrase2_sub${suffix}`,
-        })}
-        imageSrc={image1}
+        mainText={t(`introduce.phrase2_main${suffix}`)}
+        subText={t(`introduce.phrase2_sub${suffix}`)}
+        imageSrc={image1.src}
       />
       <S.TextWrapper
         dangerouslySetInnerHTML={{
-          __html: props.intl.formatMessage({
-            id: `introduce.phrase3_main${suffix}`,
-          }),
+          __html: t.raw(`introduce.phrase3_main${suffix}`),
         }}
       ></S.TextWrapper>
       <AnimationImage
-        mainText={props.intl.formatMessage({
-          id: `introduce.phrase4_main${suffix}`,
-        })}
-        subText={props.intl.formatMessage({
-          id: `introduce.phrase4_sub${suffix}`,
-        })}
-        imageSrc={image2}
+        mainText={t(`introduce.phrase4_main${suffix}`)}
+        subText={t(`introduce.phrase4_sub${suffix}`)}
+        imageSrc={image2.src}
       />
       <S.PressWrapper>
-        <div className="title">
-          {props.intl.formatMessage({ id: 'introduce.media_title' })}
-        </div>
+        <div className="title">{t('introduce.media_title')}</div>
         <S.PressContentList>
           <S.PressContent>
             <S.PressContentTitle>
-              {props.intl.formatMessage({
-                id: `introduce.media_content1_title${suffix}`,
-              })}
+              {t(`introduce.media_content1_title${suffix}`)}
             </S.PressContentTitle>
             <S.PressContentPressName>
-              {props.intl.formatMessage({
-                id: 'introduce.media_content1_press',
-              })}
+              {t('introduce.media_content1_press')}
             </S.PressContentPressName>
           </S.PressContent>
           <S.PressContent>
             <S.PressContentTitle>
-              {props.intl.formatMessage({
-                id: `introduce.media_content2_title${suffix}`,
-              })}
+              {t(`introduce.media_content2_title${suffix}`)}
             </S.PressContentTitle>
             <S.PressContentPressName>
-              {props.intl.formatMessage({
-                id: 'introduce.media_content2_press',
-              })}
+              {t('introduce.media_content2_press')}
             </S.PressContentPressName>
           </S.PressContent>
           <S.PressContent>
             <S.PressContentTitle>
-              {props.intl.formatMessage({
-                id: `introduce.media_content3_title${suffix}`,
-              })}
+              {t(`introduce.media_content3_title${suffix}`)}
             </S.PressContentTitle>
             <S.PressContentPressName>
-              {props.intl.formatMessage({
-                id: 'introduce.media_content3_press',
-              })}
+              {t('introduce.media_content3_press')}
             </S.PressContentPressName>
           </S.PressContent>
           <S.PressContent>
             <S.PressContentTitle>
-              {props.intl.formatMessage({
-                id: `introduce.media_content4_title${suffix}`,
-              })}
+              {t(`introduce.media_content4_title${suffix}`)}
             </S.PressContentTitle>
             <S.PressContentPressName>
-              {props.intl.formatMessage({
-                id: 'introduce.media_content4_press',
-              })}
+              {t('introduce.media_content4_press')}
             </S.PressContentPressName>
           </S.PressContent>
           <S.PressContent>
             <S.PressContentTitle>
-              {props.intl.formatMessage({
-                id: `introduce.media_content5_title${suffix}`,
-              })}
+              {t(`introduce.media_content5_title${suffix}`)}
             </S.PressContentTitle>
             <S.PressContentPressName>
-              {props.intl.formatMessage({
-                id: 'introduce.media_content5_press',
-              })}
+              {t('introduce.media_content5_press')}
             </S.PressContentPressName>
           </S.PressContent>
           <S.PressContent>
             <S.PressContentTitle>
-              {props.intl.formatMessage({
-                id: `introduce.media_content6_title${suffix}`,
-              })}
+              {t(`introduce.media_content6_title${suffix}`)}
             </S.PressContentTitle>
             <S.PressContentPressName>
-              {props.intl.formatMessage({
-                id: 'introduce.media_content6_press',
-              })}
+              {t('introduce.media_content6_press')}
             </S.PressContentPressName>
           </S.PressContent>
         </S.PressContentList>
@@ -136,4 +99,4 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
   );
 };
 
-export default injectIntl(IntroduceWrapper);
+export default IntroduceWrapper;

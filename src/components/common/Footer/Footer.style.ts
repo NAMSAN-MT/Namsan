@@ -1,5 +1,5 @@
 import { flex, font, lineHeight, mediaQuery } from '@Styles/mixin.style';
-import { Link } from 'gatsby';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 const FooterWrapper = styled.div`

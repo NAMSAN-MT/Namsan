@@ -1,5 +1,5 @@
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-interface IRecruiteSectionProps extends WrappedComponentProps {}
+interface IRecruiteSectionProps extends WithIntlProps {}
 
-export { IRecruiteSectionProps };
+export type { IRecruiteSectionProps };
