@@ -1,4 +1,4 @@
-import { News, NewsMin } from '@Interface/api.interface';
+import { IMember, News, NewsMin } from '@Interface/api.interface';
 import { EndPointType, NewsType, TQuery } from '@Type/api.type';
 import { documentId } from 'firebase/firestore';
 import { isEmpty } from 'lodash';
@@ -130,7 +130,8 @@ export const getNewsMember = async (_documentId: string) => {
       const results = await Promise.all(
         data.memberId.map(async memberId => {
           const memberSnapshot = await memberId.get();
-          const { imagePath, name, position } = await getData(memberSnapshot);
+          const { imagePath, name, position } =
+            await getData<IMember>(memberSnapshot);
           const profileImage = await getFileFromStorage(imagePath);
           return {
             profileImage,

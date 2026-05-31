@@ -5,4 +5,4 @@ type IntroduceType = keyof Pick<
   'educations' | 'careers' | 'papers' | 'awards'
 >;
 
-export { IntroduceType };
+export type { IntroduceType };

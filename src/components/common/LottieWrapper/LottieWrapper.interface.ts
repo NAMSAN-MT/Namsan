@@ -11,4 +11,4 @@ interface ILottieWrapperProps {
   eventListeners?: ReadonlyArray<EventListener>;
 }
 
-export { ILottieWrapperProps };
+export type { ILottieWrapperProps };

@@ -8,4 +8,4 @@ interface ISearchParams {
   businessField: string;
 }
 
-export { IMembersWrapperProps, ISearchParams };
+export type { IMembersWrapperProps, ISearchParams };

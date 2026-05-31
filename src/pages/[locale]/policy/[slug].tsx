@@ -38,8 +38,8 @@ const PolicyTemplate = ({ content, locale }: PolicyPageProps) => {
       <Layout>
         <PolicyStyleBox>
           <ReactMarkdown
-            remarkPlugins={[remarkBreaks]}
-            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkBreaks as any]}
+            rehypePlugins={[rehypeRaw as any]}
           >
             {content}
           </ReactMarkdown>

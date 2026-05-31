@@ -101,7 +101,7 @@ const NewsDetail = (props: Props) => {
           </article>
         )}
         <S.Content>
-          <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+          <ReactMarkdown remarkPlugins={[remarkBreaks as any]}>
             {content}
           </ReactMarkdown>
         </S.Content>

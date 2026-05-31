@@ -2,4 +2,4 @@ interface ILoadingProps {
   height: string;
 }
 
-export { ILoadingProps };
+export type { ILoadingProps };
