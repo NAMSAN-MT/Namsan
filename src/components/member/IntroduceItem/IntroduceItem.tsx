@@ -20,7 +20,7 @@ const IntroduceItem = (props: IntroduceItemProps) => {
       <ul className="info">
         {previews.map(value => {
           return (
-            <li>
+            <li key={`${value.time ?? ''}-${value.value}`}>
               {value.time && <div className="time">{value.time}</div>}
               <div className="value">{value.value}</div>
             </li>
@@ -30,7 +30,7 @@ const IntroduceItem = (props: IntroduceItemProps) => {
           <>
             {rest.map(value => {
               return (
-                <li>
+                <li key={`${value.time ?? ''}-${value.value}`}>
                   {value.time && <div className="time">{value.time}</div>}
                   <div className="value">{value.value}</div>
                 </li>

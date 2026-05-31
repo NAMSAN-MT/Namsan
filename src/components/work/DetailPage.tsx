@@ -147,7 +147,7 @@ const DetailPage = (props: Props) => {
                   key={member.id}
                   {...member}
                   businessFields={[]}
-                  name={member.name.toUpperCase()}
+                  name={member.name?.toUpperCase() ?? ''}
                   order={`${member.order}`}
                 />
               ),
@@ -177,7 +177,7 @@ const DetailPage = (props: Props) => {
                         key={member.id}
                         {...member}
                         businessFields={[]}
-                        name={member.name.toUpperCase()}
+                        name={member.name?.toUpperCase() ?? ''}
                         order={`${member.order}`}
                       />
                     ),

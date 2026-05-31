@@ -127,11 +127,10 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
           <S.MobileMenuWrapper>
             <S.MobileMenuItemList className="menu-items">
               {GNBLink.map(({ href, translationId, alt }) => (
-                <S.MobileMenuItem>
+                <S.MobileMenuItem key={alt}>
                   <Link
                     href={`/${intl.locale}${href}`}
                     about={alt}
-                    key={alt}
                     className={getIsIncludes(alt) ? 'on' : ''}
                   >
                     {intl.formatMessage({ id: translationId })}
@@ -142,6 +141,7 @@ const GNB = ({ intl, isTransparent, isMobile }: IGNBProps) => {
             <S.MobileLanguageWrapper onClick={handleChangeLanguage}>
               {LanguageLink.map(link => (
                 <S.MobileLanguageLink
+                  key={link.alt}
                   $isActive={intl.locale === link.lang}
                   data-lang={link.lang}
                 >
