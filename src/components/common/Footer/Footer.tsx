@@ -16,7 +16,7 @@ const Footer = (props: IFooterProps) => {
           {TermAndConditionLink.map((link, index) => (
             <S.TermAndConditionLink
               key={link.alt}
-              href={link.herf}
+              href={`/${props.intl.locale}${link.herf}`}
               about={link.alt}
             >
               <span>
