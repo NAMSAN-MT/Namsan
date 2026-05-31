@@ -27,6 +27,7 @@
     "eslint-plugin-react": "^7.32.2",
     "firebase": "^9.17.1",
     "framer-motion": "^10.3.0",
+    "gray-matter": "^4",
     "instantsearch.js": "^4.54.1",
     "lodash": "^4.17.21",
     "next": "^14.2.18",
@@ -41,6 +42,7 @@
     "react-markdown": "6.0.3",
     "react-responsive-carousel": "^3.2.23",
     "react-spinners": "^0.13.8",
+    "rehype-raw": "^6",
     "remark-breaks": "3.0.3",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.5"
