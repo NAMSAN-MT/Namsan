@@ -8,7 +8,7 @@
     "nextjs"
   ],
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8000",
     "build": "next build && next-image-export-optimizer",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
