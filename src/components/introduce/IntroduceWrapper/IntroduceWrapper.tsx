@@ -18,7 +18,9 @@ const IntroduceWrapper = (props: IntroduceWrapperProps) => {
   useEffect(() => {
     window.addEventListener('resize', _setSize);
     _setSize();
-  });
+    return () => window.removeEventListener('resize', _setSize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <S.IntroduceWrapper>

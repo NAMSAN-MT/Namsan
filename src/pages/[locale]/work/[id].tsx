@@ -92,13 +92,14 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const members = await buildContextMembers();
   const byLocale = members.filter(m => m.language === locale);
 
-  // gatsby getContextMemberData: each email -> matching contextMember.
-  // allMembers query sorted order ASC (order is a string code e.g. "L003").
+  // gatsby getContextMemberData: each email -> matching contextMember, in the
+  // order the emails appear in work.member.main / .sub (the editor-curated order,
+  // e.g. lead partner first). Do NOT re-sort by `order` — that overrode the
+  // curated sequence the original site preserved.
   const resolve = (emails: string[]): MiniMember[] =>
     (emails ?? [])
       .map(email => byLocale.find(m => m.email === email))
       .filter((m): m is NonNullable<typeof m> => Boolean(m))
-      .sort((a, b) => a.order.localeCompare(b.order))
       .map(m => ({
         id: m.id,
         email: m.email,
