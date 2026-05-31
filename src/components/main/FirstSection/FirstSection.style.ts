@@ -23,15 +23,16 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const FrirstWrapper = styled.div<{ startSlide?: boolean }>`
+const FirstWrapper = styled.div`
   ${flex()};
   flex-direction: column;
+  position: relative;
   width: 100%;
   height: 760px;
   overflow: hidden;
   ${mediaQuery(
     'mobile',
-    ` 
+    `
       height: 560px;
     `,
   )};
@@ -46,15 +47,38 @@ const boxScale = keyframes`
   }
 `;
 
-const ScaleWrapper = styled(FrirstWrapper)`
+const ScaleWrapper = styled(FirstWrapper)`
   img {
     object-fit: cover;
   }
   // animation: ${boxScale} 1s ease-in-out alternate;
 `;
 
-const TextWrapper = styled(motion.div)`
+// crossfade 레이어: 두 레이어를 항상 겹쳐 두고 opacity만 전환한다.
+// (static↔absolute 스왑은 전환 순간 flex reflow를 일으켜 세로 점프가 보였음)
+const Layer = styled.div<{ $active: boolean }>`
   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: ${({ $active }) => ($active ? 1 : 0)};
+  transition: opacity 1s ease-in;
+  pointer-events: ${({ $active }) => ($active ? 'auto' : 'none')};
+`;
+
+// 컨테이너(고정 높이)를 꽉 채워 로드 전부터 박스를 예약 → 초기 CLS 방지.
+// object-fit: cover로 종횡비 유지(왜곡 없음), 기존 width:auto 중앙 크롭과 동일한 프레이밍.
+const IntroImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const TextWrapper = styled(motion.div)<{ $visible: boolean }>`
+  position: absolute;
+  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  transition: opacity 1s ease-in;
 `;
 
 const Basic = styled.div`
@@ -113,7 +137,9 @@ const Description = styled(Basic)`
 export {
   WithFixedWrapper,
   Wrapper,
-  FrirstWrapper,
+  FirstWrapper,
+  Layer,
+  IntroImg,
   Title,
   SubTitle,
   Description,
