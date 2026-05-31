@@ -3,7 +3,8 @@ import { BoxDivider } from '@Components/common/List/List.style';
 import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 import MemberItem from '@Components/members/MemberItem';
 import { PageContextProps } from '@Pages/work/[id]';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import { RemoteImage } from '@Interface/image.interface';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { injectIntl } from 'gatsby-plugin-intl';
 import React, { MouseEvent, useState } from 'react';
 import NavigationDown from '../../assets/lottie/navigation_down.json';
@@ -29,7 +30,7 @@ import {
 export interface Props {
   language: 'ko' | 'en';
   subId: number;
-  backgroundImage?: IGatsbyImageData;
+  backgroundImage?: RemoteImage;
 }
 const DetailPage = (
   props: Omit<PageContextProps, 'backgroundImage'> & Props,

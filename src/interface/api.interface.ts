@@ -1,6 +1,6 @@
 import { Timestamp, documentId } from 'firebase/firestore';
 import { EndPointType, NewsType, TQuery } from '@Type/api.type';
-import { IGatsbyImageData } from 'gatsby-plugin-image';
+import { RemoteImage } from '@Interface/image.interface';
 
 export declare interface Api {
   <Request extends Parameter<Request>, Response>(
@@ -39,7 +39,7 @@ export interface News {
   agency: string;
   originalLink: string;
   imagePath: string;
-  newsImageData?: IGatsbyImageData;
+  newsImageData?: RemoteImage;
   newsType: NewsType;
   dateYearMonth?: string;
   dateYearMonthDate?: string;
@@ -82,6 +82,6 @@ export interface IMember {
   awards?: IMemberAttribute[];
   imagePath: string;
   bgImagePath: string;
-  image: IGatsbyImageData;
-  bgImage: IGatsbyImageData;
+  image: RemoteImage;
+  bgImage: RemoteImage;
 }
