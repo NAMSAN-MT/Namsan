@@ -7,3 +7,6 @@ typings/
 
 # Node.js dependency directory
 node_modules/
+
+# Local env (contains Firebase + Algolia credentials; never commit)
+.env
