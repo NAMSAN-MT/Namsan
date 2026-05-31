@@ -19,7 +19,12 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "ssr-friendly"],
   "ignorePatterns": ["dist/", "node_modules/", ".next/", "out/"],
-  "rules": {}
+  "rules": {
+    "ssr-friendly/no-dom-globals-in-module-scope": "error",
+    "ssr-friendly/no-dom-globals-in-constructor": "error",
+    "ssr-friendly/no-dom-globals-in-react-cc-render": "warn",
+    "ssr-friendly/no-dom-globals-in-react-fc": "warn"
+  }
 }
