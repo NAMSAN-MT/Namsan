@@ -4,10 +4,17 @@ public
 src/gatsby-types.d.ts
 .vscode
 
+# dotenv local files
 .env
+.env*.local
 
 firebase-key.json
 
 .firebase
 
 mise.toml
+
+# Next.js
+.next/
+out/
+next-env.d.ts
