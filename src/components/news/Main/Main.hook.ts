@@ -1,61 +1,66 @@
-import { getMainNewsList, getNewsSearchList } from '@Api/news.api';
+import { getMainNewsList } from '@Api/news.api';
 import { NewsMin } from '@Interface/api.interface';
 import { NewsType } from '@Type/api.type';
-import { useState } from 'react';
-import { TPagination, TTab } from './main.interface';
+import Fuse from 'fuse.js';
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
+import { TNewsListItem, TPagination, TTab } from './main.interface';
 
-const useMain = () => {
-  const search =
-    typeof window !== 'undefined' ? window.location.search : '';
-  const params = new URLSearchParams(search);
-  const urlPage = params.get('page') ?? '';
-  const newsType = (params.get('newsType') as NewsType) ?? 'all';
+const HITS_PER_PAGE = 9;
 
-  const [tab, setTab] = useState<TTab>('all');
-  const [newsList, setNewsList] = useState<NewsMin[]>([]);
-  const [pageNationState, setPageNation] = useState<TPagination>();
-  const [isLoading, setIsLoading] = useState(false);
+/**
+ * Client-side news list driver. The full news index is shipped at build time
+ * (getStaticProps) and handed in via `newsList`; tab-filter + text-search +
+ * pagination all run in the browser. `newsType`/`page` are read from
+ * `useRouter().query` (hydration-safe — never read `window` during render),
+ * and `searchValue` is owned by the component and threaded in.
+ */
+const useMain = (newsList: TNewsListItem[] = [], searchValue = '') => {
+  const router = useRouter();
 
-  const onCallNewsList = async (
-    newsType: NewsType = 'all',
-    searchValue?: string,
-  ) => {
-    try {
-      setIsLoading(true);
-      const numberUrlPage = Number(urlPage);
-      const { resultList, algoliaResult } = await getNewsSearchList({
-        newsType,
-        searchValue,
-        page: numberUrlPage > 0 ? numberUrlPage - 1 : 0,
-      });
+  const urlPage = typeof router.query.page === 'string' ? router.query.page : '';
+  const newsType = (router.query.newsType as NewsType) ?? 'all';
+  const tab: TTab = (newsType ?? 'all') as TTab;
+  const page = Number(urlPage) > 0 ? Number(urlPage) : 1;
 
-      setNewsList(resultList);
-      setTab(newsType);
-      if (!algoliaResult) {
-        setPageNation({ nbPages: 0, page: 0 });
-      } else {
-        const { nbPages, page } = algoliaResult;
-        setPageNation({ nbPages, page: page + 1 });
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { items, pageNationState } = useMemo(() => {
+    const filtered =
+      newsType === 'all' || !newsType
+        ? newsList
+        : newsList.filter(n => n.newsType === newsType);
 
+    const searched = searchValue
+      ? new Fuse(filtered, {
+          keys: ['title', 'summary', 'content'],
+          threshold: 0.4,
+          ignoreLocation: true,
+        })
+          .search(searchValue)
+          .map(r => r.item)
+      : filtered;
+
+    const nbPages = Math.ceil(searched.length / HITS_PER_PAGE);
+    const start = (page - 1) * HITS_PER_PAGE;
+    const items = searched.slice(start, start + HITS_PER_PAGE);
+
+    return { items, pageNationState: { nbPages, page } as TPagination };
+  }, [newsList, newsType, searchValue, page]);
+
+  // Card consumes NewsMin; the build index adds `content` for search only.
+  const cardList = items as unknown as NewsMin[];
+
+  // Home widget (ForthSection) path — runtime Firestore, not Algolia. Untouched.
   const onCallMainNewsList = () => {
-    getMainNewsList(3).then(setNewsList).catch(console.error);
+    getMainNewsList(3).then().catch(console.error);
   };
 
   return {
     urlPage,
     newsType,
     tab,
-    newsList,
+    newsList: cardList,
     pageNationState,
-    isLoading,
-    onCallNewsList,
+    isLoading: false,
     onCallMainNewsList,
   };
 };

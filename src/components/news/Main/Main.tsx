@@ -1,33 +1,23 @@
 import Input from '@Components/common/Input';
 import { withTranslations, WithIntlProps } from '@Hocs/withTranslations';
-import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
-import React, { lazy, useEffect, useState } from 'react';
+import React, { lazy, useState } from 'react';
 import * as SearchBar from '../../members/SearchBar/SearchBar.style';
 import Pagination from '../Pagination';
 import useMain from './Main.hook';
 import * as S from './Main.style';
-import { TTab } from './main.interface';
+import { TNewsListItem, TTab } from './main.interface';
 const Card = lazy(() => import('@Components/news/Card'));
 
-interface Props extends WithIntlProps {}
+interface Props extends WithIntlProps {
+  newsList: TNewsListItem[];
+}
 const NewsMain = (props: Props) => {
   const intl = props.intl;
   const router = useRouter();
   const [searchValue, setSearchValue] = useState('');
-  const {
-    isLoading,
-    urlPage,
-    newsType,
-    tab,
-    newsList,
-    pageNationState,
-    onCallNewsList,
-  } = useMain();
-
-  useEffect(() => {
-    onCallNewsList(newsType, searchValue);
-  }, [urlPage, newsType]);
+  const { isLoading, urlPage, newsType, tab, newsList, pageNationState } =
+    useMain(props.newsList, searchValue);
 
   const handleTab = (e: React.MouseEvent<HTMLAnchorElement>, type: TTab) => {
     e.preventDefault();
@@ -38,15 +28,15 @@ const NewsMain = (props: Props) => {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+    // Search is reactive (searchValue → useMain re-filters); just block reload.
     e.preventDefault();
-    onCallNewsList(tab, searchValue);
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
-  const isPagination = !isEmpty(pageNationState);
+  const isPagination = pageNationState.nbPages > 1;
 
   return (
     <>
@@ -91,9 +81,9 @@ const NewsMain = (props: Props) => {
         type="news"
         isLoading={isLoading}
         newsList={newsList}
-        {...{ urlPage, newsType, onCallNewsList, searchValue }}
+        {...{ urlPage, newsType, searchValue }}
       />
-      {isPagination && pageNationState && (
+      {isPagination && (
         <Pagination {...{ newsType, urlPage, pageNationState }} />
       )}
     </>
