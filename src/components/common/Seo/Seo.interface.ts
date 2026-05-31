@@ -9,4 +9,4 @@ interface ISeoProps {
   children?: React.ReactNode;
 }
 
-export { ISeoProps };
+export type { ISeoProps };
