@@ -1,19 +1,19 @@
 import { getMainNewsList } from '@Api/news.api';
-import { News } from '@Interface/api.interface';
+import { NewsMin } from '@Interface/api.interface';
 import { useEffect, useState } from 'react';
 import useNavigate from '@Hooks/useNavigate';
 
 const useForthSection = () => {
-  const [newsList, setNewsList] = useState<News[]>();
+  const [newsList, setNewsList] = useState<NewsMin[]>();
 
   const { handleNavigate } = useNavigate();
 
+  const onCallMainNewsList = (limit = 3) => {
+    getMainNewsList(limit).then(setNewsList).catch(console.error);
+  };
+
   useEffect(() => {
-    const init = async () => {
-      const newsList = await getMainNewsList(3);
-      setNewsList(newsList);
-    };
-    init();
+    onCallMainNewsList(3);
   }, []);
 
   const handleNavigateTo = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,6 +24,7 @@ const useForthSection = () => {
   return {
     handleNavigateTo,
     newsList,
+    onCallMainNewsList,
   };
 };
 

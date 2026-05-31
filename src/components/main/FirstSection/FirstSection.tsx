@@ -4,8 +4,7 @@ import * as S from './FirstSection.style';
 import { IFirstSectionProps } from './FirstSection.interface';
 import { useInView } from 'react-intersection-observer';
 
-import _ from 'lodash';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import { Carousel } from 'react-responsive-carousel';
 
 const FirstSection = (props: IFirstSectionProps) => {
@@ -104,4 +103,4 @@ const FirstSection = (props: IFirstSectionProps) => {
   );
 };
 
-export default injectIntl(FirstSection);
+export default withTranslations(FirstSection);

@@ -29,14 +29,19 @@ const useFirstSection = (props: IFirstSectionProps) => {
   useEffect(() => {
     if (props.isMobile) {
       // mobile
-      setIntro(IntroMobile0);
-      setPictures([IntroMobile1, IntroMobile2, IntroMobile3, IntroMobile4]);
+      setIntro(IntroMobile0.src);
+      setPictures([
+        IntroMobile1.src,
+        IntroMobile2.src,
+        IntroMobile3.src,
+        IntroMobile4.src,
+      ]);
       return;
     }
 
     // desktop
-    setIntro(Intro0);
-    setPictures([Intro1, Intro2, Intro3, Intro4]);
+    setIntro(Intro0.src);
+    setPictures([Intro1.src, Intro2.src, Intro3.src, Intro4.src]);
   }, [props.isMobile]);
 
   return {

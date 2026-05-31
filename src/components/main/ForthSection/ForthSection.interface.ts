@@ -1,6 +1,7 @@
 import { ISecondSectionProps } from '../SecondSection/SecondSection.interface';
-interface IForthSectionProps extends ISecondSectionProps {
+import { WithIntlProps } from '@Hocs/withTranslations';
+interface IForthSectionProps extends ISecondSectionProps, WithIntlProps {
   isMobile: boolean;
   isTablet: boolean;
 }
-export { IForthSectionProps };
+export type { IForthSectionProps };

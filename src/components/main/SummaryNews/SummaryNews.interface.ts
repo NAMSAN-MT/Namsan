@@ -5,4 +5,4 @@ interface ISummaryNewsProps {
   lastIndex: boolean;
 }
 
-export { ISummaryNewsProps };
+export type { ISummaryNewsProps };
