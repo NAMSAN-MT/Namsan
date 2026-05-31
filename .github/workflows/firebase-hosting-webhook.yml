@@ -38,9 +38,6 @@ jobs:
           echo "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=$GATSBY_FIREBASE_MESSAGING_SENDER_ID" >> .env
           echo "NEXT_PUBLIC_FIREBASE_APP_ID=$GATSBY_FIREBASE_APP_ID" >> .env
           echo "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=$GATSBY_FIREBASE_MEASUREMENT_ID" >> .env
-          echo "NEXT_PUBLIC_ALGOLIA_ID=$GATSBY_ALGOLIA_ID" >> .env
-          echo "NEXT_PUBLIC_ALGOLIA_SEARCH_KEY=$GATSBY_ALGOLIA_SEARCH_KEY" >> .env
-          echo "NEXT_PUBLIC_ALGOLIA_INDEX_NAME=$GATSBY_ALGOLIA_INDEX_NAME" >> .env
         env:
           GATSBY_FIREBASE_API_KEY: ${{ secrets.GATSBY_FIREBASE_API_KEY }}
           GATSBY_FIREBASE_AUTH_DOMAIN: ${{ secrets.GATSBY_FIREBASE_AUTH_DOMAIN }}
@@ -49,9 +46,6 @@ jobs:
           GATSBY_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.GATSBY_FIREBASE_MESSAGING_SENDER_ID }}
           GATSBY_FIREBASE_APP_ID: ${{ secrets.GATSBY_FIREBASE_APP_ID }}
           GATSBY_FIREBASE_MEASUREMENT_ID: ${{ secrets.GATSBY_FIREBASE_MEASUREMENT_ID }}
-          GATSBY_ALGOLIA_ID: ${{ secrets.GATSBY_ALGOLIA_ID }}
-          GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
-          GATSBY_ALGOLIA_INDEX_NAME: ${{ secrets.GATSBY_ALGOLIA_INDEX_NAME }}
       - run: pnpm install --frozen-lockfile && pnpm build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
