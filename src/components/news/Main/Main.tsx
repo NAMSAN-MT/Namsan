@@ -23,7 +23,9 @@ const NewsMain = (props: Props) => {
     e.preventDefault();
     setSearchValue('');
     router.push(
-      `/${props.intl.locale}/news${type === 'all' ? '' : `?newsType=${type}`}`,
+      `/${props.intl.locale}/news/${type === 'all' ? '' : `?newsType=${type}`}`,
+      undefined,
+      { shallow: true },
     );
   };
 

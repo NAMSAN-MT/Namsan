@@ -5,19 +5,13 @@ import ArrowRightStrongIcon from '@Images/arrow_right_th10_strong.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import {
-  getNewQueryString,
-  getPageList,
-  getPageNationState,
-  toQuery,
-} from './Pagination.helper';
+import { getPageList, getPageNationState, toQuery } from './Pagination.helper';
 import { PaginationProps } from './Pagination.interface';
 import * as S from './Pagination.style';
 
 const Pagination = (props: PaginationProps) => {
   const router = useRouter();
-  const search = typeof window !== 'undefined' ? window.location.search : '';
-  const params = new URLSearchParams(search);
+  const locale = router.query.locale as string;
   const { currentPage, nbPages, page } = getPageNationState(props);
 
   // Pagination
@@ -64,14 +58,18 @@ const Pagination = (props: PaginationProps) => {
   const handleMovePrev = () => {
     if (booleanObj.isPrev) {
       const newPage = page - 9 < 1 ? 1 : page - 9;
-      router.push(`?${getNewQueryString(params, newPage)}`);
+      router.push(toQuery(locale, props.newsType, newPage), undefined, {
+        shallow: true,
+      });
     }
   };
 
   const handleMoveNext = () => {
     if (booleanObj.isNext) {
       const newPage = 9 + page > nbPages ? nbPages : 9 + page;
-      router.push(`?${getNewQueryString(params, newPage)}`);
+      router.push(toQuery(locale, props.newsType, newPage), undefined, {
+        shallow: true,
+      });
     }
   };
 
@@ -82,21 +80,36 @@ const Pagination = (props: PaginationProps) => {
       </S.ArrowNavigation>
       {booleanObj.isFirstPageArea && (
         <>
-          <Link key={1} href={toQuery(props.newsType, 1)}>
+          <Link
+            key={1}
+            href={toQuery(locale, props.newsType, 1)}
+            shallow
+            prefetch={false}
+          >
             <S.PageNumber>1</S.PageNumber>
           </Link>
           <span className="ellipse"></span>
         </>
       )}
       {pageList.map(num => (
-        <Link key={num} href={toQuery(props.newsType, num)}>
+        <Link
+          key={num}
+          href={toQuery(locale, props.newsType, num)}
+          shallow
+          prefetch={false}
+        >
           <S.PageNumber isSelected={currentPage === num}>{num}</S.PageNumber>
         </Link>
       ))}
       {booleanObj.isLastPageArea && (
         <>
           <span className="ellipse"></span>
-          <Link key={nbPages} href={toQuery(props.newsType, nbPages)}>
+          <Link
+            key={nbPages}
+            href={toQuery(locale, props.newsType, nbPages)}
+            shallow
+            prefetch={false}
+          >
             <S.PageNumber>{nbPages}</S.PageNumber>
           </Link>
         </>
