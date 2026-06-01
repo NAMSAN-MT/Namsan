@@ -10,7 +10,7 @@ const Footer = (props: IFooterProps) => {
     <S.FooterWrapper>
       <S.FirstSection>
         <S.LogoWrapper>
-          <img src={LogoFooter} width="100%" alt="icon" />
+          <img src={LogoFooter as string} width="100%" alt="icon" />
         </S.LogoWrapper>
         <div>
           {TermAndConditionLink.map((link, index) => (
