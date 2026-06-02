@@ -19,6 +19,13 @@ const useSerachBar = ({
     })();
   }, []);
 
+  // initOption arrives empty on first render (router.query not ready yet) and
+  // is populated once the URL query resolves — sync it so deep-linked filters
+  // (e.g. /members?position=…) show the active selection.
+  useEffect(() => {
+    if (initOption) setCurrentOption(initOption);
+  }, [initOption]);
+
   const _handleClickOption = (event: React.MouseEvent<HTMLDivElement>) => {
     setCurrentOption(event.currentTarget.dataset?.option || currentOption);
     setIsOpen(false);

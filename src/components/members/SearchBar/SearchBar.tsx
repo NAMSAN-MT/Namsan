@@ -4,7 +4,6 @@ import SelectBox from '../SelectBox';
 import useSearchBar from './SearchBar.hook';
 import Input from '../../common/Input';
 import { useTranslations } from 'next-intl';
-import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
 import { useRouter } from 'next/router';
 import { IMember } from '../../../interface/api.interface';
 
@@ -15,18 +14,20 @@ const SearchBar = ({
   members: IMember[];
   workMap: { [x: string]: string };
 }) => {
-  const {
-    name: initName,
-    position: initPosition,
-    businessField: initBusinessField,
-  } = getSearchParams();
-
-  // State
-  const [name, setName] = useState<string>(initName || '');
-
   // Hooks
   const t = useTranslations();
   const router = useRouter();
+
+  // Filter state comes from the URL query so controls stay in sync under
+  // shallow routing and we never read `document` during render (hydration-safe).
+  const initPosition = (router.query.position as string) || '';
+  const initBusinessField = (router.query.businessField as string) || '';
+
+  // State
+  const [name, setName] = useState<string>('');
+  useEffect(() => {
+    setName((router.query.name as string) || '');
+  }, [router.query.name]);
 
   const INIT_POSITION_OPTION = t('members.total_position');
   const INIT_BUSINESS_FIELD_OPTION = t('members.total_business_field');
@@ -96,7 +97,7 @@ const SearchBar = ({
       businessField,
     )}&name=${encodeURIComponent(name)}`;
     const pathname = router.asPath.split('?')[0];
-    router.push(`${pathname}${search}`);
+    router.push(`${pathname}${search}`, undefined, { shallow: true });
   };
 
   const _handleBlur = useCallback(() => {
