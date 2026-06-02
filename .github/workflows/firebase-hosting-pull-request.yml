@@ -41,6 +41,14 @@ jobs:
         run: echo "$FIREBASE_ADMIN_KEY_B64" | base64 -d > firebase-key.json
         env:
           FIREBASE_ADMIN_KEY_B64: ${{ secrets.FIREBASE_ADMIN_KEY_B64 }}
+      # 배포 출처 추적용 — UI 비노출 /build-info.json. commit은 실제 빌드된 커밋(git HEAD).
+      - name: Stamp build-info
+        run: |
+          mkdir -p static
+          printf '{"branch":"%s","commit":"%s","channel":"%s","event":"%s","runId":"%s","builtAt":"%s"}\n' \
+            "develop" "$(git rev-parse HEAD)" "preview" "${{ github.event_name }}" "${{ github.run_id }}" "$(date -u +%FT%TZ)" \
+            > static/build-info.json
+          cat static/build-info.json
       - run: yarn && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

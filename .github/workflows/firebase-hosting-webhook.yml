@@ -46,6 +46,15 @@ jobs:
         run: echo "$FIREBASE_ADMIN_KEY_B64" | base64 -d > firebase-key.json
         env:
           FIREBASE_ADMIN_KEY_B64: ${{ secrets.FIREBASE_ADMIN_KEY_B64 }}
+      # 배포 버튼(repository_dispatch)은 ref:master를 빌드 — github.sha(=default branch)가
+      # 아니라 git HEAD(실제 체크아웃된 master 커밋)를 찍어야 정확. UI 비노출 /build-info.json.
+      - name: Stamp build-info
+        run: |
+          mkdir -p static
+          printf '{"branch":"%s","commit":"%s","channel":"%s","event":"%s","runId":"%s","builtAt":"%s"}\n' \
+            "master" "$(git rev-parse HEAD)" "live" "${{ github.event_name }}" "${{ github.run_id }}" "$(date -u +%FT%TZ)" \
+            > static/build-info.json
+          cat static/build-info.json
       - run: yarn && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
