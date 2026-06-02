@@ -1,4 +1,4 @@
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import React, { useEffect, useRef } from 'react';
 import Info from '../Info';
 import Title from '../Title';
@@ -90,4 +90,4 @@ const ContactSection = ({ intl }: IContactSectionProps) => {
   );
 };
 
-export default injectIntl(ContactSection);
+export default withTranslations(ContactSection);

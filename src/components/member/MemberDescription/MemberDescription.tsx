@@ -1,4 +1,4 @@
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import { IMemberDescriptionProps } from './MemberDescription.interface';
 import React, { useState } from 'react';
 import { isEmpty } from 'lodash';
@@ -39,4 +39,4 @@ const MemberDescription = ({ member, intl }: IMemberDescriptionProps) => {
   );
 };
 
-export default injectIntl(MemberDescription);
+export default withTranslations(MemberDescription);

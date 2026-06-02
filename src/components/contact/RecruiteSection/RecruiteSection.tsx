@@ -1,4 +1,4 @@
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import React from 'react';
 import Info from '../Info';
 import Title from '../Title';
@@ -24,4 +24,4 @@ const RecruiteSection = ({ intl }: IRecruiteSectionProps) => {
   );
 };
 
-export default injectIntl(RecruiteSection);
+export default withTranslations(RecruiteSection);

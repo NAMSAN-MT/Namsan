@@ -1,9 +1,7 @@
-import { useLocation } from '@reach/router';
 import { isEmpty } from 'lodash';
 import { useRef, useState, useEffect } from 'react';
 
 const useLayout = () => {
-  const location = useLocation();
   const [toastMessage, setToastMessage] = useState('');
   const [clickTopButton, setClickTopButton] = useState(false);
   const interval = useRef<NodeJS.Timeout>();
@@ -31,7 +29,7 @@ const useLayout = () => {
     e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>,
   ) => {
     e.preventDefault();
-    navigator.clipboard.writeText(location.href);
+    navigator.clipboard.writeText(window.location.href);
     isEmpty(toastMessage) && setToastMessage('링크가 복사 되었습니다.');
   };
 

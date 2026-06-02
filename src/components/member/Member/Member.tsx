@@ -1,7 +1,8 @@
+import AppImage from '@Components/common/AppImage';
 import Divider from '@Components/common/Divider';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { WrappedComponentProps, injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations, WithIntlProps } from '@Hocs/withTranslations';
 import { isEmpty } from 'lodash';
+import { useRouter } from 'next/router';
 import React from 'react';
 import IntroduceItem from '../IntroduceItem';
 import { IntroduceType } from '../IntroduceItem/IntroduceItem.type';
@@ -10,8 +11,9 @@ import { introduceOrder } from './Member.const';
 import { MemberProps } from './Member.interface';
 import * as S from './Member.style';
 
-const Member = (props: MemberProps & WrappedComponentProps) => {
+const Member = (props: MemberProps & WithIntlProps) => {
   const { member } = props;
+  const router = useRouter();
 
   if (!member) return <></>;
 
@@ -22,21 +24,35 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
       return;
     }
 
-    window.location.href = `/${props.intl.locale}/work/${category}`;
+    router.push(`/${props.intl.locale}/work/${category}`);
   };
 
   return (
     <S.MemberWrapper>
       <S.ImageWrapper>
         <div className="bg">
-          <GatsbyImage image={member.bgImage} alt={member.id} />
+          {member.bgImage?.src && (
+            <AppImage
+              src={member.bgImage.src}
+              width={member.bgImage.width}
+              height={member.bgImage.height}
+              alt={member.id}
+            />
+          )}
         </div>
         <div className="profile">
-          <GatsbyImage image={member.image} alt={member.id} />
+          {member.image?.src && (
+            <AppImage
+              src={member.image.src}
+              width={member.image.width}
+              height={member.image.height}
+              alt={member.id}
+            />
+          )}
         </div>
       </S.ImageWrapper>
       <S.TextWrapper>
-        <div className="name">{member.name.toUpperCase()}</div>
+        <div className="name">{member.name?.toUpperCase()}</div>
         <div className="position">{member.position}</div>
         <div className="email">{member.email}</div>
         <S.TagWrapper>
@@ -58,13 +74,13 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
           const isValid = !isEmpty(values);
           return (
             isValid && (
-              <>
+              <React.Fragment key={key}>
                 <Divider />
                 <IntroduceItem
                   titleKey={key as IntroduceType}
                   values={values}
                 />
-              </>
+              </React.Fragment>
             )
           );
         })}
@@ -73,4 +89,4 @@ const Member = (props: MemberProps & WrappedComponentProps) => {
   );
 };
 
-export default injectIntl(Member);
+export default withTranslations(Member);

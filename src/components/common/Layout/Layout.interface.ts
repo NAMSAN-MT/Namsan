@@ -23,4 +23,4 @@ interface ICopyButtonProps {
   handleCopyLink: MouseEventHandler<HTMLButtonElement>;
 }
 
-export { ILayoutProps, ITopButtonProps, ICopyButtonProps };
+export type { ILayoutProps, ITopButtonProps, ICopyButtonProps };

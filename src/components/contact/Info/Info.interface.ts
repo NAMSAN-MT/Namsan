@@ -11,4 +11,4 @@ interface IInfoColumnProps {
   children: React.ReactNode;
 }
 
-export { IInfoProps, IInfoWrapperProps, IInfoColumnProps };
+export type { IInfoProps, IInfoWrapperProps, IInfoColumnProps };

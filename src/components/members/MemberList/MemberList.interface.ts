@@ -1,8 +1,8 @@
 import { IMember } from '@Interface/api.interface';
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-interface IMemberListProps extends WrappedComponentProps {
+interface IMemberListProps extends WithIntlProps {
   members: IMember[];
 }
 
-export { IMemberListProps };
+export type { IMemberListProps };

@@ -1,6 +1,6 @@
 import { IMember } from '@Interface/api.interface';
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-interface IMemberItemProps extends WrappedComponentProps, Partial<IMember> {}
+interface IMemberItemProps extends WithIntlProps, Partial<IMember> {}
 
-export { IMemberItemProps };
+export type { IMemberItemProps };

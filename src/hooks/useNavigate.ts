@@ -1,9 +1,13 @@
 import { TUrl } from '@Components/common/GNB/GNB.interface';
-import { navigate } from 'gatsby';
+import { useRouter } from 'next/router';
+import { useLocale } from 'next-intl';
 
 const useNavigate = () => {
+  const router = useRouter();
+  const locale = useLocale();
+
   const handleNavigate = async (url: TUrl) => {
-    await navigate(url);
+    await router.push(`/${locale}/${url}`);
   };
 
   return {

@@ -11,4 +11,4 @@ interface InnerWidth {
   innerWidth: string;
 }
 
-export { NewsWrapperProps, OuterPadding, InnerWidth };
+export type { NewsWrapperProps, OuterPadding, InnerWidth };

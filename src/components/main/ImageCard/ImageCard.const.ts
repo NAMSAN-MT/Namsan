@@ -8,30 +8,30 @@ import main6 from '@Images/main6.png';
 const ImageCardList1 = [
   {
     title: '송무·중재',
-    url: main1,
+    url: main1.src,
   },
   {
     title: '금융',
-    url: main2,
+    url: main2.src,
   },
   {
     title: '기업법무',
-    url: main3,
+    url: main3.src,
   },
 ] as const;
 
 const ImageCardList2 = [
   {
     title: '송무·중재',
-    url: main4,
+    url: main4.src,
   },
   {
     title: '건축·건설',
-    url: main5,
+    url: main5.src,
   },
   {
     title: '분쟁해결',
-    url: main6,
+    url: main6.src,
   },
 ] as const;
 

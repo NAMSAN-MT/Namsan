@@ -4,7 +4,7 @@ import searchIcon from '@Images/ic_search.svg';
 import searchIcon_m from '@Images/ic_search_m.svg';
 import styled from 'styled-components';
 import { mediaQuery, size } from '@Styles/mixin.style';
-import { useLocation } from '@reach/router';
+import { useRouter } from 'next/router';
 
 interface PropTypes {
   width?: string;
@@ -12,10 +12,10 @@ interface PropTypes {
 }
 
 const SearchIcon = (props: PropTypes) => {
-  const path = useLocation();
+  const router = useRouter();
+  const pathname = router.asPath.split('?')[0];
   const isSearchIconMobile =
-    path.pathname.indexOf('/news') > -1 ||
-    path.pathname.indexOf('/members') > -1;
+    pathname.indexOf('/news') > -1 || pathname.indexOf('/members') > -1;
 
   return (
     <IconWrapper width={props.width || '24px'} height={props.height || '24px'}>

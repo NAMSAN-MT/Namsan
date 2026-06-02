@@ -3,4 +3,4 @@ interface IImageCardProps {
   imageUrl: string;
 }
 
-export { IImageCardProps };
+export type { IImageCardProps };

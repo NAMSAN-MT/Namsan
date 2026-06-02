@@ -1,6 +1,7 @@
 import { ISecondSectionProps } from '../SecondSection/SecondSection.interface';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-interface IBannerProps extends ISecondSectionProps {
+interface IBannerProps extends ISecondSectionProps, WithIntlProps {
   title: string;
   tag: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -9,4 +10,4 @@ interface IBannerProps extends ISecondSectionProps {
   index: number;
 }
 
-export { IBannerProps };
+export type { IBannerProps };

@@ -76,6 +76,16 @@ const ImageSection = styled.div`
 const ImageWrapper = styled.div`
   ${size('100%', '100%')};
   ${flex('center', 'end')};
+
+  /* next/image renders a bare <img>; with REAL intrinsic dims it preserves the
+     figure's aspect, fitting within the box and bottom-centered by the flex. */
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
 `;
 
 const Image = styled.img`
