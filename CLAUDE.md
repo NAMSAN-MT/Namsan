@@ -50,7 +50,9 @@ Next.js 내장 `i18n` config 키는 사용하지 않는다 (`output: 'export'`�
 
 시크릿은 레거시로 `GATSBY_FIREBASE_*` 이름을 유지한다. 워크플로가 빌드 시 `NEXT_PUBLIC_FIREBASE_*`로 매핑한다. GitHub 시크릿 이름을 변경하지 말 것.
 
-**Git 토폴로지:** `origin` = `eelephants/Namsan`(포크, push 대상), `upstream` = `NAMSAN-MT/Namsan`(원본, PR 타겟). `gh pr`는 `--repo NAMSAN-MT/Namsan --base develop --head eelephants:<branch>` 형식으로 명시할 것(미지정 시 포크 컨텍스트를 봐서 "No commits between" 오류). 워크플로는 `pull_request`가 아니라 **push**(`develop`→preview, `master`→live)에서 트리거되므로 PR 자체엔 체크가 안 붙는다.
+**Git 토폴로지:** `origin` = `eelephants/Namsan`(포크, push 대상), `upstream` = `NAMSAN-MT/Namsan`(원본, PR 타겟). `gh pr`는 `--repo NAMSAN-MT/Namsan --base develop --head eelephants:<branch>` 형식으로 명시할 것(미지정 시 포크 컨텍스트를 봐서 "No commits between" 오류). 워크플로는 `pull_request`가 아니라 **push**에서 트리거된다 → 머지: develop→**preview**, master→**live**. PR 자체엔 체크가 안 붙는다.
+
+**배포 채널 매핑 (3 워크플로):** `firebase-hosting-pull-request.yml`(push develop→preview), `firebase-hosting-merge.yml`(push master→live), `firebase-hosting-webhook.yml`(백오피스 배포 버튼=`repository_dispatch:TRIGGER_DEPLOYMENT`→live). **content webhook은 운영 발행용이므로 checkout에 `ref: master`를 박아 항상 master를 빌드한다** — 안 박으면 기본 브랜치(develop)를 빌드해 미완료 develop이 운영에 새어 나간다(실제 사고 이력). `repository_dispatch`는 워크플로 정의는 기본 브랜치(develop)에서 읽고 코드만 `ref`로 빌드하므로, develop webhook의 빌드 스택과 master 코드 스택이 일치해야 한다.
 
 **Node 20 필수.** `.nvmrc` = `20`. `firebase-tools@latest`(v15)가 Node 18을 드롭(>=20 요구)하므로, CI deploy가 `.nvmrc`로 Node 18을 깔면 실패한다. 18로 내리지 말 것. (로컬 빌드는 `.env.local` 키, CI는 GitHub Secrets — "로컬 빌드 성공 ≠ CI 성공".)
 

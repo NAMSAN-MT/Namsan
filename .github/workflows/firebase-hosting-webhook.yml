@@ -9,7 +9,13 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
+      # 백오피스 배포 버튼(repository_dispatch)은 운영(live) 발행용 → 기본 브랜치(develop)가
+      # 아니라 항상 master를 빌드한다. 주의: repository_dispatch는 워크플로 정의를 기본
+      # 브랜치에서 읽으므로, 이 pnpm 빌드는 master도 Next로 승급된 뒤에만 성공한다
+      # (master가 아직 Gatsby면 빌드 실패 = 운영에 잘못 배포되는 것보다 안전한 실패).
       - uses: actions/checkout@v4
+        with:
+          ref: master
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
