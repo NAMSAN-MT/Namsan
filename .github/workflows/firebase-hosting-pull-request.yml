@@ -45,6 +45,14 @@ jobs:
           GATSBY_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.GATSBY_FIREBASE_MESSAGING_SENDER_ID }}
           GATSBY_FIREBASE_APP_ID: ${{ secrets.GATSBY_FIREBASE_APP_ID }}
           GATSBY_FIREBASE_MEASUREMENT_ID: ${{ secrets.GATSBY_FIREBASE_MEASUREMENT_ID }}
+      # 배포 출처 추적용 — UI 비노출 /build-info.json. commit은 실제 빌드된 커밋(git HEAD).
+      - name: Stamp build-info
+        run: |
+          mkdir -p public
+          printf '{"branch":"%s","commit":"%s","channel":"%s","event":"%s","runId":"%s","builtAt":"%s"}\n' \
+            "develop" "$(git rev-parse HEAD)" "preview" "${{ github.event_name }}" "${{ github.run_id }}" "$(date -u +%FT%TZ)" \
+            > public/build-info.json
+          cat public/build-info.json
       - run: pnpm install --frozen-lockfile && pnpm build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

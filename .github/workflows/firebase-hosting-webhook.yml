@@ -52,6 +52,15 @@ jobs:
           GATSBY_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.GATSBY_FIREBASE_MESSAGING_SENDER_ID }}
           GATSBY_FIREBASE_APP_ID: ${{ secrets.GATSBY_FIREBASE_APP_ID }}
           GATSBY_FIREBASE_MEASUREMENT_ID: ${{ secrets.GATSBY_FIREBASE_MEASUREMENT_ID }}
+      # 배포 버튼(repository_dispatch)은 ref:master를 빌드 — github.sha(=default branch)가
+      # 아니라 git HEAD(실제 체크아웃된 master 커밋)를 찍어야 정확. UI 비노출 /build-info.json.
+      - name: Stamp build-info
+        run: |
+          mkdir -p public
+          printf '{"branch":"%s","commit":"%s","channel":"%s","event":"%s","runId":"%s","builtAt":"%s"}\n' \
+            "master" "$(git rev-parse HEAD)" "live" "${{ github.event_name }}" "${{ github.run_id }}" "$(date -u +%FT%TZ)" \
+            > public/build-info.json
+          cat public/build-info.json
       - run: pnpm install --frozen-lockfile && pnpm build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
