@@ -28,6 +28,8 @@ firebase deploy --only hosting   # 수동 배포 (절대 bare deploy 금지)
 
 **firebase-admin 금지.** 빌드 타임 데이터는 **클라이언트 Firebase SDK**(브라우저와 동일한 `NEXT_PUBLIC_FIREBASE_*` 설정)로 읽는다. Firestore 컬렉션은 public read. `src/server/buildData.ts`는 `getStaticProps`/`getStaticPaths`에서만 import한다.
 
+**서비스 계정 키 커밋 금지.** `firebase-key.json` 등 서비스 계정 private key를 **절대 커밋하지 말 것**(`.gitignore`에 등재됨). 과거 레거시 Gatsby가 admin 키(`firebase-key.json`)를 공개 레포에 커밋 → 자동 폐기되어 빌드가 `UNAUTHENTICATED`로 중단된 사고가 있었다. 레거시 Gatsby 배포(`develop`/`master` 워크플로)는 GitHub Secret **`FIREBASE_ADMIN_KEY_B64`**(base64)에서 빌드 시 `firebase-key.json`을 생성해 주입한다. Next는 admin 키가 불필요(위 firebase-admin 금지).
+
 **Algolia 금지.** News 검색은 빌드 타임 Fuse.js 인덱스로 정적 props에 포함된다. Algolia 의존성이나 Cloud Functions를 추가하지 말 것. (functions/ 디렉터리는 제거됨)
 
 **정적 export 동적 라우트에서 "쿼리만 있는 href" 금지.** `output: 'export'` + `/[locale]/...` 동적 라우트에서 `<Link href="?page=2">`처럼 경로 없이 쿼리만 넘기면, 클릭 시 클라이언트 라우터가 `[locale]` 미치환 상태로 `/_next/data/<id>/[locale]/...json`을 요청 → 404 → "Failed to load static props" → 리터럴 `[locale]` URL로 하드 내비게이션되어 깨진다. 같은 페이지 내 쿼리 이동(페이지네이션/탭/필터)은 **locale이 치환된 구체 경로**(`/${locale}/news/?page=2`) + **`shallow: true`** + `<Link prefetch={false}>` 조합을 쓸 것. `router.push`의 base 경로는 `router.asPath`(치환됨)에서 뽑고 `router.pathname`(`/[locale]/...` 템플릿)은 쓰지 말 것. **dev 서버는 getStaticProps 데이터를 동적 제공해 이 버그가 재현 안 되니, 반드시 `pnpm build` + `pnpm serve`(정적 산출물)로 검증.**
