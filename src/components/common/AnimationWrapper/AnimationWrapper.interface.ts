@@ -8,4 +8,4 @@ interface IAnimationWrapperProps {
   threshold: number;
 }
 
-export { IAnimationWrapperProps, TInitial, TVariantName };
+export type { IAnimationWrapperProps, TInitial, TVariantName };

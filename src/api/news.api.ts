@@ -1,9 +1,7 @@
-import { News, NewsMin } from '@Interface/api.interface';
-import { EndPointType, NewsType, TQuery } from '@Type/api.type';
+import { IMember, News } from '@Interface/api.interface';
+import { EndPointType, TQuery } from '@Type/api.type';
 import { documentId } from 'firebase/firestore';
-import { isEmpty } from 'lodash';
 import { getTimestampToDate } from '../utils/date';
-import { index } from './algolia';
 import { getData, GetDataListQuery, getFileFromStorage } from './index.api';
 
 export const getMainNewsList = async (limit: number) => {
@@ -23,71 +21,6 @@ export const getMainNewsList = async (limit: number) => {
     ...news,
     dateYearMonth: getTimestampToDate(news.date).fullDate,
   }));
-};
-
-interface INewSearchListRequest {
-  newsType: NewsType;
-  searchValue?: string;
-  page?: number;
-}
-export const getNewsSearchList = (param: INewSearchListRequest) => {
-  const { searchValue = '', page } = param;
-  const newsTypeFilter =
-    param.newsType !== 'all' ? { filters: `newsType:${param.newsType}` } : {};
-
-  return index
-    .search(searchValue, {
-      ...newsTypeFilter,
-      page,
-      hitsPerPage: 9,
-    })
-    .then(async algoliaResult => {
-      if (isEmpty(algoliaResult.hits)) {
-        return { resultList: [] };
-      }
-
-      const ids = algoliaResult.hits.map(
-        (hit: any) => hit.documentId as string,
-      );
-      const newDataList = await getNewsIdDataList(ids);
-      const resultList: NewsMin[] = newDataList
-        .sort((a, b) => b.order - a.order)
-        .map(
-          (news, index) =>
-            ({
-              title: news.title,
-              summary: news.summary,
-              agency: news.agency,
-              newsType: news.newsType,
-              documentId: ids[index],
-              dateYearMonth: getTimestampToDate(news.date).fullDate,
-              order: news.order,
-            } as NewsMin),
-        );
-
-      return { resultList, algoliaResult };
-    })
-    .catch(err => {
-      console.error('## search error:', err);
-      return { resultList: [], algoliaResult: undefined };
-    });
-};
-
-export const getNewsIdDataList = async (ids: string[]) => {
-  const endPoint: EndPointType = 'news';
-  const queries: TQuery[] = [
-    {
-      queryType: 'where',
-      fieldPath: documentId(),
-      opStr: 'in',
-      value: ids,
-    },
-  ];
-
-  return await GetDataListQuery<News>({
-    endPoint,
-    queries,
-  });
 };
 
 export const getNewsData = async (_documentId: string) => {

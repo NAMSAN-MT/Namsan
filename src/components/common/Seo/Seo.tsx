@@ -1,5 +1,6 @@
-import { useSiteMetadata } from '@Hooks/useSiteMetadata';
+import Head from 'next/head';
 import React from 'react';
+import { siteMetadata } from '@Config/siteMetadata';
 import { ISeoProps } from './Seo.interface';
 
 const SEO = (props: ISeoProps) => {
@@ -13,7 +14,7 @@ const SEO = (props: ISeoProps) => {
     favicon,
     siteUrl,
     ogImage,
-  } = useSiteMetadata();
+  } = siteMetadata;
 
   const seo = {
     title: props.title ?? defaultTitle,
@@ -23,12 +24,14 @@ const SEO = (props: ISeoProps) => {
     ogUrl: props.ogUrl ?? ogUrl,
     keywords: props.keywords ?? defaultKeywords,
     favicon: `${siteUrl}${favicon}`,
-    ogImage: `${siteUrl}${ogImage}`,
+    // Per-page ogImage (e.g. a news article's Storage URL) is an absolute URL
+    // used as-is; the siteMetadata default is a relative path under siteUrl.
+    ogImage: props.ogImage ?? `${siteUrl}${ogImage}`,
     siteUrl: props.siteUrl ?? siteUrl,
   };
 
   return (
-    <>
+    <Head>
       <title>{seo.title}</title>
       <meta httpEquiv="X-UA-Compatible" content="IE=Edge; chrome=1" />
       <meta httpEquiv="subject" content="website" />
@@ -56,7 +59,7 @@ const SEO = (props: ISeoProps) => {
       <meta name="keywords" content={seo.keywords} />
       <link rel="icon" href={seo.favicon} />
       {props.children}
-    </>
+    </Head>
   );
 };
 

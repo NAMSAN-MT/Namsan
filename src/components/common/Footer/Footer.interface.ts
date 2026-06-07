@@ -1,5 +1,5 @@
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-interface IFooterProps extends WrappedComponentProps {}
+interface IFooterProps extends WithIntlProps {}
 
-export { IFooterProps };
+export type { IFooterProps };

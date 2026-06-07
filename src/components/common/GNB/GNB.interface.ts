@@ -1,5 +1,5 @@
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
 import { MouseEventHandler } from 'react';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
 type TUrl =
   | 'main'
@@ -11,7 +11,7 @@ type TUrl =
   | 'newsDetail'
   | 'contact';
 
-interface IGNBProps extends WrappedComponentProps {
+interface IGNBProps extends WithIntlProps {
   isTransparent?: boolean;
   isMobile?: boolean;
 }
@@ -22,4 +22,4 @@ interface IMobileMenuButtonProps {
   isMobile?: boolean;
 }
 
-export { TUrl, IGNBProps, IMobileMenuButtonProps };
+export type { TUrl, IGNBProps, IMobileMenuButtonProps };

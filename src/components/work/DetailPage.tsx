@@ -1,11 +1,11 @@
+import AppImage from '@Components/common/AppImage';
 import BaseButton from '@Components/common/BaseButton';
 import { BoxDivider } from '@Components/common/List/List.style';
 import LottieWrapper from '@Components/common/LottieWrapper/LottieWrapper';
 import MemberItem from '@Components/members/MemberItem';
-import { PageContextProps } from '@Pages/work/[id]';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
-import { injectIntl } from 'gatsby-plugin-intl';
-import React, { MouseEvent, useState } from 'react';
+import { withTranslations, WithIntlProps } from '@Hocs/withTranslations';
+import { RemoteImage } from '@Interface/image.interface';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import NavigationDown from '../../assets/lottie/navigation_down.json';
 import NavigationUp from '../../assets/lottie/navigation_up.json';
 import { CategoryDescription } from './work.interface';
@@ -26,19 +26,44 @@ import {
   Title,
 } from './work.styled';
 
-export interface Props {
+export interface MiniMember {
+  id: string;
+  email: string;
+  name: string;
+  position: string;
+  order: string;
+  image: RemoteImage;
+  bgImage: RemoteImage;
+  businessFields: string[];
+}
+
+export interface Props extends WithIntlProps {
+  id: string;
   language: 'ko' | 'en';
   subId: number;
-  backgroundImage?: IGatsbyImageData;
+  mainMemberData: MiniMember[];
+  subMemberData: MiniMember[];
+  workInfo: CategoryDescription[];
+  backgroundImage?: RemoteImage;
 }
-const DetailPage = (
-  props: Omit<PageContextProps, 'backgroundImage'> & Props,
-) => {
+const DetailPage = (props: Props) => {
   const { mainMemberData, subMemberData, workInfo, backgroundImage, intl } =
     props;
   const [category, setCategory] = useState<CategoryDescription[]>(workInfo);
   const [isShowMore, setIsShowMore] = useState(false);
   const subIdPrefix = props.id?.replace('C', 'S');
+
+  // Deep-link: open the hash-anchored sub-section (e.g. #S0201 -> index 1) AFTER
+  // mount. Doing it client-only keeps the initial render (all closed) identical
+  // to the server's, avoiding the hydration mismatch that reading the hash during
+  // render caused.
+  useEffect(() => {
+    const idx = Number(window.location.hash.slice(-2));
+    if (Number.isNaN(idx) || idx <= 0) return;
+    setCategory(curr =>
+      curr.map((c, i) => (i === idx ? { ...c, isOpen: true } : c)),
+    );
+  }, []);
 
   const onClickShowMore = () => {
     setIsShowMore(true);
@@ -69,7 +94,12 @@ const DetailPage = (
                 <ImageWrapper>
                   <ImageContainer>
                     {backgroundImage && (
-                      <GatsbyImage image={backgroundImage} alt="page-image" />
+                      <AppImage
+                        src={backgroundImage.src}
+                        width={backgroundImage.width}
+                        height={backgroundImage.height}
+                        alt="page-image"
+                      />
                     )}
                   </ImageContainer>
                 </ImageWrapper>
@@ -117,7 +147,7 @@ const DetailPage = (
                   key={member.id}
                   {...member}
                   businessFields={[]}
-                  name={member.name.toUpperCase()}
+                  name={member.name?.toUpperCase() ?? ''}
                   order={`${member.order}`}
                 />
               ),
@@ -147,7 +177,7 @@ const DetailPage = (
                         key={member.id}
                         {...member}
                         businessFields={[]}
-                        name={member.name.toUpperCase()}
+                        name={member.name?.toUpperCase() ?? ''}
                         order={`${member.order}`}
                       />
                     ),
@@ -161,4 +191,4 @@ const DetailPage = (
   );
 };
 
-export default injectIntl(DetailPage);
+export default withTranslations(DetailPage);

@@ -1,29 +1,30 @@
-import { useLocation } from '@reach/router';
-import { useIntl } from 'gatsby-plugin-intl';
+import { useRouter } from 'next/router';
+import { useLocale } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
-import { changeLocale } from 'gatsby-plugin-intl';
 import { getCurrentMenu } from '@Components/members/MembersWrapper/MembersWarpper.helper';
 
 const useGNB = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const intl = useIntl();
+  const router = useRouter();
+  const locale = useLocale();
   const location = useMemo(() => getCurrentMenu(), []);
-  const path = useLocation();
-  const getIsIncludes = (alt: string) => path.pathname.split('/').includes(alt);
+  // normalize trailing slash so comparisons match `/${locale}${href}`
+  const pathname = router.asPath.split('?')[0].replace(/\/$/, '') || '/';
+  const path = { pathname };
+  const getIsIncludes = (alt: string) => pathname.split('/').includes(alt);
 
   const handleChangeLanguage = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const { locale } = intl;
     const { lang } = (e.target as HTMLElement).dataset as { lang: 'ko' | 'en' };
 
     if (!lang) return;
     if (lang === locale) return;
 
-    if (path.pathname === '/en' || path.pathname === '/ko') {
-      changeLocale(lang, '/');
+    if (pathname === '/en' || pathname === '/ko') {
+      router.push(`/${lang}/`);
       return;
     }
-    changeLocale(lang);
+    router.push(pathname.replace(/^\/(en|ko)/, `/${lang}`));
   };
 
   const handleMenuButtonClick = () => {
@@ -31,7 +32,6 @@ const useGNB = () => {
   };
 
   const makeWidthByLanguage = (pathName: string) => {
-    const { locale } = intl;
     if (locale === 'ko') {
       return pathName !== `/${locale}/members` ? 54 : 41;
     }
@@ -58,13 +58,12 @@ const useGNB = () => {
       window.document.body.style.overflow = 'hidden';
       return;
     }
-
     window.document.body.style.overflow = 'auto';
   }, [isMobileMenuOpen]);
 
   return {
     handleChangeLanguage,
-    language: intl.locale,
+    language: locale,
     handleMenuButtonClick,
     isMobileMenuOpen,
     location,

@@ -2,8 +2,7 @@ import AnimationWrapper from '@Components/common/AnimationWrapper';
 import BaseButton from '@Components/common/BaseButton';
 import Loading from '@Components/common/Loading';
 import Card from '@Components/news/Card/Card';
-import useMain from '@Components/news/Main/Main.hook';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import React from 'react';
 import { WithFixedWrapper } from '../FirstSection/FirstSection.style';
 import useForthSection from './ForthSection.hook';
@@ -11,8 +10,7 @@ import { IForthSectionProps } from './ForthSection.interface';
 import * as S from './ForthSection.style';
 
 const ForthSection = (props: IForthSectionProps) => {
-  const { handleNavigateTo } = useForthSection();
-  const { newsList, onCallMainNewsList } = useMain();
+  const { handleNavigateTo, newsList, onCallMainNewsList } = useForthSection();
 
   const threshold = props.isMobile ? 0.2 : props.isTablet ? 0 : 0.2;
   return (
@@ -43,7 +41,7 @@ const ForthSection = (props: IForthSectionProps) => {
                 <Card
                   isLoading={false}
                   type="main"
-                  newsList={newsList.slice(0, 3)}
+                  newsList={(newsList ?? []).slice(0, 3)}
                   onCallMainNewsList={onCallMainNewsList}
                 />
               </React.Suspense>
@@ -67,4 +65,4 @@ const ForthSection = (props: IForthSectionProps) => {
   );
 };
 
-export default injectIntl(ForthSection);
+export default withTranslations(ForthSection);

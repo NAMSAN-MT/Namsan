@@ -24,9 +24,13 @@ const ImageWrapper = styled.div`
 
   .bg {
     ${size('100%', '100%')};
+    overflow: hidden;
 
-    & > div {
+    /* next/image renders a bare <img> (no gatsby wrapper div). Fill + cover. */
+    img {
+      width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -36,6 +40,13 @@ const ImageWrapper = styled.div`
     left: 50%;
     transform: translateX(-50%);
     top: 0;
+
+    /* fixed width, height follows the figure's REAL aspect ratio (no squish). */
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
     ${mediaQuery('tablet1024', `${size(undefined, '325px')}`)}
     ${mediaQuery(

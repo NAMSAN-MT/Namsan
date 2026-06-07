@@ -12,4 +12,4 @@ interface IInputProps {
   handleSubmit?: FormEventHandler;
 }
 
-export { IInputProps };
+export type { IInputProps };

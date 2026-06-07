@@ -1,9 +1,20 @@
 import Loading from '@Components/common/Loading';
+import { useLocale } from 'next-intl';
 import React, { useEffect } from 'react';
 import * as S from '../Card/Card.style';
 import { CardProps } from './Card.interface';
 
 const Card = (props: CardProps) => {
+  const locale = useLocale();
+
+  // Hooks must run unconditionally and before any early return (rules-of-hooks).
+  useEffect(() => {
+    if (props.type === 'main') {
+      props.onCallMainNewsList?.(3);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (props.isLoading) {
     return (
       <div className="loading_cards">
@@ -11,18 +22,13 @@ const Card = (props: CardProps) => {
       </div>
     );
   }
-  if (props.type === 'main') {
-    useEffect(() => {
-      props.onCallMainNewsList?.(3);
-    }, []);
-  }
 
   return (
     <S.CardBox className="card-box">
       {props.newsList?.map((item, i) => (
         <S.Card
           key={i}
-          href={`/news/${item.documentId}`}
+          href={`/${locale}/news/${item.documentId}`}
           className="card-wrapper"
         >
           <S.LabelBox type={item.newsType} className="card-label">

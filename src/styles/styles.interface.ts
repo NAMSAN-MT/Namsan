@@ -5,4 +5,4 @@ interface IFontStyle {
   fontColor?: string;
 }
 
-export { IFontStyle };
+export type { IFontStyle };

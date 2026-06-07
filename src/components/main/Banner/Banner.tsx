@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Banner.style';
 import { IBannerProps } from './Banner.interface';
 import BaseButton from '@Components/common/BaseButton';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 
 const Banner = (props: IBannerProps) => {
   return (
@@ -44,4 +44,4 @@ const Banner = (props: IBannerProps) => {
   );
 };
 
-export default injectIntl(Banner);
+export default withTranslations(Banner);

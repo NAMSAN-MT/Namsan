@@ -2,4 +2,4 @@ interface ContactWrapperProps {
   children: React.ReactNode;
 }
 
-export { ContactWrapperProps };
+export type { ContactWrapperProps };

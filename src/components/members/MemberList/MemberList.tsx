@@ -1,14 +1,19 @@
 import { IMember } from '@Interface/api.interface';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { TLanguage } from '../../../type/intl.type';
 import MemberItem from '../MemberItem';
-import { getSearchParams } from '../MembersWrapper/MembersWarpper.helper';
 import { IMemberListProps } from './MemberList.interface';
 import * as S from './MemberList.style';
 
 const MemberList = ({ intl, members }: IMemberListProps) => {
-  const { name, position, businessField } = getSearchParams();
+  // Read filters from the URL query so the list re-filters under shallow
+  // routing (router.query is reactive) and we never read `document` in render.
+  const router = useRouter();
+  const name = (router.query.name as string) || '';
+  const position = (router.query.position as string) || '';
+  const businessField = (router.query.businessField as string) || '';
 
   const [memberList, setMemberList] = useState<IMember[]>(members);
 
@@ -23,7 +28,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
 
       const newMembers = members.filter(member => {
         const paramName = params.name?.toUpperCase();
-        const memberName = member.name.toUpperCase();
+        const memberName = member.name?.toUpperCase() ?? '';
 
         return (
           (!paramName || memberName.includes(paramName)) &&
@@ -50,7 +55,7 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
       {memberList.map(member => (
         <MemberItem
           key={member.id}
-          name={member.name.toUpperCase()}
+          name={member.name?.toUpperCase() ?? ''}
           position={member.position}
           businessFields={member.businessFields}
           image={member.image}
@@ -62,4 +67,4 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
   );
 };
 
-export default injectIntl(MemberList);
+export default withTranslations(MemberList);
