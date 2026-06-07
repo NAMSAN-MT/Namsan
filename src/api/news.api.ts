@@ -63,8 +63,11 @@ export const getNewsMember = async (_documentId: string) => {
       const results = await Promise.all(
         data.memberId.map(async memberId => {
           const memberSnapshot = await memberId.get();
-          const { imagePath, name, position } =
-            await getData<IMember>(memberSnapshot);
+          const { imagePath, name, position } = await getData<{
+            imagePath: string;
+            name: string;
+            position: string;
+          }>(memberSnapshot);
           const profileImage = await getFileFromStorage(imagePath);
           return {
             profileImage,

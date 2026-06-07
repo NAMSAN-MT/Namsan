@@ -101,6 +101,8 @@ const NewsDetail = (props: Props) => {
           </article>
         )}
         <S.Content>
+          {/* remark-breaks 플러그인 타입이 react-markdown@6의 Pluggable과 안 맞음
+              (unified 타입 버전 불일치) — 동작은 정상, 타입만 우회. */}
           <ReactMarkdown remarkPlugins={[remarkBreaks as any]}>
             {content}
           </ReactMarkdown>
