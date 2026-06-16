@@ -133,10 +133,11 @@ export const ProfileAreaWrapper = styled.div`
   ${flex()}
 `;
 
-export const ProfileArea = styled.div<{ last: boolean }>`
+export const ProfileArea = styled.div<{ last: boolean; clickable?: boolean }>`
   ${flex()}
   ${flexDirection()}
   ${size('200px', '132px')}
+  cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
   margin-right: ${({ last }) => (last ? '0px' : '50px')};
   @media (max-width: ${ScreenBreakPoints['mobile']}) {
     margin-right: ${({ last }) => (last ? '0px' : '15px')};

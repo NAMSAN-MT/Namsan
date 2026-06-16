@@ -46,6 +46,10 @@ const NewsDetail = (props: Props) => {
     const _id = event.currentTarget.dataset.id as 'prev' | 'next';
     router.push(`/${props.intl.locale}/news/${_id}`);
   };
+  const handleClickProfile = (order: string) => {
+    if (!order) return;
+    router.push(`/${props.intl.locale}/member/${order}`);
+  };
 
   const isMediaNews = newsType === 'media';
   const topTxt = isMediaNews ? agency : '최근 업무사례';
@@ -115,6 +119,8 @@ const NewsDetail = (props: Props) => {
                   <S.ProfileArea
                     key={index}
                     last={index === profile.length - 1}
+                    onClick={() => handleClickProfile(item.order)}
+                    clickable={!!item.order}
                   >
                     <img
                       alt={item.name}

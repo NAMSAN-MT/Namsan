@@ -1,13 +1,11 @@
 import Layout from '@Components/common/Layout/Layout';
-import Loading from '@Components/common/Loading';
 import SEO from '@Components/common/Seo/Seo';
+import NewsDetail from '@Components/news/NewsDetail/NewsDetail';
 import NewsWrapper from '@Components/news/NewsWrapper';
 import { News } from '@Interface/api.interface';
 import { locales } from '@I18n/config';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import React, { lazy, Suspense } from 'react';
-
-const NewsDetail = lazy(() => import('@Components/news/NewsDetail/NewsDetail'));
+import React from 'react';
 
 interface Props {
   news: News;
@@ -31,9 +29,7 @@ const NewsDetailPage: React.FC<Props> = ({ news }) => {
         ogImage={news?.newsImageData?.src || undefined}
       />
       <NewsWrapper outerPadding="100px 90px 160px" innerWidth="996px">
-        <Suspense fallback={<Loading height="500px" />}>
-          <NewsDetail {...news} />
-        </Suspense>
+        <NewsDetail {...news} />
       </NewsWrapper>
     </Layout>
   );
