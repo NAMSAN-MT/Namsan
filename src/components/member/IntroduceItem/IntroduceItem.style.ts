@@ -50,7 +50,12 @@ const IntroduceItemWrapper = styled.div`
 
       .time {
         color: ${props => props.theme.color.textBlackMedium};
-        min-width: 120px;
+        min-width: 160px;
+        padding-right: 16px;
+        box-sizing: border-box;
+        flex-shrink: 0;
+
+        ${mediaQuery('mobile', `min-width: auto; padding-right: 0;`)};
       }
     }
   }
