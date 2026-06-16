@@ -50,7 +50,7 @@ const IntroduceItemWrapper = styled.div`
 
       .time {
         color: ${props => props.theme.color.textBlackMedium};
-        min-width: 160px;
+        min-width: 140px;
         padding-right: 16px;
         box-sizing: border-box;
         flex-shrink: 0;
