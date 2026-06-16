@@ -6,4 +6,5 @@ export interface NewsProfile {
   profileImage: string;
   name: string;
   position: string;
+  order: string;
 }

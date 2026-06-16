@@ -4,12 +4,19 @@ import SEO from '@Components/common/Seo/Seo';
 import FifthSection from '@Components/main/FifthSection';
 import SecondSection from '@Components/main/SecondSection';
 import useResize from '@Hooks/useResize';
+import dynamic from 'next/dynamic';
 import * as React from 'react';
 import { localePaths, localeProps } from '@I18n/getStaticProps';
 
-const FirstSection = React.lazy(() => import('@Components/main/FirstSection'));
-const ThirdSection = React.lazy(() => import('@Components/main/ThirdSection'));
-const ForthSection = React.lazy(() => import('@Components/main/ForthSection'));
+const FirstSection = dynamic(() => import('@Components/main/FirstSection'), {
+  loading: () => <Loading height="500px" />,
+});
+const ThirdSection = dynamic(() => import('@Components/main/ThirdSection'), {
+  loading: () => <Loading height="500px" />,
+});
+const ForthSection = dynamic(() => import('@Components/main/ForthSection'), {
+  loading: () => <Loading height="500px" />,
+});
 
 const Main = () => {
   const { isMobile, isTablet, isDesktop } = useResize();
@@ -21,20 +28,14 @@ const Main = () => {
     <>
       <SEO />
       <Layout route="main" isMobile={isMobile} isTransparent={isTransparent}>
-        <React.Suspense fallback={<Loading height="500px" />}>
-          <FirstSection
-            isMobile={isMobile}
-            isDesktop={isDesktop}
-            eventBus={eventBus}
-          />
-        </React.Suspense>
+        <FirstSection
+          isMobile={isMobile}
+          isDesktop={isDesktop}
+          eventBus={eventBus}
+        />
         <SecondSection isMobile={isMobile} />
-        <React.Suspense fallback={<Loading height="500px" />}>
-          <ThirdSection isMobile={isMobile} isTablet={isTablet} />
-        </React.Suspense>
-        <React.Suspense fallback={<Loading height="500px" />}>
-          <ForthSection isMobile={isMobile} isTablet={isTablet} />
-        </React.Suspense>
+        <ThirdSection isMobile={isMobile} isTablet={isTablet} />
+        <ForthSection isMobile={isMobile} isTablet={isTablet} />
         <FifthSection isMobile={isMobile} />
       </Layout>
     </>
