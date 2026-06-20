@@ -48,6 +48,7 @@ export const TabBox = styled.ul`
 export const Tab = styled.li<{ isActive?: boolean }>`
   ${flex()}
 
+  white-space: nowrap;
   letter-spacing: -0.4px;
 
   font-weight: ${FontWeight.bold};
