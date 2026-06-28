@@ -11,7 +11,7 @@ import styled from 'styled-components';
 export const TabSearchBox = styled.div`
   ${flex('space-between', 'center')}
   ${size('64px', 'auto')}
-  gap: 40px;
+  gap: 20px;
   margin: 50px 0px 60px;
 
   ${mediaQuery('tablet1024', `${size('64px', 'auto')} margin: 40px 0px;`)};
@@ -55,7 +55,7 @@ export const Tab = styled.li<{ isActive?: boolean }>`
   ${font('title22', 'bold')}
 
   a {
-    padding: 6px 20px;
+    padding: 8px 20px;
     border-radius: 50px;
     background: ${({ isActive, theme }) =>
       isActive ? theme.color.grey100 : 'transparent'};
