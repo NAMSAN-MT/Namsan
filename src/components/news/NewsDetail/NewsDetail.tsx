@@ -28,13 +28,17 @@ const NewsDetail = (props: Props) => {
 
   const router = useRouter();
   const dateYearMonthDate = convertDateStr(date).fullDate;
-  const [profile, setProfile] = useState<NewsProfile[]>([]);
-  const [isProfileLoading, setIsProfileLoading] = useState(true);
+  const [profile, setProfile] = useState<NewsProfile[] | []>([]);
+  const [profileLoaded, setProfileLoaded] = useState(false);
 
   useEffect(() => {
     getNewsMember(id)
-      .then(res => setProfile(res ?? []))
-      .finally(() => setIsProfileLoading(false));
+      .then(res => {
+        setProfile(res ?? []);
+      })
+      .finally(() => {
+        setProfileLoaded(true);
+      });
   }, []);
 
   const onClickOiriginal = () => {
@@ -139,9 +143,11 @@ const NewsDetail = (props: Props) => {
               })}
             </S.ProfileAreaWrapper>
           ) : (
-            <BaseButton className={'support'} onClick={onClickOiriginal}>
-              기사 원문보기
-            </BaseButton>
+            (isMediaNews || profileLoaded) && (
+              <BaseButton className={'support'} onClick={onClickOiriginal}>
+                기사 원문보기
+              </BaseButton>
+            )
           )}
         </article>
       </S.ContentConatiner>
