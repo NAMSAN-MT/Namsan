@@ -60,7 +60,7 @@ const NewsDetail = (props: Props) => {
   const topTxt = isMediaNews ? agency : '최근 업무사례';
 
   const isNewsImageData = !isEmpty(newsImageData);
-  const isProfile = !isEmpty(profile) && profile.length > 0;
+  const isProfile = !isEmpty(profile);
   const isPrevContent = !isEmpty(prevNews);
   const isNextContent = !isEmpty(nextNews);
 
@@ -117,7 +117,9 @@ const NewsDetail = (props: Props) => {
           </ReactMarkdown>
         </S.Content>
         <article className="bottom">
-          {isProfile ? (
+          {/* 프로필 로딩이 끝나기 전엔 아무것도 노출하지 않아 '기사 원문보기'
+              버튼이 먼저 깜빡이는 현상을 막는다 */}
+          {isProfileLoading ? null : isProfile ? (
             <S.ProfileAreaWrapper>
               {profile.map((item, index) => {
                 return (
