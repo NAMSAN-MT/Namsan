@@ -2,4 +2,4 @@ interface IFifthSectionProps {
   isMobile: boolean;
 }
 
-export { IFifthSectionProps };
+export type { IFifthSectionProps };

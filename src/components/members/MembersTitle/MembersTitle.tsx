@@ -1,5 +1,5 @@
 import React from 'react';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import { IMembersTitleProps } from './MembersTitle.interface';
 import * as S from './MembersTitle.style';
 
@@ -11,4 +11,4 @@ const MembersTitle = ({ intl }: IMembersTitleProps) => {
   );
 };
 
-export default injectIntl(MembersTitle);
+export default withTranslations(MembersTitle);

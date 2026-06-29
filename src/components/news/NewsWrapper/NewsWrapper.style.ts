@@ -17,10 +17,9 @@ export const Outer = styled.section<OuterPadding>`
 `;
 
 export const Inner = styled.div<InnerWidth>`
-  width: ${props => props.innerWidth};
+  width: 100%;
+  max-width: ${props => props.innerWidth};
   margin: 0 auto;
-
-  ${mediaQuery('pc1278', `width: 100%;`)}
 `;
 
 export const Title = styled.h1`

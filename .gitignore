@@ -1,13 +1,25 @@
 node_modules/
 .cache/
-public
 src/gatsby-types.d.ts
 .vscode
 
+# dotenv local files
 .env
+.env*.local
 
 firebase-key.json
 
 .firebase
 
 mise.toml
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# next-image-export-optimizer (build artifacts: generated WebP + download cache)
+public/nextImageExportOptimizer/
+public/images/next-image-export-optimizer-hashes.json
+remoteImagesForOptimization/

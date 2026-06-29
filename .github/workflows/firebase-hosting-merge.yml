@@ -10,19 +10,32 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      - name: Cache Next.js build + optimized images
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+            public/nextImageExportOptimizer
+            public/images/next-image-export-optimizer-hashes.json
+            remoteImagesForOptimization
+          key: ${{ runner.os }}-namsan-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-namsan-build-
       - name: Generate Environment Variables File for Production
         run: |
-          echo "GATSBY_FIREBASE_API_KEY=$GATSBY_FIREBASE_API_KEY" >> .env
-          echo "GATSBY_FIREBASE_AUTH_DOMAIN=$GATSBY_FIREBASE_AUTH_DOMAIN" >> .env
-          echo "GATSBY_FIREBASE_PROJECT_ID=$GATSBY_FIREBASE_PROJECT_ID" >> .env
-          echo "GATSBY_FIREBASE_STORAGE_BUCKET=$GATSBY_FIREBASE_STORAGE_BUCKET" >> .env
-          echo "GATSBY_FIREBASE_MESSAGING_SENDER_ID=$GATSBY_FIREBASE_MESSAGING_SENDER_ID" >> .env
-          echo "GATSBY_FIREBASE_APP_ID=$GATSBY_FIREBASE_APP_ID" >> .env
-          echo "GATSBY_FIREBASE_MEASUREMENT_ID=$GATSBY_FIREBASE_MEASUREMENT_ID" >> .env
-          echo "GATSBY_ALGOLIA_ID=$GATSBY_ALGOLIA_ID" >> .env
-          echo "GATSBY_ALGOLIA_SEARCH_KEY=$GATSBY_ALGOLIA_SEARCH_KEY" >> .env
-          echo "GATSBY_ALGOLIA_INDEX_NAME=$GATSBY_ALGOLIA_INDEX_NAME" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_API_KEY=$GATSBY_FIREBASE_API_KEY" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=$GATSBY_FIREBASE_AUTH_DOMAIN" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_PROJECT_ID=$GATSBY_FIREBASE_PROJECT_ID" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=$GATSBY_FIREBASE_STORAGE_BUCKET" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=$GATSBY_FIREBASE_MESSAGING_SENDER_ID" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_APP_ID=$GATSBY_FIREBASE_APP_ID" >> .env
+          echo "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=$GATSBY_FIREBASE_MEASUREMENT_ID" >> .env
         env:
           GATSBY_FIREBASE_API_KEY: ${{ secrets.GATSBY_FIREBASE_API_KEY }}
           GATSBY_FIREBASE_AUTH_DOMAIN: ${{ secrets.GATSBY_FIREBASE_AUTH_DOMAIN }}
@@ -31,24 +44,15 @@ jobs:
           GATSBY_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.GATSBY_FIREBASE_MESSAGING_SENDER_ID }}
           GATSBY_FIREBASE_APP_ID: ${{ secrets.GATSBY_FIREBASE_APP_ID }}
           GATSBY_FIREBASE_MEASUREMENT_ID: ${{ secrets.GATSBY_FIREBASE_MEASUREMENT_ID }}
-          GATSBY_ALGOLIA_ID: ${{ secrets.GATSBY_ALGOLIA_ID }}
-          GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
-          GATSBY_ALGOLIA_INDEX_NAME: ${{ secrets.GATSBY_ALGOLIA_INDEX_NAME }}
-      # gatsby-source-firestore-easy는 빌드 타임에 firebase-key.json(서비스 계정)으로
-      # Firestore를 읽는다. 커밋됐던 키는 노출되어 폐기됨 → 추적 해제하고 시크릿에서 주입.
-      - name: Write Firebase admin key
-        run: echo "$FIREBASE_ADMIN_KEY_B64" | base64 -d > firebase-key.json
-        env:
-          FIREBASE_ADMIN_KEY_B64: ${{ secrets.FIREBASE_ADMIN_KEY_B64 }}
       # 배포 출처 추적용 — UI 비노출 /build-info.json. commit은 실제 빌드된 커밋(git HEAD).
       - name: Stamp build-info
         run: |
-          mkdir -p static
+          mkdir -p public
           printf '{"branch":"%s","commit":"%s","channel":"%s","event":"%s","runId":"%s","builtAt":"%s"}\n' \
             "master" "$(git rev-parse HEAD)" "live" "${{ github.event_name }}" "${{ github.run_id }}" "$(date -u +%FT%TZ)" \
-            > static/build-info.json
-          cat static/build-info.json
-      - run: yarn && yarn build
+            > public/build-info.json
+          cat public/build-info.json
+      - run: pnpm install --frozen-lockfile && pnpm build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

@@ -1,3 +1,3 @@
 type TLanguage = 'ko' | 'en';
 
-export { TLanguage };
+export type { TLanguage };

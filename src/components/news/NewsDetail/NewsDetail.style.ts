@@ -114,6 +114,13 @@ export const ContentConatiner = styled.div<{ isProfile: boolean }>`
     text-align: center;
     margin-bottom: 48px;
 
+    /* next/image는 width/height 속성으로 비율이 잡히므로, CSS로 width를 줄 땐
+       height: auto를 함께 줘 종횡비를 유지한다(찌그러짐 방지) */
+    img {
+      width: 100%;
+      height: auto;
+    }
+
     ${mediaQuery('tablet1024', `${size('auto', '100%')}margin-bottom: 40px;`)};
   }
 
@@ -123,20 +130,17 @@ export const ContentConatiner = styled.div<{ isProfile: boolean }>`
       padding: ${({ isProfile }) => (isProfile ? '52px' : '40px')} 0px 64px;
     }
   }
-
-  img {
-    width: 100%;
-  }
 `;
 
 export const ProfileAreaWrapper = styled.div`
   ${flex()}
 `;
 
-export const ProfileArea = styled.div<{ last: boolean }>`
+export const ProfileArea = styled.div<{ last: boolean; clickable?: boolean }>`
   ${flex()}
   ${flexDirection()}
   ${size('200px', '132px')}
+  cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
   margin-right: ${({ last }) => (last ? '0px' : '50px')};
   @media (max-width: ${ScreenBreakPoints['mobile']}) {
     margin-right: ${({ last }) => (last ? '0px' : '15px')};

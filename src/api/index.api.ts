@@ -139,7 +139,11 @@ export const getFileFromStorage = async (storagePath: string) => {
     const file = await getDownloadURL(fileRef);
     return file;
   } catch (e) {
-    console.error(e);
+    // Some records reference placeholder bg paths (bg1/bg2/bg3) that don't exist
+    // in Storage; that's expected (callers guard empty src). Only log real errors.
+    if ((e as { code?: string })?.code !== 'storage/object-not-found') {
+      console.error(e);
+    }
     throw e;
   }
 };

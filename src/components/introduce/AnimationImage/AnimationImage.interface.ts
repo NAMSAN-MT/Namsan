@@ -4,4 +4,4 @@ interface AnimationImageProps {
   imageSrc: string;
 }
 
-export { AnimationImageProps };
+export type { AnimationImageProps };

@@ -1,7 +1,5 @@
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
-
-interface IntroduceWrapperProps extends WrappedComponentProps {
+interface IntroduceWrapperProps {
   children: React.ReactNode;
 }
 
-export { IntroduceWrapperProps };
+export type { IntroduceWrapperProps };

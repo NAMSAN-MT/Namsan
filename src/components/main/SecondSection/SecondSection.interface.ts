@@ -1,7 +1,5 @@
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
-
-interface ISecondSectionProps extends WrappedComponentProps {
+interface ISecondSectionProps {
   isMobile: boolean;
 }
 
-export { ISecondSectionProps };
+export type { ISecondSectionProps };

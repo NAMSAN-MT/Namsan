@@ -301,7 +301,9 @@ export const ImageWrapper = styled.div`
 `;
 export const ImageContainer = styled.div`
   overflow: hidden;
-  & > div {
+  /* next/image renders a bare <img> (no gatsby wrapper div); size the img so the
+     banner is a 300px-tall, full-width cover box instead of its intrinsic size. */
+  img {
     ${size('300px', '100%')}
     margin-top: 8px;
     margin-bottom: 74px;

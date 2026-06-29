@@ -4,8 +4,7 @@ import * as S from './FirstSection.style';
 import { IFirstSectionProps } from './FirstSection.interface';
 import { useInView } from 'react-intersection-observer';
 
-import _ from 'lodash';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import { Carousel } from 'react-responsive-carousel';
 
 const FirstSection = (props: IFirstSectionProps) => {
@@ -13,37 +12,15 @@ const FirstSection = (props: IFirstSectionProps) => {
   const [ref, inView] = useInView();
 
   useEffect(() => {
-    if (inView) {
-      props.eventBus(true);
-    } else {
-      props.eventBus(false);
-    }
-  }, [inView, props.isDesktop]);
+    props.eventBus(inView);
+  }, [inView, props.eventBus]);
 
   return (
-    <S.FrirstWrapper ref={ref}>
-      <div
-        style={{
-          width: '100%',
-          height: !props.isMobile ? '760px' : '560px',
-          position: !startSlide ? 'static' : 'absolute',
-          opacity: !startSlide ? 1 : 0,
-          transition: 'opacity 1s ease-in',
-        }}
-      >
-        <S.FrirstWrapper>
-          <img width={props.isMobile ? '100%' : 'auto'} src={intro} />
-        </S.FrirstWrapper>
-      </div>
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          position: startSlide ? 'static' : 'absolute',
-          opacity: startSlide ? 1 : 0,
-          transition: 'opacity 1s ease-in',
-        }}
-      >
+    <S.FirstWrapper ref={ref}>
+      <S.Layer $active={!startSlide}>
+        <S.IntroImg src={intro} alt="intro" />
+      </S.Layer>
+      <S.Layer $active={startSlide}>
         <Carousel
           animationHandler="fade"
           showArrows={false}
@@ -70,15 +47,8 @@ const FirstSection = (props: IFirstSectionProps) => {
             </S.ScaleWrapper>
           ))}
         </Carousel>
-      </div>
-      <S.TextWrapper
-        style={{
-          visibility: startSlide ? 'visible' : 'hidden',
-          position: 'absolute',
-          opacity: startSlide ? 1 : 0,
-          transition: 'opacity 1s ease-in',
-        }}
-      >
+      </S.Layer>
+      <S.TextWrapper $visible={startSlide}>
         {props.isMobile ? (
           <>
             <S.Title>
@@ -100,8 +70,8 @@ const FirstSection = (props: IFirstSectionProps) => {
           </>
         )}
       </S.TextWrapper>
-    </S.FrirstWrapper>
+    </S.FirstWrapper>
   );
 };
 
-export default injectIntl(FirstSection);
+export default withTranslations(FirstSection);

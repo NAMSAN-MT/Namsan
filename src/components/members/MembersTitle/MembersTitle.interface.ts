@@ -1,5 +1,5 @@
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-interface IMembersTitleProps extends WrappedComponentProps {}
+interface IMembersTitleProps extends WithIntlProps {}
 
-export { IMembersTitleProps };
+export type { IMembersTitleProps };

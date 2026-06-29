@@ -1,5 +1,5 @@
 import LogoFooter from '@Images/logo-footer.svg';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import React from 'react';
 import { TermAndConditionLink } from './Footer.const';
 import { IFooterProps } from './Footer.interface';
@@ -10,13 +10,13 @@ const Footer = (props: IFooterProps) => {
     <S.FooterWrapper>
       <S.FirstSection>
         <S.LogoWrapper>
-          <img src={LogoFooter} width="100%" alt="icon" />
+          <img src={LogoFooter as string} width="100%" alt="icon" />
         </S.LogoWrapper>
         <div>
           {TermAndConditionLink.map((link, index) => (
             <S.TermAndConditionLink
               key={link.alt}
-              to={link.herf}
+              href={`/${props.intl.locale}${link.herf}`}
               about={link.alt}
             >
               <span>
@@ -67,4 +67,4 @@ const Footer = (props: IFooterProps) => {
   );
 };
 
-export default injectIntl(Footer);
+export default withTranslations(Footer);

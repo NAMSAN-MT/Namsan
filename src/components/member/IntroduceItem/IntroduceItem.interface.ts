@@ -1,9 +1,9 @@
 import { IMember, IMemberAttribute } from '@Interface/api.interface';
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-interface IntroduceItemProps extends WrappedComponentProps {
+interface IntroduceItemProps extends WithIntlProps {
   titleKey: keyof Pick<IMember, 'educations' | 'careers' | 'papers' | 'awards'>;
   values: IMemberAttribute[];
 }
 
-export { IntroduceItemProps };
+export type { IntroduceItemProps };

@@ -1,10 +1,10 @@
 import { getNewsMember } from '@Api/news.api';
+import AppImage from '@Components/common/AppImage';
 import BaseButton from '@Components/common/BaseButton';
 import LineArrowIcon from '@Components/icons/LineArrowIcon';
-import { navigate } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { injectIntl } from 'gatsby-plugin-intl';
+import { withTranslations } from '@Hocs/withTranslations';
 import { isEmpty } from 'lodash';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
@@ -26,31 +26,37 @@ const NewsDetail = (props: Props) => {
     nextNews,
   } = props;
 
+  const router = useRouter();
   const dateYearMonthDate = convertDateStr(date).fullDate;
-  const [profile, setProfile] = useState<NewsProfile[] | []>([]);
+  const [profile, setProfile] = useState<NewsProfile[]>([]);
+  const [isProfileLoading, setIsProfileLoading] = useState(true);
 
   useEffect(() => {
-    getNewsMember(id).then(res => {
-      setProfile(res ?? []);
-    });
+    getNewsMember(id)
+      .then(res => setProfile(res ?? []))
+      .finally(() => setIsProfileLoading(false));
   }, []);
 
   const onClickOiriginal = () => {
     window.open(originalLink ?? '', '_blank');
   };
   const handleClickList = () => {
-    navigate(`/${props.intl.locale}/news`);
+    router.push(`/${props.intl.locale}/news`);
   };
   const handleMove = (event: React.MouseEvent<HTMLButtonElement>) => {
     const _id = event.currentTarget.dataset.id as 'prev' | 'next';
-    navigate(`/${props.intl.locale}/news/${_id}`);
+    router.push(`/${props.intl.locale}/news/${_id}`);
+  };
+  const handleClickProfile = (order: string) => {
+    if (!order) return;
+    router.push(`/${props.intl.locale}/member/${order}`);
   };
 
   const isMediaNews = newsType === 'media';
   const topTxt = isMediaNews ? agency : '최근 업무사례';
 
   const isNewsImageData = !isEmpty(newsImageData);
-  const isProfile = !isEmpty(profile) && profile.length > 0;
+  const isProfile = !isEmpty(profile);
   const isPrevContent = !isEmpty(prevNews);
   const isNextContent = !isEmpty(nextNews);
 
@@ -60,7 +66,7 @@ const NewsDetail = (props: Props) => {
         <S.TopText newsType={newsType}>{topTxt}</S.TopText>
         <S.TitleArea>
           {isPrevContent ? (
-            <button data-id={prevNews.id} onClick={handleMove}>
+            <button data-id={prevNews?.id} onClick={handleMove}>
               <LineArrowIcon
                 direction="LEFT"
                 weight="LIGHT"
@@ -73,7 +79,7 @@ const NewsDetail = (props: Props) => {
           )}
           <h1>{title}</h1>
           {isNextContent ? (
-            <button data-id={nextNews.id} onClick={handleMove}>
+            <button data-id={nextNews?.id} onClick={handleMove}>
               <LineArrowIcon
                 direction="RIGHT"
                 weight="LIGHT"
@@ -91,22 +97,33 @@ const NewsDetail = (props: Props) => {
       <S.ContentConatiner isProfile={!isEmpty(profile)}>
         {isNewsImageData && (
           <article className="top">
-            <GatsbyImage image={newsImageData} alt={''} />
+            <AppImage
+              src={newsImageData!.src}
+              width={newsImageData!.width}
+              height={newsImageData!.height}
+              alt=""
+            />
           </article>
         )}
         <S.Content>
-          <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+          {/* remark-breaks 플러그인 타입이 react-markdown@6의 Pluggable과 안 맞음
+              (unified 타입 버전 불일치) — 동작은 정상, 타입만 우회. */}
+          <ReactMarkdown remarkPlugins={[remarkBreaks as any]}>
             {content}
           </ReactMarkdown>
         </S.Content>
         <article className="bottom">
-          {isProfile ? (
+          {/* 프로필 로딩이 끝나기 전엔 아무것도 노출하지 않아 '기사 원문보기'
+              버튼이 먼저 깜빡이는 현상을 막는다 */}
+          {isProfileLoading ? null : isProfile ? (
             <S.ProfileAreaWrapper>
               {profile.map((item, index) => {
                 return (
                   <S.ProfileArea
                     key={index}
                     last={index === profile.length - 1}
+                    onClick={() => handleClickProfile(item.order)}
+                    clickable={!!item.order}
                   >
                     <img
                       alt={item.name}
@@ -136,7 +153,7 @@ const NewsDetail = (props: Props) => {
           <div className="prev">
             {isPrevContent && (
               <>
-                <button data-id={prevNews.id} onClick={handleMove}>
+                <button data-id={prevNews?.id} onClick={handleMove}>
                   <LineArrowIcon direction={'LEFT'} weight="NORMAL" />
                   <p>이전글</p>
                 </button>
@@ -151,8 +168,8 @@ const NewsDetail = (props: Props) => {
           <div className="next">
             {isNextContent && (
               <>
-                <p className="btn_title">{nextNews.title}</p>
-                <button data-id={nextNews.id} onClick={handleMove}>
+                <p className="btn_title">{nextNews?.title}</p>
+                <button data-id={nextNews?.id} onClick={handleMove}>
                   <p>다음글</p>
                   <LineArrowIcon direction={'RIGHT'} weight="NORMAL" />
                 </button>
@@ -165,4 +182,4 @@ const NewsDetail = (props: Props) => {
   );
 };
 
-export default injectIntl(NewsDetail);
+export default withTranslations(NewsDetail);

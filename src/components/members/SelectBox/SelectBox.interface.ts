@@ -9,4 +9,4 @@ interface ISelectBoxProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export { ISelectBoxProps };
+export type { ISelectBoxProps };

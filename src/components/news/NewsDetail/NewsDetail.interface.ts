@@ -1,10 +1,10 @@
 import { News } from '@Interface/api.interface';
-import { IGatsbyImageData } from 'gatsby-plugin-image';
-import { WrappedComponentProps } from 'gatsby-plugin-intl';
+import { WithIntlProps } from '@Hocs/withTranslations';
 
-export interface Props extends News, WrappedComponentProps {}
+export interface Props extends News, WithIntlProps {}
 export interface NewsProfile {
   profileImage: string;
   name: string;
   position: string;
+  order: string;
 }

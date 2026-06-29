@@ -24,4 +24,4 @@ interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   type?: TType;
 }
 
-export { TClassName, TType, IButtonProps };
+export type { TClassName, TType, IButtonProps };
