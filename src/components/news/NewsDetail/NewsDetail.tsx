@@ -32,10 +32,11 @@ const NewsDetail = (props: Props) => {
   const [isProfileLoading, setIsProfileLoading] = useState(true);
 
   useEffect(() => {
+    setIsProfileLoading(true);
     getNewsMember(id)
       .then(res => setProfile(res ?? []))
       .finally(() => setIsProfileLoading(false));
-  }, []);
+  }, [id]);
 
   const onClickOiriginal = () => {
     window.open(originalLink ?? '', '_blank');
