@@ -1,6 +1,8 @@
 import { NewsMin } from '@Interface/api.interface';
 
 export type TTab = 'all' | 'media' | 'recent';
+/** 목록 정렬 방향. `date` 기준 내림차순(최신순)이 기본. */
+export type TSort = 'asc' | 'desc';
 export type TPagination = { nbPages: number; page: number };
 
 /**
