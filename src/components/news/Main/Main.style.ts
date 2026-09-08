@@ -59,23 +59,24 @@ export const ControlBox = styled.div`
   )}
 `;
 
-/** 정렬 방향 토글 버튼. 아이콘 방향 = 현재 정렬(아래=최신순, 위=오래된순). */
+/**
+ * 정렬 방향 토글 버튼(아이콘 전용). 막대 길이 + 화살표 방향이 현재 정렬을 나타낸다
+ * (아래=최신순, 위=오래된순). 아이콘만 있으므로 Main.tsx에서 aria-label/title을 준다.
+ */
 export const SortButton = styled.button`
   ${flex()}
-  ${size('40px', 'auto')}
+  ${size('40px', '40px')}
   flex-shrink: 0;
-  gap: 4px;
-  padding: 0 14px;
+  padding: 0;
 
   border: 1px solid ${({ theme }) => theme.color.grey200};
-  border-radius: 50px;
+  border-radius: 50%;
   background: ${color.white};
   cursor: pointer;
 
-  ${font('body16', 'bold')}
-  color: ${({ theme }) => theme.color.black};
-  letter-spacing: -0.4px;
-  white-space: nowrap;
+  img {
+    ${size('20px', '20px')}
+  }
 
   &:hover {
     background: ${({ theme }) => theme.color.grey50};
@@ -89,10 +90,8 @@ export const SortButton = styled.button`
   ${mediaQuery(
     'mobile',
     `
-      ${size('36px', 'auto')}
-      padding: 0 10px;
-      gap: 2px;
-      ${font('mobile14', 'bold')}
+      ${size('36px', '36px')}
+      img { ${size('18px', '18px')} }
     `,
   )}
 `;
