@@ -46,23 +46,22 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const { getTimestampToDate } = await import('../../utils/date');
 
   // Build the client-side search index from the same source the detail pages use.
-  // Sort newest-first (order desc) to match the old `.sort((a,b) => b.order - a.order)`.
+  // Order comes from getAllNews (Firestore orderBy `date` desc) — newest first.
+  // The old `.sort((a,b) => b.order - a.order)` used `order` as a date proxy;
+  // they agree on today's data, but `date` is the field the list is meant to rank by.
   const all = await getAllNews();
-  const newsList: TNewsListItem[] = all
-    .slice()
-    .sort((a, b) => b.order - a.order)
-    .map(n => ({
-      documentId: String(n.documentId),
-      title: n.title,
-      summary: n.summary,
-      agency: n.agency,
-      newsType: n.newsType as TNewsListItem['newsType'],
-      order: n.order,
-      // n.date is a compat Timestamp at build (same as the detail page uses);
-      // getTimestampToDate calls .toDate(). Emit a STRING so it serializes.
-      dateYearMonth: getTimestampToDate(n.date).fullDate,
-      content: n.content,
-    }));
+  const newsList: TNewsListItem[] = all.map(n => ({
+    documentId: String(n.documentId),
+    title: n.title,
+    summary: n.summary,
+    agency: n.agency,
+    newsType: n.newsType as TNewsListItem['newsType'],
+    order: n.order,
+    // n.date is a compat Timestamp at build (same as the detail page uses);
+    // getTimestampToDate calls .toDate(). Emit a STRING so it serializes.
+    dateYearMonth: getTimestampToDate(n.date).fullDate,
+    content: n.content,
+  }));
 
   return {
     props: serialize({
