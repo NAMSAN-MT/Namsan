@@ -1,6 +1,7 @@
 import Input from '@Components/common/Input';
-import LineArrowIcon from '@Components/icons/LineArrowIcon';
 import { withTranslations, WithIntlProps } from '@Hocs/withTranslations';
+import sortAscIcon from '@Images/ic_sort_asc.svg';
+import sortDescIcon from '@Images/ic_sort_desc.svg';
 import { useRouter } from 'next/router';
 import React, { lazy, useState } from 'react';
 import * as SearchBar from '../../members/SearchBar/SearchBar.style';
@@ -52,6 +53,9 @@ const NewsMain = (props: Props) => {
   };
 
   const isPagination = pageNationState.nbPages > 1;
+  const sortLabel = intl.formatMessage({
+    id: sort === 'asc' ? 'news.sort_oldest' : 'news.sort_newest',
+  });
 
   return (
     <>
@@ -93,20 +97,20 @@ const NewsMain = (props: Props) => {
             />
           </SearchBar.ItemWrapper>
 
-          {/* 정렬 토글: 화살표 아이콘 방향이 현재 정렬(위=오래된순, 아래=최신순)을 나타낸다.
-              버튼 안의 텍스트가 곧 접근성 이름이라 별도 aria-label은 두지 않는다. */}
-          <S.SortButton type="button" onClick={handleSort}>
-            <LineArrowIcon
-              direction={sort === 'asc' ? 'UP' : 'DOWN'}
-              weight="BOLD"
-              width="18px"
-              height="18px"
-            />
-            <span>
-              {intl.formatMessage({
-                id: sort === 'asc' ? 'news.sort_oldest' : 'news.sort_newest',
-              })}
-            </span>
+          {/* 정렬 토글(아이콘 전용). 막대 길이와 화살표 방향이 현재 정렬을 나타낸다
+              (아래=최신순, 위=오래된순). 보이는 텍스트가 없으므로 aria-label로
+              접근성 이름을 주고, title로 호버 툴팁까지 같은 문구를 노출한다.
+              img는 alt=""로 둬서 스크린리더가 이름을 두 번 읽지 않게 한다. */}
+          <S.SortButton
+            type="button"
+            onClick={handleSort}
+            aria-label={sortLabel}
+            title={sortLabel}
+          >
+            {/* next/image-types/global이 `*.svg`를 any로 선언해 svg import는 전부
+                any다(레포 전역 동일 — Pagination.tsx도 같은 지적을 안고 있다). */}
+            {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
+            <img src={sort === 'asc' ? sortAscIcon : sortDescIcon} alt="" />
           </S.SortButton>
         </S.ControlBox>
       </S.TabSearchBox>
