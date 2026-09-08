@@ -58,18 +58,26 @@ const Pagination = (props: PaginationProps) => {
   const handleMovePrev = () => {
     if (booleanObj.isPrev) {
       const newPage = page - 9 < 1 ? 1 : page - 9;
-      router.push(toQuery(locale, props.newsType, newPage), undefined, {
-        shallow: true,
-      });
+      router.push(
+        toQuery(locale, props.newsType, newPage, props.sort),
+        undefined,
+        {
+          shallow: true,
+        },
+      );
     }
   };
 
   const handleMoveNext = () => {
     if (booleanObj.isNext) {
       const newPage = 9 + page > nbPages ? nbPages : 9 + page;
-      router.push(toQuery(locale, props.newsType, newPage), undefined, {
-        shallow: true,
-      });
+      router.push(
+        toQuery(locale, props.newsType, newPage, props.sort),
+        undefined,
+        {
+          shallow: true,
+        },
+      );
     }
   };
 
@@ -82,7 +90,7 @@ const Pagination = (props: PaginationProps) => {
         <>
           <Link
             key={1}
-            href={toQuery(locale, props.newsType, 1)}
+            href={toQuery(locale, props.newsType, 1, props.sort)}
             shallow
             prefetch={false}
           >
@@ -94,7 +102,7 @@ const Pagination = (props: PaginationProps) => {
       {pageList.map(num => (
         <Link
           key={num}
-          href={toQuery(locale, props.newsType, num)}
+          href={toQuery(locale, props.newsType, num, props.sort)}
           shallow
           prefetch={false}
         >
@@ -106,7 +114,7 @@ const Pagination = (props: PaginationProps) => {
           <span className="ellipse"></span>
           <Link
             key={nbPages}
-            href={toQuery(locale, props.newsType, nbPages)}
+            href={toQuery(locale, props.newsType, nbPages, props.sort)}
             shallow
             prefetch={false}
           >

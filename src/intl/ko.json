@@ -111,6 +111,8 @@
     "search_placeholder": "검색",
     "total": "전체",
     "pressRelease": "언론보도",
-    "RecentBusinessCases": "최근 업무사례"
+    "RecentBusinessCases": "최근 업무사례",
+    "sort_newest": "최신순",
+    "sort_oldest": "오래된순"
   }
 }

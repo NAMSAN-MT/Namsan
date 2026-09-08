@@ -107,6 +107,8 @@
     "search_placeholder": "Name Search",
     "total": "View All",
     "pressRelease": "In the News",
-    "RecentBusinessCases": "Recent Cases"
+    "RecentBusinessCases": "Recent Cases",
+    "sort_newest": "Newest",
+    "sort_oldest": "Oldest"
   }
 }
