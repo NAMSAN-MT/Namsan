@@ -53,17 +53,27 @@ const DetailPage = (props: Props) => {
   const [isShowMore, setIsShowMore] = useState(false);
   const subIdPrefix = props.id?.replace('C', 'S');
 
-  // Deep-link: open the hash-anchored sub-section (e.g. #S0201 -> index 1) AFTER
-  // mount. Doing it client-only keeps the initial render (all closed) identical
-  // to the server's, avoiding the hydration mismatch that reading the hash during
-  // render caused.
+  // workInfo는 getStaticProps가 내려주는 locale별 데이터이고, category state는
+  // 섹션 펼침/접힘 토글 때문에 필요하다. 그런데 정적 export의 클라이언트 라우팅은
+  // /ko/work/C01 -> /en/work/C01 이동 시 같은 route(/[locale]/work/[id])라
+  // 이 컴포넌트를 언마운트하지 않는다 → useState 초기값이 재평가되지 않아
+  // 언어를 바꿔도 이전 언어의 본문이 그대로 남았다(GNB만 영문으로 바뀌는 증상).
+  // locale/id가 바뀔 때마다 state를 새 props로 되돌린다.
+  //
+  // 해시 딥링크(#S0201 -> index 1)도 이 시점에 함께 적용한다. 렌더 바디에서
+  // window.location.hash를 읽으면 서버('')와 클라이언트('#S0201')가 달라져
+  // 하이드레이션 mismatch가 나므로, 반드시 mount 이후에만 읽는다.
   useEffect(() => {
     const idx = Number(window.location.hash.slice(-2));
-    if (Number.isNaN(idx) || idx <= 0) return;
-    setCategory(curr =>
-      curr.map((c, i) => (i === idx ? { ...c, isOpen: true } : c)),
+    const openIndex = Number.isNaN(idx) || idx <= 0 ? -1 : idx;
+    setCategory(
+      workInfo.map((c, i) =>
+        i === openIndex ? { ...c, isOpen: true } : { ...c },
+      ),
     );
-  }, []);
+    // workInfo는 부모가 매 렌더 새로 만드는 배열이라 deps에 넣으면 무한 루프가 된다.
+    // 내용이 실제로 바뀌는 시점은 locale/id 변경뿐이므로 그 둘만 추적한다.
+  }, [props.language, props.id]);
 
   const onClickShowMore = () => {
     setIsShowMore(true);
