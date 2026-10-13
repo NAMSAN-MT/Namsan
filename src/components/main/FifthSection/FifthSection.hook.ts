@@ -1,12 +1,11 @@
-import { getDownload } from '@Api/main.api';
 import useNavigate from '@Hooks/useNavigate';
 
 const useFifthSection = () => {
   const { handleNavigate } = useNavigate();
 
-  const _download = async () => {
+  const _download = () => {
     const link = document.createElement('a');
-    link.href = await getDownload('main/Namsans.pdf');
+    link.href = '/files/NS_Brochure_2026.pdf';
     link.style.display = 'none';
 
     document.body.appendChild(link);
