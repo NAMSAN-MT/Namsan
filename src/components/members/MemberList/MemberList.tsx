@@ -54,7 +54,10 @@ const MemberList = ({ intl, members }: IMemberListProps) => {
     <S.MemberList>
       {memberList.map(member => (
         <MemberItem
-          key={member.id}
+          // `order` is the member's route key (/member/{order}) and unique per
+          // locale; the `id` field is not (duplicate ids made React keep
+          // orphan cards that piled up on every ko↔en switch).
+          key={member.order}
           name={member.name?.toUpperCase() ?? ''}
           position={member.position}
           businessFields={member.businessFields}
